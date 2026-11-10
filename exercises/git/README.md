@@ -1,0 +1,140 @@
+# Git exercises
+
+Day 1, part 3: version control with Git and Azure DevOps. Total time: about 2 hours.
+
+By the end you can: clone an Azure DevOps repository, commit on a branch, push, open a pull request, and pull.
+
+## Overview
+
+| # | Folder | Topic | Time |
+|---|---|---|---|
+| 1 | `01-first-commit` | `git init`, `status`, `add`, `commit`, `log`, `diff`. The three areas. | 15 min |
+| 2 | `02-history` | `log`, `show`, `diff`, `blame`. Visit an old version. `restore`. | 20 min |
+| 3 | `03-branches` | `switch -c`, `merge` (fast-forward and merge commit). Stretch: a merge conflict. | 25 min (+10 stretch) |
+| 4 | `04-azure-devops-remote` | `clone`, `remote`, `push -u` to Azure DevOps. | 20 min |
+| 5 | `05-pull-request` | Pull request, review, complete, `pull`, clean up. Branching models. | 25 min |
+| 6 | `06-git-in-vscode` | The same cycle in VS Code. `.gitignore`. Command line vs VS Code vs SourceTree. | 20 min |
+
+Short on time? Skip the stretch in exercise 3 and shorten exercise 6 to the tasks 1 to 7. That saves about 20 minutes.
+
+Do the exercises in order. Open each `README.md` in VS Code (right-click, **Open Preview**) or read it on screen.
+
+## Setup scripts for exercises 1 to 3
+
+Exercises 1 to 3 start from a prepared folder. Create it with the setup script. Run this from the root of the course repository (`ac-python-and-git-101`), in PowerShell:
+
+```powershell
+uv run python exercises/git/setup_exercise.py 1
+```
+
+Use `2` or `3` for the other exercises. The script:
+
+- creates the folder `git-exercises\exercise_<n>` in your home folder, **outside** the course repository (never put one Git repository inside another),
+- prints the `cd` command you need next,
+- refuses to overwrite an existing folder. Add `--force` to delete it and start again,
+- accepts `--target <folder>` if you want it somewhere else.
+
+```powershell
+uv run python exercises/git/setup_exercise.py 2 --force
+uv run python exercises/git/setup_exercise.py 3 --target D:\temp\ex3
+```
+
+Exercises 4 to 6 use the training repository on Azure DevOps and need no setup script. The trainer gives you its URL:
+
+```
+https://dev.azure.com/<organisation>/<project>/_git/<training-repo>
+```
+
+## If you get stuck
+
+- Stuck in a screen with `:` or `(END)` at the bottom? You are in a pager. Press `q`.
+- Stuck in a text editor after a commit or merge? Close the tab in VS Code. In vim, press `Esc`, type `:q!` and press Enter. Next time use `git commit -m "message"`.
+- Not sure where you are? Run `pwd`, then `git status`.
+- Raise your hand. Nothing in these exercises can destroy your work, except `git restore <file>` on uncommitted edits, and that one is marked in the text.
+
+## Cheat sheet
+
+All commands work in Windows PowerShell. Use `<...>` for a value you fill in.
+
+### Set up (once per laptop)
+
+```powershell
+git config --global user.name "Your Name"
+git config --global user.email "your.name@example.com"
+git config user.name                  # check
+```
+
+### Start
+
+```powershell
+git init -b main                      # make a new repository in this folder
+git clone <url>                       # copy a remote repository to your laptop
+```
+
+### The daily cycle
+
+```powershell
+git status                            # what is changed, staged, untracked?
+git diff                              # unstaged changes
+git diff --staged                     # staged changes
+git add <file>                        # stage a file
+git commit -m "Add ..."               # save a snapshot (always use -m)
+git push                              # send commits to the remote
+git pull                              # get commits from the remote
+```
+
+### Branches
+
+```powershell
+git branch                            # list local branches
+git branch -a                         # also list remote branches
+git switch <branch>                   # go to a branch
+git switch -c <new-branch>            # create a branch and go to it
+git merge <branch>                    # merge <branch> into the current branch
+git branch -d <branch>                # delete a merged branch
+git push -u origin <branch>           # first push of a new branch
+git fetch --prune                     # update remote info, forget deleted remote branches
+```
+
+### History
+
+```powershell
+git log --oneline                     # one line per commit (q to quit)
+git log --oneline --graph --all --decorate   # picture of all branches
+git show <hash>                       # one commit in detail
+git diff <hash1> <hash2>              # compare two commits
+git log -S <text>                     # commits that added or removed <text>
+git blame <file>                      # who last changed each line
+git switch --detach <hash>            # look at an old version
+git switch main                       # come back
+```
+
+### Undo
+
+```powershell
+git restore <file>                    # throw away uncommitted edits (cannot be undone)
+git restore --staged <file>           # unstage, keep the edit
+git merge --abort                     # leave a merge that went wrong
+```
+
+### The three areas
+
+```
+working tree  --git add-->  staging area  --git commit-->  repository  --git push-->  remote
+                                                           repository  <--git pull--  remote
+```
+
+### The pull request flow
+
+```
+git switch -c feature/<name>-<topic>      1. branch
+(edit files)                              2. work
+git add <file> ; git commit -m "..."      3. commit (in PowerShell 5.1 use ; instead of &&)
+git push -u origin feature/<name>-<topic> 4. push
+Azure DevOps: New pull request            5. PR, review, approve, complete
+git switch main ; git pull                6. update your laptop
+git branch -d feature/<name>-<topic>      7. clean up
+git fetch --prune
+```
+
+In PowerShell 5.1, `&&` does not work. Run commands on separate lines, or join them with `;`.
