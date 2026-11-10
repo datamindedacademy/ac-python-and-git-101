@@ -1,56 +1,32 @@
 ---
-layout: section
----
-
-# <span class="dm-accent">Wrap-up</span>
-
----
 layout: default
 label: Wrap-up
 ---
 
-# What you can do <span class="dm-accent">now</span>: Python
+# What you can do <span class="dm-accent">now</span>
 
-<DmColumns class="mt-4">
+<DmColumns class="mt-2">
 <DmColumn header="Python" tone="navy">
 
-- Run a script from PowerShell
-- Keep a virtual environment per project with uv
-- Use functions, conditionals and loops
-- Import a package and run it from VS Code
+- Run a script from PowerShell and from VS Code
+- A virtual environment per project with uv
+- Functions, conditionals, loops, importing a package
+- Read a stack trace
+- Read a folder of files and write a summary
 
 </DmColumn>
-<DmColumn header="Working with code" tone="violet" divider>
+<DmColumn header="Git" tone="violet" divider>
 
-- Read a stack trace and find the failing line
-- Automate a task that reads and writes files
+- Clone an Azure DevOps repository
+- Commit on a branch
+- Push, merge through a PR and pull
+- Read history, undo a change, recognise a conflict
 
 </DmColumn>
 </DmColumns>
 
 <!--
-Go through the list and ask for a show of hands for each item. This is the end level promised for the Python half. If a point gets few hands, note it for the homework slide.
--->
-
----
-layout: default
-label: Wrap-up
----
-
-# What you can do <span class="dm-accent">now</span>: Git
-
-<DmProcess class="mt-6">
-<DmPhase label="Clone" />
-<DmPhase label="Commit" />
-<DmPhase label="Push" />
-<DmPhase label="PR" />
-<DmPhase label="Pull" />
-</DmProcess>
-
-<p class="mt-12 text-center">Clone an Azure DevOps repository, commit on a branch, push, merge through a PR and pull the result. Plus: read the history, undo a change, and recognise a merge conflict.</p>
-
-<!--
-This is the end level of the Git half. Ask who feels confident with each step and who wants another go at it. Offer to stay a few minutes for anyone whose sign-in or pull request did not work.
+Go through the list and ask for a show of hands for each item. This is the end level promised for the day. If a point gets few hands, note it for the homework. Offer to stay a few minutes for anyone whose sign-in or pull request did not work.
 -->
 
 ---
@@ -79,19 +55,22 @@ git merge <branch>
 
 ```powershell
 git clone <url>
-git remote -v
+git switch main
 git pull
-git push -u origin <branch>
-git fetch
-git branch -d <branch>
-git merge --abort
+git switch -c feature/x
+git push -u origin feature/x
+# open the PR, complete it, repeat
 ```
 
 </DmColumn>
 </DmColumns>
 
+<style>
+.slidev-code { font-size: 14px !important; line-height: 1.5 !important; }
+</style>
+
 <!--
-Point out that this will be in the handout. Eight commands cover almost everything in daily use. Status is the one to run when in doubt.
+Point out that this will be in the handout. Eight commands cover almost everything in daily use, and the right column is the daily cycle: update main, branch, commit, push, pull request, then back to the start. Status is the one to run when in doubt.
 -->
 
 ---
@@ -99,63 +78,34 @@ layout: default
 label: Wrap-up
 ---
 
-# Before <span class="dm-accent">day 2</span>
+# Before <span class="dm-accent">day 2</span>, and beyond
 
-<DmSteps dir="vertical">
-<DmStep n="1" label="Working uv environment">Create a project, add a package, run a script from PowerShell and from VS Code.</DmStep>
-<DmStep n="2" label="Language fundamentals">Redo the exercises you found hard: functions, loops, files, exceptions.</DmStep>
-<DmStep n="3" label="Clone, commit, push, pull">Do one full cycle on Azure DevOps, including a pull request.</DmStep>
-</DmSteps>
+<DmColumns class="mt-2">
+<DmColumn header="Before day 2" tone="navy">
 
-<!--
-Day 2 builds on all three. Pandas and NumPy install through uv, so the environment must work. The data analysis exercises assume you can write a loop and read a file. And we will store the exercises in Git, so the cycle must feel familiar. Ask people to message the trainers if any of the three fails.
--->
-
----
-layout: default
-label: Wrap-up
----
-
-# Further <span class="dm-accent">reading</span>
-
-- **Pro Git**, free book: `git-scm.com/book`
-- **Learn Git Branching**, interactive visual game: `learngitbranching.js.org`
-- **The Python Tutorial**, official: `docs.python.org/3/tutorial`
-- **uv documentation**: `docs.astral.sh/uv`
-- Azure DevOps Repos documentation: `learn.microsoft.com/azure/devops/repos`
-
-<!--
-Pro Git is the reference for everything we skipped, including rebase and stash. Learn Git Branching is a good evening activity: it shows branches as pictures and teaches merge and rebase in small levels. The Python tutorial and uv docs are the ones to bookmark.
--->
-
----
-layout: default
-label: Wrap-up
----
-
-# <span class="dm-accent">Day 2</span> and day 3
-
-<DmColumns class="mt-4">
-<DmColumn header="Day 2: data analysis" tone="navy">
-
-- pandas and NumPy
-- SciPy and Matplotlib
-- scikit-learn
-- `.gitignore` for data files, nbstripout for notebooks
+- A working uv environment
+- Redo the fundamentals you found hard
+- One full clone, commit, push, pull cycle with a PR
 
 </DmColumn>
-<DmColumn header="Day 3: quality and automation" tone="violet" divider>
+<DmColumn header="Read more" tone="plain" divider>
 
-- pytest, ruff, type checking
-- pre-commit
-- Azure DevOps pipelines and branch policies
-- GitHub Copilot and coding agents
+- Pro Git book (`git-scm.com/book`)
+- Learn Git Branching (`learngitbranching.js.org`)
+- Python tutorial (`docs.python.org/3/tutorial`)
+- uv docs (`docs.astral.sh/uv`)
+
+</DmColumn>
+<DmColumn header="Next days" tone="violet" divider>
+
+- Day 2: pandas, NumPy, SciPy, Matplotlib, scikit-learn
+- Day 3: pytest, ruff, pre-commit, pipelines, Copilot
 
 </DmColumn>
 </DmColumns>
 
 <!--
-Tomorrow we use what you learned today on real measurement data. The Git habits from this afternoon carry over: you commit your analyses on a branch. Day 3 adds the safety net around it: tests, linting, pipelines and the branch policy that protects main.
+Day 2 builds on the first column: packages install through uv, the exercises assume you can write a loop and read a file, and we store the work in Git, using .gitignore for data files and nbstripout for notebooks. Learn Git Branching is a good evening activity. Day 3 adds the safety net around it: tests, linting, type checking, pipelines and the branch policy that protects main, plus GitHub Copilot and coding agents.
 -->
 
 ---
