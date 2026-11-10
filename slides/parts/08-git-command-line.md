@@ -214,6 +214,13 @@ title: Exercise - branches
 <p class="mt-6 text-lg opacity-80"><code>exercises/git/03-branches</code></p>
 <p class="mt-2 text-sm opacity-70">About 15 minutes: <code>uv run python exercises/git/setup_exercise.py 3</code></p>
 
+<p class="words"><b>Words you can now use</b> stage · commit message · diff · HEAD · merge · fast-forward · conflict</p>
+
+<style>
+.words { font-size: 13px; opacity: 0.65; margin-top: 40px; }
+.words b { margin-right: 8px; }
+</style>
+
 <!--
-Create a branch, commit on it, merge it into main and look at the graph. The stretch goal is to create and resolve a conflict.
+Create a branch, commit on it, merge it into main and look at the graph. The stretch goal is to create and resolve a conflict. The words at the bottom are the ones they can now use when asking a colleague or Copilot for help, or when reviewing.
 -->

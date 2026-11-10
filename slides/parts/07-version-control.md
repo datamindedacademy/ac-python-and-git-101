@@ -24,6 +24,7 @@ label: 7 · Version control
 - **Who and why**: who changed the conversion factor?
 - **Undo**: how do I get back to the version that worked?
 - **Collaborate**: two people edit at once, whose version wins?
+- **With AI**: `git diff` shows exactly what an assistant changed, so you keep what is good and undo the rest
 
 </v-clicks>
 
@@ -32,7 +33,7 @@ label: 7 · Version control
 </style>
 
 <!--
-Ask who recognises this. Almost everyone does, from Excel files or MATLAB scripts on a network drive. The file names are an attempt at version control by hand. Version control gives you four things: a history, a record of who changed what and why, the ability to undo, and a way to work in parallel and combine the results. Git does all four, for any text file, and Python scripts are text files.
+Ask who recognises this. Almost everyone does, from Excel files or MATLAB scripts on a network drive. The file names are an attempt at version control by hand. Version control gives you four things: a history, a record of who changed what and why, the ability to undo, and a way to work in parallel and combine the results. Git does all four, for any text file, and Python scripts are text files. This matters more with Copilot, not less: when an assistant writes or changes code, Git is how you see exactly what it changed, keep the good part and undo the rest, so small commits and a reviewed pull request become more important.
 -->
 
 ---
@@ -117,6 +118,13 @@ flowchart LR
 - You choose what goes into a commit by **staging** it first
 - `git status` tells you which area each change is in
 
+<p class="words"><b>Words you can now use</b> repository · commit · branch · remote · working tree · staging area</p>
+
+<style>
+.words { font-size: 13px; opacity: 0.65; margin-top: 14px; }
+.words b { margin-right: 8px; }
+</style>
+
 <!--
-This picture is the most useful mental model of the day. You edit in the working tree. You pick the changes that belong together and stage them. Commit then stores what is staged. The staging area lets you make two commits out of one editing session. Come back to this slide whenever status output confuses someone.
+This picture is the most useful mental model of the day. You edit in the working tree. You pick the changes that belong together and stage them. Commit then stores what is staged. The staging area lets you make two commits out of one editing session. Come back to this slide whenever status output confuses someone. The strip at the bottom lists the words they should now be able to use in a request to a colleague or to Copilot.
 -->

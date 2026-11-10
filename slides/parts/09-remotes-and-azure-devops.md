@@ -163,7 +163,7 @@ label: 9 · Remotes and Azure DevOps
 </DmComparison>
 
 <!--
-No tool is wrong. All three drive the same Git, so you can switch between them in the same repository. We teach the command line first because it shows what Git actually does, and because every tutorial and error message uses it. Many people then settle on VS Code for daily work. Next is a short demo of the Source Control view.
+No tool is wrong. All three drive the same Git, so you can switch between them in the same repository. We teach the command line first because it shows what Git actually does, and because every tutorial and error message uses it. Many people then settle on VS Code for daily work. This is also a choice an assistant makes for you unless you say what you want: Copilot will happily run Git commands or click through the Source Control view, and you need the vocabulary to state which and to check what it did. Next is a short demo of the Source Control view.
 -->
 
 ---
@@ -174,6 +174,13 @@ title: Demo - Git in VS Code
 # Demo: <span class="dm-accent">Git in VS Code</span>
 
 <p class="mt-6 text-lg opacity-80">Optional practice: <code>exercises/git/06-git-in-vscode</code></p>
+
+<p class="words"><b>Words you can now use</b> clone · origin · push · pull · fetch · pull request · review</p>
+
+<style>
+.words { font-size: 13px; opacity: 0.65; margin-top: 40px; }
+.words b { margin-right: 8px; }
+</style>
 
 <!--
 Trainer demo of the same cycle in the Source Control view (control shift G): changed files, click for the diff, plus to stage, message and Commit, Sync Changes for push and pull, and the branch name at the bottom left. Show a .gitignore taking effect. Participants can do exercise 06 afterwards in their own time.

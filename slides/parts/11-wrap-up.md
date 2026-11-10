@@ -25,8 +25,12 @@ label: Wrap-up
 </DmColumn>
 </DmColumns>
 
+<div class="mt-6"></div>
+
+<p class="text-center">Today: the <b>vocabulary</b> and the tradeoffs. Day 3: you use them to direct and review Copilot and coding agents.</p>
+
 <!--
-Go through the list and ask for a show of hands for each item. This is the end level promised for the day. If a point gets few hands, note it for the homework. Offer to stay a few minutes for anyone whose sign-in or pull request did not work.
+Go through the list and ask for a show of hands for each item. This is the end level promised for the day. If a point gets few hands, note it for the homework. Close the loop with the opening question: AI can write the code, but you now have the words to ask for the right thing and the understanding to judge what comes back. Offer to stay a few minutes for anyone whose sign-in or pull request did not work.
 -->
 
 ---
@@ -99,13 +103,13 @@ label: Wrap-up
 <DmColumn header="Next days" tone="violet" divider>
 
 - Day 2: pandas, NumPy, SciPy, Matplotlib, scikit-learn
-- Day 3: pytest, ruff, pre-commit, pipelines, Copilot
+- Day 3, going deeper: tests, linting, pipelines, coding agents and reviewing their work
 
 </DmColumn>
 </DmColumns>
 
 <!--
-Day 2 builds on the first column: packages install through uv, the exercises assume you can write a loop and read a file, and we store the work in Git, using .gitignore for data files and nbstripout for notebooks. Learn Git Branching is a good evening activity. Day 3 adds the safety net around it: tests, linting, type checking, pipelines and the branch policy that protects main, plus GitHub Copilot and coding agents.
+Day 2 builds on the first column: packages install through uv, the exercises assume you can write a loop and read a file, and we store the work in Git, using .gitignore for data files and nbstripout for notebooks. Learn Git Branching is a good evening activity. Day 3 adds the safety net around it: tests, linting, type checking, pipelines and the branch policy that protects main. Copilot is allowed from today; day 3 goes deeper into coding agents and how to review their work.
 -->
 
 ---
