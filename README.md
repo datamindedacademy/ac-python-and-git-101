@@ -16,6 +16,19 @@ Day 1 assumes no programming experience. After this day you can:
 - Automate a repetitive task with a script that reads and writes files.
 - Clone an Azure DevOps repository, commit on a branch, push and pull.
 
+## Why learn this if AI can write the code?
+
+An AI assistant can write a Python script for you. It cannot decide what you need. To
+get useful code out of it you have to ask in the vocabulary of a Python specialist, read
+and judge what comes back, and choose between approaches that each have a cost. That
+vocabulary and those tradeoffs are what this day teaches.
+
+You may use GitHub Copilot throughout the training. Use it to explain errors and
+unfamiliar code, and ask it for a second way to do something so you can compare. Do not
+keep a line you cannot explain: every exercise ends with an "Explain it" question, and
+that question is the real check. Day 3 goes deeper into coding agents and reviewing
+their work.
+
 ## What is in this repository
 
 | Path | What it is |
@@ -47,7 +60,7 @@ hands-on work.
 ## Getting started on your Atlas Copco laptop
 
 You need the tools from the setup manual you received before the training: Git for
-Windows, uv, Python 3.13 (installed by uv) and Visual Studio Code. The first half hour of
+Windows, uv, Python 3.13 (installed by uv) and Visual Studio Code with GitHub Copilot. The first half hour of
 the day is a check that everything works; come with the manual applied.
 
 Open **PowerShell** and run these commands one by one. The trainer gives you the URL of
