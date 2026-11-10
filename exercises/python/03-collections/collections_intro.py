@@ -17,7 +17,7 @@ print("First:", pressures_bar[0])
 # TODO 4: print the highest, lowest and average reading.
 # Hint: max(), min(), sum() and len().
 
-# TODO 5: sort the list from high to low and print it.
+# TODO 5 (optional): sort the list from high to low and print it.
 # Hint: sorted(pressures_bar, reverse=True)
 
 # --- Tuples: an ordered collection that cannot change ---

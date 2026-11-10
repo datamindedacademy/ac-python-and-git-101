@@ -20,8 +20,8 @@ def celsius_to_kelvin(temperature_c):
 
 def l_s_to_m3_h(flow_l_s):
     """Convert a flow from litres per second to cubic metres per hour."""
-    # TODO 3: 1 l/s is 3.6 m3/h.
-    return 0.0
+    # This one is done for you as an example: 1 l/s is 3.6 m3/h.
+    return flow_l_s * 3.6
 
 
 def average(values, decimals=2):

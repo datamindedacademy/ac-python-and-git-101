@@ -30,7 +30,7 @@ print("Temperature in K:", temperature_k)
 message = ...
 print(message)
 
-# TODO 5: print serial_number in lower case and its length.
+# TODO 5 (optional): print serial_number in lower case and its length.
 # Hint: serial_number.lower() and len(serial_number)
 
 # --- Part 4 (optional): conversions between types ---

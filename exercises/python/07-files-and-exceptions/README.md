@@ -2,6 +2,8 @@
 
 Core time: 20 minutes. Optional tasks at the end if you have time.
 
+**Words to use:** exception, exception type, traceback (stack trace), raise, catch, try/except, file mode.
+
 ## Goal
 
 Read and write text files, handle errors without crashing, and learn to read a **traceback** to find what went wrong.
@@ -54,7 +56,7 @@ Read and write text files, handle errors without crashing, and learn to read a *
 Two scripts are broken on purpose. For each one:
 
 1. Run it and read the traceback from the bottom up.
-2. Write down: the **exception type**, the **file line number**, and **what it means** in your own words.
+2. Write down the **exception type** and the **line number**.
 3. Fix the script and run it again.
 
 ```powershell
@@ -62,10 +64,17 @@ uv run python exercises/python/07-files-and-exceptions/broken_1.py
 uv run python exercises/python/07-files-and-exceptions/broken_2.py
 ```
 
-| Script | Exception type | Line | Your explanation | Your fix |
-|---|---|---|---|---|
-| `broken_1.py` | | | | |
-| `broken_2.py` | | | | |
+| Script | Exception type | Line |
+|---|---|---|
+| `broken_1.py` | | |
+| `broken_2.py` | | |
+
+## Explain it
+
+This is the last core task. Answer each question in one or two sentences, to your neighbour or in writing. You do not need to write code.
+
+1. Why do you catch `ValueError` and not every exception with a bare `except:`?
+2. A traceback gives you a line number. Is that always the line you must change? Use `broken_1.py` as your example.
 
 ## Check yourself
 
@@ -98,3 +107,7 @@ Part B: after your fixes, `broken_1.py` prints a highest pressure and `broken_2.
    You should see a warning, and the line `run_02: mean 7.71 bar, 1 rows skipped`.
 4. In `broken_3.py`, make `parse_pressure` accept a decimal comma by replacing `","` with `"."` before converting.
 5. Write a function `read_pressures(path)` that returns the good values and prints a warning for every bad line.
+
+### With Copilot
+
+Run `broken_2.py` again (use the original, or undo your fix) and paste the full traceback into Copilot Chat. Ask: *"What is the cause of this exception, and which line raises it?"* Was it right? Which line of the traceback told you the same thing? Did Copilot propose the same fix as you, or a different one (for example `str()` instead of an f-string)? Which do you prefer?

@@ -2,6 +2,8 @@
 
 Core time: 15 minutes. Optional tasks at the end if you have time.
 
+**Words to use:** interpreter, script, notebook, cell, kernel, PATH, virtual environment.
+
 ## Goal
 
 Run a Python script from PowerShell and from VS Code. Find out where Python lives on your laptop. Compare a script with a notebook.
@@ -45,12 +47,12 @@ All commands below are for **PowerShell**, run from the **repo root** (the folde
 
 6. Open `first_notebook.ipynb` in VS Code. Select the `.venv` kernel at the top right. Fill in the TODO and run both code cells with `Shift+Enter`.
 
-7. Fill in the table: write one or two advantages and disadvantages for each way of working.
+## Explain it
 
-   | | Advantages | Disadvantages |
-   |---|---|---|
-   | Script | | |
-   | Notebook | | |
+This is the last core task. Answer each question in one or two sentences, to your neighbour or in writing. You do not need to write code.
+
+1. You ran the same calculation as a script and as a notebook. Name one job where you would choose a script and one where you would choose a notebook. Say why.
+2. What does `uv run` do for you before it starts `python`? Why do we not just type `python hello.py`?
 
 ## Check yourself
 
@@ -80,3 +82,9 @@ Average pressure in bar: 7.233333333333334
 
 2. Print the average rounded to 2 decimals with `round(average_bar, 2)`.
 3. Use `uv run python -c "print(2 + 2)"` to run a single line without a file. When is that handy?
+
+4. Fill in a table with two advantages and two disadvantages of a script and of a notebook. Compare with the solution notes.
+
+### With Copilot
+
+Open Copilot Chat and ask: *"Explain step by step what happens when I run `uv run python hello.py`. Use the terms interpreter, PATH and virtual environment."* Compare the answer with the Background section above. Did it use a word you do not know yet? Ask it to define that word. Is there a sentence in the answer that you cannot check yourself? How would you check it?

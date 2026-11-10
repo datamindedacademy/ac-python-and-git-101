@@ -19,7 +19,23 @@ Total core hands-on time: 130 minutes. The rest of the day is for setup (at most
 
 Exercise 06 delivers the outcome "automate a repetitive task with a script that reads and writes files": it loops over all CSV logs in a folder and writes one summary file.
 
-Every README ends with an **Optional: if you have time** section (extra tasks, sets, comprehensions, a third traceback, a folder script that survives bad data). Do these only after the core tasks.
+Every README ends with an **Optional: if you have time** section (extra tasks, sets, comprehensions, a third traceback, a folder script that survives bad data, and one task **With Copilot**). Do these only after the core tasks.
+
+Every README starts with a **Words to use** line: the specialist terms of that exercise. Use them when you talk to your neighbour, to the trainer and to Copilot.
+
+## Using Copilot
+
+You may use GitHub Copilot in VS Code during the whole training: the inline suggestions and Copilot Chat. No core task needs it, so you can do everything without it too.
+
+AI can write the code. Your job is to ask for the right thing, to judge what comes back, and to choose between approaches. For that you need the vocabulary and the tradeoffs. That is what these exercises train.
+
+- Use it freely.
+- Ask it to explain an error or a line you do not understand.
+- Ask for a second way to do something, and compare the two.
+- Keep a line only when you can explain it to your neighbour.
+- You are the author of what you run and commit, whoever typed it.
+
+Each exercise ends its core tasks with an **Explain it** block: one or two questions that you answer in a sentence, to your neighbour or in writing. Pasting code does not answer them. They are the real check. "It runs" is not.
 
 Each folder has a `README.md` with the goal, background, numbered tasks, expected output and optional stretch tasks. Start every exercise by reading it.
 

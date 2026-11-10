@@ -2,6 +2,8 @@
 
 Core time: 10 minutes. Optional tasks at the end if you have time.
 
+**Words to use:** variable, assignment, type, int, float, str, f-string, constant.
+
 ## Goal
 
 Store values in variables, know their types, convert between types and units, and print nice messages with f-strings.
@@ -21,15 +23,22 @@ Store values in variables, know their types, convert between types and units, an
 
 ## Tasks
 
-Open `exercises/python/02-variables-and-types/units.py` and do TODO 1 to 5. Run it after every step:
+Open `exercises/python/02-variables-and-types/units.py` and do TODO 1 to 4. Run it after every step:
 
 ```powershell
 uv run python exercises/python/02-variables-and-types/units.py
 ```
 
+## Explain it
+
+This is the last core task. Answer each question in one or two sentences, to your neighbour or in writing. You do not need to write code.
+
+1. `temperature_c = 82` is an `int` and `pressure_bar = 7.5` is a `float`. What is the difference? What type is `temperature_k` after you add 273.15, and why?
+2. Why call a variable `pressure_bar` and not just `p`? What does the longer name cost you, and what does it buy you?
+
 ## Check yourself
 
-The main script should print this (with your own TODO 1 and 5 output added). Lines for TODO 6 and 7 appear only after you do the optional tasks:
+The main script should print this (with your own TODO 1 output added). Output for TODO 5 to 7 appears only after you do the optional tasks:
 
 ```text
 CB-0042 <class 'str'>
@@ -42,7 +51,7 @@ Hint: floats can show tiny extra digits. That is normal.
 
 ## Optional: if you have time
 
-1. TODO 6 and 7 in `units.py`: convert text to a number, and make a boolean. Expected: `Corrected: 8.0` and `Alarm: False`.
+1. TODO 5 to 7 in `units.py`: string methods, convert text to a number, and make a boolean. Expected: `Corrected: 8.0` and `Alarm: False`.
 2. In a new file `ask.py` in the same folder, ask the user for a pressure with `input()` and convert it. `input()` always returns text, so you must convert it with `float()`.
 
    ```python
@@ -53,3 +62,7 @@ Hint: floats can show tiny extra digits. That is normal.
 
 3. Run `print(0.1 + 0.2)`. Why is it not exactly `0.3`? (Floats are stored in binary. Small rounding errors are normal. Use `round()` when printing.)
 4. Convert the temperature to degrees Fahrenheit: `c * 9 / 5 + 32`.
+
+### With Copilot
+
+Ask Copilot Chat: *"Show two other ways to format a float with 2 decimals inside a Python string, besides an f-string."* You will probably get `str.format()` and the `%` operator. Run both. Which of the three would you rather read in a colleague's script, and why?

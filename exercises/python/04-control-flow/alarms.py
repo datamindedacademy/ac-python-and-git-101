@@ -19,7 +19,7 @@ pressure = 8.1
 for pressure in pressures_bar:
     pass  # replace this line
 
-# TODO 3: print the numbers 1 to 5 with a for loop and range(1, 6).
+# TODO 3 (optional): print the numbers 1 to 5 with a for loop and range(1, 6).
 
 # --- enumerate: index and value together ---
 # TODO 4: print "Reading 1: 7.1" ... for every pressure.

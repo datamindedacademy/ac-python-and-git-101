@@ -2,6 +2,8 @@
 
 Core time: 15 minutes. Optional tasks at the end if you have time.
 
+**Words to use:** package, dependency, transitive dependency, virtual environment, project file (`pyproject.toml`), lockfile (`uv.lock`), sync.
+
 ## Goal
 
 Create a new Python project with uv, add a package, look at the files uv creates, and run a script that imports the package.
@@ -34,21 +36,15 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
 
    You should see `main.py`, `pyproject.toml`, `README.md` and `.python-version`. There is no `.venv` yet.
 
-2. Read the project file:
-
-   ```powershell
-   cat pyproject.toml
-   ```
-
-3. Add the package:
+2. Add the package:
 
    ```powershell
    uv add matplotlib
    ```
 
-   Run `ls` again. Now you also have `uv.lock` and `.venv`. Read `pyproject.toml` again: the `dependencies` list has a new line. Open `uv.lock` in VS Code and search for `matplotlib`. Notice that it also lists `numpy` and other packages. Those are dependencies of matplotlib.
+   Run `ls` again. Now you also have `uv.lock` and `.venv`. Open `pyproject.toml`: the `dependencies` list has a line for matplotlib. Open `uv.lock` in VS Code and search for `matplotlib`. Notice that it also lists `numpy` and other packages. Those are dependencies of matplotlib.
 
-4. Copy `plot_pressure.py` from this repo folder into your project and open it in VS Code. If your repo is in `~/Documents/ac-python-and-git-101` (adjust the path if you cloned it somewhere else):
+3. Copy `plot_pressure.py` from this repo folder into your project and open it in VS Code. If your repo is in `~/Documents/ac-python-and-git-101` (adjust the path if you cloned it somewhere else):
 
    ```powershell
    Copy-Item ~/Documents/ac-python-and-git-101/exercises/python/08-uv-project/plot_pressure.py .
@@ -57,7 +53,7 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
 
    Do TODO 1 to 4.
 
-5. Run it, then look at the picture:
+4. Run it, then look at the picture:
 
    ```powershell
    uv run python plot_pressure.py
@@ -66,7 +62,7 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
 
    Open `pressure.png` in VS Code (it shows images).
 
-6. Remove the package, see the error, then restore it:
+5. Remove the package, see the error, then restore it:
 
    ```powershell
    uv remove matplotlib
@@ -74,7 +70,7 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
    uv add matplotlib
    ```
 
-7. Delete the environment and rebuild it from the lockfile, as a colleague would after cloning your project:
+6. Delete the environment and rebuild it from the lockfile, as a colleague would after cloning your project:
 
    ```powershell
    Remove-Item -Recurse -Force .venv
@@ -95,11 +91,18 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
 | Python version | `uv python install`, set in `.python-version` | you install it yourself |
 | Speed | very fast | slower |
 
+## Explain it
+
+This is the last core task. Answer each question in one or two sentences, to your neighbour or in writing. You do not need to write code.
+
+1. What breaks for a colleague if you share your project without `uv.lock`? And why is it fine to leave out `.venv`?
+2. `pyproject.toml` says something like `matplotlib>=3.10`, and `uv.lock` names one exact version. Why keep both files?
+
 ## Check yourself
 
-- After step 3, `pyproject.toml` contains something like `dependencies = ["matplotlib>=3.10"]` (your version number may differ).
-- After step 5, `pressure.png` shows a line with markers and a red dashed line at 8.5 bar.
-- After step 7, the script works again without any `uv add`.
+- After step 2, `pyproject.toml` contains something like `dependencies = ["matplotlib>=3.10"]` (your version number may differ).
+- After step 4, `pressure.png` shows a line with markers and a red dashed line at 8.5 bar.
+- After step 6, the script works again without any `uv add`.
 
 ## Optional: if you have time
 
@@ -115,3 +118,7 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
 3. Run `uv tree` to see which packages matplotlib pulled in.
 4. Add `requests` or `numpy` with `uv add` and use `numpy.mean(pressures_bar)` in the title of the plot.
 5. Run `uv add --dev pytest`. See that it goes in a separate `dev` group in `pyproject.toml`.
+
+### With Copilot
+
+Ask Copilot Chat: *"What is the difference between `uv add`, `uv sync` and `uv pip install` in a project with a lockfile?"* Check one claim from the answer yourself with `uv help add` or by looking at `pyproject.toml` and `uv.lock` before and after. Which of the three commands should you use in a project like this one, and which one would silently leave the lockfile out of date?
