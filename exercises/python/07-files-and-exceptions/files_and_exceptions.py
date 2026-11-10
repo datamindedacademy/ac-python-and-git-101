@@ -39,7 +39,7 @@ print("Bad lines:", bad_lines)
 # Hint: file.write(f"Reading {number}: {value} bar\n")
 print("Wrote", output_path)
 
-# --- Part 5: append ---
-# TODO 5: open output_path again with "a" (append) and add the line:
+# --- Part 5 (optional): append ---
+# TODO 5 (optional): open output_path again with "a" (append) and add the line:
 #   Bad lines: 2
 # Then read the file back and print it with print(output_path.read_text()).

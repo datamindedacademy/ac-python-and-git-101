@@ -33,14 +33,14 @@ print(message)
 # TODO 5: print serial_number in lower case and its length.
 # Hint: serial_number.lower() and len(serial_number)
 
-# --- Part 4: conversions between types ---
+# --- Part 4 (optional): conversions between types ---
 text_value = "7.8"
-# TODO 6: convert text_value to a float and add 0.2 to it.
+# TODO 6 (optional): convert text_value to a float and add 0.2 to it.
 # Then convert int(7.9) and str(7.9) and print what you get. Is int() rounding?
 corrected_bar = ...
 print("Corrected:", corrected_bar)
 
-# --- Part 5: booleans ---
-# TODO 7: make a variable is_alarm that is True when pressure_bar is above 8.0.
+# --- Part 5 (optional): booleans ---
+# TODO 7 (optional): make a variable is_alarm that is True when pressure_bar is above 8.0.
 is_alarm = ...
 print("Alarm:", is_alarm)

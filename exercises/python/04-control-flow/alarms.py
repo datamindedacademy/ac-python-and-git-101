@@ -40,5 +40,5 @@ minutes = 0
 print("Minutes to alarm:", minutes)
 
 # --- break and continue ---
-# TODO 7: loop over the pressures. Skip (continue) readings below 8.0.
+# TODO 7 (optional): loop over the pressures. Skip (continue) readings below 8.0.
 # Stop (break) at the first reading above PRESSURE_ALARM_BAR and print it.

@@ -1,6 +1,6 @@
 # 02 - Variables and types
 
-Time: about 15 minutes.
+Core time: 10 minutes. Optional tasks at the end if you have time.
 
 ## Goal
 
@@ -21,15 +21,29 @@ Store values in variables, know their types, convert between types and units, an
 
 ## Tasks
 
-Open `exercises/python/02-variables-and-types/units.py` and do the TODOs from 1 to 7. Run it after every step:
+Open `exercises/python/02-variables-and-types/units.py` and do TODO 1 to 5. Run it after every step:
 
 ```powershell
 uv run python exercises/python/02-variables-and-types/units.py
 ```
 
-Then do task 8 in a new file `ask.py` in the same folder:
+## Check yourself
 
-8. Ask the user for a pressure with `input()` and convert it. `input()` always returns text, so you must convert it with `float()`.
+The main script should print this (with your own TODO 1 and 5 output added). Lines for TODO 6 and 7 appear only after you do the optional tasks:
+
+```text
+CB-0042 <class 'str'>
+Pressure in psi: 108.7785
+Temperature in K: 355.15
+Unit CB-0042 runs at 7.50 bar and 82.0 C
+```
+
+Hint: floats can show tiny extra digits. That is normal.
+
+## Optional: if you have time
+
+1. TODO 6 and 7 in `units.py`: convert text to a number, and make a boolean. Expected: `Corrected: 8.0` and `Alarm: False`.
+2. In a new file `ask.py` in the same folder, ask the user for a pressure with `input()` and convert it. `input()` always returns text, so you must convert it with `float()`.
 
    ```python
    text = input("Pressure in bar: ")
@@ -37,22 +51,5 @@ Then do task 8 in a new file `ask.py` in the same folder:
 
    Print the pressure in psi. Run it with `uv run python exercises/python/02-variables-and-types/ask.py` and type `7.5` when it asks.
 
-## Check yourself
-
-The main script should print this (with your own TODO 1 and 5 output added):
-
-```text
-CB-0042 <class 'str'>
-Pressure in psi: 108.7785
-Temperature in K: 355.15
-Unit CB-0042 runs at 7.50 bar and 82.0 C
-Corrected: 8.0
-Alarm: False
-```
-
-Hint: `82 + 273.15` may show tiny extra digits like `355.15`. That is normal for floats.
-
-## Stretch
-
-- Run `print(0.1 + 0.2)`. Why is it not exactly `0.3`? (Floats are stored in binary. Small rounding errors are normal. Use `round()` when printing.)
-- Convert the temperature to degrees Fahrenheit: `c * 9 / 5 + 32`.
+3. Run `print(0.1 + 0.2)`. Why is it not exactly `0.3`? (Floats are stored in binary. Small rounding errors are normal. Use `round()` when printing.)
+4. Convert the temperature to degrees Fahrenheit: `c * 9 / 5 + 32`.

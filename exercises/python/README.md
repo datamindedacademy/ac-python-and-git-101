@@ -4,19 +4,22 @@ Hands-on exercises for day 1 of the Python Programming and Data Analysis trainin
 
 ## Exercises
 
-| # | Folder | Topic | Time |
+| # | Folder | Topic | Core time |
 |---|---|---|---|
-| 01 | `01-first-script` | Run a script from PowerShell and VS Code, the REPL, where Python lives (PATH), script versus notebook | 15 min |
-| 02 | `02-variables-and-types` | Variables, numbers, text, booleans, `type()`, conversions, f-strings, unit conversions | 15 min |
-| 03 | `03-collections` | Lists, tuples, dicts and sets, indexing, slicing, methods | 20 min |
-| 04 | `04-control-flow` | `if/elif/else`, `for`, `while`, `range`, `enumerate`, alarm limits | 20 min |
-| 05 | `05-functions` | Functions, parameters, defaults, return values, docstrings, modules, `import` | 25 min |
-| 06 | `06-standard-library` | `math`, `pathlib`, `csv`, `json`: read a CSV, compute statistics, write JSON | 25 min |
-| 07 | `07-files-and-exceptions` | Text files, `try/except`, reading a traceback (3 broken scripts) | 25 min |
-| 08 | `08-uv-project` | New uv project, `uv add`, `pyproject.toml`, `uv.lock`, `.venv`, comparison with pip | 20 min |
-| 09 | `09-automation-capstone` | Process a folder of CSV logs and write a CSV and JSON summary | 35 min |
+| 01 | `01-first-script` | Run a script from PowerShell and VS Code, where Python lives (PATH), script versus notebook | 15 min |
+| 02 | `02-variables-and-types` | Variables, numbers, text, `type()`, f-strings, unit conversions | 10 min |
+| 03 | `03-collections` | Lists, tuples and dicts, indexing, slicing, methods | 15 min |
+| 04 | `04-control-flow` | `if/elif/else`, `for`, `range`, `enumerate`, `while`, alarm limits | 15 min |
+| 05 | `05-functions` | Functions, parameters, defaults, return values, docstrings, modules, `import` | 20 min |
+| 06 | `06-standard-library` | `math`, `pathlib`, `csv`, `json`: a script that summarises a folder of CSV logs | 20 min |
+| 07 | `07-files-and-exceptions` | Text files, `try/except`, reading a traceback (2 broken scripts) | 20 min |
+| 08 | `08-uv-project` | New uv project, `uv add`, `pyproject.toml`, `uv.lock`, `.venv`, comparison with pip | 15 min |
 
-Total hands-on time: about 3 hours 20 minutes. The rest of the day is for setup (about 1 hour) and Git (about 2 hours).
+Total core hands-on time: 130 minutes. The rest of the day is for setup (at most 30 minutes) and Git.
+
+Exercise 06 delivers the outcome "automate a repetitive task with a script that reads and writes files": it loops over all CSV logs in a folder and writes one summary file.
+
+Every README ends with an **Optional: if you have time** section (extra tasks, sets, comprehensions, a third traceback, a folder script that survives bad data). Do these only after the core tasks.
 
 Each folder has a `README.md` with the goal, background, numbered tasks, expected output and optional stretch tasks. Start every exercise by reading it.
 
@@ -38,4 +41,4 @@ Each folder has a `README.md` with the goal, background, numbered tasks, expecte
 
 ## About the broken scripts
 
-`07-files-and-exceptions/broken_1.py` to `broken_3.py` crash on purpose. That is the exercise.
+`07-files-and-exceptions/broken_1.py` to `broken_3.py` (the third one is optional) crash on purpose. That is the exercise.

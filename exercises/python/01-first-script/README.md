@@ -1,6 +1,6 @@
 # 01 - Your first script
 
-Time: about 15 minutes.
+Core time: 15 minutes. Optional tasks at the end if you have time.
 
 ## Goal
 
@@ -43,21 +43,9 @@ All commands below are for **PowerShell**, run from the **repo root** (the folde
 
 5. Run it from VS Code. Press the Run button (the triangle at the top right of the editor). If VS Code asks for an interpreter, press `Ctrl+Shift+P`, type `Python: Select Interpreter` and choose the one that ends in `.venv`.
 
-6. Try the REPL, the interactive Python prompt. Type this and press Enter after each line:
+6. Open `first_notebook.ipynb` in VS Code. Select the `.venv` kernel at the top right. Fill in the TODO and run both code cells with `Shift+Enter`.
 
-   ```powershell
-   uv run python
-   ```
-
-   ```python
-   >>> 7.2 + 7.4
-   >>> "bar" * 3
-   >>> exit()
-   ```
-
-7. Open `first_notebook.ipynb` in VS Code. Select the `.venv` kernel at the top right. Fill in the TODO and run both code cells with `Shift+Enter`.
-
-8. Fill in the table: write two advantages and two disadvantages for each way of working.
+7. Fill in the table: write one or two advantages and disadvantages for each way of working.
 
    | | Advantages | Disadvantages |
    |---|---|---|
@@ -76,7 +64,19 @@ Average pressure in bar: 7.233333333333334
 
 (Your greeting may differ. The last digits of the average can differ slightly.)
 
-## Stretch
+## Optional: if you have time
 
-- Print the average rounded to 2 decimals with `round(average_bar, 2)`.
-- Use `uv run python -c "print(2 + 2)"` to run a single line without a file. When is that handy?
+1. Try the REPL, the interactive Python prompt. Type this and press Enter after each line:
+
+   ```powershell
+   uv run python
+   ```
+
+   ```python
+   >>> 7.2 + 7.4
+   >>> "bar" * 3
+   >>> exit()
+   ```
+
+2. Print the average rounded to 2 decimals with `round(average_bar, 2)`.
+3. Use `uv run python -c "print(2 + 2)"` to run a single line without a file. When is that handy?

@@ -114,15 +114,37 @@ def test_05_report():
     assert direct.strip() == "108.7785"
 
 
-def test_06_stats():
-    run_ok(SOLUTIONS / "06-standard-library" / "stats.py")
-    path = SOLUTIONS / "06-standard-library" / "output" / "summary.json"
-    with open(path) as file:
-        summary = json.load(file)
-    assert summary["rows"] == 10
-    assert summary["pressure_mean_bar"] == pytest.approx(7.43)
-    assert summary["pressure_std_bar"] == pytest.approx(0.21, abs=0.005)
-    assert summary["temperature_max_c"] == pytest.approx(84.6)
+def test_06_summarize_runs(tmp_path):
+    runs = EXERCISES / "06-standard-library" / "runs"
+    assert len(list(runs.glob("*.csv"))) == 3
+    out = run_ok(SOLUTIONS / "06-standard-library" / "summarize_runs.py", str(runs), str(tmp_path))
+    assert "run_01.csv: 8 rows, mean pressure 7.25 bar" in out
+    with open(tmp_path / "summary.json") as file:
+        summaries = json.load(file)
+    assert [item["run"] for item in summaries] == ["run_01", "run_02", "run_03"]
+    assert summaries[0]["rows"] == 8
+    assert summaries[0]["pressure_mean_bar"] == pytest.approx(7.25)
+    assert summaries[0]["temperature_max_c"] == pytest.approx(82.7)
+    with open(tmp_path / "summary.csv", newline="") as file:
+        assert len(list(csv.DictReader(file))) == 3
+
+
+def test_06_solution_runs_match_exercise_runs():
+    for path in (EXERCISES / "06-standard-library" / "runs").glob("*.csv"):
+        other = SOLUTIONS / "06-standard-library" / "runs" / path.name
+        assert other.read_text() == path.read_text()
+
+
+def test_06_default_paths():
+    out = run_ok(SOLUTIONS / "06-standard-library" / "summarize_runs.py")
+    assert "run_03.csv" in out
+    assert (SOLUTIONS / "06-standard-library" / "output" / "summary.json").exists()
+
+
+def test_07_summarize_logs_survives_bad_value():
+    out = run_ok(SOLUTIONS / "07-files-and-exceptions" / "summarize_logs.py")
+    assert "run_02: mean 7.71 bar, 1 rows skipped" in out
+    assert "run_01: mean 7.25 bar, 0 rows skipped" in out
 
 
 def test_07_files_and_exceptions():
@@ -174,62 +196,6 @@ def test_08_plot(tmp_path):
     assert target.read_bytes()[:8] == b"\x89PNG\r\n\x1a\n"
 
 
-def test_09_data_files_exist():
-    data = EXERCISES / "09-automation-capstone" / "data"
-    assert len(list(data.glob("*.csv"))) == 6
-
-
-def test_09_generator_is_deterministic(tmp_path):
-    # The committed CSV files must match what the generator makes.
-    import importlib.util
-
-    path = EXERCISES / "09-automation-capstone" / "generate_data.py"
-    spec = importlib.util.spec_from_file_location("generate_data", path)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    rows = module.make_rows(1, module.RUNS["run_01"])
-    with open(EXERCISES / "09-automation-capstone" / "data" / "run_01.csv", newline="") as file:
-        committed = list(csv.reader(file))
-    assert committed[0] == module.HEADER
-    assert committed[1:] == rows
-
-
-def test_09_capstone_summary(tmp_path):
-    data = EXERCISES / "09-automation-capstone" / "data"
-    out = run_ok(
-        SOLUTIONS / "09-automation-capstone" / "summarize_runs.py", str(data), str(tmp_path)
-    )
-    assert "Summarised 5 runs, skipped 1 files." in out
-
-    with open(tmp_path / "summary.csv", newline="") as file:
-        rows = list(csv.DictReader(file))
-    by_run = {row["run"]: row for row in rows}
-    assert sorted(by_run) == ["run_01", "run_02", "run_03", "run_04", "run_05"]
-    assert by_run["run_03"]["rows_skipped"] == "1"
-    assert by_run["run_05"]["rows_skipped"] == "1"
-    assert by_run["run_03"]["rows_used"] == "19"
-    assert {name: int(row["alarm_count"]) for name, row in by_run.items()} == {
-        "run_01": 0,
-        "run_02": 3,
-        "run_03": 0,
-        "run_04": 1,
-        "run_05": 0,
-    }
-
-    with open(tmp_path / "summary.json") as file:
-        result = json.load(file)
-    assert result["skipped_files"] == ["run_06.csv"]
-    assert len(result["runs"]) == 5
-    run_01 = result["runs"][0]
-    assert run_01["pressure_min_bar"] <= run_01["pressure_mean_bar"] <= run_01["pressure_max_bar"]
-
-
-def test_09_capstone_default_paths():
-    out = run_ok(SOLUTIONS / "09-automation-capstone" / "summarize_runs.py")
-    assert "Summarised 5 runs" in out
-    assert (SOLUTIONS / "09-automation-capstone" / "output" / "summary.csv").exists()
-
-
 @pytest.mark.parametrize(
     "script",
     [
@@ -239,10 +205,10 @@ def test_09_capstone_default_paths():
         "04-control-flow/alarms.py",
         "05-functions/conversions.py",
         "05-functions/report.py",
-        "06-standard-library/stats.py",
+        "06-standard-library/summarize_runs.py",
         "07-files-and-exceptions/files_and_exceptions.py",
         "08-uv-project/plot_pressure.py",
-        "09-automation-capstone/summarize_runs.py",
+        "07-files-and-exceptions/summarize_logs.py",
     ],
 )
 def test_starters_do_not_crash(script, tmp_path):

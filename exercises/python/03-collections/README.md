@@ -1,6 +1,6 @@
 # 03 - Collections
 
-Time: about 20 minutes.
+Core time: 15 minutes. Optional tasks at the end if you have time.
 
 ## Goal
 
@@ -24,7 +24,7 @@ A **collection** holds several values in one variable.
 
 ## Tasks
 
-Open `exercises/python/03-collections/collections_intro.py` and do TODO 1 to 12. Run after each step:
+Open `exercises/python/03-collections/collections_intro.py` and do TODO 1 to 9. Run after each step:
 
 ```powershell
 uv run python exercises/python/03-collections/collections_intro.py
@@ -34,7 +34,7 @@ Tip: you can also try things quickly in the REPL with `uv run python`.
 
 ## Check yourself
 
-With all TODOs done, you should see (among your other prints):
+With TODO 1 to 9 done, you should see (among your other prints):
 
 ```text
 First: 7.1
@@ -44,9 +44,10 @@ Number of readings: 7
 Max: 7.8 Min: 7.1 Mean: 7.414285714285714
 ```
 
-and for the dict part `Temperature of second: 81.9`, a list of three pressures `[7.1, 7.4, 7.6]`, and `4` unique sensors.
+The dict part prints every key and value of `measurement`.
 
-## Stretch
+## Optional: if you have time
 
-- Use `measurement.get("humidity", "unknown")`. How is it different from `measurement["humidity"]`?
-- Make a list of the pressures above 7.3 with a **list comprehension**: `[p for p in pressures_bar if p > 7.3]`.
+1. TODO 10 to 12 in `collections_intro.py`: a list of dicts and a set. Expected: `Temperature of second: 81.9`, a list of three pressures `[7.1, 7.4, 7.6]`, and `4` unique sensors.
+2. Use `measurement.get("humidity", "unknown")`. How is it different from `measurement["humidity"]`?
+3. Make a list of the pressures above 7.3 with a **list comprehension**: `[p for p in pressures_bar if p > 7.3]`.

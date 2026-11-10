@@ -1,6 +1,6 @@
 # 08 - A uv project with a package
 
-Time: about 20 minutes.
+Core time: 15 minutes. Optional tasks at the end if you have time.
 
 ## Goal
 
@@ -29,6 +29,8 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
    cd pressure-demo
    ls
    ```
+
+   `uv init` also creates a Git repository in this folder, so you will see a hidden `.git` folder and a `.gitignore` file next to `main.py`. Ignore them for now. Git is explained this afternoon.
 
    You should see `main.py`, `pyproject.toml`, `README.md` and `.python-version`. There is no `.venv` yet.
 
@@ -64,15 +66,7 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
 
    Open `pressure.png` in VS Code (it shows images).
 
-6. Try running it with plain `python`:
-
-   ```powershell
-   python plot_pressure.py
-   ```
-
-   Does it work? Why (not)? (Hint: this uses the Python on your PATH, which does not know about the `.venv`.)
-
-7. Remove the package, see the error, then restore it:
+6. Remove the package, see the error, then restore it:
 
    ```powershell
    uv remove matplotlib
@@ -80,15 +74,13 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
    uv add matplotlib
    ```
 
-8. Delete the environment and rebuild it from the lockfile, as a colleague would after cloning your project:
+7. Delete the environment and rebuild it from the lockfile, as a colleague would after cloning your project:
 
    ```powershell
    Remove-Item -Recurse -Force .venv
    uv sync
    uv run python plot_pressure.py
    ```
-
-9. Select the `.venv` interpreter in VS Code (`Ctrl+Shift+P`, `Python: Select Interpreter`) and run the script with the Run button.
 
 ## Compare with pip
 
@@ -107,10 +99,19 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
 
 - After step 3, `pyproject.toml` contains something like `dependencies = ["matplotlib>=3.10"]` (your version number may differ).
 - After step 5, `pressure.png` shows a line with markers and a red dashed line at 8.5 bar.
-- After step 8, the script works again without any `uv add`.
+- After step 7, the script works again without any `uv add`.
 
-## Stretch
+## Optional: if you have time
 
-- Run `uv tree` to see which packages matplotlib pulled in.
-- Add `requests` or `numpy` with `uv add` and use `numpy.mean(pressures_bar)` in the title of the plot.
-- Run `uv add --dev pytest`. See that it goes in a separate `dev` group in `pyproject.toml`.
+1. Try running it with plain `python`:
+
+   ```powershell
+   python plot_pressure.py
+   ```
+
+   Does it work? Why (not)? (Hint: this uses the Python on your PATH, which does not know about the `.venv`.)
+
+2. Select the `.venv` interpreter in VS Code (`Ctrl+Shift+P`, `Python: Select Interpreter`) and run the script with the Run button.
+3. Run `uv tree` to see which packages matplotlib pulled in.
+4. Add `requests` or `numpy` with `uv add` and use `numpy.mean(pressures_bar)` in the title of the plot.
+5. Run `uv add --dev pytest`. See that it goes in a separate `dev` group in `pyproject.toml`.

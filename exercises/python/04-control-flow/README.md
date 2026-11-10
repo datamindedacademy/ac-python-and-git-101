@@ -1,6 +1,6 @@
 # 04 - Control flow
 
-Time: about 20 minutes.
+Core time: 15 minutes. Optional tasks at the end if you have time.
 
 ## Goal
 
@@ -18,7 +18,7 @@ Make decisions with `if`, repeat work with `for` and `while`, and count readings
 
 ## Tasks
 
-Open `exercises/python/04-control-flow/alarms.py`, do TODO 1 to 7 and run it often:
+Open `exercises/python/04-control-flow/alarms.py`, do TODO 1 to 6 and run it often:
 
 ```powershell
 uv run python exercises/python/04-control-flow/alarms.py
@@ -26,18 +26,18 @@ uv run python exercises/python/04-control-flow/alarms.py
 
 ## Check yourself
 
-With all TODOs done, you should see these results among your prints:
+With TODO 1 to 6 done, you should see these results among your prints:
 
 ```text
 8.1 bar -> WARNING
 Alarms: 2
 Minutes to alarm: 4
-First alarm reading: 8.7
 ```
 
 Check the loop in TODO 2: 8.7 bar -> ALARM and 7.3 bar -> OK.
 
-## Stretch
+## Optional: if you have time
 
-- Make the list of alarm readings with a list comprehension: `[p for p in pressures_bar if p > PRESSURE_ALARM_BAR]`.
-- Print the share of readings in alarm as a percentage with one decimal.
+1. TODO 7 in `alarms.py`: `break` and `continue`. Expected: `First alarm reading: 8.7`.
+2. Make the list of alarm readings with a list comprehension: `[p for p in pressures_bar if p > PRESSURE_ALARM_BAR]`.
+3. Print the share of readings in alarm as a percentage with one decimal.

@@ -42,11 +42,11 @@ measurements = [
     {"timestamp": "09:01", "pressure_bar": 7.4, "temperature_c": 81.9},
     {"timestamp": "09:02", "pressure_bar": 7.6, "temperature_c": 83.2},
 ]
-# TODO 10: print the temperature of the second measurement.
-# TODO 11: build a list with only the pressures.
+# TODO 10 (optional): print the temperature of the second measurement.
+# TODO 11 (optional): build a list with only the pressures.
 # Hint: start with [], use a for loop and .append().
 
 # --- Sets: unique values only ---
 sensor_ids = ["P1", "T1", "P1", "F1", "T1", "P2"]
-# TODO 12: find the unique sensor ids with set(sensor_ids) and print how many there are.
+# TODO 12 (optional): find the unique sensor ids with set(sensor_ids) and print how many there are.
 # Is "F1" in the set? Use the word in.

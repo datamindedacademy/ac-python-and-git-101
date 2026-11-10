@@ -1,6 +1,6 @@
 # 05 - Functions and modules
 
-Time: about 25 minutes.
+Core time: 20 minutes. Optional tasks at the end if you have time.
 
 ## Goal
 
@@ -38,7 +38,6 @@ def bar_to_psi(pressure_bar):
    ```
 
 4. Back in `conversions.py`, add the self-test under `if __name__ == "__main__":` (TODO 6). Run `conversions.py` again, then run `report.py` again. Does the self-test also run when you import? It should not.
-5. Call `average` with and without the `decimals` argument. Also try a **keyword argument**: `average(values, decimals=0)`.
 
 ## Check yourself
 
@@ -51,7 +50,8 @@ Temperature (K): 356.65
 Flow (m3/h): 149.4
 ```
 
-## Stretch
+## Optional: if you have time
 
-- Write `psi_to_bar` and check that `psi_to_bar(bar_to_psi(7.5))` gives 7.5 back (use `round`).
-- Make a function `classify(pressure, limit=8.5)` that returns `"ALARM"` or `"OK"`. Use it from exercise 04.
+1. Call `average` with and without the `decimals` argument. Also try a **keyword argument**: `average(values, decimals=0)`.
+2. Write `psi_to_bar` and check that `psi_to_bar(bar_to_psi(7.5))` gives 7.5 back (use `round`).
+3. Make a function `classify(pressure, limit=8.5)` that returns `"ALARM"` or `"OK"`. Use it from exercise 04.

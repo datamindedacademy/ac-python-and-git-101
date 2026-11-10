@@ -1,48 +1,57 @@
 # 06 - The standard library: math, pathlib, csv, json
 
-Time: about 25 minutes.
+Core time: 20 minutes. Optional tasks at the end if you have time.
 
 ## Goal
 
-Use four modules that come with Python: read a measurement CSV, compute statistics, and write a JSON summary.
+Use four modules that come with Python. Write your first **automation script**: it loops over all CSV logs in a folder, reads each one, and writes one summary file.
 
 ## Background
 
 - The **standard library** is the set of modules that ship with Python. You do not install them. You only `import` them.
 - `math` has maths tools: `math.sqrt`, `math.pi`, `math.isclose` and more.
 - `pathlib` gives you `Path` objects for file paths. Join paths with `/`: `folder / "data.csv"`. This works on Windows and Linux, so never type `\` in a path yourself.
-- `csv` reads and writes CSV files. `csv.DictReader` gives you every row as a dict, with the header names as keys.
-- `json` saves and loads data in the JSON format: a text format for dicts, lists, numbers and text. Many tools and web services use it.
-- `open(path, newline="")` opens a file. The `with` keyword closes it for you when the block ends.
+- `folder.glob("*.csv")` lists all files in a folder that match a pattern. `path.name` is `run_01.csv`, `path.stem` is `run_01`.
+- `csv.DictReader` reads a CSV file and gives you every row as a dict, with the header names as keys.
+- `json` saves and loads data in the JSON format: a text format for dicts, lists, numbers and text.
+- `with open(path, newline="") as file:` opens a file and closes it for you when the block ends.
 
-## Tasks
+## Core tasks
 
-1. Look at `measurements.csv` in this folder. How many rows and columns does it have?
-2. Open `stats.py`. Do the TODOs from 1 to 6.
+1. Open one file in the `runs/` folder (for example `run_01.csv`). It is a test-run log: one row per minute. There are three logs. How many rows and columns does each have?
+2. Open `summarize_runs.py`. Read the whole script first. It loops over the files, and for each file it reads the rows. Do TODO 1 to 6.
 3. Run it from the repo root:
 
    ```powershell
-   uv run python exercises/python/06-standard-library/stats.py
+   uv run python exercises/python/06-standard-library/summarize_runs.py
    ```
 
-4. Open the new file `exercises/python/06-standard-library/output/summary.json` in VS Code and read it. This folder is ignored by Git, so it will not show up as a change.
-5. Add `flow_l_s` to the summary: its minimum and maximum.
+4. Open the new file `exercises/python/06-standard-library/output/summary.json` in VS Code and read it. The `output/` folder is ignored by Git.
 
 ## Check yourself
 
-The summary file should look like this:
+The script prints three lines like this:
+
+```text
+run_01.csv: 8 rows, mean pressure 7.25 bar
+```
+
+and `summary.json` is a list of three objects. The first one looks like this:
 
 ```json
 {
-  "source_file": "measurements.csv",
-  "rows": 10,
-  "pressure_mean_bar": 7.43,
-  "pressure_std_bar": 0.21,
-  "temperature_max_c": 84.6
+  "run": "run_01",
+  "rows": 8,
+  "pressure_mean_bar": 7.25,
+  "pressure_std_bar": 0.2,
+  "temperature_max_c": 82.7
 }
 ```
 
-## Stretch
+Add a fourth CSV file to `runs/` (copy one and change a number). Run the script again. The summary has four entries without changing the code. That is the point of automation.
 
+## Optional: if you have time
+
+- Also write the summaries to `output/summary.csv` with `csv.DictWriter`. Use `writer.writeheader()` and `writer.writerows(summaries)`.
 - Use `math.isclose(a, b, rel_tol=1e-3)` to compare two floats. Why is it safer than `==`?
-- Write the rows with power above 57 kW to a new CSV with `csv.DictWriter`.
+- Read `summary.json` back with `json.load` and print the run with the highest mean pressure.

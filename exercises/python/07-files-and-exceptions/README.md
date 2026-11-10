@@ -1,6 +1,6 @@
 # 07 - Files, exceptions and tracebacks
 
-Time: about 25 minutes.
+Core time: 20 minutes. Optional tasks at the end if you have time.
 
 ## Goal
 
@@ -37,19 +37,21 @@ Read and write text files, handle errors without crashing, and learn to read a *
 
   Here the error is a `ZeroDivisionError` on line 6 in the function `main`, called from line 9.
 
-## Part A: files and try/except
+## Core tasks
+
+### Part A: files and try/except (about 10 minutes)
 
 1. Look at `pressures.txt`. Can you spot the bad lines?
-2. Open `files_and_exceptions.py`, do TODO 1 to 5.
+2. Open `files_and_exceptions.py`, do TODO 1 to 4.
 3. Run it:
 
    ```powershell
    uv run python exercises/python/07-files-and-exceptions/files_and_exceptions.py
    ```
 
-## Part B: read the traceback
+### Part B: read the traceback (about 10 minutes)
 
-Three scripts are broken on purpose. For each one:
+Two scripts are broken on purpose. For each one:
 
 1. Run it and read the traceback from the bottom up.
 2. Write down: the **exception type**, the **file line number**, and **what it means** in your own words.
@@ -58,16 +60,12 @@ Three scripts are broken on purpose. For each one:
 ```powershell
 uv run python exercises/python/07-files-and-exceptions/broken_1.py
 uv run python exercises/python/07-files-and-exceptions/broken_2.py
-uv run python exercises/python/07-files-and-exceptions/broken_3.py
 ```
 
 | Script | Exception type | Line | Your explanation | Your fix |
 |---|---|---|---|---|
 | `broken_1.py` | | | | |
 | `broken_2.py` | | | | |
-| `broken_3.py` | | | | |
-
-For `broken_3.py`, also write down the names of all the functions in the traceback, in the order they were called. Which one is the place where the error actually happens? Is that also the place where you want to fix it?
 
 ## Check yourself
 
@@ -80,9 +78,23 @@ Bad lines: ['7,6', 'abc']
 File not found: does_not_exist.txt
 ```
 
-Part B: after your fixes, `broken_1.py` prints a highest pressure, `broken_2.py` prints the message and the limit text, and `broken_3.py` prints `Average pressure: 7.33 bar`.
+Part B: after your fixes, `broken_1.py` prints a highest pressure and `broken_2.py` prints the message and the limit text.
 
-## Stretch
+## Optional: if you have time
 
-- In `broken_3.py`, make `parse_pressure` accept a decimal comma by replacing `","` with `"."` before converting.
-- Write a function `read_pressures(path)` that returns the good values and prints a warning for every bad line.
+1. **A traceback with more than one step.** Run `broken_3.py`. Read it from the bottom up. Write down the names of all the functions in the traceback, in the order they were called. Which one is the place where the error actually happens? Is that also the place where you want to fix it? Then fix it. After the fix it prints `Average pressure: 7.33 bar`.
+
+   ```powershell
+   uv run python exercises/python/07-files-and-exceptions/broken_3.py
+   ```
+
+2. **Append to a file.** Do TODO 5 in `files_and_exceptions.py`.
+3. **Folder script that survives bad data.** In exercise 06 you summarised a folder of logs. Here the folder `logs/` has one log with a bad value (`ERR`). Open `summarize_logs.py` and do TODO 1 to 3 so the script skips the bad row, counts it and keeps going:
+
+   ```powershell
+   uv run python exercises/python/07-files-and-exceptions/summarize_logs.py
+   ```
+
+   You should see a warning, and the line `run_02: mean 7.71 bar, 1 rows skipped`.
+4. In `broken_3.py`, make `parse_pressure` accept a decimal comma by replacing `","` with `"."` before converting.
+5. Write a function `read_pressures(path)` that returns the good values and prints a warning for every bad line.
