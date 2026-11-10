@@ -1,0 +1,13 @@
+/* Slidev parks the "go to slide" dialog off-screen (`-top-20`) when it is closed,
+   but its autocomplete list keeps rendering and hangs down over the slide.
+   Hide the list while the dialog is parked; pressing "g" still works. */
+#slidev-goto-dialog[class*="-top-20"] .autocomplete-list {
+  display: none;
+}
+
+/* Deck-wide helpers. Slide-level <style> blocks are scoped to their own slide,
+   so anything shared between slides lives here. */
+.fig { display: block; margin: 16px auto 0; max-height: 360px; }
+.fig-sm { display: block; margin: 16px auto 0; max-height: 240px; }
+.small { font-size: 0.85em; }
+.muted { opacity: 0.7; }

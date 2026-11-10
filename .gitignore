@@ -1,0 +1,20 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Slides
+node_modules/
+slides/dist/
+slides/.slidev/
+
+# Exercise output
+exercises/**/output/
+solutions/**/output/
+
+# OS / editor
+.DS_Store
+Thumbs.db

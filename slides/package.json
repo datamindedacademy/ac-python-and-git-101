@@ -1,0 +1,19 @@
+{
+  "name": "ac-python-and-git-101-slides",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev slides.md --open",
+    "build": "slidev build slides.md",
+    "export": "slidev export slides.md --output python-and-git-101.pdf"
+  },
+  "dependencies": {
+    "@slidev/cli": "^53.0.0",
+    "@slidev/theme-default": "^0.25.0",
+    "slidev-theme-dataminded": "file:./theme"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.2.0",
+    "playwright-chromium": "^1.48.0"
+  }
+}

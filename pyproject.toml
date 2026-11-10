@@ -1,0 +1,24 @@
+[project]
+name = "ac-python-and-git-101"
+version = "0.1.0"
+description = "Day 1 of the Atlas Copco Python training: development environment, programming fundamentals and version control."
+requires-python = ">=3.13"
+dependencies = [
+    "ipykernel",
+    "matplotlib",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
