@@ -47,34 +47,6 @@ layout: default
 label: 1 · Scripts and notebooks
 ---
 
-# A notebook mixes <span class="dm-accent">code, results and text</span>
-
-<DmColumns class="mt-4">
-<DmColumn header="Cells" tone="navy">
-
-- Code cells and text cells
-- Run one cell at a time
-- Output appears under the cell: numbers, tables, plots
-
-</DmColumn>
-<DmColumn header="Kernel" tone="violet">
-
-- A running Python process behind the notebook
-- Keeps all variables in memory between cells
-- Restart it and the memory is gone
-
-</DmColumn>
-</DmColumns>
-
-<!--
-A notebook, file extension .ipynb, is a document made of cells. The kernel behind it is one long-running Python process, and it remembers everything you ran. Compare it to a MATLAB live script, or to working in the command window with the workspace on the side. VS Code opens notebooks too, so it is not either-or at tool level.
--->
-
----
-layout: default
-label: 1 · Scripts and notebooks
----
-
 # Scripts versus <span class="dm-accent">notebooks</span>
 
 <DmComparison
@@ -124,26 +96,6 @@ limit_bar = 9.0           limit_bar = 6.0           print(limit_bar)
 </style>
 
 <!--
-The kernel remembers variables from every cell you ran, in the order you ran them, not the order on the page. After an hour of exploring, the notebook on screen and the memory in the kernel can disagree. A script cannot do this to you, because it always starts from a clean process. The habit that protects you in notebooks: restart the kernel and run all cells before you trust a result.
--->
-
----
-layout: default
-label: 1 · Scripts and notebooks
----
-
-# Explore in a <span class="dm-accent">notebook</span>, deliver in a <span class="dm-accent">script</span>
-
-<DmProcess class="mt-8">
-<DmPhase label="Explore" />
-<DmPhase label="Understand" />
-<DmPhase label="Move to a script" />
-<DmPhase label="Run, share, schedule" />
-</DmProcess>
-
-<p class="mt-8">Rule of thumb: once you would run it twice, it belongs in a script.</p>
-
-<!--
-A common workflow: try ideas in a notebook, and once the steps are clear, move the working code into a .py file with functions. That file is what colleagues run, what Git tracks and what a pipeline can execute on day 3. We start with scripts because everything else builds on them.
+The kernel remembers variables from every cell you ran, in the order you ran them, not the order on the page. After an hour of exploring, the notebook on screen and the memory in the kernel can disagree. A script cannot do this to you, because it always starts from a clean process. The habit that protects you in notebooks: restart the kernel and run all cells before you trust a result. Rule of thumb: explore in a notebook, and once you would run it twice, move it into a script. We work with scripts today and meet notebooks again on day 2.
 -->
 

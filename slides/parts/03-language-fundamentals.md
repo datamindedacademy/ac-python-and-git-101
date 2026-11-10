@@ -76,21 +76,22 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Arithmetic, and a <span class="dm-accent">float</span> surprise
+# Converting <span class="dm-accent">between</span> types
 
-```python
-print(7 / 2)       # 3.5   true division
-print(7 // 2)      # 3     whole part only
-print(7 % 2)       # 1     remainder
-print(2 ** 10)     # 1024  power, not ^
-print(0.1 + 0.2)   # 0.30000000000000004
+```python {all|1-3|5-6|all}
+text = "7.5"
+pressure_bar = float(text)
+print(pressure_bar + 1)        # 8.5
+
+count = 3
+print("Cycles: " + count)
 ```
 
 <v-click>
 
-<DmBanner class="mt-4" tone="violet" icon="mdi:calculator-variant-outline">
-Floats are binary approximations. Never test two floats for exact equality.
-</DmBanner>
+```text
+TypeError: can only concatenate str (not "int") to str
+```
 
 </v-click>
 
@@ -99,7 +100,7 @@ Floats are binary approximations. Never test two floats for exact equality.
 </style>
 
 <!--
-Power is double star, because the caret means something else in Python. The last line looks wrong but is correct: computers store decimals in binary, and 0.1 has no exact binary form. MATLAB does exactly the same, you may have seen it there. Later we use math.isclose to compare floats safely.
+Text read from a file or typed by a user is always a string, even if it looks like a number. Use float, int and str to convert. Python does not convert silently: adding text and a number is an error, and that is a feature. Here is our first error message, notice that it tells you the kind of error and what went wrong. We read these properly after lunch.
 -->
 
 ---
@@ -133,78 +134,6 @@ True tb-014
 
 <!--
 Put an f before the quote and you can place any expression inside curly braces. After the colon you control the format: .1f means one decimal place, .0f none. Strings also have methods such as lower, upper, strip, split and replace, called with a dot. Both single and double quotes work, pick one style and stay with it.
--->
-
----
-layout: default
-label: 3 · Language fundamentals
----
-
-# Converting <span class="dm-accent">between</span> types
-
-```python {all|1-3|5-6|all}
-text = "7.5"
-pressure_bar = float(text)
-print(pressure_bar + 1)        # 8.5
-
-count = 3
-print("Cycles: " + count)
-```
-
-<v-click>
-
-```text
-TypeError: can only concatenate str (not "int") to str
-```
-
-</v-click>
-
-<style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-</style>
-
-<!--
-Text read from a file or typed by a user is always a string, even if it looks like a number. Use float, int and str to convert. Python does not convert silently: adding text and a number is an error, and that is a feature. Here is our first error message, notice that it tells you the kind of error and what went wrong. We read these properly after lunch.
--->
-
----
-layout: default
-label: 3 · Language fundamentals
----
-
-# Name things so the <span class="dm-accent">unit</span> is visible
-
-<DmColumns class="mt-4">
-<DmColumn header="Hard to read" tone="plain">
-
-```python
-p = 7.5
-t = 82.3
-q = 18.4
-x1 = p * q
-```
-
-</DmColumn>
-<DmColumn header="Clear" tone="violet">
-
-```python
-pressure_bar = 7.5
-temperature_c = 82.3
-flow_l_s = 18.4
-power_kw = 37.5
-```
-
-</DmColumn>
-</DmColumns>
-
-<p class="mt-4">Lowercase with underscores (<code>snake_case</code>), and the unit as a suffix.</p>
-
-<style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-</style>
-
-<!--
-Names cost nothing and save hours. Python style is lowercase with underscores, and engineers benefit from putting the unit in the name, because unit confusion is a classic source of real errors. Names cannot start with a digit or contain spaces or dashes, and they are case sensitive. Avoid names like list or max, which already exist in Python.
 -->
 
 ---
@@ -290,84 +219,6 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Everyday <span class="dm-accent">list</span> operations
-
-```python
-p = [7.5, 6.8, 7.9, 7.1]
-print(sum(p) / len(p))
-print(sorted(p))
-print(7.9 in p)
-p.remove(6.8)
-print(p)
-```
-
-```text
-7.325
-[6.8, 7.1, 7.5, 7.9]
-True
-[7.5, 7.9, 7.1]
-```
-
-<style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-</style>
-
-<!--
-Built-in functions like sum, len, min, max and sorted work on any list. sorted returns a new list, while methods like append, remove and sort change the list in place. The keyword in checks membership. You will use these constantly before you ever need a library.
--->
-
----
-layout: default
-label: 3 · Language fundamentals
----
-
-# Tuples and <span class="dm-accent">sets</span>
-
-<DmColumns class="mt-4">
-<DmColumn header="Tuple: fixed" tone="navy">
-
-```python
-limits = (5.0, 9.0)
-low, high = limits
-print(low, high)
-limits[0] = 4.0
-```
-
-```text
-TypeError: 'tuple' object does not
-support item assignment
-```
-
-</DmColumn>
-<DmColumn header="Set: unique" tone="violet">
-
-```python
-runs = {"TB-014", "TB-015", "TB-014"}
-print(len(runs))
-print("TB-015" in runs)
-```
-
-```text
-2
-True
-```
-
-</DmColumn>
-</DmColumns>
-
-<style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-</style>
-
-<!--
-A tuple is a list that cannot change, used for small fixed groups like a lower and upper limit, and unpacking splits it into names. A set keeps each value once and has no order, handy for removing duplicates. Both are less common than lists and dicts, so just know they exist.
--->
-
----
-layout: default
-label: 3 · Language fundamentals
----
-
 # Dictionaries: <span class="dm-accent">key to value</span>
 
 ```python {all|1|2|3-4|5|all}
@@ -393,43 +244,7 @@ None
 </style>
 
 <!--
-A dictionary looks things up by name instead of by position. It is like a MATLAB struct, but you use square brackets and quoted keys. A missing key with square brackets is a KeyError, while get returns None, or a default you pass. A dict is the natural way to describe one measurement record with several fields.
--->
-
----
-layout: default
-label: 3 · Language fundamentals
----
-
-# A table of readings: a <span class="dm-accent">list of dicts</span>
-
-```python {all|1-5|6-7|all}
-readings = [
-    {"t_s": 0, "pressure_bar": 6.8},
-    {"t_s": 10, "pressure_bar": 7.1},
-    {"t_s": 20, "pressure_bar": 7.5},
-]
-print(readings[2]["pressure_bar"])
-print(len(readings))
-```
-
-<v-click>
-
-```text
-7.5
-3
-```
-
-</v-click>
-
-<p class="mt-2">One dict per row. This is exactly the shape you get when you read a CSV file.</p>
-
-<style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-</style>
-
-<!--
-Collections nest. A list of dicts is a small table, each dict a row. First pick the row with a number, then pick the field with its name. Keep this picture in mind, because the csv module in the next block hands you rows in exactly this form.
+A dictionary looks things up by name instead of by position. It is like a MATLAB struct, but you use square brackets and quoted keys. A missing key with square brackets is a KeyError, while get returns None, or a default you pass. A dict is the natural way to describe one measurement record with several fields. A list of such dicts is a small table, and that is exactly what the csv module hands you in the next block.
 -->
 
 ---
@@ -482,79 +297,6 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Comparisons and <span class="dm-accent">logic</span>
-
-```python
-pressure_bar = 7.5
-run_id = "TB-014"
-print(pressure_bar == 7.5, pressure_bar != 7.5)
-print(5.0 <= pressure_bar <= 9.0)
-print(pressure_bar > 9.0 or run_id == "TB-014")
-print(not run_id.startswith("TB"))
-```
-
-```text
-True False
-True
-True
-False
-```
-
-<style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-</style>
-
-<!--
-Comparison operators are the usual ones, with double equals for comparing and single equals for assigning, a classic slip. Python allows chained comparisons like 5 <= p <= 9, which reads like the engineering note. Combine conditions with the words and, or and not, not with the ampersand or the exclamation mark as in MATLAB or C.
--->
-
----
-layout: default
-label: 3 · Language fundamentals
----
-
-# <span class="dm-accent">Indentation</span> is the syntax
-
-<DmColumns class="mt-2">
-<DmColumn header="Works" tone="violet">
-
-```python
-if pressure_bar > 9.0:
-    print("ALARM")
-    print("Stop the test")
-print("Checked")
-```
-
-</DmColumn>
-<DmColumn header="Fails" tone="plain">
-
-```python
-if pressure_bar > 9.0:
-print("ALARM")
-```
-
-```text
-IndentationError: expected an
-indented block after 'if' statement
-on line 1
-```
-
-</DmColumn>
-</DmColumns>
-
-<style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-</style>
-
-<!--
-Python uses indentation, four spaces, to show which lines belong to a block. The block ends when the indentation goes back. This replaces MATLAB's end and the braces of other languages. The two ALARM lines run only when the condition is true, the last line always runs. VS Code inserts four spaces when you press Tab.
--->
-
----
-layout: default
-label: 3 · Language fundamentals
----
-
 # Repeating with <span class="dm-accent">for</span>
 
 ```python {all|2|1,3|all}
@@ -592,40 +334,6 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Looping until a condition: <span class="dm-accent">while</span>
-
-```python {all|3-4|all}
-pressure_bar = 1.0
-steps = 0
-while pressure_bar < 7.0:
-    pressure_bar *= 1.5
-    steps += 1
-print(steps, round(pressure_bar, 2))
-```
-
-<v-click>
-
-```text
-5 7.59
-```
-
-</v-click>
-
-<p class="mt-2">If the condition never becomes false, the loop never ends. Stop it with <code>Ctrl+C</code>.</p>
-
-<style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-</style>
-
-<!--
-Use while when you do not know in advance how many rounds are needed, such as ramping up until a target is reached. Something inside the loop must change the condition, otherwise you get an infinite loop. If that happens, Ctrl+C in the terminal interrupts the script. The operators *= and += are shorthand for updating a variable in place.
--->
-
----
-layout: default
-label: 3 · Language fundamentals
----
-
 # Loop pattern: <span class="dm-accent">filter and summarise</span>
 
 ```python {all|2-3|5-8|10|all}
@@ -654,7 +362,7 @@ print(high, round(total / len(pressures_bar), 2))
 </style>
 
 <!--
-This is the shape of most automation scripts: start with an empty list and a running total, loop over the data, decide with an if, and report at the end. Say it out loud: initialise, loop, test, collect. If you can write this pattern, you can write the capstone. Put the if inside the loop, the indentation shows which one is nested in which.
+This is the shape of most automation scripts: start with an empty list and a running total, loop over the data, decide with an if, and report at the end. Say it out loud: initialise, loop, test, collect. This pattern is the core of the file exercises after lunch. Put the if inside the loop, the indentation shows which one is nested in which.
 -->
 
 ---
@@ -706,38 +414,6 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Default values and <span class="dm-accent">keyword</span> arguments
-
-```python {all|1|4|5|all}
-def is_over_limit(pressure_bar, limit_bar=9.0):
-    return pressure_bar > limit_bar
-
-print(is_over_limit(9.4))
-print(is_over_limit(9.4, limit_bar=10.0))
-```
-
-<v-click>
-
-```text
-True
-False
-```
-
-</v-click>
-
-<style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-</style>
-
-<!--
-A parameter with an equals sign has a default and can be left out. When you call, writing the name, limit_bar=10.0, makes the call self-explaining. Prefer keyword arguments whenever a call has more than two or three values, so you do not mix up the order.
--->
-
----
-layout: default
-label: 3 · Language fundamentals
----
-
 # <span class="dm-accent">return</span> is not print
 
 ```python {all|1-2|4-5|all}
@@ -765,39 +441,6 @@ None
 
 <!--
 The most frequent beginner confusion. print shows something on screen for a human, return gives the value to the code that called the function. If you want to use the result in a calculation, the function must return it. The 8 appears because the function printed it, the None is what the function returned.
--->
-
----
-layout: default
-label: 3 · Language fundamentals
----
-
-# Variables inside a function stay <span class="dm-accent">inside</span>
-
-```python {all|1-3|5-6|all}
-def mean(values):
-    total = sum(values)
-    return total / len(values)
-
-print(round(mean([6.8, 7.1, 7.5]), 2))
-print(total)
-```
-
-<v-click>
-
-```text
-7.13
-NameError: name 'total' is not defined
-```
-
-</v-click>
-
-<style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-</style>
-
-<!--
-Names created inside a function exist only while the function runs. This is a good thing, it means functions cannot accidentally overwrite each other's variables. Everything a function needs goes in through parameters, everything it produces comes out through return. The NameError is another message you will meet often.
 -->
 
 ---

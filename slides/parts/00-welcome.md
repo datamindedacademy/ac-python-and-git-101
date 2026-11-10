@@ -69,20 +69,20 @@ label: Agenda
 
 # Agenda
 
-1. 09:00 Setup hour
-2. 10:00 Scripts, notebooks and running Python
-3. 10:45 Language fundamentals, lunch at 12:30
+1. 09:00 Setup check
+2. 09:30 Scripts, notebooks and running Python
+3. 10:15 Language fundamentals, lunch at 12:30
 4. 13:15 Standard library, files and exceptions
-5. 14:15 Projects with uv and the automation capstone
-6. 15:15 Version control and Git
-7. 16:45 Wrap-up
+5. 14:20 Projects with uv
+6. 15:05 Version control and Git
+7. 16:50 Wrap-up
 
 <style>
 li { padding-top: 5px !important; padding-bottom: 5px !important; }
 </style>
 
 <!--
-This is the plan, not a contract. Breaks of about 10 minutes sit inside the long blocks, roughly every 60 to 75 minutes, and we move them when an exercise is in full flow. Lunch is at 12:30 and we restart at 13:15. Git gets the last stretch of the day because by then you are comfortable with files, folders and the terminal.
+This is the plan, not a contract. There are two 15 minute breaks, one around 11:00 inside the fundamentals block and one at about 14:50 after uv, and we move them when an exercise is in full flow. Lunch is at 12:30 and we restart at 13:15. Git gets the last stretch of the day because by then you are comfortable with files, folders and the terminal.
 -->
 
 ---
@@ -90,7 +90,7 @@ layout: default
 label: Welcome
 ---
 
-# Setup hour: <span class="dm-accent">check</span> your laptop
+# Setup check: <span class="dm-accent">30 minutes</span>
 
 ```powershell
 uv --version
@@ -108,5 +108,5 @@ Do not debug alone. Call a trainer, setup problems are normal on managed laptops
 </style>
 
 <!--
-Use this hour to get every laptop to the same state: uv installed, Python 3.13 available through uv, VS Code starting, Git available. The commands on the slide are the quick check. Managed laptops sometimes block downloads or need a proxy setting, and that is exactly what we are here to solve. Nobody should start the content blocks with a broken setup.
+Use these 30 minutes to get every laptop to the same state: uv installed, Python 3.13 available through uv, VS Code starting, Git available. The commands on the slide are the quick check. Managed laptops sometimes block downloads or need a proxy setting, and that is exactly what we are here to solve. Nobody should start the content blocks with a broken setup.
 -->
