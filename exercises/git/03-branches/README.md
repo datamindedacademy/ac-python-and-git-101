@@ -1,6 +1,8 @@
 # Exercise 3: Branches and merging
 
-Time: **15 minutes** for the core tasks (1 to 4). The merge conflict at the end is optional (10 minutes).
+Time: **15 minutes** for the core tasks (1 to 5). The merge conflict at the end is optional (10 minutes).
+
+Words to use: branch, HEAD, switch, merge, fast-forward, merge commit, merge conflict.
 
 ## Goal
 
@@ -34,7 +36,6 @@ Run the `cd` command it prints. The repository contains a `.gitignore` file that
 ### 1. Look at where you are
 
 ```powershell
-git status
 git branch
 git log --oneline --graph --all --decorate
 ```
@@ -221,13 +222,20 @@ git branch -d feature/max-temperature
 git status
 ```
 
+### 5. Explain it
+
+Answer in one or two sentences each, to your neighbour or in writing.
+
+1. Git made a fast-forward the first time and a merge commit the second time. Why?
+2. What do you gain by doing your work on a branch instead of directly on `main`? What does it cost you?
+
 ## Check yourself
 
+Short questions to test yourself after class. The answers are in `solutions/git/README.md`.
+
 1. What is the difference between `git switch main` and `git switch -c feature/x`?
-2. Why did the first merge say "Fast-forward" and the second one create a merge commit?
-3. What happens to the files on disk when you switch branches?
-4. Why can you safely delete a branch after it is merged?
-5. Why does it help to keep `main` free of unfinished work?
+2. What happens to the files on disk when you switch branches?
+3. Why can you safely delete a branch after it is merged?
 
 ## Optional: if you have time
 
@@ -267,6 +275,8 @@ BAR_TO_PSI = 14.5038  # psi per bar, more precise
 
 The part between `<<<<<<<` and `=======` is your version (`main`). The part between `=======` and `>>>>>>>` is the other branch.
 
+If you want to try the "With Copilot" task at the end of this page, do it now, before you resolve the conflict.
+
 VS Code shows buttons above the markers: **Accept Current Change**, **Accept Incoming Change**, **Accept Both Changes**, and **Compare Changes**. Choose **Accept Incoming Change** to keep `14.5038`. You can also click **Resolve in Merge Editor** at the bottom right for a three-pane view. Check that no `<<<<<<<`, `=======` or `>>>>>>>` lines are left. Save the file. Then:
 
 ```powershell
@@ -284,3 +294,11 @@ git merge --abort
 ```
 
 This works as long as you have not committed the merge yet.
+
+### With Copilot
+
+Do this while the conflict above is still open (after `git merge experiment/psi-precision`, before you resolve it). Select the conflict in `conversions.py`, open Copilot Chat (`Ctrl+Alt+I`) and ask:
+
+> This is a merge conflict between HEAD (`main`) and the branch `experiment/psi-precision`. Explain what each side changed and suggest which side to keep.
+
+Do you agree with its suggestion? What did you check before you accepted it? Copilot can read both lines, but it does not know how precise your test-bench results must be. That is your call as the engineer. Finish with `git add` and `git commit` as described above.

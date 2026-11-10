@@ -1,6 +1,8 @@
 # Exercise 5: Pull request, review and merge
 
-Time: **20 minutes** for the core tasks (1 to 5). The extra reading and tasks at the end are optional.
+Time: **20 minutes** for the core tasks (1 to 6). Everything under "Optional" is extra.
+
+Words to use: pull request, reviewer, approve, complete, branch policy, merge commit, squash merge, pull.
 
 ## Goal
 
@@ -42,14 +44,14 @@ Look around the PR page. The **Files** tab shows the changes. The **Commits** ta
 Ask your neighbour for the PR name. Open it from **Repos > Pull requests**, under "Assigned to me" or "Active".
 
 1. Open the **Files** tab and read the change.
-2. Add a comment on a line: hover over a line number and click the comment icon. Write something friendly, for example "Nice intro".
+2. If you like, add a comment on a line: hover over a line number and click the comment icon.
 3. Click **Approve** at the top right. The menu next to it has "Approve with suggestions" and "Wait for author". Use plain **Approve** here.
 
 A good review answers: Is the change what the description says? Does it do anything it should not? Is it clear?
 
 ### 3. Complete the pull request
 
-Back in your own PR, you should see the approval and a comment. If your neighbour left a comment that needs an answer, reply and click **Resolve**.
+Back in your own PR, you should see the approval. If your neighbour left a comment that needs an answer, reply and click **Resolve**.
 
 When the policy shows a green check, click **Complete**. A dialog opens:
 
@@ -104,17 +106,23 @@ git branch -a
 
 If `git branch -d` says "not fully merged" and your PR was completed with **Squash**, use `git branch -D feature/anna-intro` after you checked that the PR is completed.
 
-### Note: what if `main` moved while my PR was open?
+### 6. Explain it
 
-This happens all the time, because everyone merges PRs into the same `main`. If the other changes touch different files or lines, Azure DevOps merges your PR without a problem. If both touch the same lines, the PR shows **Conflicts** and you must fix them first. The details are in the optional part below.
+Answer in one or two sentences each, to your neighbour or in writing.
+
+1. Why merge through a pull request instead of pushing straight to `main`? What does it cost, and what do you get in return?
+2. Your reviewer approved and the pull request is completed. Who is responsible for the change now? Does the answer change if Copilot wrote part of it?
+
+Note: if `main` moved while your PR was open, Azure DevOps still merges it when the changes touch different lines. If they touch the same lines, the PR shows **Conflicts** and you fix them first. The details are in the optional part.
 
 ## Check yourself
 
-1. What is a pull request, and why does `main` require one?
-2. What did the reviewer see that you could not easily see yourself?
-3. What does `git pull` do? How is `git fetch` different?
-4. Why do you see your neighbours' folders after the pull?
-5. Why did we run `git fetch --prune` after the merge?
+Short questions to test yourself after class. The answers are in `solutions/git/README.md`.
+
+1. What did the reviewer see that you could not easily see yourself?
+2. What does `git pull` do? How is `git fetch` different?
+3. Why do you see your neighbours' folders after the pull?
+4. Why did we run `git fetch --prune` after the merge?
 
 ## Optional: if you have time
 
@@ -154,6 +162,14 @@ The way you worked in this exercise is close to **trunk-based development**: sho
 | Cost | Needs discipline and a quick review. | More branches, more merging, more overhead. |
 
 For analysis scripts and small tools, start simple: trunk-based with PRs. You can add structure later if you need it.
+
+### With Copilot
+
+Do this together with the second pull request below. On your new branch, after you committed, show Copilot what you changed. Run `git diff origin/main`, copy the output into Copilot Chat (`Ctrl+Alt+I`) and ask:
+
+> Draft a pull request description for this diff: a title, what changed, and why.
+
+Read the draft. Is the "what" correct? Copilot only sees the diff, so the "why" is a guess. What would a reviewer still be missing? Rewrite the description in your own words before you click **Create**.
 
 ### More
 

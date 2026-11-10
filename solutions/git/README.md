@@ -37,13 +37,16 @@ Final `git log --oneline`:
 <hash> Add bar to psi conversion
 ```
 
-Answers:
+Explain it (model answers):
 
-1. `git add` moves a change from the working tree to the staging area. `git commit` moves it from the staging area to the repository.
-2. `git diff` compares the working tree with the staging area. After `git add` they are the same, so nothing shows. `git diff --staged` shows the staged change (staging area against the last commit).
-3. Git sees the file in the folder, but it is not staged and not in any commit. You choose what goes into each commit, and the data file was a separate change.
-4. "Untracked" means Git sees the file in the folder, but it is not in any commit and not staged.
-5. Without `-m`, Git opens a text editor to ask for the message. `-m` gives the message on the command line.
+1. The working tree is the folder with the files you edit. The staging area is the list of changes you selected for the next commit. The repository is the saved history of commits in `.git`. After `git add` the change is in the staging area; after `git commit` it is in the repository.
+2. You decide what belongs together. You can put one logical change in a commit and leave unfinished or unrelated edits out, which keeps each commit small, easy to describe and easy to review or undo. The cost is one extra step (`git add`) and the risk of forgetting to stage a file.
+
+Check yourself:
+
+1. `git diff` compares the working tree with the staging area. After `git add` they are the same, so nothing shows. `git diff --staged` shows the staged change (staging area against the last commit).
+2. "Untracked" means Git sees the file in the folder, but it is not in any commit and not staged.
+3. Without `-m`, Git opens a text editor to ask for the message. `-m` gives the message on the command line.
 
 ### Optional
 
@@ -66,7 +69,6 @@ uv run python exercises/git/setup_exercise.py 2
 cd "<path printed by the script>"
 git status
 git log --oneline
-git log
 git show <hash-of-Fix-Kelvin-offset>
 git log conversions.py
 # edit conversions.py: KELVIN_OFFSET = 0
@@ -76,12 +78,16 @@ git restore conversions.py
 git status
 ```
 
-Answers:
+Explain it (model answers):
+
+1. The diff of a commit shows what changed, the author and date show who and when, and the commit message is the only place that says why. Git records the first three for you; the message is yours to write. A message like "Fix Kelvin offset" lets a colleague find the commit in seconds, while "update" does not.
+2. Git can only bring back what was committed. Uncommitted edits exist in one place, your working tree, and `git restore` or a mistake can remove them for good. So commit small and often: every commit is a point you can return to.
+
+Check yourself:
 
 1. `git show <hash>`.
 2. Sofie Claes, in the commit "Fix Kelvin offset" (5 March 2025). She changed `273.0` to `273.15`. Jan Peeters made the last change to `BAR_TO_PSI`; Anna Verhoeven wrote the first version of the file.
 3. `git log conversions.py` lists only the commits that touched that file: 4 commits instead of 5. "Add measurements and analyse_run script" is left out because it did not change `conversions.py`.
-4. The edit was never committed, so Git has no copy of it.
 
 ### Optional
 
@@ -127,7 +133,6 @@ More: `git log --oneline -- analyse_run.py` gives "Add measurements and analyse_
 ```powershell
 uv run python exercises/git/setup_exercise.py 3
 cd "<path printed by the script>"
-git status
 git branch
 git log --oneline --graph --all --decorate
 
@@ -157,13 +162,16 @@ git branch -d feature/max-temperature
 git status
 ```
 
-Answers:
+Explain it (model answers):
+
+1. The first time `main` had no new commits since the branch started, so Git only moved the `main` label forward to the branch's commit: a fast-forward. The second time both `main` and the branch had a new commit, so the history had split. Git joined the two lines with a new merge commit that has two parents.
+2. On a branch you can commit unfinished work without breaking `main`, drop the work if the idea fails, and have it reviewed before it lands. `main` stays in a working state for everyone else. The cost is a merge at the end, and the longer a branch lives, the larger the chance of a merge conflict.
+
+Check yourself:
 
 1. `git switch main` goes to an existing branch. `git switch -c feature/x` creates the new branch at the current commit and goes to it.
-2. In the first case `main` had no new commits, so Git only moved the `main` label. In the second case `main` and the feature branch each had a new commit, so Git needed a new commit with two parents to join them.
-3. Git replaces the files in your folder with the version of the branch you switch to. Your uncommitted edits stay, as long as they do not clash with the files that change.
-4. A branch is only a label. The commits are in `main` too, so nothing is lost. `git branch -d` also refuses if the branch is not merged.
-5. `main` is the version others use and build on. If it only gets finished work, it always works.
+2. Git replaces the files in your folder with the version of the branch you switch to. Your uncommitted edits stay, as long as they do not clash with the files that change.
+3. A branch is only a label. The commits are in `main` too, so nothing is lost. `git branch -d` also refuses if the branch is not merged.
 
 ### Optional: the merge conflict
 
@@ -189,7 +197,6 @@ cd "$HOME\git-exercises"
 git clone https://dev.azure.com/<organisation>/<project>/_git/<training-repo>
 cd <training-repo>
 git status
-git log --oneline
 git remote -v
 git branch
 git branch -a
@@ -204,13 +211,17 @@ git status
 git branch -a
 ```
 
-Answers:
+Explain it (model answers):
+
+1. `origin/main` is a remote-tracking branch: your laptop's memory of where `main` was on the server the last time you talked to it. Right now it shows the state at your clone. It does not update by itself; it changes only when you run `git fetch`, `git pull` or `git push`. Colleagues may have pushed since then without you seeing it.
+2. The commit exists in your local repository and, after the push, on Azure DevOps in your branch `feature/<your-name>-intro`. It is not in `main` yet, neither on the server nor on your laptop, and not on your colleagues' laptops until they fetch.
+
+Check yourself:
 
 1. `git branch` lists only local branches. `git branch -a` also lists the remote-tracking branches (`remotes/origin/...`), which are your laptop's record of what the remote has.
 2. `origin` is the default name Git gives to the remote you cloned from, here the Azure DevOps repository.
 3. The branch exists only locally, so the remote needs to create it. `-u` also sets the upstream, so later `git push` and `git pull` need no arguments.
 4. So that people do not change the same files and cause conflicts.
-5. After the push the commit exists on your laptop and on Azure DevOps (in your branch). It does not exist in `main` yet.
 
 Stretch: `git fetch` followed by `git branch -a` lists the branches other participants pushed. In the graph, `origin/main` is where the remote `main` was at the last fetch, and your branch is one commit ahead of it.
 
@@ -249,14 +260,19 @@ git commit -m "Merge main into feature/anna-intro"
 git push
 ```
 
-Answers:
+Explain it (model answers):
 
-1. A request to merge a branch into another one, with a place for description, review and discussion. `main` requires one so that every change gets looked at by a second person and `main` stays working.
-2. The reviewer saw the changes of the PR in one view (Files tab) with fresh eyes. They could spot unclear text, mistakes or files that should not be there.
-3. `git pull` is `git fetch` (download new commits) plus a merge of them into your current branch. `git fetch` only downloads and does not touch your files or branch.
-4. Their PRs were merged into `main` on the server, and you pulled `main`.
-5. It removes your local record of remote branches that were deleted on the server (here `origin/feature/anna-intro`).
-6. When someone else merged a change into `main` that touches the same lines as your branch.
+1. A pull request puts a second pair of eyes on every change before it reaches `main`, and it records what was changed, why, and who approved it. That catches mistakes early and keeps `main` working for everyone. The cost is waiting time and effort from a colleague, which is why pull requests should be small.
+2. You are. The author of a commit stays responsible for it; the reviewer shares responsibility for letting it in. It makes no difference whether you typed the code or Copilot generated it: you read the diff, you committed it, and your name is on it.
+
+Check yourself:
+
+1. The reviewer saw the changes of the PR in one view (Files tab) with fresh eyes. They could spot unclear text, mistakes or files that should not be there.
+2. `git pull` is `git fetch` (download new commits) plus a merge of them into your current branch. `git fetch` only downloads and does not touch your files or branch.
+3. Their PRs were merged into `main` on the server, and you pulled `main`.
+4. It removes your local record of remote branches that were deleted on the server (here `origin/feature/anna-intro`).
+
+A PR shows conflicts when someone else merged a change into `main` that touches the same lines as your branch.
 
 Branching models: trunk-based development uses short-lived branches into one `main` branch. GitFlow uses long-lived `develop`, `release/*` and `hotfix/*` branches next to `main`. The exercise followed the trunk-based style.
 
@@ -292,10 +308,25 @@ git status
 
 Before the `.gitignore` exists, `git status` lists `participants/anna/output/`. Afterwards it lists only `participants/anna/.gitignore` as new. After the commit: "nothing to commit, working tree clean".
 
-Answers:
+Explain it (model answers):
+
+1. In the repository: what a person wrote and what others need to reproduce your work, such as scripts, small configuration files, documentation and the `.gitignore` itself. Not in the repository: what can be regenerated or is specific to your laptop (`.venv/`, `__pycache__/`, plots and output files), large raw data, and anything secret such as passwords. Generated files bloat the history and cause needless conflicts.
+2. The Source Control view is fast for the daily cycle and shows diffs side by side, next to your code. The command line is exact, works the same on every machine and server, and is what documentation and error messages refer to, so it is the tool for anything unusual. Both run the same Git underneath, so you can mix them.
+
+Check yourself:
 
 1. The **+** (Stage Changes) button.
 2. `U` is untracked (new file, not yet in Git). `M` is modified (a tracked file with changes).
 3. `git push -u origin <branch>`: it creates the branch on the remote and links the local branch to it.
-4. So that everyone who clones the repository gets the same ignore rules.
-5. No. A file that is already tracked stays tracked and stays in the history. You would need `git rm --cached <file>` to stop tracking it (not covered in this training).
+4. No. A file that is already tracked stays tracked and stays in the history. You would need `git rm --cached <file>` to stop tracking it (not covered in this training).
+
+## The "With Copilot" tasks
+
+These optional tasks have no single right answer. What matters is the judgement:
+
+- Exercise 1: a good result is a diff with only the new `kelvin_to_celsius` function (`temperature_k - 273.15`). Anything else in the diff (renamed functions, reformatting, new comments) was not asked for and should be questioned.
+- Exercise 2: the vague prompt usually gives a large diff (type hints, docstrings, validation, renames) that is hard to review. The precise prompt gives a few added lines. The difference is the precision of the request, in the vocabulary of the code.
+- Exercise 3: Copilot can explain both sides, but which precision the test bench needs is a domain decision. A good check: read both lines, run `uv run python analyse_run.py` after resolving, and look at `git diff --staged`.
+- Exercise 4: you can verify what `git fetch` did to `origin/main` and that your files did not change. You cannot verify claims about cases you did not try.
+- Exercise 5: the draft usually describes what changed. It cannot know why, how you tested it, or what the reviewer should look at. Those are the parts to add.
+- Exercise 6: generated commit messages describe the diff. Add the reason when it is not obvious.

@@ -1,6 +1,8 @@
 # Exercise 2: Explore the history
 
-Time: **10 minutes** for the core tasks (1 to 4). Tasks 5 to 9 are optional.
+Time: **10 minutes** for the core tasks (1 to 5). Everything under "Optional" is extra.
+
+Words to use: history, log, hash, HEAD, author, commit message, diff, restore.
 
 ## Goal
 
@@ -49,13 +51,7 @@ nothing to commit, working tree clean
 <hash> Add bar to psi conversion
 ```
 
-The newest commit is on top. Now the long form:
-
-```powershell
-git log
-```
-
-Each commit shows its author and date. Press `q` if you end up in the pager (a screen with `:` or `(END)` at the bottom).
+The newest commit is on top.
 
 ### 2. Look inside a commit
 
@@ -65,7 +61,7 @@ Pick the hash of "Fix Kelvin offset" from the `--oneline` list:
 git show <hash>
 ```
 
-You see the message, the author, the date, and the exact lines that changed. Lines that start with `-` were removed. Lines that start with `+` were added. Press `q` to leave the pager if needed.
+You see the message, the author, the date, and the exact lines that changed. Lines that start with `-` were removed. Lines that start with `+` were added. If the screen shows `:` or `(END)` at the bottom, you are in a pager. Press `q` to leave it.
 
 Question: what was the old value of `KELVIN_OFFSET`, and what is the new one?
 
@@ -77,7 +73,7 @@ Your colleague asks: "Who changed the Kelvin offset, and when?" You already have
 git log conversions.py
 ```
 
-Read the messages. Which commit is about the offset? Who made it?
+This is the long form of the log: each commit shows its author and date. Press `q` if needed. Read the messages. Which commit is about the offset? Who made it?
 
 Expected: "Fix Kelvin offset" by Sofie Claes, 5 March 2025. She changed `273.0` into `273.15`.
 
@@ -107,16 +103,24 @@ Check that `KELVIN_OFFSET` is back to `273.15`.
 
 Be careful: `git restore` on a file permanently throws away your uncommitted changes. Git cannot get them back, because they were never committed. This is why you commit often.
 
+### 5. Explain it
+
+Answer in one or two sentences each, to your neighbour or in writing.
+
+1. A colleague says: "The Kelvin values in my report changed last week." Which parts of a commit help you find out what changed, who did it and why? What does that say about writing a good commit message?
+2. `git restore` threw away your edit for good, but a committed change can always be found again. What does that tell you about when to commit?
+
 ## Check yourself
+
+Short questions to test yourself after class. The answers are in `solutions/git/README.md`.
 
 1. Which command shows the changes of one single commit?
 2. Who changed `KELVIN_OFFSET` to `273.15`, and in which commit?
 3. What does `git log conversions.py` show that `git log` does not?
-4. Why can Git not bring back a change you removed with `git restore <file>`?
 
 ## Optional: if you have time
 
-### 5. Compare two commits
+### 6. Compare two commits
 
 ```powershell
 git diff <hash-of-first-commit> <hash-of-last-commit>
@@ -130,7 +134,7 @@ A shortcut: `HEAD~1` means "one commit before HEAD".
 git diff HEAD~1 HEAD
 ```
 
-### 6. Search the history
+### 7. Search the history
 
 Ask Git which commits added or removed a piece of text:
 
@@ -141,7 +145,7 @@ git log --oneline --author=Jan
 
 The first command lists one commit, "Fix Kelvin offset", with its author and date. The second lists the commits by one author.
 
-### 7. Who wrote each line
+### 8. Who wrote each line
 
 ```powershell
 git blame conversions.py
@@ -149,7 +153,7 @@ git blame conversions.py
 
 `git blame` prints each line of the file with the commit and author that last changed it. Press `q` if needed.
 
-### 8. Visit an old version
+### 9. Visit an old version
 
 Go back to the commit "Add measurements and analyse_run script". It is the first commit that has `analyse_run.py`.
 
@@ -181,7 +185,7 @@ Mean temperature: 85.3 C (358.48 K)
 
 Always come back with `git switch main` when you are done looking.
 
-### 9. Unstage a file
+### 10. Unstage a file
 
 Edit `README.md`, add any line, and run `git add README.md`. Then:
 
@@ -197,6 +201,18 @@ Questions for this part:
 
 1. What does `git switch --detach <hash>` do? How do you return?
 2. What is the difference between `git restore <file>` and `git restore --staged <file>`?
+
+### With Copilot
+
+See what a vague request does, and how Git protects you. Open Copilot Chat in VS Code (`Ctrl+Alt+I`) and ask, vaguely on purpose:
+
+> Improve `conversions.py`.
+
+Run `git diff`. How many things did it change? Did you want all of them? Discard everything with `git restore conversions.py`. Now ask precisely:
+
+> In `conversions.py`, add a function `psi_to_bar` that uses the constant `BAR_TO_PSI`. Do not change anything else.
+
+Run `git diff` again. Which of the two diffs could you review and commit with confidence? What made the difference?
 
 ### More
 

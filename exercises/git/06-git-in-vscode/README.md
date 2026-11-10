@@ -4,6 +4,8 @@
 
 The trainer shows this exercise on the screen in class. It is not part of the timed hands-on block. Do it yourself after the training, or whenever you have time. You can do all of it alone, without a neighbour.
 
+Words to use: Source Control view, stage, commit, publish branch, sync, `.gitignore`, tracked file, ignored file.
+
 ## Goal
 
 Repeat the whole daily cycle with the **Source Control** view in VS Code instead of the command line: branch, edit, stage, commit, push, pull request, pull. Then learn how to keep files out of Git with `.gitignore`.
@@ -133,6 +135,13 @@ A `.gitignore` only affects files that Git does not follow yet. If you already c
 
 Push the branch and open a PR if you want, or leave it local.
 
+### 9. Explain it
+
+Answer in one or two sentences each, in writing or to a colleague.
+
+1. Which files belong in a repository and which do not? Give one example of each from your own work, and say why.
+2. When would you use the Source Control view in VS Code, and when the command line? Name one strength of each.
+
 ## Command line, VS Code and SourceTree
 
 | Action | Command line | VS Code | SourceTree |
@@ -152,13 +161,20 @@ Rule of thumb: use what is fast for you. Know the command line for when somethin
 
 ## Check yourself
 
+Short questions to test yourself after class. The answers are in `solutions/git/README.md`.
+
 1. Which button in VS Code does the same as `git add`?
 2. What do `U` and `M` next to a file name mean?
 3. What does **Publish Branch** do on the command line?
-4. Why do we commit a `.gitignore` file?
-5. If you ignore a file that is already committed, is it removed from Git?
+4. If you ignore a file that is already committed, is it removed from Git?
 
-## Stretch
+## Optional: if you have time
+
+### With Copilot
+
+VS Code can let Copilot write the commit message. Change a line in your `about.md` and stage it. In the Source Control view, click the sparkle icon in the commit message box (**Generate Commit Message**). Read the result before you click **Commit**. Does it say what changed? Does it say why? Copilot only sees the diff, so add the reason yourself when it matters.
+
+### More
 
 - Install the **Git Graph** extension and look at the history of the training repository.
 - Open the **Timeline** view at the bottom of the Explorer for `about.md`. It shows the commits that changed it.

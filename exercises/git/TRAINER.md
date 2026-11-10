@@ -134,6 +134,14 @@ Times add up to roughly 35 minutes of instruction and 70 minutes of exercises. E
 
 Everything under "Optional: if you have time" in the READMEs is never done in class. Mention only briefly: GitFlow versus trunk-based development, rebase, stash, tags.
 
+### Copilot and the "Explain it" questions
+
+- Participants may use GitHub Copilot (inline completions and Copilot Chat in VS Code) all day, including in the Git block. The ground rules are in `exercises/git/README.md` under "Using Copilot". No core task needs Copilot.
+- Not every participant may have an activated Copilot licence yet. Pair those people with a neighbour who has one for the optional "With Copilot" tasks. Do not spend class time on licence problems.
+- Ask participants to type the Git commands themselves. Copilot is for explaining messages and for changing code, which they then inspect with `git diff`.
+- Every exercise ends with an "Explain it" task. This is your check on understanding: walk around, pick two or three people per exercise and let them answer out loud. Listen for the terms in the "Words to use" line. Model answers are in `solutions/git/README.md`.
+- The message to repeat: an assistant can write the code, but you must know the words to ask for the right thing, read the diff to judge the result, and own what you commit.
+
 ## 5. Common problems
 
 | Problem | Fix |

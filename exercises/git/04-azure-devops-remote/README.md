@@ -1,6 +1,8 @@
 # Exercise 4: Clone from Azure DevOps and push a branch
 
-Time: **15 minutes** for the core tasks. The extra tasks at the end are optional.
+Time: **15 minutes** for the core tasks (1 to 9). Everything under "Optional" is extra.
+
+Words to use: remote, `origin`, clone, push, upstream branch, remote-tracking branch (`origin/main`), fetch.
 
 ## Goal
 
@@ -68,7 +70,6 @@ You should see `README.md`, `check_setup.py`, `participants` and (hidden) `.giti
 
 ```powershell
 git status
-git log --oneline
 git remote -v
 git branch
 git branch -a
@@ -157,13 +158,21 @@ Open the repository in your browser. Go to **Repos > Branches**. Find your branc
 
 Azure DevOps may show a banner: "You updated feature/anna-intro just now. Create a pull request". Do not click it yet. That is the next exercise.
 
+### 9. Explain it
+
+Answer in one or two sentences each, to your neighbour or in writing.
+
+1. What does `origin/main` on your laptop know about the server right now? When does it get updated?
+2. After your push, where does your commit exist? Where does it not exist yet?
+
 ## Check yourself
+
+Short questions to test yourself after class. The answers are in `solutions/git/README.md`.
 
 1. What is the difference between `git branch` and `git branch -a`?
 2. What is `origin`?
 3. Why did the first `git push` need `-u origin <branch>`?
 4. Why does everyone work in their own `participants/<name>` folder?
-5. After the push, where does your commit exist? Where does it not exist yet?
 
 ## Optional: if you have time
 
@@ -171,3 +180,11 @@ Azure DevOps may show a banner: "You updated feature/anna-intro just now. Create
 - Run `git fetch` and then `git branch -a`. Do you see branches of other participants?
 - Run `git log --oneline --graph --all --decorate`. Find `origin/main` and your branch.
 - In the Azure DevOps web page of your file, click **History** and compare with `git log -- participants/anna/about.md`.
+
+### With Copilot
+
+Use Copilot to explain, then check its explanation against your own repository. Open Copilot Chat (`Ctrl+Alt+I`) and ask:
+
+> What is the difference between `git fetch` and `git pull`? What happens to my remote-tracking branch `origin/main` and to my local branch `main` in each case?
+
+Now run `git fetch`, then `git status` and `git branch -a`. Does what you see match what Copilot said? Which part of its answer could you verify, and which part did you have to take on trust?

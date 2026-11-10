@@ -1,6 +1,8 @@
 # Exercise 1: Your first commit
 
-Time: **10 minutes** for the core tasks (1 to 8). Task 9 and the stretch are optional.
+Time: **10 minutes** for the core tasks (1 to 9). Everything under "Optional" is extra.
+
+Words to use: repository, working tree, staging area, commit, commit message, hash, untracked, diff.
 
 ## Goal
 
@@ -208,17 +210,24 @@ Expected:
 <hash> Add bar to psi conversion
 ```
 
+### 9. Explain it
+
+Answer in one or two sentences each, to your neighbour or in writing. Use the words from the top of this page.
+
+1. What is the difference between the working tree, the staging area and the repository? Where is your change after `git add`, and where after `git commit`?
+2. Git lets you stage some changes and leave others out of a commit. What do you gain from that, compared with a tool that always saves everything at once?
+
 ## Check yourself
 
-1. Which command moves a change from the working tree to the staging area? Which one moves it from the staging area to the repository?
-2. After `git add`, why does `git diff` show nothing? Which command shows the staged change?
-3. Why did we stage only `conversions.py` first, while `measurements.csv` stayed untracked?
-4. What does "untracked" mean?
-5. Why do we write `-m "..."` after `git commit`?
+Short questions to test yourself after class. The answers are in `solutions/git/README.md`.
+
+1. After `git add`, why does `git diff` show nothing? Which command shows the staged change?
+2. What does "untracked" mean?
+3. Why do we write `-m "..."` after `git commit`?
 
 ## Optional: if you have time
 
-### 9. Commit the data file
+### 10. Commit the data file
 
 `measurements.csv` is still untracked. Add it in a third commit:
 
@@ -236,6 +245,14 @@ nothing to commit, working tree clean
 ```
 
 "Working tree clean" means the files on disk match the last commit.
+
+### With Copilot
+
+Let Copilot change the code, then use Git to judge the result. Open Copilot Chat in VS Code (`Ctrl+Alt+I`) and ask:
+
+> Add a function `kelvin_to_celsius` to `conversions.py`. Do not change the existing functions.
+
+Before you commit, run `git diff`. Did it change anything you did not ask for? Is the formula right? If you are happy, stage and commit it with your own commit message. If not, discard the change with `git restore conversions.py`. Either way, you decide: you are the author of the commit.
 
 ### More
 

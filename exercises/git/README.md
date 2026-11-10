@@ -16,17 +16,27 @@ By the end you can: clone an Azure DevOps repository, commit on a branch, push, 
 | 6 | `06-git-in-vscode` | Trainer demo in class. Do it yourself afterwards. | demo, 20 min on your own |
 | | | **Total core** | **70 min** |
 
-Every README starts with its core time. Everything under the heading **Optional: if you have time** at the end of a README is not needed to follow the training. Do it when you finish early or at home.
+Every README starts with its core time and a "Words to use" list: the terms that exercise introduces. The last core task of each exercise is **Explain it**: one or two questions that you answer in a sentence, to your neighbour or in writing. Each optional part has one **With Copilot** task. Everything under the heading **Optional: if you have time** at the end of a README is not needed to follow the training. Do it when you finish early or at home.
 
 What moved to optional:
 
-- Exercise 1: committing the data file (task 9) and the stretch.
+- Exercise 1: committing the data file (task 10) and the extras.
 - Exercise 2: comparing two commits, `git log -S`, `git blame`, visiting an old version (detached HEAD), `git restore --staged`.
 - Exercise 3: the merge conflict.
 - Exercise 4: running `check_setup.py`, the stretch.
 - Exercise 5: details on "main moved meanwhile", the GitFlow versus trunk-based table, the stretch.
 
 Do the exercises in order. Open each `README.md` in VS Code (right-click, **Open Preview**) or read it on screen.
+
+## Using Copilot
+
+You may use GitHub Copilot (inline completions and Copilot Chat in VS Code) during the whole training. No core task needs it. For the Git exercises, these ground rules get the most out of it:
+
+- Use it freely. Ask it to explain a Git message or a command you do not understand.
+- Type the Git commands yourself today. The commands are the vocabulary. You need the words to ask for the right thing later, and to judge what comes back.
+- Read `git diff` before every commit, whoever wrote the change. Git shows you exactly what changed, so you can keep what is good and undo the rest.
+- Keep commits small and pull requests reviewed. That matters more when an assistant writes code, not less.
+- You are the author of what you commit and push. Your name is on it.
 
 ## Setup scripts for exercises 1 to 3
 
