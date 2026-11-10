@@ -95,6 +95,13 @@ layout: statement
 
 `exercises/python/01-first-script`
 
+<p class="words"><b>Words you can now use</b> interpreter · terminal · PATH · working folder · uv run</p>
+
+<style>
+.words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
+.words b { margin-right: 8px; }
+</style>
+
 <!--
 Everyone creates a script, runs it from PowerShell and from VS Code, and changes it. About 15 minutes. Oliver and I walk around, and any PATH or interpreter problem is exactly what we want to catch now.
 -->

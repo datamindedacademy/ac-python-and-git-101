@@ -37,6 +37,60 @@ layout: default
 label: Welcome
 ---
 
+# Why learn this if <span class="dm-accent">AI</span> can write the code?
+
+<DmColumns class="mt-6">
+<DmColumn header="Ask" tone="navy">
+
+You have to ask in the specialist's **vocabulary**
+
+</DmColumn>
+<DmColumn header="Judge" tone="violet">
+
+You have to read what comes back and decide if it is **right**
+
+</DmColumn>
+<DmColumn header="Choose" tone="navy">
+
+There are several approaches, and someone must own the **tradeoff**
+
+</DmColumn>
+</DmColumns>
+
+<!--
+An assistant like Copilot can write a working script in seconds, so why spend a day on fundamentals? Because the quality of what you get depends on what you ask. "Loop over the CSV files in this folder and return a dict per run" gets a far better answer than "make it work for all my files". Then you have to read the result and judge it: is it correct, does it handle the empty file, is it the simple version or the clever one? And there is nearly always more than one way, each with a cost, and the tool will pick one silently unless you say what you want. Today gives you the words and the tradeoffs. That is the part that stays yours.
+-->
+
+---
+layout: default
+label: Welcome
+---
+
+# Copilot today: <span class="dm-accent">how to use it</span>
+
+<div class="rules">
+
+- Use it freely, in every exercise
+- Ask it to explain errors and unfamiliar code
+- Ask for a second approach, then compare the two
+- Keep only lines you can explain to your neighbour
+- You are the author of what you commit, Copilot is not
+
+</div>
+
+<style>
+.rules li { margin-bottom: 10px; font-size: 1.05em; }
+</style>
+
+<!--
+GitHub Copilot is allowed all day, starting now. The most valuable uses for a beginner are asking it to explain an error message or a piece of code, and asking for a second way to do the same thing so you can compare. The one habit we insist on: if you cannot explain a line to the person next to you, ask Copilot to explain it or replace it with something you understand. Your name is on the commit, so the responsibility is yours. Some of you may not have an activated licence yet: pair up with a neighbour who has one, the exercises all work without it too. Day 3 goes deeper into agents, skills and reviewing AI-written code.
+-->
+
+---
+layout: default
+label: Welcome
+---
+
 # What you can do <span class="dm-accent">by 17:00</span>
 
 <div class="goals">

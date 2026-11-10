@@ -68,7 +68,7 @@ label: 1 · Scripts and notebooks
 </DmComparison>
 
 <!--
-Neither is better in general, they serve different jobs. Scripts win when the result must be repeatable and shareable. Notebooks win when you are still figuring out what the data looks like. The last row matters for the Git block this afternoon: a script diff shows exactly the lines you changed, a notebook diff is full of output blobs.
+Neither is better in general, they serve different jobs. This is the first tradeoff of the day, and the pattern for all of them: Copilot will happily produce either form, so you have to know which one the job needs and say so. Scripts win when the result must be repeatable and shareable. Notebooks win when you are still figuring out what the data looks like. The last row matters for the Git block this afternoon: a script diff shows exactly the lines you changed, a notebook diff is full of output blobs.
 -->
 
 ---
@@ -91,11 +91,15 @@ limit_bar = 9.0           limit_bar = 6.0           print(limit_bar)
 
 </v-clicks>
 
+<p class="words"><b>Words you can now use</b> script · notebook · cell · kernel · hidden state · reproducible</p>
+
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+.words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
+.words b { margin-right: 8px; }
 </style>
 
 <!--
-The kernel remembers variables from every cell you ran, in the order you ran them, not the order on the page. After an hour of exploring, the notebook on screen and the memory in the kernel can disagree. A script cannot do this to you, because it always starts from a clean process. The habit that protects you in notebooks: restart the kernel and run all cells before you trust a result. Rule of thumb: explore in a notebook, and once you would run it twice, move it into a script. We work with scripts today and meet notebooks again on day 2.
+The kernel remembers variables from every cell you ran, in the order you ran them, not the order on the page. After an hour of exploring, the notebook on screen and the memory in the kernel can disagree. A script cannot do this to you, because it always starts from a clean process, which is what makes its result reproducible. The habit that protects you in notebooks: restart the kernel and run all cells before you trust a result. Rule of thumb: explore in a notebook, and once you would run it twice, move it into a script. We work with scripts today and meet notebooks again on day 2.
 -->
 

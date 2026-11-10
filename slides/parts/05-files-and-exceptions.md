@@ -41,7 +41,7 @@ t_s,pressure_bar,temperature_c
 </style>
 
 <!--
-open with the with keyword guarantees the file is closed when the block ends, even if an error happens in between. Looping over the file gives one line at a time, each still carrying its newline character, so strip removes it. For small files Path.read_text reads everything in one go. Always state the encoding, utf-8 is the safe choice.
+open with the with keyword guarantees the file is closed when the block ends, even if an error happens in between. The name f is the file handle: your grip on the open file. Looping over the file gives one line at a time, each still carrying its newline character, so strip removes it. For small files Path.read_text reads everything in one go. Always state the encoding, utf-8 is the safe choice.
 -->
 
 ---
@@ -134,7 +134,7 @@ None
 </style>
 
 <!--
-Sometimes an error is expected, for example one bad row in a long log. try runs the risky code, and if the named exception occurs, the except block runs instead of crashing the script. The script then carries on. Execution continues after the whole block either way.
+Sometimes an error is expected, for example one bad row in a long log. try runs the risky code, and if the named exception occurs, the except block runs instead of crashing the script. The script then carries on. The vocabulary: the code raises an exception, and you catch it. Your own code can raise one too, with the raise keyword, when it receives something it cannot handle. Execution continues after the whole block either way.
 -->
 
 ---
@@ -144,6 +144,13 @@ layout: statement
 # Exercise 07: <span class="dm-accent">Files and exceptions</span>
 
 `exercises/python/07-files-and-exceptions`
+
+<p class="words"><b>Words you can now use</b> file handle · encoding · exception · traceback · raise · catch</p>
+
+<style>
+.words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
+.words b { margin-right: 8px; }
+</style>
 
 <!--
 Read and write files, handle a bad row, and then fix several broken scripts by reading their tracebacks. Start each time at the bottom line. About 30 minutes.

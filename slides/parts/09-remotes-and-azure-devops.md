@@ -178,7 +178,7 @@ title: Demo - Git in VS Code
 <p class="words"><b>Words you can now use</b> clone · origin · push · pull · fetch · pull request · review</p>
 
 <style>
-.words { font-size: 13px; opacity: 0.65; margin-top: 40px; }
+.words { font-size: 15px; opacity: 0.9; margin-top: 40px; }
 .words b { margin-right: 8px; }
 </style>
 

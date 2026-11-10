@@ -121,7 +121,7 @@ flowchart LR
 <p class="words"><b>Words you can now use</b> repository · commit · branch · remote · working tree · staging area</p>
 
 <style>
-.words { font-size: 13px; opacity: 0.65; margin-top: 14px; }
+.words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
 .words b { margin-right: 8px; }
 </style>
 

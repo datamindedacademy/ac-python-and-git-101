@@ -162,6 +162,13 @@ layout: statement
 
 `exercises/python/06-standard-library`
 
+<p class="words"><b>Words you can now use</b> standard library · module · import · path · glob · CSV · JSON</p>
+
+<style>
+.words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
+.words b { margin-right: 8px; }
+</style>
+
 <!--
 Use math, pathlib, csv and json on a small set of fictional bench logs. About 25 minutes.
 -->

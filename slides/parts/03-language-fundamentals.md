@@ -144,6 +144,13 @@ layout: statement
 
 `exercises/python/02-variables-and-types`
 
+<p class="words"><b>Words you can now use</b> variable · assignment · type · string · float · f-string · convert</p>
+
+<style>
+.words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
+.words b { margin-right: 8px; }
+</style>
+
 <!--
 Variables, types, f-strings and one deliberate type error to fix. About 15 minutes.
 -->
@@ -248,12 +255,47 @@ A dictionary looks things up by name instead of by position. It is like a MATLAB
 -->
 
 ---
+layout: default
+label: 3 · Language fundamentals
+---
+
+# A choice: <span class="dm-accent">list</span> or <span class="dm-accent">dict</span>?
+
+<DmComparison
+  class="mt-2"
+  :rows="['Find by', 'Fits', 'Example']"
+  :cols="['list', 'dict']"
+>
+  <template #r0c0>Position, in order</template>
+  <template #r0c1>Name, the key</template>
+
+  <template #r1c0>A series of the same kind of value</template>
+  <template #r1c1>One record with different fields</template>
+
+  <template #r2c0><code>pressures_bar[2]</code></template>
+  <template #r2c1><code>reading["pressure_bar"]</code></template>
+</DmComparison>
+
+<p class="mt-4">Copilot will pick one for you unless you say which you want.</p>
+
+<!--
+Both can hold the same measurements, and the choice shapes all the code that follows. A list is right for a time series: many values of one kind, where order matters and you loop over all of them. A dict is right for one record with named fields, where you want to ask for the pressure by name and not remember that it was column two. The cost of a list is that positions are easy to mix up, the cost of a dict is that a mistyped key fails. When you ask Copilot for code, say it: "return a list of floats" or "return a dict with these keys". If you do not, it chooses, and you inherit the choice.
+-->
+
+---
 layout: statement
 ---
 
 # Exercise 03: <span class="dm-accent">Collections</span>
 
 `exercises/python/03-collections`
+
+<p class="words"><b>Words you can now use</b> list · index · slice · dict · key · value</p>
+
+<style>
+.words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
+.words b { margin-right: 8px; }
+</style>
 
 <!--
 Lists, slicing, a dictionary and a list of dictionaries. Watch for the off-by-one in slices. About 20 minutes.
@@ -289,7 +331,7 @@ ALARM: over limit
 </style>
 
 <!--
-Python checks the conditions top to bottom and runs the first block whose condition is true. Note the colon at the end of each header line, and note that there is no end keyword and no parentheses needed around the condition. MATLAB has elseif as one word, Python has elif.
+Python checks the conditions top to bottom and runs the first block whose condition is true. Each of those blocks is called a branch. Note the colon at the end of each header line, and note that there is no end keyword and no parentheses needed around the condition. MATLAB has elseif as one word, Python has elif.
 -->
 
 ---
@@ -326,7 +368,7 @@ for i in range(3):
 </style>
 
 <!--
-A for loop takes each element of a collection in turn and runs the indented block with it. Loop over the values directly, you rarely need an index. When you need a count, range gives 0, 1, 2 and stops before the end value, the same exclusive end as slices. There is no end keyword, the indentation closes the loop.
+A for loop takes each element of a collection in turn and runs the indented block with it. The specialist's word is iterate: we iterate over the list. Loop over the values directly, you rarely need an index. When you need a count, range gives 0, 1, 2 and stops before the end value, the same exclusive end as slices. There is no end keyword, the indentation closes the loop.
 -->
 
 ---
@@ -372,6 +414,13 @@ layout: statement
 # Exercise 04: <span class="dm-accent">Control flow</span>
 
 `exercises/python/04-control-flow`
+
+<p class="words"><b>Words you can now use</b> condition · branch · loop · iterate · block · indentation</p>
+
+<style>
+.words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
+.words b { margin-right: 8px; }
+</style>
 
 <!--
 Conditions, for loops and a while loop on bench readings. About 20 minutes. Break time after this exercise if the room is ready for it.
@@ -475,12 +524,47 @@ Real scripts are small functions that call each other, plus a main function that
 -->
 
 ---
+layout: default
+label: 3 · Language fundamentals
+---
+
+# A choice: <span class="dm-accent">script</span>, <span class="dm-accent">function</span> or <span class="dm-accent">module</span>?
+
+<DmComparison
+  class="mt-2"
+  :rows="['Lines in the script', 'A function', 'A module']"
+  :cols="['Use it when', 'The cost']"
+>
+  <template #r0c0>You do it once, in a few lines</template>
+  <template #r0c1>Copy and paste when you need it again</template>
+
+  <template #r1c0>You repeat it, or it deserves a name</template>
+  <template #r1c1>A little structure to read through</template>
+
+  <template #r2c0>Several scripts need the same functions</template>
+  <template #r2c1>One more file, and an <code>import</code></template>
+</DmComparison>
+
+<p class="mt-4">Copilot will pick one for you unless you say which you want.</p>
+
+<!--
+Three places the same logic can live. Straight in the script is fine for a one-off. Once you repeat something, or a block of lines needs a comment to explain it, give it a name: a function. When a second script needs the same function, move it to its own .py file, a module, and import it, exactly like you import math after lunch. Do not start with modules: move code outward only when the need shows up. Assistants tend to go to one extreme, either one long script or many small files, so tell Copilot which level you want: "keep it in one file, with a function per step".
+-->
+
+---
 layout: statement
 ---
 
 # Exercise 05: <span class="dm-accent">Functions</span>
 
 `exercises/python/05-functions`
+
+<p class="words"><b>Words you can now use</b> function · parameter · argument · return value · docstring · module</p>
+
+<style>
+.words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
+.words b { margin-right: 8px; }
+</style>
 
 <!--
 Write, call and combine small functions. This is the building block for everything after lunch. About 25 minutes.
