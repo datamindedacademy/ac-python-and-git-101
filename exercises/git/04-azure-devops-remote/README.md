@@ -1,6 +1,6 @@
 # Exercise 4: Clone from Azure DevOps and push a branch
 
-Time: about 20 minutes.
+Time: **15 minutes** for the core tasks. The extra tasks at the end are optional.
 
 ## Goal
 
@@ -34,7 +34,7 @@ https://dev.azure.com/<organisation>/<project>/_git/<training-repo>
 
 Replace the three placeholders with the real values from the trainer. You can also copy the URL in Azure DevOps: open the repository, go to **Repos > Files**, and click **Clone** at the top right.
 
-## Tasks
+## Core tasks
 
 ### 1. Clone the repository
 
@@ -87,20 +87,9 @@ What you see:
   remotes/origin/main
 ```
 
-Run the check script from the repository. It should print your Python version and say hello:
+### 3. Check that Git knows who you are
 
-```powershell
-uv run python check_setup.py
-```
-
-### 3. Tell Git who you are (if needed)
-
-You did this in exercise 1. Check that it is still set:
-
-```powershell
-git config user.name
-git config user.email
-```
+You did this in exercise 1. Run `git config user.name` and `git config user.email`. Both must print something.
 
 ### 4. Make a branch
 
@@ -176,8 +165,9 @@ Azure DevOps may show a banner: "You updated feature/anna-intro just now. Create
 4. Why does everyone work in their own `participants/<name>` folder?
 5. After the push, where does your commit exist? Where does it not exist yet?
 
-## Stretch
+## Optional: if you have time
 
+- Run the check script from the repository. It should print your Python version and say hello: `uv run python check_setup.py`.
 - Run `git fetch` and then `git branch -a`. Do you see branches of other participants?
 - Run `git log --oneline --graph --all --decorate`. Find `origin/main` and your branch.
 - In the Azure DevOps web page of your file, click **History** and compare with `git log -- participants/anna/about.md`.

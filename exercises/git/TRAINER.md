@@ -108,20 +108,31 @@ git clone https://dev.azure.com/<organisation>/<project>/_git/<training-repo> "$
 
 Fallback if the laptops cannot reach Azure DevOps: use the devcontainer. Exercises 1 to 3 work offline. For 4 to 6 you can create a local "remote": `git init --bare $HOME\git-exercises\remote.git`, then clone it. Pull requests are not possible then; demonstrate them on your screen.
 
-## 4. Running the session (about 2 hours)
+## 4. Running the session (15:05 to 16:50)
+
+The block is 105 minutes: about 35 minutes of instruction and 70 minutes of core exercises.
 
 | Time | Content |
 |---|---|
-| 0:00 | Slides: why version control, repository, commit, branch, remote (10 min). |
-| 0:10 | Exercise 1 (15 min). Walk through the three areas on the whiteboard. |
-| 0:25 | Exercise 2 (20 min). |
-| 0:45 | Exercise 3 (25 min). Skip the stretch if behind. |
-| 1:10 | Short break (5 min). Hand out the repository URL. |
-| 1:15 | Exercise 4 (20 min). Expect sign-in problems: see below. |
-| 1:35 | Exercise 5 (25 min). Pair up neighbours before they start. |
-| 2:00 | Exercise 6 (shorten to tasks 1 to 7 if behind). Wrap-up with the comparison table. |
+| 15:05 | Slides (about 20 min): why version control, repository, commit, three areas, branch, merge, remote, pull request, GitFlow versus trunk-based in two minutes. |
+| 15:25 | Exercise 1 (10 min). Draw the three areas on the whiteboard first. |
+| 15:35 | Exercise 2 (10 min). |
+| 15:45 | Exercise 3 (15 min). |
+| 16:00 | Hand out the repository URL. Short instruction on remotes and Azure DevOps (about 10 min, live clone). |
+| 16:10 | Exercise 4 (15 min). Expect sign-in problems: see below. |
+| 16:25 | Exercise 5 (20 min). Pair up neighbours before they start. |
+| 16:45 | Demo of exercise 6 in VS Code (about 5 min). Point to the README for doing it alone. |
+| 16:50 | End. |
 
-Mention only briefly, and do not make exercises of them: GitFlow versus trunk-based development (there is a table in exercise 5), rebase, stash, tags.
+Times add up to roughly 35 minutes of instruction and 70 minutes of exercises. Exercise 6 is a demo only.
+
+**If the day runs late, drop in this order:**
+
+1. Exercise 2 (history). Show `git log --oneline` and `git show` in one minute during the slides instead.
+2. The merge-commit part of exercise 3 (task 4). Keep the branch, commit and fast-forward merge.
+3. Never drop exercises 4 and 5: they reach the end goal (clone, branch, commit, push, pull request).
+
+Everything under "Optional: if you have time" in the READMEs is never done in class. Mention only briefly: GitFlow versus trunk-based development, rebase, stash, tags.
 
 ## 5. Common problems
 

@@ -1,10 +1,12 @@
 # Git exercises: solutions
 
-Expected command sequences and answers to the "check yourself" questions. Hashes are written as `<hash>`. Yours will differ unless noted.
+Expected command sequences and answers to the "check yourself" questions. Each exercise has the core part first (the timed tasks) and then the optional part. Hashes are written as `<hash>`. Yours will differ unless noted.
 
 Commands are for Windows PowerShell 5.1. Replace `anna` with your own name.
 
 ## Exercise 1: Your first commit
+
+### Core (10 min)
 
 ```powershell
 uv run python exercises/git/setup_exercise.py 1
@@ -25,15 +27,12 @@ git add conversions.py
 git diff
 git diff --staged
 git commit -m "Add Celsius to Kelvin conversion"
-git add measurements.csv
-git commit -m "Add first measurements"
-git status
+git log --oneline
 ```
 
 Final `git log --oneline`:
 
 ```
-<hash> Add first measurements
 <hash> Add Celsius to Kelvin conversion
 <hash> Add bar to psi conversion
 ```
@@ -42,13 +41,25 @@ Answers:
 
 1. `git add` moves a change from the working tree to the staging area. `git commit` moves it from the staging area to the repository.
 2. `git diff` compares the working tree with the staging area. After `git add` they are the same, so nothing shows. `git diff --staged` shows the staged change (staging area against the last commit).
-3. Each commit should be one logical change with its own message. The function and the data file are unrelated.
-4. Git sees the file in the folder, but it is not in any commit and not staged. Git does not follow it.
+3. Git sees the file in the folder, but it is not staged and not in any commit. You choose what goes into each commit, and the data file was a separate change.
+4. "Untracked" means Git sees the file in the folder, but it is not in any commit and not staged.
 5. Without `-m`, Git opens a text editor to ask for the message. `-m` gives the message on the command line.
 
-Stretch: `git log --stat` adds the list of changed files and the number of added and removed lines per commit. The `.git` folder is hidden. `ls -Force` shows it.
+### Optional
+
+```powershell
+git add measurements.csv
+git commit -m "Add first measurements"
+git status
+```
+
+Final `git log --oneline` has a third commit, "Add first measurements", and `git status` says "nothing to commit, working tree clean".
+
+More: `git log --stat` adds the list of changed files and the number of added and removed lines per commit. The `.git` folder is hidden. `ls -Force` shows it.
 
 ## Exercise 2: Explore the history
+
+### Core (10 min)
 
 ```powershell
 uv run python exercises/git/setup_exercise.py 2
@@ -57,22 +68,40 @@ git status
 git log --oneline
 git log
 git show <hash-of-Fix-Kelvin-offset>
-git diff <hash-of-first-commit> <hash-of-last-commit>
-git diff HEAD~1 HEAD
-git log -S 273.15
-git log --oneline -- conversions.py
-git log --oneline --author=Jan
-git blame conversions.py
-git switch --detach <hash-of-Add-measurements-and-analyse_run-script>
-uv run python analyse_run.py
-git switch main
-uv run python analyse_run.py
+git log conversions.py
 # edit conversions.py: KELVIN_OFFSET = 0
 git status
 git diff
 git restore conversions.py
 git status
 ```
+
+Answers:
+
+1. `git show <hash>`.
+2. Sofie Claes, in the commit "Fix Kelvin offset" (5 March 2025). She changed `273.0` to `273.15`. Jan Peeters made the last change to `BAR_TO_PSI`; Anna Verhoeven wrote the first version of the file.
+3. `git log conversions.py` lists only the commits that touched that file: 4 commits instead of 5. "Add measurements and analyse_run script" is left out because it did not change `conversions.py`.
+4. The edit was never committed, so Git has no copy of it.
+
+### Optional
+
+```powershell
+git diff <hash-of-first-commit> <hash-of-last-commit>
+git diff HEAD~1 HEAD
+git log -S 273.15
+git log --oneline --author=Jan
+git blame conversions.py
+git switch --detach <hash-of-Add-measurements-and-analyse_run-script>
+uv run python analyse_run.py
+git switch main
+uv run python analyse_run.py
+# edit README.md, add a line
+git add README.md
+git restore --staged README.md
+git restore README.md
+```
+
+`git log -S 273.15` and `git blame conversions.py` both point to Sofie Claes and the commit "Fix Kelvin offset".
 
 Output of `analyse_run.py` on the old commit (offset 273.0) and on `main` (offset 273.15):
 
@@ -86,15 +115,14 @@ Mean temperature: 85.3 C (358.48 K)
 
 Answers:
 
-1. `git show <hash>`.
-2. Sofie Claes, in the commit "Fix Kelvin offset" (5 March 2025). She changed `273.0` to `273.15`. `git log -S 273.15` and `git blame conversions.py` both show this. Jan Peeters made the last change to `BAR_TO_PSI`; Anna Verhoeven wrote the first version of the file.
-3. It checks out an old commit without being on a branch (detached HEAD), so you can look around. Return with `git switch main`.
-4. `git restore <file>` discards uncommitted edits in the working tree. `git restore --staged <file>` only takes the file out of the staging area and keeps your edit.
-5. The edit was never committed, so Git has no copy of it.
+1. `git switch --detach <hash>` checks out an old commit without being on a branch (detached HEAD), so you can look around. Return with `git switch main`.
+2. `git restore <file>` discards uncommitted edits in the working tree. `git restore --staged <file>` only takes the file out of the staging area and keeps your edit.
 
-Stretch answers: `git log --oneline -- analyse_run.py` gives "Add measurements and analyse_run script". `git log --stat` shows that the first commit changed the most files (3: `conversions.py`, `README.md` and `.gitignore`). `--reverse` prints the oldest commit first.
+More: `git log --oneline -- analyse_run.py` gives "Add measurements and analyse_run script". `git log --stat` shows that the first commit changed the most files (3: `conversions.py`, `README.md` and `.gitignore`). `--reverse` prints the oldest commit first.
 
 ## Exercise 3: Branches and merging
+
+### Core (15 min)
 
 ```powershell
 uv run python exercises/git/setup_exercise.py 3
@@ -137,7 +165,7 @@ Answers:
 4. A branch is only a label. The commits are in `main` too, so nothing is lost. `git branch -d` also refuses if the branch is not merged.
 5. `main` is the version others use and build on. If it only gets finished work, it always works.
 
-### Stretch: the merge conflict
+### Optional: the merge conflict
 
 ```powershell
 git merge experiment/psi-precision
@@ -152,6 +180,8 @@ git log --oneline --graph --all --decorate
 There is no single correct result. Either value is acceptable, as long as the markers are gone, the file still runs (`uv run python analyse_run.py`) and the merge is committed. The line that survives is `BAR_TO_PSI = 14.504  # ...` (current) or `BAR_TO_PSI = 14.5038  # ...` (incoming). If someone is lost: `git merge --abort` returns to the state before the merge.
 
 ## Exercise 4: Clone from Azure DevOps and push a branch
+
+### Core (15 min)
 
 ```powershell
 New-Item -ItemType Directory -Force "$HOME\git-exercises"
@@ -185,6 +215,8 @@ Answers:
 Stretch: `git fetch` followed by `git branch -a` lists the branches other participants pushed. In the graph, `origin/main` is where the remote `main` was at the last fetch, and your branch is one commit ahead of it.
 
 ## Exercise 5: Pull request, review and merge
+
+### Core (20 min)
 
 Web steps in Azure DevOps: **Repos > Pull requests > New pull request**, from `feature/anna-intro` into `main`, title, description, reviewer, **Create**. The reviewer opens the PR, reads **Files**, comments, **Approve**. The author clicks **Complete**, keeps "Merge (no fast-forward)", ticks "Delete feature/anna-intro after merging", **Complete merge**.
 
@@ -229,6 +261,8 @@ Answers:
 Branching models: trunk-based development uses short-lived branches into one `main` branch. GitFlow uses long-lived `develop`, `release/*` and `hotfix/*` branches next to `main`. The exercise followed the trunk-based style.
 
 ## Exercise 6: Git in VS Code
+
+Trainer demo in class. Participants repeat it alone afterwards (20 min). Everything here is optional for the timed block.
 
 Equivalent commands for the VS Code clicks:
 

@@ -1,6 +1,6 @@
 # Exercise 5: Pull request, review and merge
 
-Time: about 25 minutes.
+Time: **20 minutes** for the core tasks (1 to 5). The extra reading and tasks at the end are optional.
 
 ## Goal
 
@@ -23,7 +23,7 @@ This is how most teams check each other's work. It catches mistakes, spreads kno
 
 You need your branch `feature/<your-name>-intro` from exercise 4, pushed to Azure DevOps. Sit next to a neighbour: you review each other's PR.
 
-## Tasks
+## Core tasks
 
 ### 1. Create the pull request
 
@@ -104,7 +104,21 @@ git branch -a
 
 If `git branch -d` says "not fully merged" and your PR was completed with **Squash**, use `git branch -D feature/anna-intro` after you checked that the PR is completed.
 
-### 6. What if `main` moved while my PR was open?
+### Note: what if `main` moved while my PR was open?
+
+This happens all the time, because everyone merges PRs into the same `main`. If the other changes touch different files or lines, Azure DevOps merges your PR without a problem. If both touch the same lines, the PR shows **Conflicts** and you must fix them first. The details are in the optional part below.
+
+## Check yourself
+
+1. What is a pull request, and why does `main` require one?
+2. What did the reviewer see that you could not easily see yourself?
+3. What does `git pull` do? How is `git fetch` different?
+4. Why do you see your neighbours' folders after the pull?
+5. Why did we run `git fetch --prune` after the merge?
+
+## Optional: if you have time
+
+### What if `main` moved while my PR was open? (details)
 
 This happens all the time, because everyone merges PRs into the same `main`.
 
@@ -128,7 +142,7 @@ The PR updates itself. Pushing more commits to a branch with an open PR adds the
 
 Because everyone has their own folder in this training, you probably will not see conflicts. In a real project you will meet them. Do not panic: read the markers, choose, commit.
 
-## Background: branching models
+### Branching models
 
 The way you worked in this exercise is close to **trunk-based development**: short-lived branches, small changes, PR into `main`, and `main` is always in a working state.
 
@@ -141,16 +155,7 @@ The way you worked in this exercise is close to **trunk-based development**: sho
 
 For analysis scripts and small tools, start simple: trunk-based with PRs. You can add structure later if you need it.
 
-## Check yourself
-
-1. What is a pull request, and why does `main` require one?
-2. What did the reviewer see that you could not easily see yourself?
-3. What does `git pull` do? How is `git fetch` different?
-4. Why do you see your neighbours' folders after the pull?
-5. Why did we run `git fetch --prune` after the merge?
-6. In which situation does a PR show conflicts?
-
-## Stretch
+### More
 
 - Create a second small change (for example edit your `about.md`) on a new branch, push it, and open a second PR. Add a second commit to the branch while the PR is open and see it appear in the PR.
 - Open a PR **Overview** and read the "Policies" section. Which rules protect `main`?

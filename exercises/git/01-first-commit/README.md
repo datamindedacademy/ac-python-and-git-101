@@ -1,6 +1,6 @@
 # Exercise 1: Your first commit
 
-Time: about 15 minutes.
+Time: **10 minutes** for the core tasks (1 to 8). Task 9 and the stretch are optional.
 
 ## Goal
 
@@ -208,6 +208,16 @@ Expected:
 <hash> Add bar to psi conversion
 ```
 
+## Check yourself
+
+1. Which command moves a change from the working tree to the staging area? Which one moves it from the staging area to the repository?
+2. After `git add`, why does `git diff` show nothing? Which command shows the staged change?
+3. Why did we stage only `conversions.py` first, while `measurements.csv` stayed untracked?
+4. What does "untracked" mean?
+5. Why do we write `-m "..."` after `git commit`?
+
+## Optional: if you have time
+
 ### 9. Commit the data file
 
 `measurements.csv` is still untracked. Add it in a third commit:
@@ -227,15 +237,7 @@ nothing to commit, working tree clean
 
 "Working tree clean" means the files on disk match the last commit.
 
-## Check yourself
-
-1. Which command moves a change from the working tree to the staging area? Which one moves it from the staging area to the repository?
-2. After `git add`, why does `git diff` show nothing? Which command shows the staged change?
-3. Why did we stage `conversions.py` and `measurements.csv` in separate commits?
-4. What does "untracked" mean?
-5. Why do we write `-m "..."` after `git commit`?
-
-## Stretch
+### More
 
 - Run `git log --stat`. What extra information do you get?
 - Edit `measurements.csv`, add a fourth run, then use `git diff` and commit it with a clear message.

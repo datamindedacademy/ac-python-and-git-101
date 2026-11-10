@@ -1,6 +1,8 @@
 # Exercise 6: Git in VS Code
 
-Time: about 20 minutes (10 minutes if you skip the stretch).
+**Demo in class, do it yourself afterwards (20 min).**
+
+The trainer shows this exercise on the screen in class. It is not part of the timed hands-on block. Do it yourself after the training, or whenever you have time. You can do all of it alone, without a neighbour.
 
 ## Goal
 
@@ -18,7 +20,7 @@ Replace `anna` with your own name.
 
 ### 1. Open your clone in VS Code
 
-Make sure you start from an up-to-date `main` (end of exercise 5). Then open the clone from PowerShell:
+Make sure you start from an up-to-date `main` (end of exercise 5, or just after cloning). Then open the clone from PowerShell:
 
 ```powershell
 cd "$HOME\git-exercises\<training-repo>"
@@ -71,21 +73,23 @@ The Source Control view shows a **Publish Branch** button. Click it. It does `gi
 
 Open Azure DevOps. The branch is there.
 
-### 6. Pull request
+### 6. Pull request (optional, needs a second person)
 
-Create a PR in the Azure DevOps web page as in exercise 5. Ask your neighbour to approve, and complete it.
+In Azure DevOps, open a PR as in exercise 5. The branch policy needs an approval, and you cannot approve your own PR. If you work alone, skip tasks 6 and 7. Just leave the pushed branch as it is, and go on with task 8. If a colleague or the trainer is around, ask them to approve, then complete the PR.
 
-### 7. Pull the result
+### 7. Pull the result (only after the PR is completed)
 
 In VS Code, click the branch name in the bottom-left and choose `main`. Then open the **...** menu in the Source Control view and choose **Pull**. Or click the **Sync Changes** button in the status bar.
 
 To delete the finished branch: press `Ctrl+Shift+P`, type `Git: Delete Branch...`, and choose `feature/anna-vscode`. To remove the deleted remote branch from your list, run `git fetch --prune` in the terminal.
 
+If you skipped the PR, just switch back to `main` in the bottom-left corner.
+
 ### 8. Keep files out of Git with `.gitignore`
 
 Not every file belongs in Git. Examples: virtual environments (`.venv/`), Python caches (`__pycache__/`), and large output files that your script can recreate. A file called `.gitignore` lists patterns that Git should ignore.
 
-Start a new branch from `main`: `feature/anna-ignore` (bottom-left corner, as before).
+Make sure you are on `main` (bottom-left corner). Start a new branch from `main`: `feature/anna-ignore` (bottom-left corner, as before).
 
 Open the terminal in VS Code and create some output files in your folder:
 

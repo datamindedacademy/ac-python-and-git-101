@@ -1,6 +1,6 @@
 # Exercise 3: Branches and merging
 
-Time: about 25 minutes, plus 10 minutes for the optional stretch.
+Time: **15 minutes** for the core tasks (1 to 4). The merge conflict at the end is optional (10 minutes).
 
 ## Goal
 
@@ -27,9 +27,9 @@ From the root of the course repository:
 uv run python exercises/git/setup_exercise.py 3
 ```
 
-Run the `cd` command it prints. The repository contains a `.gitignore` file that hides Python cache folders (`__pycache__/`), so they do not clutter `git status`. Exercise 6 explains `.gitignore`. You get a repository with 4 commits on `main`, and a second branch called `experiment/psi-precision`. Leave that branch alone until the stretch.
+Run the `cd` command it prints. The repository contains a `.gitignore` file that hides Python cache folders (`__pycache__/`), so they do not clutter `git status`. Exercise 6 explains `.gitignore`. You get a repository with 4 commits on `main`, and a second branch called `experiment/psi-precision`. Leave that branch alone until the optional part.
 
-## Tasks
+## Core tasks
 
 ### 1. Look at where you are
 
@@ -229,7 +229,9 @@ git status
 4. Why can you safely delete a branch after it is merged?
 5. Why does it help to keep `main` free of unfinished work?
 
-## Stretch: a merge conflict (optional, 10 minutes)
+## Optional: if you have time
+
+### A merge conflict (10 minutes)
 
 A **merge conflict** happens when two branches changed the same lines. Git cannot decide which version is right, so it asks you. This is normal and not an emergency.
 

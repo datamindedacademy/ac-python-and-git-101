@@ -1,21 +1,30 @@
 # Git exercises
 
-Day 1, part 3: version control with Git and Azure DevOps. Total time: about 2 hours.
+Day 1, part 3: version control with Git and Azure DevOps. The whole Git block runs from 15:05 to 16:50: about 35 minutes of instruction and **70 minutes of core exercises**.
 
 By the end you can: clone an Azure DevOps repository, commit on a branch, push, open a pull request, and pull.
 
 ## Overview
 
-| # | Folder | Topic | Time |
+| # | Folder | Topic | Core time |
 |---|---|---|---|
-| 1 | `01-first-commit` | `git init`, `status`, `add`, `commit`, `log`, `diff`. The three areas. | 15 min |
-| 2 | `02-history` | `log`, `show`, `diff`, `blame`. Visit an old version. `restore`. | 20 min |
-| 3 | `03-branches` | `switch -c`, `merge` (fast-forward and merge commit). Stretch: a merge conflict. | 25 min (+10 stretch) |
-| 4 | `04-azure-devops-remote` | `clone`, `remote`, `push -u` to Azure DevOps. | 20 min |
-| 5 | `05-pull-request` | Pull request, review, complete, `pull`, clean up. Branching models. | 25 min |
-| 6 | `06-git-in-vscode` | The same cycle in VS Code. `.gitignore`. Command line vs VS Code vs SourceTree. | 20 min |
+| 1 | `01-first-commit` | `git init`, `status`, `add`, `commit`, `log`, `diff`. The three areas. | 10 min |
+| 2 | `02-history` | `log`, `show`, find who changed a value and when, `restore`. | 10 min |
+| 3 | `03-branches` | `switch -c`, `merge` (fast-forward and merge commit), `branch -d`. | 15 min |
+| 4 | `04-azure-devops-remote` | `clone`, `remote`, `push -u` to Azure DevOps. | 15 min |
+| 5 | `05-pull-request` | Pull request, review, complete, `pull`, clean up. | 20 min |
+| 6 | `06-git-in-vscode` | Trainer demo in class. Do it yourself afterwards. | demo, 20 min on your own |
+| | | **Total core** | **70 min** |
 
-Short on time? Skip the stretch in exercise 3 and shorten exercise 6 to the tasks 1 to 7. That saves about 20 minutes.
+Every README starts with its core time. Everything under the heading **Optional: if you have time** at the end of a README is not needed to follow the training. Do it when you finish early or at home.
+
+What moved to optional:
+
+- Exercise 1: committing the data file (task 9) and the stretch.
+- Exercise 2: comparing two commits, `git log -S`, `git blame`, visiting an old version (detached HEAD), `git restore --staged`.
+- Exercise 3: the merge conflict.
+- Exercise 4: running `check_setup.py`, the stretch.
+- Exercise 5: details on "main moved meanwhile", the GitFlow versus trunk-based table, the stretch.
 
 Do the exercises in order. Open each `README.md` in VS Code (right-click, **Open Preview**) or read it on screen.
 
