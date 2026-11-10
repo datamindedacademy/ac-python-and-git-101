@@ -31,20 +31,24 @@ Day 1 assumes no programming experience. After this day you can:
 
 | Time | Block | Exercises |
 | --- | --- | --- |
-| 09:00 | Finishing the laptop setup with the trainer | |
-| 10:00 | Scripts and notebooks, running Python on your laptop | `python/01` |
-| 10:45 | Language fundamentals: variables, types, collections, control flow, functions | `python/02` to `python/05` |
+| 09:00 | Setup check with the trainer (30 minutes at most) | |
+| 09:30 | Scripts and notebooks, running Python on your laptop | `python/01` |
+| 10:15 | Language fundamentals: variables, types, collections, control flow, functions | `python/02` to `python/05` |
 | 12:30 | Lunch | |
 | 13:15 | The standard library, files and exceptions, reading a traceback | `python/06`, `python/07` |
-| 14:15 | Projects and dependencies with uv, automation capstone | `python/08`, `python/09` |
-| 15:15 | Version control with Git and Azure DevOps | `git/01` to `git/06` |
-| 16:45 | Wrap-up and preparation for day 2 | |
+| 14:20 | Projects and dependencies with uv | `python/08` |
+| 15:05 | Version control with Git and Azure DevOps | `git/01` to `git/05`, `git/06` as a demo |
+| 16:50 | Wrap-up and preparation for day 2 | |
+
+Each exercise has core tasks that fit the schedule and optional tasks for those who
+finish early. The day has about two hours of instruction and three and a half hours of
+hands-on work.
 
 ## Getting started on your Atlas Copco laptop
 
 You need the tools from the setup manual you received before the training: Git for
-Windows, uv, Python 3.13 (installed by uv) and Visual Studio Code. The first hour of the
-day is reserved for finishing that setup together.
+Windows, uv, Python 3.13 (installed by uv) and Visual Studio Code. The first half hour of
+the day is a check that everything works; come with the manual applied.
 
 Open **PowerShell** and run these commands one by one. The trainer gives you the URL of
 this repository.
