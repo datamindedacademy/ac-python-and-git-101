@@ -65,6 +65,53 @@ This morning you read a traceback for the ValueError from float("seven"). Someti
 -->
 
 ---
+layout: default
+label: 5 · Exceptions
+---
+
+# No plan for an error? <span class="dm-accent">Let it bubble up</span>
+
+<DmColumns class="mt-2">
+<DmColumn header="Swallowed" tone="plain">
+
+```python
+try:
+    mean_bar = summarise(path)
+except Exception:
+    pass
+```
+
+The script carries on. The report is wrong or empty, and nothing tells you why.
+
+</DmColumn>
+<DmColumn header="Bubbles up" tone="violet" divider>
+
+```python
+mean_bar = summarise(path)
+```
+
+The error travels up through every function that called this one. Nobody catches it, so the script stops with a traceback: file, line and reason.
+
+</DmColumn>
+</DmColumns>
+
+<v-clicks>
+
+- Catch an error only where you can do something with it: skip the row and count it, use a default, ask again
+- Need to add context? Catch it, then `raise` again with a better message
+- A script that stops with a traceback is better than a script that finishes with a wrong number
+
+</v-clicks>
+
+<style>
+.slidev-code { font-size: 16px !important; line-height: 1.45 !important; }
+</style>
+
+<!--
+The second half of exception handling is knowing when not to catch. An exception that nobody catches does not disappear. It leaves the function where it happened, then the function that called it, and so on upward. That is what bubbling up, or propagating, means, and the list of functions in a traceback is exactly that path. If nothing catches it, Python stops the script and prints the traceback. That is not a failure of your script. It is the script telling you precisely what went wrong and where. The left column is the pattern to avoid: catch everything and do nothing. The script looks healthy, the summary file is written, and the numbers in it are wrong. Copilot writes this pattern often, because it makes the error go away. So the rule: catch an error only at the place where you have a plan for it. Skipping a bad row and counting it is a plan. Printing nothing and moving on is not. When the low-level message is not enough, catch the error, and raise it again with the file name and line number added, which is the challenge in the exercise. For a script that runs every night, a loud stop is the safe default.
+-->
+
+---
 layout: statement
 ---
 
@@ -72,7 +119,7 @@ layout: statement
 
 `exercises/python/07-files-and-exceptions`
 
-<p class="words"><b>Words you can now use</b> exception · raise · catch</p>
+<p class="words"><b>Words you can now use</b> exception · raise · catch · bubble up</p>
 
 <style>
 .words { font-size: 15px; opacity: 0.9; margin-top: 14px; }

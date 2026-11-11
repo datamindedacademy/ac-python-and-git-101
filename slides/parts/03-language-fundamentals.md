@@ -197,7 +197,7 @@ True tb-014
 <p class="note">A <b>method</b> is a function you call on a value with a dot: <code>run_id.lower()</code></p>
 
 <style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+.slidev-code { font-size: 15px !important; line-height: 1.4 !important; }
 </style>
 
 <!--

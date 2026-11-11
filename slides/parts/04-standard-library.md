@@ -78,7 +78,7 @@ t_s,pressure_bar,temperature_c
 <p class="note"><code>f</code> is the <b>file handle</b>. State the <b>encoding</b>, or Windows picks its own.</p>
 
 <style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+.slidev-code { font-size: 15px !important; line-height: 1.4 !important; }
 </style>
 
 <!--
