@@ -176,16 +176,3 @@ title: Demo - Git in VS Code
 <!--
 Trainer demo of the same cycle in the Source Control view (control shift G): changed files, click for the diff, plus to stage, message and Commit, Sync Changes for push and pull, and the branch name at the bottom left. Show a .gitignore taking effect. Participants can do exercise 06 afterwards in their own time.
 -->
-
----
-layout: statement
-title: Questions - remotes
----
-
-# Questions?
-
-<p class="mt-6 text-lg opacity-80">remotes</p>
-
-<!--
-Pause here. Ask for questions on clone, push, pull, pull requests and .gitignore. Wait a few seconds longer than feels comfortable. If nobody asks, ask one person what was least clear.
--->

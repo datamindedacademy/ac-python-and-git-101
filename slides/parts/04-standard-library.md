@@ -208,16 +208,3 @@ layout: statement
 <!--
 Use math, pathlib, with open, csv and json on a small set of fictional bench logs. The hints are in HINTS.md. About 30 minutes.
 -->
-
----
-layout: statement
-title: Questions - files
----
-
-# Questions?
-
-<p class="mt-6 text-lg opacity-80">files</p>
-
-<!--
-Pause here. Ask for questions on pathlib, with open, csv and json. Wait a few seconds longer than feels comfortable. If nobody asks, ask one person what was least clear.
--->

@@ -38,8 +38,6 @@ label: Welcome
 <span><div class="i-mdi-presentation" /> Short theory</span>
 <span class="arrow">→</span>
 <span><div class="i-mdi-keyboard-outline" /> Exercise: 2 or 3 tasks, the last one is hard</span>
-<span class="arrow">→</span>
-<span><div class="i-mdi-help-circle-outline" /> Questions</span>
 </div>
 
 <style>
@@ -61,7 +59,7 @@ label: Welcome
 </style>
 
 <!--
-This is the day in one picture. The morning is Python: we check every laptop, run a first script, and then work through the language itself, which is the biggest block. After lunch we read and write files, handle errors, and set up a project with uv. The last stretch is Git: commits, branches, and a pull request on a shared repository. Every block has the same rhythm: a short piece of theory, then an exercise with two or three tasks, then room for questions. The last task of each exercise is hard on purpose. Most of you will not finish it in class, and nothing later depends on it. This is the plan, not a contract. There are two 15 minute breaks, one around 11:00 and one at about 14:50, and we move them when an exercise is in full flow.
+This is the day in one picture. The morning is Python: we check every laptop, run a first script, and then work through the language itself, which is the biggest block. After lunch we read and write files, handle errors, and set up a project with uv. The last stretch is Git: commits, branches, and a pull request on a shared repository. Every block has the same rhythm: a short piece of theory, then an exercise with two or three tasks. Ask questions at any time. There is a questions slide at the end of the Python part and at the end of the Git part. The last task of each exercise is hard on purpose. Most of you will not finish it in class, and nothing later depends on it. This is the plan, not a contract. There are two 15 minute breaks, one around 11:00 and one at about 14:50, and we move them when an exercise is in full flow.
 -->
 
 ---

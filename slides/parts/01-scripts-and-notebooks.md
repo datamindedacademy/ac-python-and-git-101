@@ -167,16 +167,3 @@ layout: statement
 <!--
 Everyone creates a script, runs it from PowerShell and from VS Code, and changes it. About 15 minutes. I walk around, and any PATH or interpreter problem is exactly what we want to catch now.
 -->
-
----
-layout: statement
-title: Questions - scripts and notebooks
----
-
-# Questions?
-
-<p class="mt-6 text-lg opacity-80">scripts and notebooks</p>
-
-<!--
-Pause here. Ask for questions on scripts, notebooks and hidden state. Wait a few seconds longer than feels comfortable. If nobody asks, ask one person what was least clear.
--->

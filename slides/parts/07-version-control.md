@@ -286,16 +286,3 @@ flowchart LR
 <!--
 Keep these two apart in your head, because people mix them up. Git is the program, and every laptop holds the full history. A forge is a website that hosts a shared copy and adds sign-in, review and pipelines. GitHub, Azure DevOps and GitLab are forges, and the Git commands are identical on all of them. Atlas Copco uses Azure DevOps, which comes on day 3; only the web pages differ. Push sends your commits up, pull brings others' commits down, clone makes the first copy. The strip at the bottom lists the words they should now be able to use in a request to a colleague or to Copilot.
 -->
-
----
-layout: statement
-title: Questions - how Git works
----
-
-# Questions?
-
-<p class="mt-6 text-lg opacity-80">how Git works</p>
-
-<!--
-Pause here. Ask for questions on the three areas, commits, hashes, branches and remotes. Wait a few seconds longer than feels comfortable. If nobody asks, ask one person what was least clear.
--->

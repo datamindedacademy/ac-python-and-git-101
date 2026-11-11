@@ -103,13 +103,13 @@ The longer a branch lives, the larger the merge and the higher the chance of con
 
 ---
 layout: statement
-title: Questions - branching models
+title: Questions - Git
 ---
 
 # Questions?
 
-<p class="mt-6 text-lg opacity-80">branching models</p>
+<p class="mt-6 text-lg opacity-80">The Git part</p>
 
 <!--
-Pause here. Ask for questions on how a team uses branches. Wait a few seconds longer than feels comfortable. If nobody asks, ask one person what was least clear.
+Pause here. Ask for questions on everything in the Git part: staging, commits, branches, merge, rebase, remotes and pull requests. Wait a few seconds longer than feels comfortable. If nobody asks, ask one person what was least clear.
 -->
