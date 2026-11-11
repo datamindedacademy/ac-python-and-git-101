@@ -2,8 +2,10 @@
 
 ## Notes
 
-- `test_conversions.py` holds the provided tests and the test written in task 2 (`test_psi_to_bar`). Run them with `uv run pytest solutions/python/05-functions`.
-- Run the tests of one folder at a time. The exercise folder and the solution folder both have a `conversions.py` and a `test_conversions.py`, and pytest cannot load two files with the same name in one run.
+- `test_bench.py` holds the provided tests and the `classify` tests written in task 2. Run them with `uv run pytest solutions/python/05-functions`.
+- Run the tests of one folder at a time. The exercise folder and the solution folder both have a `bench.py` and a `test_bench.py`, and pytest cannot load two files with the same name in one run.
+- `report.py` has a `main()` that uses all four functions. The `if __name__ == "__main__":` guard keeps the import silent.
+- `parse_reading` also accepts a decimal comma (`"7,5 bar"`), which the starter tests ask for.
 
 ## Task 3
 

@@ -980,7 +980,7 @@ def test_bar_to_psi():
 </style>
 
 <!--
-This ties back to the first question for judging code: is it correct? A test is a small function whose name starts with test and that contains an assertion: a statement that must be true. Here: 1 bar is 14.5038 psi, and pytest.approx compares floats with a tiny tolerance, because floats carry small rounding errors. Red: run the tests and read the failure. Green: write the function until the test passes. Test first: write the next test, test_psi_to_bar, before psi_to_bar exists. A test is the most precise way to tell a colleague or Copilot what you want, and the way to check what comes back. In exercise 05 you run uv run pytest on the exercise folder and write one test yourself before the function exists. Day 3 teaches pytest properly: fixtures, parametrize and running tests in the pipeline.
+This ties back to the first question for judging code: is it correct? A test is a small function whose name starts with test and that contains an assertion: a statement that must be true. Here: 1 bar is 14.5038 psi, and pytest.approx compares floats with a tiny tolerance, because floats carry small rounding errors. Red: run the tests and read the failure. Green: write the function until the test passes. Test first: write the next test, test_psi_to_bar, before psi_to_bar exists. A test is the most precise way to tell a colleague or Copilot what you want, and the way to check what comes back. In exercise 05 the given tests are the specification of two functions, and you write the tests for a third function before it exists. Day 3 teaches pytest properly: fixtures, parametrize and running tests in the pipeline.
 -->
 
 ---

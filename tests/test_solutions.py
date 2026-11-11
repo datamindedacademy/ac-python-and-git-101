@@ -103,7 +103,7 @@ def test_04_control_flow():
 def test_05_import_has_no_side_effects():
     folder = SOLUTIONS / "05-functions"
     result = subprocess.run(
-        [sys.executable, "-c", "import conversions; print(conversions.psi_to_bar(14.5038))"],
+        [sys.executable, "-c", "import bench, report; print(bench.to_bar(14.5038, 'psi'))"],
         capture_output=True,
         text=True,
         cwd=folder,
@@ -114,19 +114,23 @@ def test_05_import_has_no_side_effects():
 
 def test_05_report():
     out = run_ok(SOLUTIONS / "05-functions" / "report.py")
-    assert "Average pressure (bar): 7.33" in out
-    assert "Average pressure (psi): 106.31" in out
-    assert "Temperature (K): 356.65" in out
-    assert "Flow (m3/h): 149.4" in out
-    direct = run_ok(SOLUTIONS / "05-functions" / "conversions.py")
-    assert direct.strip() == "108.7785"
+    assert out.splitlines() == [
+        "Readings: 5",
+        "Min: 7.1 bar",
+        "Max: 8.7 bar",
+        "Mean: 7.62 bar",
+        "Median: 7.5 bar",
+        "Status: ALARM",
+    ]
+    direct = run_ok(SOLUTIONS / "05-functions" / "bench.py")
+    assert direct.strip() == "7.5015"
 
 
 def run_pytest(folder):
     """Run pytest on one folder in its own process.
 
-    Each folder gets its own process, so the two `conversions.py` and
-    `test_conversions.py` files (starter and solution) never meet in one run.
+    Each folder gets its own process, so the two `bench.py` and
+    `test_bench.py` files (starter and solution) never meet in one run.
     """
     return subprocess.run(
         [sys.executable, "-m", "pytest", str(folder), "-q", "-p", "no:cacheprovider"],
@@ -140,7 +144,7 @@ def run_pytest(folder):
 def test_05_solution_tests_pass():
     result = run_pytest(SOLUTIONS / "05-functions")
     assert result.returncode == 0, result.stdout
-    assert "11 passed" in result.stdout
+    assert "18 passed" in result.stdout
     assert "failed" not in result.stdout
 
 
@@ -152,18 +156,27 @@ def test_05_units():
 def test_05_starter_tests_are_red():
     result = run_pytest(EXERCISES / "05-functions")
     assert result.returncode == 1, result.stdout
-    assert "4 failed, 1 passed" in result.stdout
-    for name in ("test_bar_to_psi", "test_celsius_to_kelvin", "test_average"):
-        assert f"FAILED exercises/python/05-functions/test_conversions.py::{name}" in (
-            result.stdout.replace("\\", "/")
-        )
+    assert "7 failed, 2 passed" in result.stdout
+    out = result.stdout.replace("\\", "/")
+    for name in (
+        "test_parse_reading",
+        "test_parse_reading_extra_spaces",
+        "test_parse_reading_decimal_comma",
+        "test_summarize_odd_count",
+        "test_summarize_even_count",
+        "test_summarize_decimals",
+        "test_summarize_empty",
+    ):
+        assert f"FAILED exercises/python/05-functions/test_bench.py::{name}" in out
     # Failures must be failed assertions, not import or collection errors.
-    assert "error" not in result.stdout.lower().replace("assertionerror", "")
+    assert "error" not in out.lower().replace("assertionerror", "")
 
 
-def test_05_starter_has_no_psi_to_bar_yet():
-    source = (EXERCISES / "05-functions" / "conversions.py").read_text()
-    assert "def psi_to_bar" not in source
+def test_05_starter_has_no_classify_yet():
+    folder = EXERCISES / "05-functions"
+    assert "def classify" not in (folder / "bench.py").read_text()
+    tests = (folder / "test_bench.py").read_text()
+    assert "classify" not in tests.split("def test_summarize_empty")[0]
 
 
 def test_06_summarize_runs():
@@ -264,7 +277,7 @@ def test_08_plot(tmp_path):
         "02-variables-and-types/units.py",
         "03-collections/collections_intro.py",
         "04-control-flow/alarms.py",
-        "05-functions/conversions.py",
+        "05-functions/bench.py",
         "05-functions/report.py",
         "06-standard-library/summarize_runs.py",
         "08-uv-project/plot_pressure.py",

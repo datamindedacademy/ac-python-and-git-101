@@ -1,12 +1,21 @@
 # Reference solution for exercise 05.
-from conversions import average, bar_to_psi, celsius_to_kelvin, l_s_to_m3_h
+from bench import classify, parse_reading, summarize, to_bar
 
-pressures_bar = [7.1, 7.4, 7.6, 7.2]
-temperature_c = 83.5
-flow_l_s = 41.5
 
-average_bar = average(pressures_bar)
-print("Average pressure (bar):", average_bar)
-print("Average pressure (psi):", round(bar_to_psi(average_bar), 2))
-print("Temperature (K):", celsius_to_kelvin(temperature_c))
-print("Flow (m3/h):", l_s_to_m3_h(flow_l_s))
+def main():
+    readings = ["7.1 bar", "108.8 psi", "760 kPa", "7.2 bar", "126.2 psi"]
+    values_bar = []
+    for text in readings:
+        value, unit = parse_reading(text)
+        values_bar.append(to_bar(value, unit))
+    stats = summarize(values_bar)
+    print(f"Readings: {stats['count']}")
+    print(f"Min: {stats['min']} bar")
+    print(f"Max: {stats['max']} bar")
+    print(f"Mean: {stats['mean']} bar")
+    print(f"Median: {stats['median']} bar")
+    print(f"Status: {classify(stats['max'])}")
+
+
+if __name__ == "__main__":
+    main()
