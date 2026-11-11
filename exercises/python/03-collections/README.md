@@ -170,6 +170,4 @@ Do not type the three key names in your code. It must also work for a measuremen
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 Run `a = [1, 2, 3]`, then `b = a`, then `b.append(4)`, and print `a`. Why did `a` change? And why can a tuple be a key in a dict, while a list cannot?

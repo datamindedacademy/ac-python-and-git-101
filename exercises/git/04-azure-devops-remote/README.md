@@ -207,6 +207,4 @@ Now run `git fetch`, then `git status` and `git branch -a`. Does what you see ma
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 After `git fetch` your laptop holds commits that are in none of your own branches. Where are they? You can work a whole week without network: name two things you can do offline with Git, and one you cannot.

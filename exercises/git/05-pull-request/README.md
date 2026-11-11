@@ -196,6 +196,4 @@ Work with a neighbour. Both of you change the same line of the same shared file,
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 With a squash merge your change lands on `main` as one new commit. Afterwards `git branch -d` refuses to delete your branch, although everything in it is on `main`. Why does Git think the branch is not merged?

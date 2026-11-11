@@ -263,6 +263,4 @@ Tasks 5 to 7 split changes by file, or by the moment you stage. Here both change
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 You commit the same 50 MB file twice, under two different names. How much space does Git need for it, and why? Then a harder one: you and a colleague each make a commit with exactly the same files and the same message. Do the two commits get the same hash?

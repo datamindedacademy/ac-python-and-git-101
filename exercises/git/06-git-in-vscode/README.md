@@ -178,6 +178,4 @@ VS Code can let Copilot write the commit message. Change a line in your `about.m
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 You commit a 200 MB data file by mistake and delete it again in the next commit. How big is the repository now? Why does adding the file to `.gitignore` afterwards not help, and what would you have to do instead?

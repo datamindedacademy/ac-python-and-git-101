@@ -86,6 +86,4 @@ Open Copilot Chat and ask: *"Explain step by step what happens when I run `uv ru
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 `uv run python hello.py` starts in a fraction of a second. What happens between pressing Enter and the first line of your script running? Which part of that work does Python save for next time, and where? (Look for a folder called `__pycache__` after exercise 05.)

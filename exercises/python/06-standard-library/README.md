@@ -137,6 +137,4 @@ Warning: run_01 has a pressure standard deviation of 0.2 bar (limit 0.18)
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 Your script reads each log completely into memory. How would you summarise a 50 GB log on a laptop with 16 GB of memory, with only the standard library? Can you still get the standard deviation if you may read every row only once?

@@ -186,6 +186,4 @@ Then add a switch (a constant or a command-line argument) to choose between stop
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 Your script is writing `summary.json` and the laptop loses power halfway. What is in the file now? How would you write the file so that a reader always finds either the complete old version or the complete new one, never half of one?

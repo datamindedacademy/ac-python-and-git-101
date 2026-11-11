@@ -15,31 +15,23 @@ By the end you can: clone an Azure DevOps repository, commit on a branch, push, 
 | 5 | `05-pull-request` | Pull request, review, complete, `pull`, clean up. | A second pair of eyes before it reaches `main`. |
 | 6 | `06-git-in-vscode` | Trainer demo in class. Do it yourself afterwards. | Daily Git work, and keeping data out of history. |
 
-How to work: each core task states a result to reach or a question to answer. The exact commands are in a collapsed **Hint** block below it. Try the task with the hint closed, and open it when you are stuck. The expected output stays visible, so you can check yourself. Exercises 1, 3, 4 and 5 work this way. Exercise 2 is an extra exercise, not done in class: do it when you are ahead, or after class. Exercises 3 to 5 do not depend on it. Exercise 6 is a demo to follow after class.
+Do the exercises in order. Exercise 2 is extra: do it when you are ahead, or after class. Exercise 6 is a trainer demo to repeat afterwards.
 
-Every README starts with the core tasks and a "Words to use" list: the terms that exercise introduces. Each README has a **Why this matters** section and ends with an **Open question** that goes beyond the day. Each optional part has one **With Copilot** task. Everything under the heading **Optional: if you have time** at the end of a README is not needed to follow the training. Do it when you finish early or at home.
+## How an exercise works
 
-Exercises 1, 2, 3 and 5 end with a **Challenge** after the optional part. It is for those who finish early. It describes a result to reach and gives no commands: find them with `git help <command>` or Copilot, and check the result with `git log` and `git status`. The answers are in `solutions/git/README.md`. Exercises 4 and 6 have no challenge.
-
-What moved to optional:
-
-- Exercise 1: the Copilot task and the extras. Committing the data file is now core.
-- Exercise 2: the whole exercise is an extra exercise. Within it: comparing two commits, `git log -S`, `git blame`, visiting an old version (detached HEAD), `git restore --staged`.
-- Exercise 3: a merge commit without a conflict, rebase instead of merge.
-- Exercise 4: running `check_setup.py` and the extras.
-- Exercise 5: details on "main moved meanwhile", the GitFlow versus trunk-based table and the extras.
-
-Do the exercises in order. Open each `README.md` in VS Code (right-click, **Open Preview**) or read it on screen.
+- **Words to use**: the terms of that exercise.
+- **Tasks**: each task states a result to reach. The commands are in a collapsed hint. Open it when you are stuck.
+- **Optional**: not needed to follow the training. One task is with Copilot.
+- **Challenge** (1, 2, 3 and 5): a result to reach, no commands. Answers are in `solutions/git/README.md`.
+- **Open question**: goes beyond today. Most people cannot answer it yet. Try it, or bring it to the trainer.
 
 ## Using Copilot
 
-You may use GitHub Copilot (inline completions and Copilot Chat in VS Code) during the whole training. No core task needs it. For the Git exercises, these ground rules get the most out of it:
+You may use GitHub Copilot all day. No core task needs it.
 
-- Use it freely. Ask it to explain a Git message or a command you do not understand.
-- Type the Git commands yourself today. The commands are the vocabulary. You need the words to ask for the right thing later, and to judge what comes back.
-- Read `git diff` before every commit, whoever wrote the change. Git shows you exactly what changed, so you can keep what is good and undo the rest.
-- Keep commits small and pull requests reviewed. That matters more when an assistant writes code, not less.
-- You are the author of what you commit and push. Your name is on it.
+- Type the Git commands yourself today. You need the words to ask for the right thing later.
+- Read `git diff` before every commit, whoever wrote the change.
+- You are the author of what you commit and push.
 
 ## Setup scripts for exercises 1 to 3
 
@@ -49,17 +41,7 @@ Exercises 1 to 3 start from a prepared folder. Create it with the setup script. 
 uv run python exercises/git/setup_exercise.py 1
 ```
 
-Use `2` or `3` for the other exercises. The script:
-
-- creates the folder `git-exercises\exercise_<n>` in your home folder, **outside** the course repository (never put one Git repository inside another),
-- prints the `cd` command you need next,
-- refuses to overwrite an existing folder. Add `--force` to delete it and start again,
-- accepts `--target <folder>` if you want it somewhere else.
-
-```powershell
-uv run python exercises/git/setup_exercise.py 2 --force
-uv run python exercises/git/setup_exercise.py 3 --target D:\temp\ex3
-```
+Use `2` or `3` for the other exercises. The script creates `git-exercises\exercise_<n>` in your home folder, outside the course repository, and prints the `cd` command you need next. Add `--force` to start again, or `--target <folder>` to put it somewhere else.
 
 Exercises 4 to 6 use the training repository on Azure DevOps and need no setup script. The trainer gives you its URL:
 
@@ -160,5 +142,3 @@ git switch main ; git pull                6. update your laptop
 git branch -d feature/<name>-<topic>      7. clean up
 git fetch --prune
 ```
-
-In PowerShell 5.1, `&&` does not work. Run commands on separate lines, or join them with `;`.

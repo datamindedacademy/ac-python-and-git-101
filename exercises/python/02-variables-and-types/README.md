@@ -143,8 +143,6 @@ Text with an unknown unit, such as `"3 atm"`, prints a clear message instead of 
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 `0.1 + 0.2 == 0.3` is `False`, but `0.5 + 0.25 == 0.75` is `True`. Why? What does that mean for a script that checks whether two measured pressures are equal?
 
 A second one. Run this:

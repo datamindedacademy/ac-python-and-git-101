@@ -313,6 +313,4 @@ Make a new branch and edit `conversions.py` on it, but do not commit. Now you mu
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 Git does not record on which branch a commit was made. So how can `git log --graph` draw the lines? And what is a branch, physically, inside the `.git` folder?

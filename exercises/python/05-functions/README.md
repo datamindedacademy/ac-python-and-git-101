@@ -160,6 +160,4 @@ Test first. In a new test file, write tests for a function `convert(value, from_
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 Write `def add_reading(value, readings=[]):` with a body that appends `value` to `readings` and returns `readings`. Call it three times with only the first argument. Explain the third result. What does this tell you about when Python evaluates a default value?

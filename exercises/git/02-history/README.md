@@ -244,6 +244,4 @@ The commit "Use more precise bar to psi factor" turns out to be wrong. Undo that
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 `git restore` threw your edit away for good. A commit that no branch points to any more is different: Git keeps it for a while. How would you find it again?

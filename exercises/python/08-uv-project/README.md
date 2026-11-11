@@ -174,6 +174,4 @@ In your `pressure-demo` project, copy in `conversions.py` and `test_conversions.
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 Package A needs `numpy` below version 2 and package B needs `numpy` 2 or higher. What does `uv add` do when you ask for both, and why can no tool give you both in one environment? `uv.lock` also stores a hash for every package. What is that hash for?

@@ -153,6 +153,4 @@ Also test it with a list of your own where the answer is "never", and with one w
 
 ## Open question
 
-This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
-
 Take your list comprehension and replace the square brackets with round ones. Print the result. What did you get? Why would that difference matter for a log with ten million rows?
