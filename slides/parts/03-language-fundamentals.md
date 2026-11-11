@@ -137,6 +137,44 @@ Put an f before the quote and you can place any expression inside curly braces. 
 -->
 
 ---
+layout: default
+label: 3 · Language fundamentals
+---
+
+# Names are <span class="dm-accent">signposts</span>
+
+<DmColumns class="mt-2">
+<DmColumn header="Written fast" tone="plain">
+
+```python
+p = 7.5
+t = 82
+calc(p, t)
+```
+
+</DmColumn>
+<DmColumn header="Read easily" tone="violet">
+
+```python
+pressure_bar = 7.5
+temperature_c = 82
+to_kelvin(temperature_c)
+```
+
+</DmColumn>
+</DmColumns>
+
+<p class="mt-4">Put the unit in the name. Constants in capitals: <code>ALARM_LIMIT_BAR = 8.5</code></p>
+
+<style>
+.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+</style>
+
+<!--
+From Oliver's Clean Code workshop. Code is read more often than it is written, and single-letter names optimise for writing, not for reading. A good name answers the question before it is asked: which quantity, in which unit. Python style is lowercase with underscores, and capitals for values that never change. There is a bonus today: Copilot follows the naming it sees, so good names also improve the code it generates for you.
+-->
+
+---
 layout: statement
 ---
 
@@ -368,7 +406,7 @@ for i in range(3):
 </style>
 
 <!--
-A for loop takes each element of a collection in turn and runs the indented block with it. The specialist's word is iterate: we iterate over the list. Loop over the values directly, you rarely need an index. When you need a count, range gives 0, 1, 2 and stops before the end value, the same exclusive end as slices. There is no end keyword, the indentation closes the loop.
+A for loop takes each element of a collection in turn and runs the indented block with it. This is the power of the for loop, and the rule from Oliver's Clean Code workshop is do not repeat yourself: if you copy and paste a line and change one value, you want a loop or a function. The specialist's word is iterate: we iterate over the list. Loop over the values directly, you rarely need an index. When you need a count, range gives 0, 1, 2 and stops before the end value, the same exclusive end as slices. There is no end keyword, the indentation closes the loop.
 -->
 
 ---
@@ -520,7 +558,38 @@ if __name__ == "__main__":
 </style>
 
 <!--
-Real scripts are small functions that call each other, plus a main function that does the work. The string right under def is a docstring: the function's documentation, shown by help() and by VS Code on hover, like the help text at the top of a MATLAB function. The last two lines mean: run main only when this file is started directly, not when another script imports it. Treat that as a fixed phrase for now. The output is a dictionary with min 6.8, max 9.4 and mean 7.675.
+Real scripts are small functions that call each other, plus a main function that does the work. The string right under def is a docstring: the function's documentation, shown by help() and by VS Code on hover, like the help text at the top of a MATLAB function. On comments in general: a comment explains why, the code says what. Delete commented-out code, Git remembers it for you, and Git comes this afternoon. The last two lines mean: run main only when this file is started directly, not when another script imports it. You will see this phrase in most generated code; it is optional in small scripts, including exercise 05. The output is a dictionary with min 6.8, max 9.4 and mean 7.675.
+-->
+
+---
+layout: default
+label: 3 · Language fundamentals
+---
+
+# Type hints: <span class="dm-accent">reading</span> a signature
+
+```python
+def to_psi(pressure_bar: float, decimals: int = 1) -> float:
+    return round(pressure_bar * 14.5038, decimals)
+```
+
+<div class="hints">
+
+- `pressure_bar: float` the parameter and the type it expects
+- `decimals: int = 1` a type and a default value
+- `-> float` the type of the return value
+
+</div>
+
+<p class="mt-4">Hints are documentation that the editor and tools can check. Python does not enforce them when the script runs.</p>
+
+<style>
+.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+.hints li { margin-bottom: 6px; }
+</style>
+
+<!--
+Copilot writes type hints all the time, so you need to be able to read them today. Writing them, and checking them with a type checker, is a day 3 topic. A hint after a colon says which type a parameter expects, the arrow says what comes back. They are promises, not guards: calling to_psi with the text "7.5" is accepted at the call and only fails inside, at the multiplication, with a TypeError. The value for you is that the signature alone tells you how to call the function. We do not use hints in the other examples today, to keep them short.
 -->
 
 ---
@@ -548,7 +617,38 @@ label: 3 · Language fundamentals
 <p class="mt-4">Copilot will pick one for you unless you say which you want.</p>
 
 <!--
-Three places the same logic can live. Straight in the script is fine for a one-off. Once you repeat something, or a block of lines needs a comment to explain it, give it a name: a function. When a second script needs the same function, move it to its own .py file, a module, and import it, exactly like you import math after lunch. Do not start with modules: move code outward only when the need shows up. Assistants tend to go to one extreme, either one long script or many small files, so tell Copilot which level you want: "keep it in one file, with a function per step".
+Three places the same logic can live. Straight in the script is fine for a one-off. Once you repeat something, or a block of lines needs a comment to explain it, give it a name: a function. When a second script needs the same function, move it to its own .py file, a module, and import it, exactly like you import math after lunch. Do not start with modules: move code outward only when the need shows up. Keep it simple: the simplest version that works is the one to keep. Assistants tend to go to one extreme, either one long script or many small files, so tell Copilot which level you want: "keep it in one file, with a function per step".
+-->
+
+---
+layout: default
+label: 3 · Language fundamentals
+---
+
+# A test says what <span class="dm-accent">correct</span> means
+
+```python
+import pytest
+import conversions
+
+def test_bar_to_psi():
+    assert conversions.bar_to_psi(1) == pytest.approx(14.5038)
+```
+
+<DmProcess class="mt-6">
+<DmPhase label="Red: run, read the failure" />
+<DmPhase label="Green: make it pass" />
+<DmPhase label="Test first: write the next test" />
+</DmProcess>
+
+<p class="mt-6">This loop is <b>test-driven development</b>.</p>
+
+<style>
+.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+</style>
+
+<!--
+This ties back to the first question for judging code: is it correct? A test is a small function whose name starts with test and that contains an assertion: a statement that must be true. Here: 1 bar is 14.5038 psi, and pytest.approx compares floats with a tiny tolerance, because floats carry small rounding errors. Red: run the tests and read the failure. Green: write the function until the test passes. Test first: write the next test, test_psi_to_bar, before psi_to_bar exists. A test is the most precise way to tell a colleague or Copilot what you want, and the way to check what comes back. In exercise 05 you run uv run pytest on the exercise folder and write one test yourself before the function exists. Day 3 teaches pytest properly: fixtures, parametrize and running tests in the pipeline.
 -->
 
 ---
@@ -559,7 +659,7 @@ layout: statement
 
 `exercises/python/05-functions`
 
-<p class="words"><b>Words you can now use</b> function · parameter · argument · return value · docstring · module</p>
+<p class="words"><b>Words you can now use</b> function · argument · return value · type hint · test · assertion · test-driven development</p>
 
 <style>
 .words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
@@ -567,5 +667,5 @@ layout: statement
 </style>
 
 <!--
-Write, call and combine small functions. This is the building block for everything after lunch. About 25 minutes.
+Write, call and combine small functions, test first: run the given tests, see them fail, and make them pass. This is the building block for everything after lunch. About 25 minutes.
 -->

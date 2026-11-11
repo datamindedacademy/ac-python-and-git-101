@@ -13,6 +13,28 @@ layout: default
 label: 2 · Python on your laptop
 ---
 
+# Where <span class="dm-accent">Python</span> comes from
+
+- Created by Guido van Rossum, first released in 1991
+- Named after Monty Python, not the snake
+- Open source, steered by the Python Software Foundation and a steering council
+- On your laptop it is **CPython** 3.13, the reference interpreter, written in C
+
+<DmProcess class="mt-6">
+<DmPhase label="Your .py file" />
+<DmPhase label="Compiled to bytecode" />
+<DmPhase label="CPython runs it" />
+</DmProcess>
+
+<!--
+A minute of background. Python is more than thirty years old and is developed in the open, with no single vendor behind it. If you come from MATLAB you know one vendor and one runtime. Here the language is a specification, and CPython is the implementation almost everyone uses: a program written in C that reads your text file, compiles it to bytecode and executes it. That is why uv python install downloads CPython. Other implementations exist, PyPy is one, but you will rarely meet them. We use Python 3.13 in this training.
+-->
+
+---
+layout: default
+label: 2 · Python on your laptop
+---
+
 # Which Python am I <span class="dm-accent">running</span>?
 
 ```powershell
@@ -95,7 +117,7 @@ layout: statement
 
 `exercises/python/01-first-script`
 
-<p class="words"><b>Words you can now use</b> interpreter · terminal · PATH · working folder · uv run</p>
+<p class="words"><b>Words you can now use</b> interpreter · CPython · terminal · PATH · working folder · uv run</p>
 
 <style>
 .words { font-size: 15px; opacity: 0.9; margin-top: 14px; }

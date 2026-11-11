@@ -83,7 +83,24 @@ label: Welcome
 </style>
 
 <!--
-GitHub Copilot is allowed all day, starting now. The most valuable uses for a beginner are asking it to explain an error message or a piece of code, and asking for a second way to do the same thing so you can compare. The one habit we insist on: if you cannot explain a line to the person next to you, ask Copilot to explain it or replace it with something you understand. Your name is on the commit, so the responsibility is yours. Some of you may not have an activated licence yet: pair up with a neighbour who has one, the exercises all work without it too. Day 3 goes deeper into agents, skills and reviewing AI-written code.
+GitHub Copilot is allowed all day, starting now. The most valuable uses for a beginner are asking it to explain an error message or a piece of code, and asking for a second way to do the same thing so you can compare. The one habit we insist on: if you cannot explain a line to the person next to you, ask Copilot to explain it or replace it with something you understand. Your name is on the commit, so the responsibility is yours. One more habit, from Oliver's Clean Code workshop: keep it simple. The simplest version that works is the one to keep, and assistants tend to over-build, so ask for less. Some of you may not have an activated licence yet: pair up with a neighbour who has one, the exercises all work without it too. Day 3 goes deeper into agents, skills and reviewing AI-written code.
+-->
+
+---
+layout: default
+label: Welcome
+---
+
+# Judging code: <span class="dm-accent">three questions</span>, in this order
+
+<DmSteps class="mt-4">
+<DmStep n="1" label="Correct">Does it do what it is supposed to do?</DmStep>
+<DmStep n="2" label="Readable">Will a colleague, or you in two months, understand it?</DmStep>
+<DmStep n="3" label="Performant">Is it fast enough? Ask this last.</DmStep>
+</DmSteps>
+
+<!--
+From Oliver's Clean Code workshop. This is the checklist for the Judge step, and the order matters. First check that the code is correct: run it, try an odd input, compare with a value you know. Then check that it is readable, because code is read far more often than it is written. Performance comes last, because correct and readable code can be made fast, while the reverse is much harder. Use these three questions on everything Copilot hands back today.
 -->
 
 ---
