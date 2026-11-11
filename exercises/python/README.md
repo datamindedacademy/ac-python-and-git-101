@@ -35,7 +35,7 @@ Every README starts with a **Words to use** line: the specialist terms of that e
 
 You may use GitHub Copilot in VS Code during the whole training: the inline suggestions and Copilot Chat. No core task needs it, so you can do everything without it too.
 
-AI can write the code. Your job is to ask for the right thing, to judge what comes back, and to choose between approaches. For that you need the vocabulary and the tradeoffs. That is what these exercises train.
+AI is a multiplier of experience. If you have zero experience, AI has nothing to multiply. These exercises build what you bring to it: the language a specialist speaks, the tradeoffs between approaches, and the habit of asking specific questions.
 
 - Use it freely.
 - Ask it to explain an error or a line you do not understand.

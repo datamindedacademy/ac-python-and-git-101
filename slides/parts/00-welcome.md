@@ -16,6 +16,49 @@ layout: default
 label: Welcome
 ---
 
+# AI is a <span class="dm-accent">multiplier</span> of experience
+
+<div class="eq">
+  <span class="term">your experience</span><span class="op">×</span><span class="term ai">AI</span><span class="op">=</span><span class="term">what you get</span>
+</div>
+
+<p class="zero">Zero experience gives AI nothing to multiply.</p>
+
+<div class="grid-3 mt-2">
+<DmInfoCard icon="i-mdi-translate" title="Speak the language">
+
+Know the words a specialist uses, so you can ask for exactly that
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-scale-balance" icon-tone="navy" title="Understand the tradeoffs">
+
+There are several ways to do it, each with a cost. You choose
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-target" title="Ask specific questions">
+
+A precise request gets code you can read and check
+
+</DmInfoCard>
+</div>
+
+<style>
+.eq { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 8px; font-size: 26px; font-weight: 600; color: var(--dm-premium); }
+.eq .term { padding: 8px 20px; border-radius: 10px; background: var(--dm-surface); }
+.eq .ai { background: var(--dm-connecting); color: #fff; }
+.eq .op { font-size: 30px; color: var(--dm-connecting); }
+.zero { text-align: center; font-size: 19px; margin: 12px 0 6px; color: var(--dm-premium); }
+</style>
+
+<!--
+This is how we see AI at Dataminded, and it is why this day exists. AI multiplies the experience you bring. With a lot of experience you get a lot back. With zero experience there is nothing to multiply: you get code you cannot read, cannot check and cannot fix. So today is not about typing code faster than an assistant. It builds the three things the assistant cannot bring for you. First the language: the words a Python or Git specialist uses, so your request says exactly what you want. Second the tradeoffs: script or notebook, list or dict, skip a bad row or stop, merge or rebase. The assistant picks one silently unless you say which. Third specific questions: the next slide shows what that looks like. Copilot is allowed all day, starting now. Use it to explain an error or a line you do not understand, and to show a second way so you can compare. Keep only lines you understand, your name is on the commit. Judge what comes back in this order: is it correct, is it readable, and only then is it fast enough. Assistants tend to over-build, so ask for less. If your licence is not active yet, pair up with someone who has one. The exercises all work without it. Day 3 goes deeper into agents and reviewing AI-written code.
+-->
+
+---
+layout: default
+label: Welcome
+---
+
 # This prompt will <span class="dm-accent">make sense</span> by 15:00
 
 <p class="prompt">Write a function `summarize_run(path: Path) -> dict` that reads a CSV log with `csv.DictReader`, converts `pressure_bar` to float, skips and counts rows that raise `ValueError`, and returns the mean and max. Use a list comprehension where it fits. Standard library only, no classes. Add a pytest test using `pytest.approx`.</p>
@@ -25,36 +68,7 @@ label: Welcome
 </style>
 
 <!--
-An assistant can write a working script in seconds, so why spend a day on fundamentals? Because what you get depends on what you ask, and you have to judge what comes back and choose between approaches. This is what a specialist asks for. Every term in it is taught today: csv.DictReader, float conversion, ValueError and skipping bad rows, list comprehension, the standard library, pytest and pytest.approx, type hints and Path. Do not explain anything now. The same slide comes back in the wrap-up.
--->
-
----
-layout: default
-label: Welcome
----
-
-# Use Copilot, keep only lines <span class="dm-accent">you understand</span>
-
-<div class="grid-3 mt-2">
-<DmInfoCard icon="i-mdi-alert-circle-outline" title="Explain errors">
-
-Paste the error and ask what it means and where to look
-
-</DmInfoCard>
-<DmInfoCard icon="i-mdi-compare-horizontal" title="Ask for a second way">
-
-Then compare the two and pick the simpler one
-
-</DmInfoCard>
-<DmInfoCard icon="i-mdi-account-check-outline" icon-tone="navy" title="Own the commit">
-
-Your name is on it. Understand every line, or replace it
-
-</DmInfoCard>
-</div>
-
-<!--
-GitHub Copilot is allowed all day, starting now. The most valuable uses today are asking it to explain an error message or a piece of code, and asking for a second way to do the same thing so you can compare. The one habit I insist on: if you do not understand a line, ask Copilot to explain it or replace it with something you understand. Your name is on the commit, so the responsibility is yours. Judge what comes back in this order: is it correct, is it readable, and only then is it fast enough. One more habit, from Oliver's Clean Code workshop: keep it simple. The simplest version that works is the one to keep, and assistants tend to over-build, so ask for less. Some of you may not have an activated licence yet: pair up with a neighbour who has one, the exercises all work without it too. Day 3 goes deeper into agents, skills and reviewing AI-written code.
+This is what a specific question looks like: what a specialist asks for. Every term in it is taught today: csv.DictReader, float conversion, ValueError and skipping bad rows, list comprehension, the standard library, pytest and pytest.approx, type hints and Path. Do not explain anything now. The same slide comes back in the wrap-up.
 -->
 
 ---
