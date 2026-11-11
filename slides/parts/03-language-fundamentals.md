@@ -412,27 +412,43 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# A <span class="dm-accent">list</span> for a series, a <span class="dm-accent">dict</span> for a record
+# Four collections, picked by <span class="dm-accent">how you find a value</span>
 
 <DmComparison
-  class="mt-2"
-  :rows="['Find by', 'Fits', 'Example']"
-  :cols="['list', 'dict']"
+  class="mt-2 four"
+  :rows="['Find by', 'Change it?', 'Fits', 'Example']"
+  :cols="['list', 'tuple', 'dict', 'set']"
 >
   <template #r0c0>Position, in order</template>
-  <template #r0c1>Name, the key</template>
+  <template #r0c1>Position, in order</template>
+  <template #r0c2>Key</template>
+  <template #r0c3>Is it in there?</template>
 
-  <template #r1c0>A series of the same kind of value</template>
-  <template #r1c1>One record with different fields</template>
+  <template #r1c0>Yes</template>
+  <template #r1c1>No</template>
+  <template #r1c2>Yes</template>
+  <template #r1c3>Yes, no duplicates</template>
 
-  <template #r2c0><code>pressures_bar[2]</code></template>
-  <template #r2c1><code>reading["pressure_bar"]</code></template>
+  <template #r2c0>A series of the same kind of value</template>
+  <template #r2c1>A fixed group that belongs together</template>
+  <template #r2c2>One record with named fields</template>
+  <template #r2c3>Unique values, membership</template>
+
+  <template #r3c0><code>pressures[2]</code></template>
+  <template #r3c1><code>lat, lon = pos</code></template>
+  <template #r3c2><code>reading["run"]</code></template>
+  <template #r3c3><code>"P1" in ids</code></template>
 </DmComparison>
 
 <p class="note">Copilot will pick one for you unless you say which you want.</p>
 
+<style>
+.four { font-size: 13px; }
+.four code { font-size: 12px; }
+</style>
+
 <!--
-Both can hold the same measurements, and the choice shapes all the code that follows. A list is right for a time series: many values of one kind, where order matters and you loop over all of them. A dict is right for one record with named fields, where you want to ask for the pressure by name and not remember that it was column two. The cost of a list is that positions are easy to mix up, the cost of a dict is that a mistyped key fails. When you ask Copilot for code, say it: "return a list of floats" or "return a dict with these keys". If you do not, it chooses, and you inherit the choice.
+All four can hold the same measurements, and the choice shapes the code that follows. A list is right for a time series: many values of one kind, where order matters and you loop over all of them. A tuple is a list you cannot change: use it for a small fixed group such as a coordinate, or for two results from one function. A dict is right for one record with named fields, where you ask for the pressure by name and do not have to remember that it was column two. A set answers one question fast: is this value in the group, and how many different values are there. The costs: positions in a list or tuple are easy to mix up, a mistyped dict key fails, and a set forgets the order. Lists and dicts carry most of your work. When you ask Copilot for code, say it: "return a list of floats" or "return a dict with these keys". If you do not, it chooses, and you inherit the choice.
 -->
 
 ---
@@ -443,7 +459,7 @@ layout: statement
 
 `exercises/python/03-collections`
 
-<p class="words"><b>Words you can now use</b> list · index · slice · dict · key · value</p>
+<p class="words"><b>Words you can now use</b> list · tuple · index · slice · dict · key · value · set · method</p>
 
 <style>
 .words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
