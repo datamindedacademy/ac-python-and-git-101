@@ -18,10 +18,11 @@ label: 3 · Language fundamentals
 <div class="split">
 <div>
 
-```python {all|1-3|5|6-7|all}
+```python {all|1-4|6|7-8|all}
 pressure_bar = 7.5
 temperature_c = 82.3
 run_id = "TB-014"
+ALARM_LIMIT_BAR = 8.5
 
 pressure_bar = 8.0
 print(pressure_bar)
@@ -43,6 +44,7 @@ print(temperature_c)
   <div class="row"><span class="name"></span><span class="arrow">→</span><span class="val now">8.0</span></div>
   <div class="row"><span class="name">temperature_c</span><span class="arrow">→</span><span class="val">82.3</span></div>
   <div class="row"><span class="name">run_id</span><span class="arrow">→</span><span class="val">"TB-014"</span></div>
+  <div class="row"><span class="name">ALARM_LIMIT_BAR</span><span class="arrow">→</span><span class="val">8.5</span></div>
 </div>
 </div>
 
@@ -54,7 +56,7 @@ print(temperature_c)
 .slidev-code { font-size: 15px !important; line-height: 1.45 !important; }
 .note { margin-top: 10px !important; font-size: 15px; }
 .ask { margin-top: 10px !important; }
-.names { display: flex; flex-direction: column; gap: 12px; }
+.names { display: flex; flex-direction: column; gap: 8px; }
 .names .row { display: flex; align-items: center; gap: 12px; }
 .names .name { width: 150px; text-align: center; font-family: monospace; font-size: 15px; color: #fff; background: var(--dm-premium); border-radius: 99px; padding: 6px 0; }
 .names .name:empty { background: none; }
