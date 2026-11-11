@@ -1,38 +1,31 @@
 # Solution notes - 08
 
-## What you should see
+The reference script `plot_pressure.py` is the exercise script plus the inline script metadata block from task 2.
 
-After `uv init pressure-demo`:
+## Task 3
 
-```text
-.git/  .gitignore  .python-version  README.md  main.py  pyproject.toml
+```powershell
+uv tree --invert --package tzdata
+uv add "matplotlib==3.9.*"
+Remove-Item -Recurse -Force .venv
+uv sync --locked
+uv run python -c "import matplotlib; print(matplotlib.__version__)"
 ```
 
-After `uv add matplotlib`: the files `uv.lock` and `.venv/` appear, and `pyproject.toml` gets a line like:
+Then edit `pyproject.toml` to `"matplotlib==3.10.*"` and run:
 
-```toml
-dependencies = [
-    "matplotlib>=3.10.0",
-]
+```powershell
+uv sync --locked
+uv sync --frozen
+uv run --frozen python -c "import matplotlib; print(matplotlib.__version__)"
+uv sync
 ```
 
-## Questions
-
-- **Plain `python plot_pressure.py` (step 5)**: it uses the Python found on PATH. That Python usually has no matplotlib, so you get `ModuleNotFoundError: No module named 'matplotlib'`. `uv run` uses the project `.venv`, which has it.
-- **Which package pulled in numpy (step 6)?** `uv tree` shows `numpy` under `matplotlib` and under `contourpy`, which matplotlib needs.
-- **After `uv remove` (step 7)**: `uv run` reports the same `ModuleNotFoundError`, because the package is gone from the environment and from `pyproject.toml`.
-- **Why delete `.venv` and run `uv sync` (step 8)?** `.venv` can always be rebuilt from `pyproject.toml` and `uv.lock`. So you commit those two files to Git and do not commit `.venv`. `uv init` already created a `.gitignore` that excludes it.
-- **Why does `uv.lock` list more than matplotlib (step 2)?** The dependency is recorded in `pyproject.toml` and the exact versions in `uv.lock`. About 10 packages came along. matplotlib needs numpy, pillow and others. The lockfile pins them all, so a colleague gets exactly the same versions.
-
-## Challenge
-
-There is no solution file. The steps:
-
-1. In `pressure-demo`, copy `conversions.py` and `test_conversions.py` from your exercise 05 folder next to `main.py`.
-2. Run `uv add --dev pytest`. `pyproject.toml` gets a `[dependency-groups]` section with `dev = ["pytest>=..."]`, and `uv.lock` is updated.
-3. Run `uv run pytest`. All tests pass, for example `6 passed`.
-
-Without step 2, `uv run pytest` reports that pytest is not found, because the project `.venv` does not have it.
+- `tzdata` comes from `python-dateutil`, which comes from `matplotlib`. `uv tree --invert --package` reads the tree from the bottom up.
+- `uv sync --locked` after the hand edit fails: the lockfile does not match `pyproject.toml`. This is the check to use in CI.
+- `uv sync --frozen` ignores `pyproject.toml` and installs exactly what `uv.lock` says, so it stays on 3.9.x.
+- Plain `uv sync` re-resolves, rewrites `uv.lock` and installs 3.10.x. `uv lock --upgrade` also rewrites `uv.lock`, but to the newest versions allowed by `pyproject.toml`, and does not touch the environment.
+- A plain `uv run` between the steps would also sync, and so would hide the difference. That is why the check uses `--frozen`.
 
 ## Open question
 

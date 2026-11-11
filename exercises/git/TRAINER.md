@@ -54,7 +54,7 @@ The folder `exercises/git/training-repo-seed/` in this course repository holds t
 | `README.md` | Rules and a map of the repository. |
 | `participants/.gitkeep` | Makes Git keep the empty `participants` folder. |
 | `.gitignore` | Ignores `.venv/`, `__pycache__/`, `*.pyc`. |
-| `check_setup.py` | Tiny script participants run in exercise 4. |
+| `check_setup.py` | Tiny script to check that Python runs in the clone. |
 
 Push it to the empty Azure DevOps repository. Work **outside** the course repository, so you do not nest repositories. In PowerShell, from the root of the course repository:
 
@@ -115,8 +115,8 @@ The block is 105 minutes: 30 minutes of instruction and demo, and 75 minutes of 
 | Time | Content |
 |---|---|
 | 15:05 | Slides (about 20 min): why version control, repository, commit, three areas, branch, merge, remote, pull request, GitFlow versus trunk-based in two minutes. |
-| 15:25 | Exercise 1 (20 min). Draw the three areas on the whiteboard first. Tasks 5 to 7 are about staging: walk around and ask for the prediction in task 7 before people run it. |
-| 15:45 | Exercise 3 (20 min). The merge conflict is a core task. |
+| 15:25 | Exercise 1 (20 min). Draw the three areas on the whiteboard first. Task 2 is about staging: walk around and ask for the prediction before people run `git status`. |
+| 15:45 | Exercise 3 (20 min). The merge conflict is task 2. |
 | 16:05 | Hand out the repository URL. Short instruction on remotes and Azure DevOps (about 8 min, live clone). |
 | 16:13 | Exercise 4 (15 min). Expect sign-in problems: see below. |
 | 16:28 | Exercise 5 (20 min). Pair up neighbours before they start. |
@@ -125,21 +125,21 @@ The block is 105 minutes: 30 minutes of instruction and demo, and 75 minutes of 
 
 Exercise 2 (history) is not done in class. It is for early finishers and for homework. Exercises 3 to 5 do not depend on it. Exercises 1, 3, 4 and 5 add up to 75 minutes. Exercise 6 is a demo only.
 
-In exercises 1, 3, 4 and 5 each core task states a result, and the commands are in a collapsed hint. Tell participants to try each task with the hint closed. Tell people to open the hint after about two minutes stuck. Do not hand out commands before that.
+Each exercise has two or three tasks. Each task states a result. The commands are in `HINTS.md` in the exercise folder. Tell people to open it after about two minutes stuck. Do not hand out commands before that. The last task of each exercise is much harder and has no hint. The times above cover the tasks before it. Most participants will not finish the last task in class, and nothing later depends on it.
 
 **If the day runs late:**
 
-1. Do the merge conflict of exercise 3 (task 4) as a trainer demo on your screen instead of hands-on. Keep tasks 1 to 3 (branch, commit, fast-forward merge) as exercises.
+1. Do the merge conflict of exercise 3 (task 2) as a trainer demo on your screen instead of hands-on. Keep task 1 (branch, commit, fast-forward merge) as an exercise.
 2. Never drop exercises 4 and 5: they reach the end goal (clone, branch, commit, push, pull request).
 
-Everything under "Optional: if you have time" in the READMEs is never done in class. The **Challenge** tasks at the end of exercises 1, 2, 3 and 5 are for participants who finish early. So is exercise 2 as a whole, while you help the others. Mention only briefly: GitFlow versus trunk-based development, cherry-pick, stash, tags. Rebase has a slide and an optional task in exercise 3.
+Exercise 2 as a whole is for participants who finish early, while you help the others. Mention only briefly: GitFlow versus trunk-based development, cherry-pick, stash, tags. Rebase has a slide and is task 3 of exercise 3.
 
 ### Copilot and checking understanding
 
-- Participants may use GitHub Copilot (inline completions and Copilot Chat in VS Code) all day, including in the Git block. The ground rules are in `exercises/git/README.md` under "Using Copilot". No core task needs Copilot.
-- Not every participant may have an activated Copilot licence yet. Pair those people with a neighbour who has one for the optional "With Copilot" tasks. Do not spend class time on licence problems.
+- Participants may use GitHub Copilot (inline completions and Copilot Chat in VS Code) all day, including in the Git block. The ground rules are in `exercises/git/README.md` under "Using Copilot". No task needs Copilot.
+- Not every participant may have an activated Copilot licence yet. Pair those people with a neighbour who has one. Do not spend class time on licence problems.
 - Ask participants to type the Git commands themselves. Copilot is for explaining messages and for changing code, which they then inspect with `git diff`.
-- To check understanding, walk around, pick two or three people per exercise and ask a "Check yourself" question out loud. Listen for the terms in the "Words to use" line. Model answers are in `solutions/git/README.md`.
+- To check understanding, walk around, pick two or three people per exercise and ask them to say what they just did. Listen for the terms in the "Words to use" line.
 - Every exercise ends with an "Open question" that goes beyond the day. Nobody has to answer it. Answers are in `solutions/git/README.md`.
 - The message to repeat: an assistant can write the code, but you must know the words to ask for the right thing, read the diff to judge the result, and own what you commit.
 

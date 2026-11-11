@@ -4,7 +4,7 @@
 
 ## Goal
 
-Run a Python script from PowerShell and from VS Code. Find out where Python lives on your laptop. Compare a script with a notebook.
+Run a Python script from PowerShell and from VS Code. Find out which Python ran it. Find out how a notebook can show a result that nobody can reproduce.
 
 ## Why this matters
 
@@ -14,7 +14,7 @@ Most "it works on my laptop but not on yours" problems come down to which Python
 
 - **Python** is the programming language. The **interpreter** is the program that reads your `.py` file and runs it, line by line.
 - A **script** is a text file with Python code. You run it with one command and it runs from top to bottom.
-- A **notebook** (`.ipynb`) is a document made of cells. You run cells one at a time and see the result under each cell.
+- A **notebook** (`.ipynb`) is a document made of cells. You run cells one at a time and see the result under each cell. The **kernel** is the Python process that keeps the variables between cells.
 - **PATH** is a list of folders. When you type a command, Windows looks in these folders to find the program.
 - **uv** manages Python for you. It installed Python 3.13 and it creates the `.venv` folder, a private Python environment for this repo. `uv run` always uses that environment.
 
@@ -22,67 +22,38 @@ All commands below are for **PowerShell**, run from the **repo root** (the folde
 
 ## Tasks
 
-1. Check the Python version:
+Stuck on a task? The hints are in `HINTS.md` in this folder.
 
-   ```powershell
-   uv run python --version
-   ```
+### Task 1: run a script
 
-2. Find out where Python lives. These commands show which `python` Windows finds on your PATH and which Pythons uv knows about:
+Run `exercises/python/01-first-script/hello.py` from PowerShell and from VS Code. In VS Code use the Run button (the triangle at the top right of the editor). If VS Code asks for an interpreter, press `Ctrl+Shift+P`, type `Python: Select Interpreter` and choose the one that ends in `.venv`.
 
-   ```powershell
-   Get-Command python
-   uv python list
-   ```
-
-   Write down the path you see. Is it the same as the one in `.venv`? (Hint: run `uv run python -c "import sys; print(sys.executable)"`.)
-
-3. Open `exercises/python/01-first-script/hello.py` in VS Code. Do the three TODOs.
-
-4. Run it from PowerShell:
-
-   ```powershell
-   uv run python exercises/python/01-first-script/hello.py
-   ```
-
-5. Run it from VS Code. Press the Run button (the triangle at the top right of the editor). If VS Code asks for an interpreter, press `Ctrl+Shift+P`, type `Python: Select Interpreter` and choose the one that ends in `.venv`.
-
-6. Open `first_notebook.ipynb` in VS Code. Select the `.venv` kernel at the top right. Fill in the TODO and run both code cells with `Shift+Enter`.
-
-## Check yourself
-
-Step 4 should print:
-
-```text
-Hello, test engineer!
-Compressor: CB-0042
-Average pressure in bar: 7.233333333333334
+```powershell
+uv run python exercises/python/01-first-script/hello.py
 ```
 
-(Your greeting may differ. The last digits of the average can differ slightly.)
+Change the script so that it greets you by name and prints the Python version and the path of the `python.exe` that ran it. Compare that path with what `Get-Command python` shows. Are they the same?
 
-## Optional: if you have time
+```text
+Hello, Ada!
+Compressor: CB-0042
+Average pressure in bar: 7.233333333333333
+Python version: 3.13.0
+Python runs from: C:\path\to\ac-python-and-git-101\.venv\Scripts\python.exe
+```
 
-1. Try the REPL, the interactive Python prompt. Type this and press Enter after each line:
+(Your name, the exact version and the path differ. The path must end in `.venv\Scripts\python.exe`.)
 
-   ```powershell
-   uv run python
-   ```
+### Task 2: hidden state in a notebook
 
-   ```python
-   >>> 7.2 + 7.4
-   >>> "bar" * 3
-   >>> exit()
-   ```
+This one is much harder. There is no hint.
 
-2. Print the average rounded to 2 decimals with `round(average_bar, 2)`.
-3. Use `uv run python -c "print(2 + 2)"` to run a single line without a file. When is that handy?
+Open `exercises/python/01-first-script/first_notebook.ipynb` in VS Code and select the `.venv` kernel at the top right. Run the cells. Then get the notebook into a state where one cell shows a result that **Restart** followed by **Run All** does not give. Write in the last cell of the notebook why that happens.
 
-4. Fill in a table with two advantages and two disadvantages of a script and of a notebook. Compare with the solution notes.
+Rules:
 
-### With Copilot
-
-Open Copilot Chat and ask: *"Explain step by step what happens when I run `uv run python hello.py`. Use the terms interpreter, PATH and virtual environment."* Compare the answer with the Background section above. Did it use a word you do not know yet? Ask it to define that word. Is there a sentence in the answer that you cannot check yourself? How would you check it?
+- Do not edit the code of the cell that shows the wrong result.
+- Do not edit the data in the first code cell. Add a cell if you need one.
 
 ## Open question
 

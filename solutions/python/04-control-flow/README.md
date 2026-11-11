@@ -1,8 +1,8 @@
 # Solution notes - 04
 
-## Challenge
+## Task 3
 
-`challenge.py` is the reference solution. It checks every window of three readings with `range(len(...) - 2)` and `all(...)`. It also runs the two extra test lists from the task.
+Keep a variable `start` that is `None` while no episode is open. A reading above the limit opens an episode when `start` is `None`, and updates the peak. A reading at or below the limit closes the open episode and stores `(start, end, length, peak)`. The loop ends without a closing reading when the last reading is above the limit, so after the loop, check `start` once more and store the open episode. Keep the longest while printing: compare each length with the best so far.
 
 ## Open question
 

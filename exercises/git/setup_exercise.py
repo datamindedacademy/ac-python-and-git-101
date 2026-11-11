@@ -131,7 +131,7 @@ def setup_2(repo: Path) -> None:
 
 
 def setup_3(repo: Path) -> None:
-    """Four commits on main plus a prepared branch that conflicts with main."""
+    """Four commits on main plus two prepared branches that conflict with main."""
     init_repo(repo)
     steps = [
         ("step1", "Add unit conversions", ANNA, "2025-03-03T09:15:00+01:00"),
@@ -142,7 +142,19 @@ def setup_3(repo: Path) -> None:
         overlay(f"ex3/{step}", repo)
         commit(repo, message, author, date)
 
+    # A branch with three commits, for the rebase task. Its second commit appends to
+    # conversions.py, where the participant also appends on main, so the rebase conflicts.
+    git(repo, "switch", "-c", "feature/temperature-report")
+    for step, message, date in [
+        ("feature1", "Print min temperature", "2025-03-04T14:00:00+01:00"),
+        ("feature2", "Add Celsius to Fahrenheit conversion", "2025-03-04T15:30:00+01:00"),
+        ("feature3", "Print mean temperature in Fahrenheit", "2025-03-04T16:45:00+01:00"),
+    ]:
+        overlay(f"ex3/{step}", repo)
+        commit(repo, message, SOFIE, date)
+
     # A side branch that changes the same line as main will change later.
+    git(repo, "switch", "main")
     git(repo, "switch", "-c", "experiment/psi-precision")
     overlay("ex3/branch", repo)
     commit(repo, "Try a more precise psi factor", SOFIE, "2025-03-05T09:30:00+01:00")
@@ -157,7 +169,7 @@ SETUPS = {1: setup_1, 2: setup_2, 3: setup_3}
 INTRO = {
     1: "Exercise 1: two files, no repository yet. You create the repository.",
     2: "Exercise 2: a repository with 5 commits to explore.",
-    3: "Exercise 3: a repository with 4 commits on main and a prepared side branch.",
+    3: "Exercise 3: a repository with 4 commits on main and two prepared side branches.",
 }
 
 

@@ -1,8 +1,6 @@
 # Exercise 4: Clone from Azure DevOps and push a branch
 
-Core tasks: 1 to 8. Everything under "Optional" is extra.
-
-Words to use: remote, `origin`, clone, push, upstream branch, remote-tracking branch (`origin/main`), fetch.
+Words to use: remote, `origin`, clone, push, upstream branch, remote-tracking branch (`origin/main`), fetch, pull.
 
 ## Goal
 
@@ -40,19 +38,20 @@ https://dev.azure.com/<organisation>/<project>/_git/<training-repo>
 
 Replace the three placeholders with the real values from the trainer. You can also copy the URL in Azure DevOps: open the repository, go to **Repos > Files**, and click **Clone** at the top right.
 
-## Core tasks
+## Tasks
 
-### 1. Clone the repository
+Stuck on a task? The hints are in `HINTS.md` in this folder.
 
-Put your clone next to your other exercises, not inside the course repository.
+### Task 1: Clone and look around
+
+Clone the training repository into a folder next to your other exercises, not inside the course repository. A sign-in window opens in your browser the first time. Sign in with your work account.
 
 ```powershell
 New-Item -ItemType Directory -Force "$HOME\git-exercises"
 cd "$HOME\git-exercises"
 git clone https://dev.azure.com/<organisation>/<project>/_git/<training-repo>
+cd <training-repo>
 ```
-
-A sign-in window opens in your browser. Sign in with your work account. Then go back to PowerShell:
 
 ```
 Cloning into '<training-repo>'...
@@ -61,37 +60,9 @@ remote: Found 8 objects to send. (3 ms)
 Receiving objects: 100% (8/8), done.
 ```
 
-The numbers will differ. Go into the new folder:
+The numbers will differ. Then answer three questions from inside the clone, using Git and not the web page: what is the remote called and where does it point, which branches exist on the remote, and who made the last commit.
 
-```powershell
-cd <training-repo>
-ls
-```
-
-You should see `README.md`, `check_setup.py`, `participants` and (hidden) `.gitignore`.
-
-### 2. Look around
-
-Question: which branch are you on, is it up to date with the remote, where does `origin` point, and which remote branches does your laptop know about?
-
-<details>
-<summary>Hint</summary>
-
-```powershell
-git status
-git remote -v
-git branch
-git branch -a
-```
-
-</details>
-
-What you see:
-
-- `git status` says `On branch main` and `Your branch is up to date with 'origin/main'`.
-- `git remote -v` shows that `origin` points to the Azure DevOps URL, for fetch and for push.
-- `git branch` lists local branches: only `main`.
-- `git branch -a` lists local and remote branches. Remote branches look like `remotes/origin/main`. Other people's pushed branches will appear here too once you fetch.
+`git branch -a` shows something like this for a fresh clone. Other people's pushed branches appear here after a `git fetch`.
 
 ```
 * main
@@ -99,111 +70,52 @@ What you see:
   remotes/origin/main
 ```
 
-### 3. Check that Git knows who you are
+### Task 2: Push a branch
 
-You did this in exercise 1. Run `git config user.name` and `git config user.email`. Both must print something.
+Everyone in your group works in the same repository, each in their own folder `participants/<your-name>/`. Use your first name in lowercase, for example `anna`.
 
-### 4. Make a branch
+Never work on `main`. Make a branch named `feature/<your-name>-intro`. On it, add the file `participants/<your-name>/about.md` with a few lines about yourself, and commit it as the only change. Push the branch to Azure DevOps so that your local branch is linked to it, and later `git push` and `git pull` need no extra arguments. Then find your branch and your commit in Azure DevOps under **Repos > Branches** and **Repos > Commits**.
 
-Never work on `main`. Result: you are on a new branch with your name in it, for example `feature/anna-intro`. Branch names with a slash show up as folders in some tools. That is fine.
+Exercise 5 starts from this branch, so finish this task.
 
-Check: `git branch` shows `* feature/<your-name>-intro`.
-
-<details>
-<summary>Hint</summary>
-
-```powershell
-git switch -c feature/<your-name>-intro
-```
-
-</details>
-
-### 5. Add a file in your folder
-
-Create your personal folder and a file in it. Replace `anna` with your own name everywhere:
-
-```powershell
-New-Item -ItemType Directory -Force participants/anna
-Set-Content participants/anna/about.md "# Anna`n`nI work at Atlas Copco. I use Python to analyse compressor test data."
-ls participants/anna
-cat participants/anna/about.md
-```
-
-In PowerShell, the backtick followed by `n` is a new line. If you prefer, open the folder in VS Code (`code .`), create the file there and type your text.
-
-### 6. Commit
-
-Result: one commit on your branch that contains only `participants/<your-name>/about.md`, with a message like `Add intro for Anna`.
-
-Check: `git log --oneline` shows your commit on top. It exists only on your laptop for now.
-
-<details>
-<summary>Hint</summary>
-
-```powershell
-git status
-git add participants/anna/about.md
-git commit -m "Add intro for Anna"
-git log --oneline
-```
-
-</details>
-
-### 7. Push your branch
-
-The remote does not know your branch yet. Result: your branch exists on `origin`, and your local branch is linked to it, so later `git push` and `git pull` need no extra arguments. Question: which option links the two?
-
-Expected output ends with:
+Expected output of the push ends with:
 
 ```
  * [new branch]      feature/anna-intro -> feature/anna-intro
 branch 'feature/anna-intro' set up to track 'origin/feature/anna-intro'.
 ```
 
-Check: `git status` says `Your branch is up to date with 'origin/feature/anna-intro'`. `git branch -a` lists `remotes/origin/feature/anna-intro`.
+`git status` says `Your branch is up to date with 'origin/feature/anna-intro'`, and `git branch -a` lists `remotes/origin/feature/anna-intro`.
 
-<details>
-<summary>Hint</summary>
+Azure DevOps may show a banner "Create a pull request". Do not click it yet.
 
-`-u` (short for `--set-upstream`) links your local branch to `origin/feature/anna-intro`.
+### Task 3: The remote moved while you were committing
 
-```powershell
-git push -u origin feature/anna-intro
-git status
-git branch -a
+This one is much harder. There is no hint.
+
+A colleague pushes a commit to your branch on the remote while you have a new local commit that is not pushed yet. Do this with a neighbour who has access to your branch (they clone it, add a commit and push), or alone with a second clone of the repository in another folder, which plays the colleague.
+
+1. Make a local commit on your branch, but do not push it yet.
+2. Let the colleague push their commit to the same branch first.
+3. Before you run `git push`, write down what you expect it to say. Then run it and compare.
+4. Get both commits on the remote branch.
+5. Explain in your own words how `git fetch` differs from `git pull`, using what you saw in `git log --oneline --graph --all` before and after the fetch.
+
+Rules:
+
+- No `git push --force`, and no `--force-with-lease`.
+- Do not delete or recreate the branch.
+
+The push is refused, and Git tells you why:
+
+```
+ ! [rejected]        feature/anna-intro -> feature/anna-intro (fetch first)
+error: failed to push some refs to '...'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally.
 ```
 
-</details>
-
-### 8. See it in Azure DevOps
-
-Open the repository in your browser. Go to **Repos > Branches**. Find your branch. Click it and open `participants/anna/about.md`. Go to **Repos > Commits** and find your commit with your name and message.
-
-Azure DevOps may show a banner: "You updated feature/anna-intro just now. Create a pull request". Do not click it yet. That is the next exercise.
-
-## Check yourself
-
-Short questions to test yourself after class. The answers are in `solutions/git/README.md`.
-
-1. What is the difference between `git branch` and `git branch -a`?
-2. What is `origin`?
-3. Why did the first `git push` need `-u origin <branch>`?
-4. Why does everyone work in their own `participants/<name>` folder?
-
-## Optional: if you have time
-
-- Run the check script from the repository. It should print your Python version and say hello: `uv run python check_setup.py`.
-- Run `git fetch` and then `git branch -a`. Do you see branches of other participants?
-- Run `git log --oneline --graph --all --decorate`. Find `origin/main` and your branch.
-- In the Azure DevOps web page of your file, click **History** and compare with `git log -- participants/anna/about.md`.
-
-### With Copilot
-
-Use Copilot to explain, then check its explanation against your own repository. Open Copilot Chat (`Ctrl+Alt+I`) and ask:
-
-> What is the difference between `git fetch` and `git pull`? What happens to my remote-tracking branch `origin/main` and to my local branch `main` in each case?
-
-Now run `git fetch`, then `git status` and `git branch -a`. Does what you see match what Copilot said? Which part of its answer could you verify, and which part did you have to take on trust?
+After the fetch, `git status -sb` says `[ahead 1, behind 1]`, and the graph has two lines that split from your first commit.
 
 ## Open question
 

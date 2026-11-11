@@ -31,14 +31,9 @@ def kg_to_lb(mass_kg):
 
 ## How to read a failed test
 
-pytest prints a lot. You need four things. This is a real failure from this exercise, shortened:
+This is a real failure from this exercise, shortened:
 
 ```text
-exercises/python/05-functions/test_conversions.py .FFFF                  [100%]
-
-_______________________________ test_bar_to_psi ________________________________
-
-    def test_bar_to_psi():
 >       assert conversions.bar_to_psi(1) == pytest.approx(14.5038)
 E       assert 0.0 == 14.5038 ± 1.5e-05
 E         Obtained: 0.0
@@ -48,80 +43,41 @@ exercises/python/05-functions/test_conversions.py:24: AssertionError
 ========================= 4 failed, 1 passed in 0.05s ==========================
 ```
 
-1. **Which test**: the name in the header line, `test_bar_to_psi`.
-2. **Which line**: the line marked with `>`, and the file and line number below it (`test_conversions.py:24`).
-3. **Expected versus actual**: the lines that start with `E`. The function gave `0.0`, the test expected `14.5038`.
-4. **The score**: the last line. `.FFFF` at the top says the same: one dot per passed test, one `F` per failed test.
-
-Read from the bottom up, like the tracebacks you will meet in exercise 07.
+The header line above it names the test. The line marked `>` is the failing assertion, with its file and line number below. The `E` lines give expected versus actual. The last line is the score. Read from the bottom up, like the tracebacks of exercise 07.
 
 ## Tasks
 
-1. **Red.** Run the tests and read the output. Do not change any code yet.
+Stuck on a task? The hints are in `HINTS.md` in this folder.
 
-   ```powershell
-   uv run pytest exercises/python/05-functions
-   ```
+Everything for tasks 1 and 2 is in `exercises/python/05-functions`. Task 3 uses new files in the same folder.
 
-   Four tests fail and one passes. For `test_average`, find the line number, the expected value and the actual value. Open `test_conversions.py` and read that test.
+### Task 1: red to green
 
-2. **Green.** Open `conversions.py`. `l_s_to_m3_h` is already done as an example. Complete `bar_to_psi`, `celsius_to_kelvin` and `average` (TODO 1 to 3). Each TODO names the result with a worked number. The tests say the rest. Run the tests after each function, until you see `5 passed`. Try with the hint closed first.
+Run the tests and read the failures.
 
-   <details>
-   <summary>Hint for TODO 1</summary>
-
-   Multiply the pressure by the constant `BAR_TO_PSI`.
-
-   </details>
-
-   <details>
-   <summary>Hint for TODO 2</summary>
-
-   Add 273.15.
-
-   </details>
-
-   <details>
-   <summary>Hint for TODO 3</summary>
-
-   Divide `sum(values)` by `len(values)`, and pass the result to `round()` with `decimals` as second argument.
-
-   </details>
-
-3. **Test first.** You need a function `psi_to_bar`. It does not exist yet. Do TODO 4 in this order:
-   1. In `test_conversions.py`, write `test_psi_to_bar`. Decide what the function must return for 14.5038 psi.
-   2. Run the tests. Your new test must fail (red), with an `AttributeError`: the function is not there.
-   3. Now write `psi_to_bar` in `conversions.py` and run the tests until you see `6 passed`.
-
-   <details>
-   <summary>Hint for TODO 4</summary>
-
-   A test is a function whose name starts with `test_`. Its body is an `assert` that compares the function result with the expected number, using `pytest.approx(...)`. Use the other tests in the file as a model. The function itself is the reverse of `bar_to_psi`.
-
-   </details>
-
-4. **Use the module.** Open `report.py`. Make the functions available (TODO 5) and fill in the report. Run it:
-
-   ```powershell
-   uv run python exercises/python/05-functions/report.py
-   ```
-
-   <details>
-   <summary>Hint for TODO 5</summary>
-
-   `from conversions import name_one, name_two` makes functions from the module `conversions` available. It works because Python looks in the folder of the script first. The average in bar is a call of `average`. Convert that value for psi and round it with `round(..., 2)`.
-
-   </details>
-
-## Check yourself
-
-The tests end with:
-
-```text
-============================== 6 passed in 0.03s ===============================
+```powershell
+uv run pytest exercises/python/05-functions
 ```
 
-`report.py` should print:
+Then complete `bar_to_psi`, `celsius_to_kelvin` and `average` in `conversions.py`. `l_s_to_m3_h` is done as an example. The tests say what is expected. Run them until they all pass.
+
+```text
+============================== 5 passed in 0.03s ===============================
+```
+
+### Task 2: test first, then use the module
+
+You need a function `psi_to_bar`. It does not exist yet. In `test_conversions.py`, write `test_psi_to_bar` first and see it fail. Then write the function in `conversions.py` until all 6 tests pass.
+
+```text
+============================== 6 passed in 0.03s ==============================
+```
+
+Then open `report.py`. Import the functions from `conversions` and fill in the four prints. Run it:
+
+```powershell
+uv run python exercises/python/05-functions/report.py
+```
 
 ```text
 Average pressure (bar): 7.33
@@ -130,33 +86,31 @@ Temperature (K): 356.65
 Flow (m3/h): 149.4
 ```
 
-## Optional: if you have time
+### Task 3: one convert function
 
-1. Break `bar_to_psi` on purpose (change the factor) and run the tests. Which test catches it? Repair it again.
-2. Call `average` with and without the `decimals` argument. Also try a **keyword argument**: `average(values, decimals=0)`.
-3. What is the difference between a function that prints its result and a function that returns it? Which of the two can a test check?
-4. Test first again: write a test for `classify(pressure, limit=8.5)`, which returns `"ALARM"` or `"OK"`. Then write the function.
-5. Make `conversions.py` print the psi value of 7.5 bar when you run the file itself, but not when `report.py` imports it. Run the file directly with `uv run python exercises/python/05-functions/conversions.py`, then run `report.py`.
+This one is much harder. There is no hint.
 
-   <details>
-   <summary>Hint for optional task 5</summary>
+Write a function `convert(value, from_unit, to_unit)` in a new file `units.py`, with its tests in a new file `test_units.py`, both in `exercises/python/05-functions`. Write the tests first. Run them with:
 
-   Put the print under `if __name__ == "__main__":` at the end of the file. That block runs only when you run the file itself, not when you import it.
+```powershell
+uv run pytest exercises/python/05-functions/test_units.py
+```
 
-   </details>
+The units are `bar`, `psi` and `kPa` (pressure) and `degC`, `K` and `degF` (temperature). Running `units.py` itself must print:
 
-### With Copilot
+```text
+108.7785
+212.0
+-273.15
+```
 
-Do this with a function that does not exist yet, for example `kelvin_to_celsius`. Write the test yourself first. Then select the failing test and ask Copilot Chat: *"Write the function in `conversions.py` that makes this test pass."* Run the tests. Green? Now ask: *"Write a second test for this function that covers an edge case: a negative value, zero, or a string as argument."* Read that test before you run it. Does it describe behaviour you actually want? For example: must a temperature below 0 K raise an exception, or is that not the job of a conversion function? Keep the test only if you agree with what it demands.
+Those are `convert(7.5, "bar", "psi")`, `convert(100, "degC", "degF")` and `convert(0, "K", "degC")`, each rounded to 4 decimals.
 
-## Challenge
+Rules:
 
-For those who finish early. There are no TODOs and no hints.
-
-Test first. In a new test file, write tests for a function `convert(value, from_unit, to_unit)`. Then write the function in `conversions.py`. It converts between the units `bar`, `psi` and `kPa`. For example, `convert(7.5, "bar", "psi")` gives `108.7785`.
-
-- Use one lookup dict. No chain of `if`s.
-- An unknown unit raises `ValueError`. Test that with `pytest.raises`.
+- One lookup dict for all units. No chain of `if`s over unit names.
+- An unknown unit raises `ValueError`. Converting between a pressure unit and a temperature unit raises `ValueError` too. Test both with `pytest.raises`.
+- Write a round trip test: `convert(convert(x, a, b), b, a)` gives `x` with `pytest.approx`, for every pair of units of the same family.
 
 ## Open question
 

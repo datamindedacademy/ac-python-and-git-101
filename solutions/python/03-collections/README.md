@@ -1,8 +1,10 @@
 # Solution notes - 03
 
-## Challenge
+## Task 3
 
-`challenge.py` is the reference solution. It loops over the keys of the first dict and uses a comprehension for each list. It has its own copy of the four measurements.
+Sort the readings and call the count `n`. The indexes `(n - 1) // 2` and `n // 2` are the same item when `n` is odd, and the two middle items when `n` is even. The mean of those two items is the median in both cases, so no `if` is needed.
+
+For the peak, `pressures_bar.index(max(pressures_bar))` gives the position of the highest reading. The same position in `timestamps` is its time.
 
 ## Open question
 

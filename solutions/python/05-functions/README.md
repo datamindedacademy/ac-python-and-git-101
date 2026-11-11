@@ -2,13 +2,14 @@
 
 ## Notes
 
-- `test_conversions.py` holds the provided tests, the test you wrote yourself (`test_psi_to_bar`) and one for the optional `classify`. Run them with `uv run pytest solutions/python/05-functions`.
-- A function that prints cannot be checked with a simple `assert`, and a script cannot reuse its result. A function that returns can be tested and reused. That is why all conversions return.
+- `test_conversions.py` holds the provided tests and the test written in task 2 (`test_psi_to_bar`). Run them with `uv run pytest solutions/python/05-functions`.
 - Run the tests of one folder at a time. The exercise folder and the solution folder both have a `conversions.py` and a `test_conversions.py`, and pytest cannot load two files with the same name in one run.
 
-## Challenge
+## Task 3
 
-`convert` is in `conversions.py` and its tests are in `test_challenge_convert.py`. The lookup dict holds the size of each unit in bar. Converting is a division of two lookups, so a new unit is one new line in the dict. The folder now runs 10 tests.
+`units.py` and `test_units.py`. The lookup dict maps each unit to `(family, factor, offset)`, with base value (bar or K) = `value * factor + offset`. Converting is to base and then from base: `(base - to_offset) / to_factor`. Only temperature has non-zero offsets, so a plain factor table (the pressure-only version) does not work for degC and degF. The family in the dict is what rejects `bar` to `K`. A new unit is one new line.
+
+Common wrong turns: a dict of factors only (fails for degC and degF), one `if` branch per pair of units, and a round trip test that includes mixed families (those raise, by design).
 
 ## Open question
 

@@ -1,8 +1,8 @@
 # Solution notes - 02
 
-## Challenge
+## Task 3
 
-`parse.py` is the reference solution. It splits the text with `.split()` and converts with a dict of factors.
+`reading_line.split(";")` gives four parts, which can be unpacked into four variables. The timestamp splits again on a space into date and time. The value parts split on a space too, and the first piece goes into `float()`. Psi to bar is a division by `BAR_TO_PSI`. The last line is the comparison `reading_bar > ALARM_LIMIT_BAR`, which is already a `bool`.
 
 ## Open question
 

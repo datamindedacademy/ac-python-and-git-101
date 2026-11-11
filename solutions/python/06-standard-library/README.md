@@ -1,8 +1,10 @@
 # Solution notes - 06
 
-## Challenge
+## Task 3
 
-The first half is already in `summarize_runs.py`: it takes a runs folder and an output folder from `sys.argv`. `challenge.py` adds the second half. It takes only the runs folder and prints a warning for every run with a standard deviation above `LIMIT_STD_BAR` (0.18). With the three given runs only `run_01` (0.20 bar) gives a warning.
+`summarize_runs.py` holds all three tasks. For each run, `others` is the list of all readings of the other runs. The standard deviation is the population one, so the numbers match the README. With the three given runs and the default threshold of 1.8, only `run_01` is flagged (-1.85). `run_02` is close (1.74), so a threshold of 1.7 or lower flags two runs. A sample standard deviation (divide by n - 1) moves the numbers slightly, and the result can differ near the threshold.
+
+`rows.sort(key=lambda row: abs(row["deviation_std"]), reverse=True)` sorts by size of the deviation, ignoring the sign. `sys.argv` holds text, so the threshold needs `float()`. The defaults come from `len(sys.argv) > 1` and `> 2`.
 
 ## Open question
 

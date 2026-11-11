@@ -32,16 +32,9 @@ def test_average_rounds_to_decimals():
     assert conversions.average(values, decimals=1) == 7.2
 
 
-# The test you wrote yourself, before the function existed.
+# Task 2: the test you write before the function exists.
 def test_psi_to_bar():
     assert conversions.psi_to_bar(14.5038) == pytest.approx(1.0)
     assert conversions.psi_to_bar(0) == 0
     # Converting there and back gives the value you started with.
     assert conversions.psi_to_bar(conversions.bar_to_psi(7.5)) == pytest.approx(7.5)
-
-
-# Optional task.
-def test_classify():
-    assert conversions.classify(9.0) == "ALARM"
-    assert conversions.classify(8.5) == "OK"
-    assert conversions.classify(7.0, limit=6.5) == "ALARM"

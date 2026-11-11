@@ -2,7 +2,7 @@
 # Run from the repo root:
 #   uv run python exercises/python/05-functions/report.py
 
-# TODO 5: make the functions of conversions.py available in this script.
+# Task 2 (second part): make the functions of conversions.py available in this script.
 # Then fill the four prints below, so the report reads:
 #   Average pressure (bar): 7.33
 #   Average pressure (psi): 106.31

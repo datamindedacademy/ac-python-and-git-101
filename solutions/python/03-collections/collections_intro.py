@@ -1,62 +1,43 @@
 # Reference solution for exercise 03.
 
+timestamps = ["09:00", "09:01", "09:02", "09:03", "09:04", "09:05"]
 pressures_bar = [7.1, 7.3, 7.4, 7.2, 7.6, 7.5]
 
-print("First:", pressures_bar[0])
+# --- Task 1: lists ---
 print("Last:", pressures_bar[-1])
-print("First three:", pressures_bar[0:3])
-
-pressures_bar.append(7.8)
-print("Number of readings:", len(pressures_bar))
-
-mean_bar = sum(pressures_bar) / len(pressures_bar)
-print("Max:", max(pressures_bar), "Min:", min(pressures_bar), "Mean:", mean_bar)
-
-high_to_low = sorted(pressures_bar, reverse=True)
-print("Top three:", high_to_low[:3])
-
+print("Top three:", sorted(pressures_bar, reverse=True)[:3])
 middle = sorted(pressures_bar)[1:-1]
-trimmed_mean_bar = round(sum(middle) / len(middle), 3)
-print("Trimmed mean:", trimmed_mean_bar)
+print("Trimmed mean:", round(sum(middle) / len(middle), 3))
 
-position = (52.01, 4.36)
-latitude, longitude = position
-print("Latitude:", latitude, "Longitude:", longitude)
-
-measurement = {
-    "timestamp": "2026-01-15 09:00:00",
-    "pressure_bar": 7.5,
-    "temperature_c": 82.0,
-}
-print("Pressure:", measurement["pressure_bar"])
-measurement["flow_l_s"] = 41.5
-measurement["temperature_c"] = 83.5
-print(measurement)
-
+# --- Task 2: dicts, tuples and sets ---
 measurements = [
-    {"timestamp": "09:00", "pressure_bar": 7.1, "temperature_c": 80.5},
-    {"timestamp": "09:01", "pressure_bar": 7.4, "temperature_c": 81.9},
-    {"timestamp": "09:02", "pressure_bar": 7.6, "temperature_c": 83.2},
+    {"timestamp": "09:00", "sensor": "P1", "pressure_bar": 7.1},
+    {"timestamp": "09:01", "sensor": "P2", "pressure_bar": 7.4},
+    {"timestamp": "09:02", "sensor": "P1", "pressure_bar": 7.6},
 ]
-print("Temperature of second:", measurements[1]["temperature_c"])
-print("Pressure of last:", measurements[-1]["pressure_bar"])
-
-measurements.append({"timestamp": "09:03", "pressure_bar": 7.3, "temperature_c": 82.4})
-print("Number of measurements:", len(measurements))
-
+position = (52.01, 4.36)  # latitude and longitude of the test hall
 sensor_ids = ["P1", "T1", "P1", "F1", "T1", "P2"]
-unique_ids = set(sensor_ids)
-print("Unique sensors:", len(unique_ids))
-print("F1 present:", "F1" in unique_ids)
 
-# Optional tasks
-for key, value in measurement.items():
-    print(f"{key}: {value}")
+measurements.append({"timestamp": "09:03", "sensor": "P2", "pressure_bar": 7.3})
+print("Measurements:", len(measurements))
+print("Pressure of last:", measurements[-1]["pressure_bar"])
+print("Unique sensors:", len(set(sensor_ids)))
+latitude, longitude = position
+print(f"Hall: {latitude} N, {longitude} E")
 
-only_pressures = []
-for item in measurements:
-    only_pressures.append(item["pressure_bar"])
-print("Pressures:", only_pressures)
+# --- Task 3: median and peak ---
+# For an odd count both indexes point at the middle item.
+# For an even count they point at the two middle items.
+ordered = sorted(pressures_bar)
+count = len(ordered)
+median_all = (ordered[(count - 1) // 2] + ordered[count // 2]) / 2
+print("Median of all six:", round(median_all, 3))
 
-print(measurement.get("humidity", "unknown"))
-print([p for p in pressures_bar if p > 7.3])
+ordered = sorted(pressures_bar[:5])
+count = len(ordered)
+median_five = (ordered[(count - 1) // 2] + ordered[count // 2]) / 2
+print("Median of first five:", round(median_five, 3))
+
+peak_bar = max(pressures_bar)
+peak_time = timestamps[pressures_bar.index(peak_bar)]
+print(f"Peak: {peak_bar} bar at {peak_time}")

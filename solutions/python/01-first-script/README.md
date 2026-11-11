@@ -1,17 +1,10 @@
 # Solution notes - 01
 
-## Script or notebook?
+## Task 2
 
-| | Advantages | Disadvantages |
-|---|---|---|
-| Script | Runs the same way every time. Easy to schedule and automate. Works well with Git (plain text). Easy to import into other code. | No instant feedback per step. Plots and tables are not shown next to the code. Needs the terminal. |
-| Notebook | Run step by step and see results at once. Mix text, code and plots. Good for exploring data and for sharing a story. | Cells can run out of order, so results may not be reproducible. Hidden state. Hard to review in Git. Harder to test and reuse. |
+The kernel keeps every variable until it restarts, and a cell uses whatever the variables are at that moment. The solution notebook has a cell that does `pressures_bar.append(7.5)`. Run it, then run the average cell again: it shows 7.275. After Restart and Run All it shows 7.2333, because the average cell now runs before the append cell. Other ways to get there are deleting the cell that defines a variable after it ran, or running a cell twice when it changes a variable.
 
-Rule of thumb: explore in a notebook, then move the stable code to a script or module.
-
-## Where does Python live?
-
-`Get-Command python` shows the first `python` on PATH. This can be a different Python than the one in `.venv`. That is why we always start with `uv run`: it picks the project `.venv`, so everybody gets the same Python and packages.
+Rule of thumb: explore in a notebook, then move the stable code to a script or module. A script always runs from top to bottom. A notebook runs in the order you click.
 
 ## Open question
 

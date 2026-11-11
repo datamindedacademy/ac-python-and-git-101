@@ -40,7 +40,7 @@ def test_average_rounds_to_decimals():
     assert conversions.average(values, decimals=1) == 7.2
 
 
-# TODO 4: write your own test here, BEFORE you write the function.
+# Task 2: write your own test here, BEFORE you write the function.
 # The function psi_to_bar does not exist yet. Name your test test_psi_to_bar.
 # Decide what the function must return. One known value: 14.5038 psi is 1 bar.
 # Run the tests: your new test must fail before you write the function.

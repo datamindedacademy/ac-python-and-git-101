@@ -1,10 +1,10 @@
 # 07 - Files, exceptions and tracebacks
 
-**Words to use:** exception, exception type, traceback (stack trace), raise, catch, try/except, file mode.
+**Words to use:** exception, exception type, traceback (stack trace), raise, catch, try/except, bubble up.
 
 ## Goal
 
-Read and write text files, handle errors without crashing, and learn to read a **traceback** to find what went wrong.
+Read a **traceback** to find what went wrong, handle a bad value without crashing, and decide where in a script an error should be caught and where it should stop the script.
 
 ## Why this matters
 
@@ -12,8 +12,6 @@ Real logs contain bad rows. A script that crashes on file 37 of 200 and a script
 
 ## Background
 
-- `with open(path) as file:` opens a file and closes it again at the end of the block. Always use `with`.
-- File **modes**: `"r"` read (default), `"w"` write (replaces the file), `"a"` append (adds at the end).
 - An **exception** is an error that stops your program. Each has a type, like `ValueError` or `FileNotFoundError`.
 - `try` / `except` catches an exception, so you can deal with it:
 
@@ -25,10 +23,7 @@ Real logs contain bad rows. A script that crashes on file 37 of 200 and a script
   ```
 
 - Only catch the exception types you expect. Never write a bare `except:`, it hides real bugs.
-- A **traceback** (also called stack trace) is the message Python prints when the program crashes. How to read it:
-  1. Start at the **bottom**. The last line has the **exception type** and a message.
-  2. The line above it shows the file, **line number** and the code that failed.
-  3. If there are more steps above, they show the chain of function calls that led to it. The top step is where the program started, the bottom step is where it failed.
+- A **traceback** (also called stack trace) is the message Python prints when the program crashes. Start at the **bottom**. The last line has the **exception type** and a message. The line above it shows the file, **line number** and the code that failed. Steps above that show the calls that led to it.
 
   ```text
   Traceback (most recent call last):
@@ -39,150 +34,89 @@ Real logs contain bad rows. A script that crashes on file 37 of 200 and a script
   ZeroDivisionError: division by zero
   ```
 
-  Here the error is a `ZeroDivisionError` on line 6 in the function `main`, called from line 9.
-- `some_folder.mkdir(exist_ok=True)` creates a folder, and does nothing when it already exists. Writing a file into a folder that does not exist fails.
+- `csv.DictReader` has a `line_num` attribute: the number of the line it read last, counting the header. `reader = csv.DictReader(file)`, then `reader.line_num` inside the loop.
+- `sys.argv` is the list of words typed after the script name. `sys.exit("message")` prints the message to the error output and stops the script with exit code 1.
+- `raise NewError("text") from err` raises a new error and keeps the original one as its **cause**.
 
-## Core tasks
+## Tasks
 
-### Part A: files and try/except
+Stuck on a task? The hints are in `HINTS.md` in this folder.
 
-1. Look at `pressures.txt`. Can you spot the bad lines?
-2. Open `files_and_exceptions.py`, do TODO 1 to 4. Each TODO says which result to reach. Try it with the hint closed first.
-3. Run it:
+Run each script from the repo root in PowerShell.
 
-   ```powershell
-   uv run python exercises/python/07-files-and-exceptions/files_and_exceptions.py
-   ```
+### Task 1: read a traceback
 
-<details>
-<summary>Hint for TODO 1</summary>
-
-Open the file with `with open(input_path) as file:`. Inside the block, `file.readlines()` gives a list of lines.
-
-</details>
-
-<details>
-<summary>Hint for TODO 2</summary>
-
-Wrap the conversion in `try:` and catch `ValueError` in an `except` branch.
-
-```python
-try:
-    pressures_bar.append(float(text))
-except ValueError:
-    bad_lines.append(text)
-```
-
-</details>
-
-<details>
-<summary>Hint for TODO 3</summary>
-
-Put the `open(missing_path)` call in a `try:` and catch `FileNotFoundError`. The `except` branch prints the line. `missing_path.name` is the file name.
-
-</details>
-
-<details>
-<summary>Hint for TODO 4</summary>
-
-`output_path.parent.mkdir(exist_ok=True)` creates the folder. Open the file with mode `"w"`. `enumerate(pressures_bar, start=1)` gives the number and the value. Write each line with `file.write(...)` and an f-string that ends in `\n`.
-
-</details>
-
-### Part B: read the traceback
-
-`broken_1.py` is broken on purpose.
-
-1. Run it and read the traceback from the bottom up.
-2. Write down the **exception type** and the **line number**.
-3. Fix the script and run it again.
+`exercises/python/07-files-and-exceptions/broken_1.py` crashes on purpose. Run it, read the traceback from the bottom line up, and find the exception type and the line number. Fix the script so that it prints both lines.
 
 ```powershell
 uv run python exercises/python/07-files-and-exceptions/broken_1.py
 ```
 
-| Script | Exception type | Line |
-|---|---|---|
-| `broken_1.py` | | |
-
-## Check yourself
-
-Part A should print something like:
-
 ```text
-Lines read: 6
-Good values: [7.1, 7.4, 7.2, 7.5]
-Bad lines: ['7,6', 'abc']
-File not found: does_not_exist.txt
-Wrote .../output/report.txt
+Average pressure: 7.325
+Highest pressure: 7.6
 ```
 
-The file `output/report.txt` next to the script ends with the line `Reading 4: 7.5 bar`.
+### Task 2: skip and count
 
-Part B: after your fix, `broken_1.py` prints the average pressure and a highest pressure.
+Open `exercises/python/07-files-and-exceptions/summarize_logs.py`. The logs in `logs/` contain values that are not a number, like `ERR`. Make the script survive them: skip such a row, count it, and print the count. Catch `ValueError` only. A bare `except:` or `except Exception: pass` does not count.
 
-## Optional: if you have time
-
-1. **Another traceback.** Do the same as in Part B for `broken_2.py`. Write down the exception type and the line. Fix it. After the fix it prints the message and `Pressure is below the limit`.
-
-   ```powershell
-   uv run python exercises/python/07-files-and-exceptions/broken_2.py
-   ```
-
-2. **A traceback with more than one step.** Run `broken_3.py`. Read it from the bottom up. Write down the names of all the functions in the traceback, in the order they were called. Which one is the place where the error actually happens? Is that also the place where you want to fix it? Then fix it. After the fix it prints `Average pressure: 7.33 bar`.
-
-   ```powershell
-   uv run python exercises/python/07-files-and-exceptions/broken_3.py
-   ```
-
-3. **Append to a file.** Do TODO 5 in `files_and_exceptions.py`. Expected: the printed file ends with the line `Bad lines: 2`.
-
-   <details>
-   <summary>Hint for TODO 5</summary>
-
-   Open the file with mode `"a"`. Read it back with `output_path.read_text()`.
-
-   </details>
-
-4. **Folder script that survives bad data.** In exercise 06 you summarised a folder of logs. Here the folder `logs/` has one log with a bad value (`ERR`). Open `summarize_logs.py` and do TODO 1 to 3 so the script skips the bad row, counts it and keeps going:
-
-   ```powershell
-   uv run python exercises/python/07-files-and-exceptions/summarize_logs.py
-   ```
-
-   You should see a warning, and these lines:
-
-   ```text
-   run_01: mean 7.25 bar, 0 rows skipped
-   run_02: mean 7.71 bar, 1 rows skipped
-   run_03: mean 7.49 bar, 0 rows skipped
-   ```
-
-   <details>
-   <summary>Hint for TODO 1 to 3 of summarize_logs.py</summary>
-
-   TODO 1: the same `try/except ValueError` as in Part A, with `skipped += 1` in the `except` branch. TODO 2: `round(sum(...) / len(...), 2)`. TODO 3: `output_path.parent.mkdir(exist_ok=True)`, then `output_path.write_text(...)` with the lines joined by `"\n"`.
-
-   </details>
-
-5. In `broken_3.py`, make `parse_pressure` accept a decimal comma by replacing `","` with `"."` before converting.
-6. Write a function `read_pressures(path)` that returns the good values and prints a warning for every bad line.
-
-### With Copilot
-
-Run `broken_2.py` again (undo your fix, or use a fresh copy) and paste the full traceback into Copilot Chat. Ask: *"What is the cause of this exception, and which line raises it?"* Was it right? Which line of the traceback told you the same thing? Did Copilot propose the same fix as you, or a different one (for example `str()` instead of an f-string)? Which do you prefer?
-
-## Challenge
-
-For those who finish early. There are no TODOs and no hints.
-
-Change `summarize_logs.py` so that a bad value stops the script with a `ValueError`. The message names the file and the line number in the file, for example:
-
-```text
-ValueError: run_02.csv line 4: cannot convert 'ERR'
+```powershell
+uv run python exercises/python/07-files-and-exceptions/summarize_logs.py
 ```
 
-Then add a switch (a constant or a command-line argument) to choose between stopping and skipping the bad row. Which default would you pick for a script that runs every night, and why?
+```text
+run_01: mean 7.25 bar, 0 rows skipped
+run_02: mean 7.71 bar, 1 rows skipped
+run_03: mean 7.49 bar, 0 rows skipped
+run_04: mean 7.37 bar, 4 rows skipped
+```
+
+### Task 3: stop or skip
+
+This one is much harder. There is no hint.
+
+Open `exercises/python/07-files-and-exceptions/check_logs.py`. Write a script that reads the logs and has two modes:
+
+- With `--strict`, the first bad value stops the script. Without it, bad rows are skipped, with a warning for each.
+- Either way, a file where more than `MAX_BAD_SHARE` of the rows are bad stops the script.
+
+A stop prints one line and exits with code 1. Any other argument is the name of a file to read. With no file names, read all of `logs/`.
+
+```powershell
+uv run python exercises/python/07-files-and-exceptions/check_logs.py
+uv run python exercises/python/07-files-and-exceptions/check_logs.py --strict
+uv run python exercises/python/07-files-and-exceptions/check_logs.py does_not_exist.csv
+```
+
+```text
+run_01: mean 7.25 bar, 0 rows skipped
+Warning: run_02.csv line 4: cannot convert 'ERR'
+run_02: mean 7.71 bar, 1 rows skipped
+run_03: mean 7.49 bar, 0 rows skipped
+Warning: run_04.csv line 3: cannot convert 'ERR'
+Warning: run_04.csv line 5: cannot convert ''
+Warning: run_04.csv line 6: cannot convert 'n/a'
+Warning: run_04.csv line 8: cannot convert 'ERR'
+Error: run_04.csv: 4 of 8 rows are bad, the limit is 20%
+```
+
+```text
+run_01: mean 7.25 bar, 0 rows skipped
+Error: run_02.csv line 4: cannot convert 'ERR'
+```
+
+```text
+File not found: does_not_exist.csv
+```
+
+Rules:
+
+- A function `read_pressures(path, strict)` does the reading. You decide what it returns.
+- In strict mode, a bad value makes the function raise a new `ValueError` that names the file and the line number in the file, and keeps the original error as its cause (`raise ... from err`).
+- The function may print warnings. It must not print the `Error:` or `File not found:` line and must not call `sys.exit`. Only the code that calls it does that.
+- `FileNotFoundError` gets its own message, as shown above.
+- No bare `except:`.
 
 ## Open question
 

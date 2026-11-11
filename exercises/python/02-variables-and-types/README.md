@@ -1,6 +1,6 @@
 # 02 - Variables and types
 
-**Words to use:** variable, assignment, type, int, float, str, f-string, constant.
+**Words to use:** variable, assignment, type, int, float, str, f-string, constant, boolean, traceback.
 
 ## Goal
 
@@ -32,114 +32,66 @@ Measurement data almost always arrives as text. A value with the wrong type or t
 - A **comparison** like `a > b` gives a `bool`: `True` or `False`. Other comparisons: `<`, `>=`, `<=`, `==`, `!=`.
 - An **f-string** puts values inside text: `f"Mass: {mass_kg} kg"`. Add `:.2f` after the name to show 2 decimals: `{mass_kg:.2f}`.
 - A name in CAPITALS (like `BAR_TO_PSI`) is a convention for a **constant**: a value that never changes.
+- A **traceback** is the report Python prints when a script crashes. The last line names the error. The lines above it show where it happened.
 
 ## Tasks
 
-Open `exercises/python/02-variables-and-types/units.py` and do TODO 1 to 6. Each TODO says which result to reach. Try it with the hint closed first. Open the hint only when you are stuck. Run the script after every step:
+Stuck on a task? The hints are in `HINTS.md` in this folder.
+
+Open `exercises/python/02-variables-and-types/units.py`. There are three tasks. No task needs a loop or an `if`. Run with:
 
 ```powershell
 uv run python exercises/python/02-variables-and-types/units.py
 ```
 
-<details>
-<summary>Hint for TODO 1</summary>
+### Task 1: text to numbers
 
-`print(a, type(a))` prints a value followed by its type.
-
-</details>
-
-<details>
-<summary>Hint for TODO 2</summary>
-
-Use `float()` on the text. Then add `273.15` to the number.
-
-</details>
-
-<details>
-<summary>Hint for TODO 3</summary>
-
-Use `.split()` on `pressure_text`. Take the first part with `[0]` and the second with `[1]`. Convert the first part with `float()`.
-
-</details>
-
-<details>
-<summary>Hint for TODO 4</summary>
-
-Multiply `pressure_bar` by `BAR_TO_PSI`.
-
-</details>
-
-<details>
-<summary>Hint for TODO 5</summary>
-
-Use an f-string with `{...}` for each variable. For two decimals write `{pressure_bar:.2f}`. Kelvin needs a variable too: keep the result of TODO 2 in `temperature_k`.
-
-</details>
-
-<details>
-<summary>Hint for TODO 6</summary>
-
-Compare with `>`. The result of a comparison is already a `bool`.
-
-</details>
-
-7. **Read an error.** Add this line at the end of `units.py` and run the script:
-
-   ```python
-   print(temperature_text + 1)
-   ```
-
-   It crashes on purpose. Read the traceback from the bottom up. Which exception is it, and on which line? Then remove the line.
-
-## Check yourself
-
-The script should print:
+Turn `pressure_text` and `temperature_text` into numbers and print the two lines below. Keep the numbers in variables whose names carry the unit. Do not type the numbers in the print lines.
 
 ```text
-CB-0042 <class 'str'>
-7.5 bar <class 'str'>
-82 <class 'str'>
-Temperature in K: 355.15
-7.5 <class 'float'>
-bar <class 'str'>
-Pressure in psi: 108.7785
-Unit CB-0042 runs at 7.50 bar (108.78 psi) and 355.15 K
-Alarm: False
+Pressure: 7.50 bar = 108.78 psi
+Temperature: 82.00 degC = 355.15 K
 ```
 
-Floats can show tiny extra digits. That is normal.
+### Task 2: read an error
 
-For task 7 the last line of the traceback names a `TypeError`.
+Add this line at the end of the file, after your task 1 code, and run the script:
 
-## Optional: if you have time
+```python
+print("Pressure: " + pressure_bar)
+```
 
-1. In a new file `ask.py` in the same folder, ask the user for a pressure with `input()` and print it in psi. `input()` always returns text, so you must convert it with `float()`.
-
-   ```python
-   text = input("Pressure in bar: ")
-   ```
-
-   Run it with `uv run python exercises/python/02-variables-and-types/ask.py` and type `7.5` when it asks.
-
-2. Run `print(0.1 + 0.2)`. Why is it not exactly `0.3`? (Floats are stored in binary. Small rounding errors are normal. Use `round()` when printing.)
-3. Convert the temperature to degrees Fahrenheit: `c * 9 / 5 + 32`.
-4. Print `int(7.9)` and `round(7.9)`. Is `int()` rounding?
-
-### With Copilot
-
-Ask Copilot Chat: *"Show two other ways to format a float with 2 decimals inside a Python string, besides an f-string."* You will probably get `str.format()` and the `%` operator. Run both. Which of the three would you rather read in a colleague's script, and why?
-
-## Challenge
-
-For those who finish early. There are no TODOs and no hints.
-
-Write `parse.py`. It gets text such as `"7.5 bar"` or `"108.8 psi"`. Split it into a value and a unit, convert the value to the other unit, and print the result:
+It crashes on purpose. Read the traceback from the bottom up: which error is it, and on which line? Then change the line so the script prints `Pressure: 7.5 bar`, with the unit.
 
 ```text
-7.5 bar = 108.78 psi
+Traceback (most recent call last):
+  File "units.py", line 20, in <module>
+    print("Pressure: " + pressure_bar)
+          ~~~~~~~~~~~~~^~~~~~~~~~~~~~
+TypeError: can only concatenate str (not "float") to str
 ```
 
-Text with an unknown unit, such as `"3 atm"`, prints a clear message instead of crashing.
+(The file path and line number in your traceback differ.)
+
+### Task 3: a full reading
+
+This one is much harder. There is no hint.
+
+`reading_line` is one line from a sensor log, with the fields separated by `;`. The pressure is in psi and the temperature is in degrees Fahrenheit. Print the reading in bar and degrees Celsius, and say whether the pressure is above `ALARM_LIMIT_BAR`.
+
+```text
+Sensor P1 at 09:00:00 on 2026-01-15
+Pressure: 7.50 bar
+Temperature: 82.00 degC
+Above limit: True
+```
+
+Rules:
+
+- No loop, no `if`, no `import`.
+- Do not type the sensor name, the date, the time or any number from the line. Take them from `reading_line`.
+- Fahrenheit to Celsius is `(f - 32) * 5 / 9`.
+- Look at `help(str.split)` to cut on something other than a space.
 
 ## Open question
 

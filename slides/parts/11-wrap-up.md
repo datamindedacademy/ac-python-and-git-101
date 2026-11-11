@@ -54,7 +54,7 @@ label: Wrap-up
 <DmColumns class="mt-2">
 <DmColumn header="Git" tone="navy">
 
-<p class="prompt">Create a branch `feature/max-temperature` from an up-to-date `main`. Stage only `analyse_run.py`, commit with an imperative message, push and set the upstream. Draft a pull request description from `git diff origin/main`. Do not commit `output/`. If the merge conflicts, stop and show me both sides.</p>
+<p class="prompt">Fetch and rebase `feature/max-temperature` onto `origin/main`. If a commit conflicts, stop and show me both sides. Then stage only `analyse_run.py` and commit it as a conventional commit, type `fix`, scope `analysis`. Do not commit `output/`. Push with `--force-with-lease` and draft the pull request description from `git diff origin/main`.</p>
 
 </DmColumn>
 <DmColumn header="Python" tone="violet" divider>

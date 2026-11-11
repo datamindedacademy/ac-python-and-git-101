@@ -1,10 +1,10 @@
 # 06 - The standard library: math, pathlib, csv, json
 
-**Words to use:** standard library, import, path, glob pattern, header, DictReader, JSON, file handle, encoding.
+**Words to use:** standard library, import, path, glob pattern, header, DictReader, DictWriter, JSON, command-line argument.
 
 ## Goal
 
-Use four modules that come with Python. Write your first **automation script**: it loops over all CSV logs in a folder, reads each one, and writes one summary file.
+Use four modules that come with Python. Write your first **automation script**: it loops over all CSV logs in a folder, reads each one, and writes files with the results.
 
 ## Why this matters
 
@@ -20,120 +20,79 @@ This is the main outcome of the day: work you now do by hand for each file is do
 - `json` saves and loads data in the JSON format: a text format for dicts, lists, numbers and text.
 - `with open(path, newline="") as file:` opens a file and closes it for you when the block ends.
 - `some_folder.mkdir(exist_ok=True)` creates a folder, and does nothing when it already exists. Writing a file into a folder that does not exist fails.
+- `sys.argv` is the list of words typed after the script name. `sys.argv[0]` is the script itself, `sys.argv[1]` the first argument. It holds text.
 
-## Core tasks
+## Tasks
 
-1. Open one file in the `runs/` folder (for example `run_01.csv`). It is a test-run log: one row per minute. There are three logs. How many rows and columns does each have?
-2. Open `summarize_runs.py`. Read the whole script first. It loops over the files, and for each file it reads the rows. Do TODO 1 to 6.
-3. Run it from the repo root:
+Stuck on a task? The hints are in `HINTS.md` in this folder.
 
-   ```powershell
-   uv run python exercises/python/06-standard-library/summarize_runs.py
-   ```
+Open `exercises/python/06-standard-library/summarize_runs.py`. The folder `runs/` holds three test-run logs: one row per minute, with a `timestamp`, `pressure_bar` and `temperature_c` column. Each task states the output to reach. Run with:
 
-   Each TODO says which result to reach. Try it with the hint closed first.
-
-   <details>
-   <summary>Hint for TODO 1</summary>
-
-   Use `float()` on `row["pressure_bar"]` and on `row["temperature_c"]`, and `.append()` the results to the two lists.
-
-   </details>
-
-   <details>
-   <summary>Hint for TODO 2</summary>
-
-   Sum divided by count: `sum()` and `len()`.
-
-   </details>
-
-   <details>
-   <summary>Hint for TODO 3</summary>
-
-   Use `math.sqrt()`. The sum of the squared differences can be a generator expression inside `sum(...)`.
-
-   ```python
-   variance = sum((p - mean_bar) ** 2 for p in pressures_bar) / len(pressures_bar)
-   std_bar = math.sqrt(variance)
-   ```
-
-   </details>
-
-   <details>
-   <summary>Hint for TODO 4</summary>
-
-   Use `max()` on the list of temperatures.
-
-   </details>
-
-   <details>
-   <summary>Hint for TODO 5</summary>
-
-   Use `round(value, 2)` for each value.
-
-   </details>
-
-   <details>
-   <summary>Hint for TODO 6</summary>
-
-   `output_path.parent.mkdir(exist_ok=True)` creates the folder, and does nothing when it already exists. Then open the file for writing with `with open(output_path, "w") as file:` and call `json.dump(summaries, file, indent=2)` inside the block.
-
-   </details>
-
-4. Open the new file `exercises/python/06-standard-library/output/summary.json` in VS Code and read it. The `output/` folder is ignored by Git.
-
-## Check yourself
-
-The script prints:
-
-```text
-run_01.csv: 8 rows, mean pressure 7.25 bar
-run_02.csv: 8 rows, mean pressure 7.73 bar
-run_03.csv: 8 rows, mean pressure 7.49 bar
+```powershell
+uv run python exercises/python/06-standard-library/summarize_runs.py
 ```
 
-and `summary.json` is a list of three objects. The first one looks like this:
+### Task 1: one file
+
+Read `runs/run_01.csv` and print its number of rows, its mean pressure and its max pressure.
+
+```text
+Rows: 8
+Mean pressure: 7.25 bar
+Max pressure: 7.5 bar
+```
+
+### Task 2: every file
+
+Do the same for every CSV file in `runs/`, and write the results to `output/summary.json`: a list with one object per run. The `output/` folder may not exist yet. Open the file in VS Code and read it. The folder is ignored by Git.
+
+```text
+Wrote 3 summaries to output/summary.json
+```
+
+The first object of `summary.json`:
 
 ```json
 {
   "run": "run_01",
   "rows": 8,
   "pressure_mean_bar": 7.25,
-  "pressure_std_bar": 0.2,
-  "temperature_max_c": 82.7
+  "pressure_max_bar": 7.5
 }
 ```
 
-## Optional: if you have time
+### Task 3: find the odd run
 
-- Add a fourth CSV file to `runs/` (copy one and change a number). Run the script again. The summary has four entries without changing the code. That is the point of automation.
-- Also write the summaries to `output/summary.csv`, with a header row and one row per run.
+This one is much harder. There is no hint.
 
-  <details>
-  <summary>Hint for the CSV file</summary>
+Compare every run with all the other runs, and flag the runs that do not fit. For one run: take the readings of all the other runs together, and calculate their mean and their standard deviation (divide by the number of readings). The deviation of the run is its mean pressure minus the mean of the others, divided by the standard deviation of the others. Flag the run when the deviation is above a threshold, in either direction.
 
-  Use `csv.DictWriter`. Its methods `writeheader()` and `writerows()` write the header and the rows.
-
-  </details>
-- Use `math.isclose(a, b, rel_tol=1e-3)` to compare two floats. Why is it safer than `==`?
-- Read `summary.json` back with `json.load` and print the run with the highest mean pressure.
-
-### With Copilot
-
-Ask Copilot Chat: *"Rewrite the mean and the standard deviation in this script with the `statistics` module from the standard library."* Run it and compare the standard deviation with your own. The module has `stdev` (sample) and `pstdev` (population). Which one did Copilot pick, and which one matches your formula? Would you have noticed the difference without your own version?
-
-## Challenge
-
-For those who finish early. There are no TODOs and no hints.
-
-Change `summarize_runs.py` in two ways:
-
-1. It takes the folder with the runs as a command-line argument (`sys.argv`) instead of the fixed `runs/` folder.
-2. It prints a warning for every run whose pressure standard deviation is above a limit that you choose, for example:
+Write `output/outliers.csv`, with one row per run, sorted from the largest deviation to the smallest (ignore the sign). Print a line for every flagged run. The runs folder is the first command-line argument and the threshold the second. Both are optional: the defaults are the `runs/` folder and 1.8.
 
 ```text
-Warning: run_01 has a pressure standard deviation of 0.2 bar (limit 0.18)
+Flagged: run_01 (-1.85 standard deviations, limit 1.8)
 ```
+
+`output/outliers.csv`:
+
+```text
+run,mean_bar,others_mean_bar,deviation_std,flagged
+run_01,7.25,7.61,-1.85,True
+run_02,7.73,7.37,1.74,False
+run_03,7.49,7.49,0.0,False
+```
+
+Run it with a different threshold, to see more runs flagged:
+
+```powershell
+uv run python exercises/python/06-standard-library/summarize_runs.py exercises/python/06-standard-library/runs 1.5
+```
+
+Rules:
+
+- Only `math`, `csv`, `json`, `sys` and `pathlib`. No `statistics`, no pandas.
+- Write the CSV with `csv.DictWriter`.
+- Adding a fourth file to `runs/` must work without changing the code.
 
 ## Open question
 

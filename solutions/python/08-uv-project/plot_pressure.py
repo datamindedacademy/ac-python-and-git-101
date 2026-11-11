@@ -1,4 +1,12 @@
-# Reference solution for exercise 08.
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "matplotlib>=3.10",
+# ]
+# ///
+
+# Reference solution for exercise 08, task 2: the script carries its own dependencies.
+
 import sys
 
 import matplotlib

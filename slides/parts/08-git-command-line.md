@@ -42,23 +42,30 @@ label: 8 · Git on the command line
 
 ```powershell
 git add conversions.py
-git commit -m "Add psi to bar conversion"
+git commit -m "feat(conversions): add psi to bar conversion"
 ```
 
-```text
-[main (root-commit) a055887] Add psi to bar conversion
- 1 file changed, 2 insertions(+)
-```
+<p class="cc"><code>type(scope): description</code> is a <b>conventional commit</b>. The scope is optional.</p>
 
-- Message: short, imperative, one logical change: "Fix psi to bar factor", not "update"
+| Type | Use it for | Example |
+|---|---|---|
+| `feat` | new behaviour | `feat: report max temperature` |
+| `fix` | a bug fix | `fix(conversions): correct psi to bar factor` |
+| `docs` `test` `refactor` `chore` | no change in behaviour | `docs: explain the csv columns` |
+
+- Description: short, imperative, one logical change. "and" in it means two commits
 - `git add .` stages everything: check `git status` first
 
 <style>
-.slidev-code { font-size: 16px !important; line-height: 1.5 !important; }
+.slidev-code { font-size: 15px !important; line-height: 1.5 !important; }
+.cc { font-size: 16px; margin: 6px 0 2px; }
+table { font-size: 14px; }
+td, th { padding: 4px 10px !important; }
+li { font-size: 16px; }
 </style>
 
 <!--
-Add moves a change into the staging area, commit stores it. The message is for your colleague and for you in six months: write it as a command, add, fix, remove, and keep it around 50 characters. If a message needs the word and, it is probably two commits. Warn about git add dot, which stages everything, including files you did not mean to commit.
+Add moves a change into the staging area, commit stores it. The message is for your colleague and for you in six months. Conventional commits is a widely used format for it: a type, an optional scope in brackets, a colon, and a short description written as a command. The type says what kind of change it is, so a reader, a changelog tool or an assistant can sort the history without opening each commit. feat and fix are the two that matter most. A change that breaks existing use gets an exclamation mark after the type. Your team may use another convention, and then that one wins: the habit is a fixed format and one logical change per commit. If a description needs the word and, it is probably two commits. Warn about git add dot, which stages everything, including files you did not mean to commit. The exercises use plain messages such as Add conversions script, so nobody has to learn the format while learning to commit.
 -->
 
 ---
@@ -74,8 +81,8 @@ git log --oneline --graph --all
 ```
 
 ```text
-9b221ad Add first measurement
-a055887 Add psi to bar conversion
+9b221ad chore(data): add first measurement
+a055887 feat(conversions): add psi to bar conversion
 ```
 
 ```powershell
@@ -105,7 +112,7 @@ title: Exercise - first commit
 <p class="mt-2 text-sm opacity-70">About 20 minutes: <code>uv run python exercises/git/setup_exercise.py 1</code></p>
 
 <!--
-Participants run the setup script, which creates a sandbox folder in their home folder. The tasks state a result and the commands sit in collapsed hints: ask people to try for two minutes before opening one. They init, make commits that each say one thing, and predict what status shows for a file that is staged and then edited again. Walk around and watch for people who forgot the identity configuration.
+Participants run the setup script, which creates a sandbox folder in their home folder. The tasks state a result and the commands are in HINTS.md: ask people to try for two minutes before opening it. They init, make commits that each say one thing, and predict what status shows for a file that is staged and then edited again. Walk around and watch for people who forgot the identity configuration.
 -->
 
 ---
@@ -257,14 +264,14 @@ git add <file>; git rebase --continue   # after fixing a conflict
 git rebase --abort                      # give up
 ```
 
-<p class="note">Rebase only commits you have not pushed. Rebasing rewrites them, and colleagues who pulled the old ones get duplicates.</p>
+<p class="note">Rebase before you push. Rebasing rewrites commits, so a branch you already pushed needs <code>git push --force-with-lease</code> afterwards, and colleagues who pulled the old commits get duplicates.</p>
 
 <style>
 .slidev-code { font-size: 14px !important; line-height: 1.4 !important; }
 </style>
 
 <!--
-The situation: you branched from main, and main got new commits since. There are two ways to catch up. Merge records what happened. Rebase tidies the branch before you share it. After a rebase, merging the branch into main is a fast-forward. The commits get new hashes because their parent changed. If the branch was already pushed, a rebase needs git push with force-with-lease, which is why the rule is to rebase before the first push. A squash merge in a pull request gives a similarly clean main without anyone rebasing. There is an optional rebase task in the branches exercise.
+The situation: you branched from main, and main got new commits since. There are two ways to catch up. Merge records what happened. Rebase tidies the branch before you share it. After a rebase, merging the branch into main is a fast-forward. The commits get new hashes because their parent changed. If the branch was already pushed, a rebase needs git push with force-with-lease, which is why the rule is to rebase before the first push. A squash merge in a pull request gives a similarly clean main without anyone rebasing. The last task of the branches exercise is a rebase with a conflict.
 -->
 
 ---

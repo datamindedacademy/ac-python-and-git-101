@@ -300,7 +300,7 @@ layout: statement
 </style>
 
 <!--
-The values arrive as text, as they do from a file: convert, split value and unit, format, and read one deliberate type error from the bottom. From this exercise on, the TODOs state the result and the hints sit collapsed in the README. Ask people to try for two minutes before they open one. About 20 minutes.
+The values arrive as text, as they do from a file: convert, split value and unit, format, and read one deliberate type error from the bottom. Every exercise has two or three tasks that state the result. The hints are in HINTS.md in the exercise folder: ask people to try for two minutes before they open it. The last task is much harder and has no hint. Most people will not finish it, and nothing later depends on it. About 20 minutes.
 -->
 
 ---
@@ -694,7 +694,7 @@ total_high = sum(p for p in pressures_bar if p > 9.0)
 </style>
 
 <!--
-A comprehension builds a list in one expression: the value to keep, the for, and an optional if. It gives the same list as the loop on the left, using the names from the previous slide. Most Python code, and most of what Copilot writes, uses comprehensions for build-a-list loops, so you must be able to read them. MATLAB users can think of logical indexing: pressures(pressures > 9.0). The second example transforms every value. The sum line is a generator expression: the same idea without the brackets, and no list is built. The rule is one for and one if. Anything more gets hard to read, so write the loop. Exercise 04 has you rewrite a loop as a comprehension, and exercise 06 uses one for the standard deviation.
+A comprehension builds a list in one expression: the value to keep, the for, and an optional if. It gives the same list as the loop on the left, using the names from the previous slide. Most Python code, and most of what Copilot writes, uses comprehensions for build-a-list loops, so you must be able to read them. MATLAB users can think of logical indexing: pressures(pressures > 9.0). The second example transforms every value. The sum line is a generator expression: the same idea without the brackets, and no list is built. The rule is one for and one if. Anything more gets hard to read, so write the loop. Exercise 04 has you write two comprehensions.
 -->
 
 ---
@@ -713,7 +713,7 @@ layout: statement
 </style>
 
 <!--
-Conditions, for loops and one list comprehension on bench readings. The while loop is optional. About 25 minutes. Break time after this exercise if the room is ready for it.
+Conditions, for loops and list comprehensions on bench readings. The last task finds alarm episodes. About 25 minutes. Break time after this exercise if the room is ready for it.
 -->
 
 ---

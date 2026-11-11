@@ -1,6 +1,6 @@
 # 03 - Collections
 
-**Words to use:** list, tuple, dict, key, value, index, slice, method.
+**Words to use:** list, tuple, dict, set, key, value, index, slice, method.
 
 ## Goal
 
@@ -27,146 +27,59 @@ A **collection** holds several values in one variable.
 - `len(x)`, `sum(x)`, `max(x)` and `min(x)` work on a whole list.
 - `sorted(values)` gives a new list from low to high. `sorted(values, reverse=True)` goes from high to low. The original list does not change.
 - A dict looks up a value by **key**: `measurement["pressure_bar"]`. Assigning to a key that does not exist adds it. Assigning to a key that exists changes it. A key that does not exist gives a `KeyError` when you read it.
+- `7 // 2` is integer division: it gives `3`, without the remainder.
 - A list of dicts is indexed twice: first the position in the list, then the key. A negative index works here as well.
 - `a, b = pair` **unpacks** a tuple or list with two items into two variables.
 - A **set** keeps each value once. `set(values)` turns a list into a set, and `len()` of it counts the unique values. `"x" in collection` is `True` when `"x"` is one of the items.
 
 ## Tasks
 
-Open `exercises/python/03-collections/collections_intro.py` and do TODO 1 to 11. Each TODO says which result to reach. Try it with the hint closed first. Open the hint only when you are stuck. You do not need a loop for any of them. Run after each step:
+Stuck on a task? The hints are in `HINTS.md` in this folder.
+
+Open `exercises/python/03-collections/collections_intro.py`. There are three tasks. Each one states the output to reach. No task needs a loop or an `if`. Run with:
 
 ```powershell
 uv run python exercises/python/03-collections/collections_intro.py
 ```
 
-Tip: you can also try things quickly in the REPL with `uv run python`.
+### Task 1: lists
 
-<details>
-<summary>Hint for TODO 1</summary>
-
-Use the index `-1`.
-
-</details>
-
-<details>
-<summary>Hint for TODO 2</summary>
-
-Use a slice. The stop index is not included.
-
-</details>
-
-<details>
-<summary>Hint for TODO 3</summary>
-
-Use the list method `.append()`, then `len()`.
-
-</details>
-
-<details>
-<summary>Hint for TODO 4</summary>
-
-Use `max()`, `min()`, `sum()` and `len()`. The mean is the sum divided by the count.
-
-</details>
-
-<details>
-<summary>Hint for TODO 5</summary>
-
-Sort with `sorted(..., reverse=True)`, then take a slice from the start.
-
-</details>
-
-<details>
-<summary>Hint for TODO 6</summary>
-
-Sort the list from low to high. A slice that starts at 1 and stops at -1 drops the lowest and the highest. Then take the mean of what is left and round it with `round(x, 3)`.
-
-```python
-middle = sorted(pressures_bar)[1:-1]
-```
-
-</details>
-
-<details>
-<summary>Hint for TODO 7</summary>
-
-Write two names on the left of one `=`, separated by a comma.
-
-</details>
-
-<details>
-<summary>Hint for TODO 8</summary>
-
-Assign to a key with `measurement["key"] = value`. A new key is added, an existing key is changed. Then print `measurement`.
-
-</details>
-
-<details>
-<summary>Hint for TODO 9</summary>
-
-Index twice: the position in the list, then the key. The second measurement has index 1. The last one has index `-1`.
-
-</details>
-
-<details>
-<summary>Hint for TODO 10</summary>
-
-Use `.append()` with a new dict that has the same three keys as the others.
-
-</details>
-
-<details>
-<summary>Hint for TODO 11</summary>
-
-Use `set()` and `len()` for the count, and `in` for the second line.
-
-</details>
-
-## Check yourself
-
-Among your other prints you should see:
+From `pressures_bar`, print the last reading, the three highest readings (highest first) and the trimmed mean: the mean without the single highest and the single lowest reading, rounded to 3 decimals. The code must still be right when the list gets longer.
 
 ```text
-First: 7.1
 Last: 7.5
-First three: [7.1, 7.3, 7.4]
-Number of readings: 7
-Max: 7.8 Min: 7.1 Mean: 7.414285714285714
-Top three: [7.8, 7.6, 7.5]
-Trimmed mean: 7.4
-Latitude: 52.01 Longitude: 4.36
-Pressure: 7.5
-{'timestamp': '2026-01-15 09:00:00', 'pressure_bar': 7.5, 'temperature_c': 83.5, 'flow_l_s': 41.5}
-Temperature of second: 81.9
-Pressure of last: 7.6
-Number of measurements: 4
-Unique sensors: 4
-F1 present: True
+Top three: [7.6, 7.5, 7.4]
+Trimmed mean: 7.35
 ```
 
-## Optional: if you have time
+### Task 2: dicts, tuples and sets
 
-1. Print every key and value of `measurement`, one per line. Loop over `measurement.items()`. Loops are the topic of exercise 04, so look at that exercise first, or ask Copilot to explain the loop.
-2. Build a list with only the pressures from `measurements`. Start with an empty list `[]`, then loop and `.append()`.
-3. Use `measurement.get("humidity", "unknown")`. How is it different from `measurement["humidity"]`?
-4. In the REPL, try `position[0] = 0.0` and read the error. Why can a tuple not change?
-5. Make a list of the pressures above 7.3 with a **list comprehension**: `[p for p in pressures_bar if p > 7.3]`. Exercise 04 covers comprehensions properly.
-
-### With Copilot
-
-Do optional task 2 first. Then select your `for` loop with `.append()` and ask Copilot Chat: *"Rewrite this loop as a list comprehension."* Run both versions and check that they give the same list. Which version would you rather find in a colleague's script, and why?
-
-## Challenge
-
-For those who finish early. There are no TODOs and no hints.
-
-You have the list of dicts `measurements` in `collections_intro.py`. Build a new dict that maps each key (`timestamp`, `pressure_bar`, `temperature_c`) to the list of its values over all measurements, and print it. Expected output starts like this:
+Add a fourth measurement to `measurements`: timestamp `"09:03"`, sensor `"P2"`, pressure 7.3. Then print the number of measurements, the pressure of the last one, the number of unique values in `sensor_ids`, and the position of the hall.
 
 ```text
-{'timestamp': ['09:00', '09:01', '09:02', '09:03'], 'pressure_bar': [7.1, 7.4, 7.6, 7.3], ...}
+Measurements: 4
+Pressure of last: 7.3
+Unique sensors: 4
+Hall: 52.01 N, 4.36 E
 ```
 
-Do not type the three key names in your code. It must also work for a measurement with more keys.
+### Task 3: median and peak
+
+This one is much harder. There is no hint.
+
+`timestamps` and `pressures_bar` belong together: item 0 of one goes with item 0 of the other. Print the median of all six readings, the median of the first five, and the highest reading with its timestamp.
+
+```text
+Median of all six: 7.35
+Median of first five: 7.3
+Peak: 7.6 bar at 09:04
+```
+
+Rules:
+
+- No loop, no `if`, no `import`.
+- Both medians use the same expression. It must be right for an odd and for an even number of readings. For an even number, the median is the mean of the two middle readings.
+- Do not type `"09:04"` or the index 4. Find it from the data.
 
 ## Open question
 

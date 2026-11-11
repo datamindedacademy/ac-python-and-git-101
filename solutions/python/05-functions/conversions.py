@@ -31,24 +31,5 @@ def average(values, decimals=2):
     return round(sum(values) / len(values), decimals)
 
 
-def classify(pressure, limit=8.5):
-    """Return "ALARM" when the pressure is above the limit, else "OK"."""
-    if pressure > limit:
-        return "ALARM"
-    return "OK"
-
-
-# Challenge: the size of each unit in bar.
-BAR_PER_UNIT = {"bar": 1.0, "psi": 1 / BAR_TO_PSI, "kPa": 0.01}
-
-
-def convert(value, from_unit, to_unit):
-    """Convert a pressure between bar, psi and kPa."""
-    for unit in (from_unit, to_unit):
-        if unit not in BAR_PER_UNIT:
-            raise ValueError(f"Unknown unit: {unit!r}. Use one of {list(BAR_PER_UNIT)}.")
-    return value * BAR_PER_UNIT[from_unit] / BAR_PER_UNIT[to_unit]
-
-
 if __name__ == "__main__":
     print(bar_to_psi(7.5))

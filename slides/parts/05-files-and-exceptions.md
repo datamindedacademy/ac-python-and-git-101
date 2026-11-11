@@ -108,7 +108,7 @@ The error travels up through every function that called this one. Nobody catches
 </style>
 
 <!--
-The second half of exception handling is knowing when not to catch. An exception that nobody catches does not disappear. It leaves the function where it happened, then the function that called it, and so on upward. That is what bubbling up, or propagating, means, and the list of functions in a traceback is exactly that path. If nothing catches it, Python stops the script and prints the traceback. That is not a failure of your script. It is the script telling you precisely what went wrong and where. The left column is the pattern to avoid: catch everything and do nothing. The script looks healthy, the summary file is written, and the numbers in it are wrong. Copilot writes this pattern often, because it makes the error go away. So the rule: catch an error only at the place where you have a plan for it. Skipping a bad row and counting it is a plan. Printing nothing and moving on is not. When the low-level message is not enough, catch the error, and raise it again with the file name and line number added, which is the challenge in the exercise. For a script that runs every night, a loud stop is the safe default.
+The second half of exception handling is knowing when not to catch. An exception that nobody catches does not disappear. It leaves the function where it happened, then the function that called it, and so on upward. That is what bubbling up, or propagating, means, and the list of functions in a traceback is exactly that path. If nothing catches it, Python stops the script and prints the traceback. That is not a failure of your script. It is the script telling you precisely what went wrong and where. The left column is the pattern to avoid: catch everything and do nothing. The script looks healthy, the summary file is written, and the numbers in it are wrong. Copilot writes this pattern often, because it makes the error go away. So the rule: catch an error only at the place where you have a plan for it. Skipping a bad row and counting it is a plan. Printing nothing and moving on is not. When the low-level message is not enough, catch the error, and raise it again with the file name and line number added, which is the last task in the exercise. For a script that runs every night, a loud stop is the safe default.
 -->
 
 ---
@@ -127,5 +127,5 @@ layout: statement
 </style>
 
 <!--
-Read and write files, handle a bad row, and then fix one broken script by reading its traceback. Start at the bottom line. The other two broken scripts are optional. About 20 minutes.
+Fix one broken script by reading its traceback, starting at the bottom line. Then skip and count bad rows. The last task makes people decide where to catch: stop or skip. About 20 minutes.
 -->

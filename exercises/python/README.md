@@ -10,17 +10,16 @@ All exercises use one story: measurements from a (fictional) compressor test ben
 | 04 | `04-control-flow` | `if`, `for`, `enumerate`, list comprehensions | Core of automation, and of Copilot code |
 | 05 | `05-functions` | Functions, modules, `import`, your first tests with pytest | Functions and tests make code you can trust |
 | 06 | `06-standard-library` | `pathlib`, `csv`, `json`: summarise a folder of CSV logs | One script for a whole folder of logs |
-| 07 | `07-files-and-exceptions` | `try/except`, reading a traceback in a script that crashes on purpose | Bad rows and tracebacks in real logs |
-| 08 | `08-uv-project` | New uv project, adding a package, `pyproject.toml`, `uv.lock` | Same package versions on every machine |
+| 07 | `07-files-and-exceptions` | Reading a traceback, `try/except`, skip a bad row or stop | Bad rows and tracebacks in real logs |
+| 08 | `08-uv-project` | New uv project, a script with inline metadata, `pyproject.toml`, `uv.lock` | Same package versions on every machine |
 
 ## How an exercise works
 
 Start with the `README.md` in the folder. It has these parts:
 
 - **Words to use**: the terms of that exercise. Use them with the trainer and with Copilot.
-- **Tasks**: each `# TODO` states the result to reach, not the code. The hint is in a collapsed block. Open it when you are stuck.
-- **Optional**: extra tasks, one of them with Copilot. Do these after the core tasks.
-- **Challenge** (02 to 08): one open task without TODOs or hints.
+- **Tasks**: two or three per exercise. Each states the result to reach, not the code. The last one is much harder and has no hint. Most people will not finish it in class.
+- **Hints**: in `HINTS.md` in the same folder. Read one only when you are stuck.
 - **Open question**: goes beyond today. Most people cannot answer it yet. Try it, or bring it to the trainer.
 
 A reference solution is in `solutions/python/<same-folder>/`. Try first, then look.
@@ -41,7 +40,7 @@ uv run python exercises/python/01-first-script/hello.py
 
 ## Using Copilot
 
-You may use GitHub Copilot all day. No core task needs it.
+You may use GitHub Copilot all day. No task needs it.
 
 AI is a multiplier of experience. If you have zero experience, AI has nothing to multiply.
 

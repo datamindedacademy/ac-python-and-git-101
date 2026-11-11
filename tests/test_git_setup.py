@@ -59,7 +59,7 @@ def test_exercise_1_has_files_but_no_repository(env, tmp_path):
 
 
 def test_exercise_1_core_flow(env, tmp_path):
-    """The seven core tasks of exercise 1, ending with six commits and a clean tree."""
+    """The three tasks of exercise 1, ending with six commits and a clean tree."""
     target = tmp_path / "ex1"
     run_setup(1, target)
     git(target, "init", "-b", "main")
@@ -67,17 +67,15 @@ def test_exercise_1_core_flow(env, tmp_path):
     assert "No commits yet" in status
     assert "conversions.py" in status and "measurements.csv" in status
 
-    # Task 3: only conversions.py in the first commit.
+    # Task 1: two commits.
     git(target, "add", "conversions.py")
     git(target, "commit", "-m", "Add bar to psi conversion")
     assert commit_count(target) == 1
     assert git(target, "status", "--short").stdout.strip() == "?? measurements.csv"
-
-    # Task 4.
     git(target, "add", "measurements.csv")
     git(target, "commit", "-m", "Add first measurements")
 
-    # Task 5: two unrelated changes.
+    # Task 2: two unrelated changes.
     with (target / "conversions.py").open("a") as file:
         file.write(
             "\n\ndef celsius_to_kelvin(temperature_c):\n"
@@ -91,7 +89,7 @@ def test_exercise_1_core_flow(env, tmp_path):
         " M measurements.csv",
     ]
 
-    # Task 6: two commits. After staging, plain diff and staged diff show different files.
+    # Two commits. After staging, plain diff and staged diff show different files.
     git(target, "add", "conversions.py")
     assert "measurements.csv" in git(target, "diff").stdout
     assert "conversions.py" not in git(target, "diff").stdout
@@ -102,21 +100,45 @@ def test_exercise_1_core_flow(env, tmp_path):
     assert commit_count(target) == 4
     assert git(target, "status", "--porcelain").stdout == ""
 
-    # Task 7: one file with a staged and an unstaged change.
+    # Task 3: two edits in one file, hunk by hunk, then fix the message of the earlier commit.
     path = target / "conversions.py"
-    path.write_text(path.read_text().replace("from bar to psi.", "from bar (absolute) to psi."))
+    path.write_text(
+        path.read_text().replace("test bench.", "test bench (pressure and temperature).", 1)
+        + "\n\ndef kelvin_to_celsius(temperature_k):\n"
+        '    """Convert a temperature from Kelvin to degrees Celsius."""\n'
+        "    return temperature_k - 273.15\n"
+    )
+
+    def add_function_hunk():
+        # Hunks come in file order: n for the docstring, y for the new function.
+        result = subprocess.run(
+            ["git", "add", "-p", "conversions.py"],
+            cwd=target,
+            input="n\ny\n",
+            capture_output=True,
+            text=True,
+        )
+        assert result.returncode == 0, result.stderr
+
+    add_function_hunk()
+    assert "kelvin_to_celsius" in git(target, "diff", "--staged").stdout
+    assert "pressure and temperature" not in git(target, "diff", "--staged").stdout
+    git(target, "commit", "-m", "Add kelvin_to_celcius")
     git(target, "add", "conversions.py")
-    path.write_text(path.read_text().replace("BAR_TO_PSI = 14.5\n", "BAR_TO_PSI = 14.5038\n"))
-    assert git(target, "status", "--short").stdout.strip() == "MM conversions.py"
-    status = git(target, "status").stdout
-    assert "Changes to be committed" in status and "Changes not staged for commit" in status
-    assert "absolute" in git(target, "diff", "--staged").stdout
-    assert "14.5038" in git(target, "diff").stdout
-    git(target, "commit", "-m", "Clarify the bar_to_psi docstring")
-    assert "14.5038" not in git(target, "show", "HEAD").stdout
+    git(target, "commit", "-m", "Reword the module docstring")
+    git(target, "reset", "--soft", "HEAD~2")
+    git(target, "reset")
+    add_function_hunk()
+    git(target, "commit", "-m", "Add kelvin_to_celsius")
     git(target, "add", "conversions.py")
-    git(target, "commit", "-m", "Use a more precise psi factor")
+    git(target, "commit", "-m", "Reword the module docstring")
+    assert git(target, "log", "--format=%s", "-2").stdout.splitlines() == [
+        "Reword the module docstring",
+        "Add kelvin_to_celsius",
+    ]
     assert commit_count(target) == 6
+    assert "pressure and temperature" not in git(target, "show", "HEAD~1").stdout
+    assert "kelvin_to_celsius" not in git(target, "show", "HEAD").stdout
     assert git(target, "status", "--porcelain").stdout == ""
 
 
@@ -153,10 +175,11 @@ def test_exercise_3_branches_and_conflict(env, tmp_path):
     target = tmp_path / "ex3"
     result = run_setup(3, target)
     assert result.returncode == 0, result.stderr
-    assert branches(target) == {"main", "experiment/psi-precision"}
+    assert branches(target) == {"main", "experiment/psi-precision", "feature/temperature-report"}
     assert git(target, "branch", "--show-current").stdout.strip() == "main"
     assert commit_count(target, "main") == 4
     assert commit_count(target, "experiment/psi-precision") == 4
+    assert commit_count(target, "feature/temperature-report") == 6
     assert git(target, "status", "--porcelain").stdout == ""
 
     # Work on a copy so the sandbox stays untouched.
@@ -169,47 +192,22 @@ def test_exercise_3_branches_and_conflict(env, tmp_path):
     assert "<<<<<<<" in (copy / "conversions.py").read_text()
 
 
-def test_exercise_3_ff_and_merge_commit_paths_work(env, tmp_path):
-    """The commands in the README for exercise 3 must not conflict with the prepared branch."""
-    target = tmp_path / "ex3"
-    run_setup(3, target)
-    git(target, "switch", "-c", "feature/pressure-kpa")
-    with (target / "conversions.py").open("a") as file:
-        file.write("\n\ndef bar_to_kpa(pressure_bar):\n    return pressure_bar * 100\n")
-    git(target, "add", "conversions.py")
-    git(target, "commit", "-m", "Add bar to kPa conversion")
-    git(target, "switch", "main")
-    assert "Fast-forward" in git(target, "merge", "feature/pressure-kpa").stdout
-
-    git(target, "switch", "-c", "feature/max-temperature")
-    with (target / "analyse_run.py").open("a") as file:
-        file.write("\n# max temperature\n")
-    git(target, "commit", "-am", "Print max temperature")
-    git(target, "switch", "main")
-    with (target / "README.md").open("a") as file:
-        file.write("More notes.\n")
-    git(target, "commit", "-am", "Explain how to run analyse_run.py")
-    git(target, "merge", "feature/max-temperature", "--no-edit")
-    parents = git(target, "rev-list", "--parents", "-n", "1", "HEAD").stdout.split()
-    assert len(parents) == 3  # the commit itself plus two parents
-
-
 def _ff_merge_kpa(target):
-    """The fast-forward merge of core task 3."""
+    """Task 1: branch, commit, fast-forward merge, delete the branch."""
     git(target, "switch", "-c", "feature/pressure-kpa")
     with (target / "conversions.py").open("a") as file:
-        file.write("\n\ndef bar_to_kpa(pressure_bar):\n    return pressure_bar * 100\n")
+        file.write(
+            '\n\ndef bar_to_kpa(pressure_bar):\n    """Convert a pressure from bar to kPa."""\n'
+            "    return pressure_bar * 100\n"
+        )
     git(target, "commit", "-am", "Add bar to kPa conversion")
     git(target, "switch", "main")
-    git(target, "merge", "feature/pressure-kpa")
+    assert "Fast-forward" in git(target, "merge", "feature/pressure-kpa").stdout
     git(target, "branch", "-d", "feature/pressure-kpa")
 
 
-def test_exercise_3_conflict_after_fast_forward_and_resolve(env, tmp_path):
-    """Core task 4: after task 3, merging experiment/psi-precision conflicts and can be resolved."""
-    target = tmp_path / "ex3"
-    run_setup(3, target)
-    _ff_merge_kpa(target)
+def _resolve_conflict(target):
+    """Task 2: merge experiment/psi-precision, keep the incoming BAR_TO_PSI line."""
     merge = git(target, "merge", "experiment/psi-precision", check=False)
     assert merge.returncode != 0
     unmerged = git(target, "diff", "--name-only", "--diff-filter=U").stdout.split()
@@ -230,59 +228,78 @@ def test_exercise_3_conflict_after_fast_forward_and_resolve(env, tmp_path):
     assert len(parents) == 3
 
 
-def test_exercise_3_rebase_flow_after_core_tasks(env, tmp_path):
-    """Optional rebase task, started after the conflict merge of core task 4."""
+def test_exercise_3_tasks_1_and_2_conflict_and_resolve(env, tmp_path):
     target = tmp_path / "ex3"
     run_setup(3, target)
     _ff_merge_kpa(target)
-    git(target, "merge", "experiment/psi-precision", check=False)
-    git(target, "checkout", "--theirs", "conversions.py")
-    git(target, "commit", "-am", "Merge experiment/psi-precision")
-
-    git(target, "switch", "-c", "feature/min-temperature")
-    path = target / "analyse_run.py"
-    path.write_text(
-        path.read_text().replace(
-            "K)\")\n",
-            "K)\")\n    print(f\"Min temperature: {min(temperatures):.1f} C\")\n",
-        )
-    )
-    git(target, "commit", "-am", "Print min temperature")
-    before = git(target, "rev-parse", "HEAD").stdout
-    git(target, "switch", "main")
-    with (target / "README.md").open("a") as file:
-        file.write("Output: mean pressure and temperature.\n")
-    git(target, "commit", "-am", "Describe the output in the README")
-    git(target, "switch", "feature/min-temperature")
-    git(target, "rebase", "main")
-    assert git(target, "rev-parse", "HEAD").stdout != before
-    git(target, "switch", "main")
-    assert "Fast-forward" in git(target, "merge", "feature/min-temperature").stdout
-    git(target, "branch", "-d", "feature/min-temperature")
-    assert git(target, "status", "--porcelain").stdout == ""
+    _resolve_conflict(target)
+    text = (target / "conversions.py").read_text()
+    assert "BAR_TO_PSI = 14.5038" in text and "def bar_to_kpa" in text and "<<<<" not in text
 
 
-def test_exercise_3_stash_challenge(env, tmp_path):
+def test_exercise_3_task_3_rebase_conflicts_and_continues(env, tmp_path):
+    """Task 3, after tasks 1 and 2: dirty tree, rebase conflict, continue, fast-forward."""
     target = tmp_path / "ex3"
     run_setup(3, target)
-    (target / "conversions.py").write_text("# half finished\n")
-    git(target, "switch", "experiment/psi-precision", check=False)  # refused: would be overwritten
+    _ff_merge_kpa(target)
+    _resolve_conflict(target)
+    before = git(target, "rev-parse", "feature/temperature-report").stdout
+
+    with (target / "README.md").open("a") as file:
+        file.write("TODO: check the units\n")
+    git(target, "switch", "feature/temperature-report")
+    refused = git(target, "rebase", "main", check=False)
+    assert refused.returncode != 0 and "unstaged changes" in refused.stderr
     git(target, "stash")
-    assert git(target, "status", "--porcelain").stdout == ""
-    git(target, "switch", "experiment/psi-precision")
+    stopped = git(target, "rebase", "main", check=False)
+    assert stopped.returncode != 0 and "CONFLICT" in stopped.stdout
+    text = (target / "conversions.py").read_text()
+    assert "def bar_to_kpa" in text and "def celsius_to_fahrenheit" in text
+    keep_both = [line for line in text.splitlines() if not line.startswith(("<<<<<<<", ">>>>>>>"))]
+    (target / "conversions.py").write_text("\n".join(keep_both).replace("=======", "\n") + "\n")
+    git(target, "add", "conversions.py")
+    git(target, "-c", "core.editor=true", "rebase", "--continue")
+    assert git(target, "rev-parse", "HEAD").stdout != before
+
     git(target, "switch", "main")
+    assert "Fast-forward" in git(target, "merge", "feature/temperature-report").stdout
+    git(target, "branch", "-d", "feature/temperature-report")
     git(target, "stash", "pop")
-    assert (target / "conversions.py").read_text() == "# half finished\n"
+    assert git(target, "status", "--porcelain").stdout == " M README.md\n"
+    subjects = git(target, "log", "--format=%s", "-3").stdout.splitlines()
+    assert subjects == [
+        "Print mean temperature in Fahrenheit",
+        "Add Celsius to Fahrenheit conversion",
+        "Print min temperature",
+    ]
+    # linear on top of the merge commit: no merge commit among the three
+    assert git(target, "rev-list", "--merges", "HEAD~3..HEAD").stdout == ""
+    run = subprocess.run(
+        [sys.executable, "analyse_run.py"], cwd=target, capture_output=True, text=True
+    )
+    assert run.returncode == 0, run.stderr
+    assert "Min temperature" in run.stdout and " F" in run.stdout
 
 
-def test_exercise_2_revert_challenge_applies_cleanly(env, tmp_path):
-    """The challenge reverts the newest commit by its message."""
+def test_exercise_2_revert_in_the_middle_conflicts(env, tmp_path):
+    """Task 3 reverts "Fix Kelvin offset", which conflicts with the later psi commit."""
     target = tmp_path / "ex2"
     run_setup(2, target)
-    sha = git(target, "log", "--grep=Use more precise", "--format=%h").stdout.strip()
-    git(target, "revert", "--no-edit", sha)
+    sha = git(target, "log", "--grep=Fix Kelvin", "--format=%h").stdout.strip()
+    result = git(target, "revert", "--no-edit", sha, check=False)
+    assert result.returncode != 0
+    assert git(target, "status", "--short").stdout.strip() == "UU conversions.py"
+    path = target / "conversions.py"
+    text = path.read_text()
+    start = text.index("<<<<<<<")
+    end = text.index("\n", text.index(">>>>>>>")) + 1
+    path.write_text(text[:start] + "BAR_TO_PSI = 14.5038\nKELVIN_OFFSET = 273.0\n" + text[end:])
+    git(target, "add", "conversions.py")
+    git(target, "revert", "--continue", "--no-edit")
     assert commit_count(target) == 6
-    assert "BAR_TO_PSI = 14.5\n" in (target / "conversions.py").read_text()
+    assert git(target, "log", "--format=%s", "-1").stdout.strip() == 'Revert "Fix Kelvin offset"'
+    assert "KELVIN_OFFSET = 273.0\n" in path.read_text()
+    assert git(target, "status", "--porcelain").stdout == ""
 
 
 @pytest.mark.parametrize("n", [1, 2, 3])

@@ -2,35 +2,23 @@
 # The data arrives as text, as it does from a file.
 # Run from the repo root:
 #   uv run python exercises/python/02-variables-and-types/units.py
+# No loop and no `if` is needed. They come in exercise 04.
 
-serial_number = "CB-0042"
-pressure_text = "7.5 bar"
-temperature_text = "82"
 BAR_TO_PSI = 14.5038
-ALARM_LIMIT_BAR = 8.0
+ALARM_LIMIT_BAR = 7.0
 
-# TODO 1: print each of the three text values above together with its type, one line each.
-# The first line must read: CB-0042 <class 'str'>
+# --- Task 1: text to numbers ---
+pressure_text = "7.5 bar"
+temperature_text = "82 degC"
+# Print these two lines. Build them from the text values above, not by typing the numbers.
+#   Pressure: 7.50 bar = 108.78 psi
+#   Temperature: 82.00 degC = 355.15 K
 
-# TODO 2: turn temperature_text into a number, keep it in temperature_c.
-# Keep the temperature in kelvin in temperature_k and print it as: Temperature in K: 355.15
-temperature_c = ...
-temperature_k = ...
 
-# TODO 3: split pressure_text into a number pressure_bar (a float) and a text unit.
-# Print both, each followed by its type. The first line must read: 7.5 <class 'float'>
-pressure_bar = ...
-unit = ...
+# --- Task 2: read an error ---
+# See the README. Add the line there below this comment.
 
-# TODO 4: convert pressure_bar to psi, keep it in pressure_psi.
-# Print it as: Pressure in psi: 108.7785
-pressure_psi = ...
 
-# TODO 5: build one line of text in message and print it. It must read exactly:
-#   Unit CB-0042 runs at 7.50 bar (108.78 psi) and 355.15 K
-# Build it from the variables, not by typing the numbers.
-message = ...
-
-# TODO 6: make a boolean is_alarm that is True when pressure_bar is above ALARM_LIMIT_BAR.
-# Print it as: Alarm: False
-is_alarm = ...
+# --- Task 3: a full reading ---
+# See the README. No hints for this one.
+reading_line = "2026-01-15 09:00:00;P1;108.8 psi;179.6 degF"

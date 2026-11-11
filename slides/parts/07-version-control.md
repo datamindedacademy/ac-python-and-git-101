@@ -11,14 +11,14 @@ label: 7 · Version control
 
 # This prompt will <span class="dm-accent">make sense</span> by 17:00
 
-<p class="prompt">Create a branch `feature/max-temperature` from an up-to-date `main`. Stage only `analyse_run.py`, commit with an imperative message, push and set the upstream. Draft a pull request description from `git diff origin/main`. Do not commit `output/`. If the merge conflicts, stop and show me both sides.</p>
+<p class="prompt">Fetch and rebase `feature/max-temperature` onto `origin/main`. If a commit conflicts, stop and show me both sides. Then stage only `analyse_run.py` and commit it as a conventional commit, type `fix`, scope `analysis`. Do not commit `output/`. Push with `--force-with-lease` and draft the pull request description from `git diff origin/main`.</p>
 
 <style>
 .prompt { font-family: monospace; font-size: 18px; line-height: 1.6; background: var(--dm-surface); border-left: 4px solid var(--dm-connecting); border-radius: 8px; padding: 18px 22px; margin-top: 16px; }
 </style>
 
 <!--
-This is what a specialist asks an assistant for. Every term in it is covered this afternoon: branch, up-to-date main, staging, imperative commit message, push, upstream, pull request, diff against origin/main, keeping output out of Git, and a merge conflict. Do not explain anything now. The same slide comes back in the wrap-up.
+This is what a specialist asks an assistant for. Every term in it is covered this afternoon: fetch, rebase, origin/main, a conflict and its two sides, staging, conventional commits with a type and a scope, keeping output out of Git, push with force-with-lease, pull request, and a diff against origin/main. Do not explain anything now. The same slide comes back in the wrap-up.
 -->
 
 ---

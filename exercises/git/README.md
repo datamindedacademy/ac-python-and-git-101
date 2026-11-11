@@ -10,7 +10,7 @@ By the end you can: clone an Azure DevOps repository, commit on a branch, push, 
 |---|---|---|---|
 | 1 | `01-first-commit` | `git init`, `status`, `add`, `commit`, `log`, `diff`, `diff --staged`. The three areas. Commits that say one thing. | A commit is the unit you undo and review. |
 | 2 | `02-history` | Extra exercise (ahead, or after class): `log`, `show`, find who changed a value and when, `restore`. | Find out what changed, who did it and why. |
-| 3 | `03-branches` | `switch -c`, `merge` (fast-forward, merge conflict), `branch -d`. | Try things safely, and solve conflicts calmly. |
+| 3 | `03-branches` | `switch -c`, `merge` (fast-forward, merge conflict), `rebase`, `branch -d`. | Try things safely, and solve conflicts calmly. |
 | 4 | `04-azure-devops-remote` | `clone`, `remote`, `push -u` to Azure DevOps. | Your work is backed up and colleagues can get it. |
 | 5 | `05-pull-request` | Pull request, review, complete, `pull`, clean up. | A second pair of eyes before it reaches `main`. |
 | 6 | `06-git-in-vscode` | Trainer demo in class. Do it yourself afterwards. | Daily Git work, and keeping data out of history. |
@@ -20,14 +20,14 @@ Do the exercises in order. Exercise 2 is extra: do it when you are ahead, or aft
 ## How an exercise works
 
 - **Words to use**: the terms of that exercise.
-- **Tasks**: each task states a result to reach. The commands are in a collapsed hint. Open it when you are stuck.
-- **Optional**: not needed to follow the training. One task is with Copilot.
-- **Challenge** (1, 2, 3 and 5): a result to reach, no commands. Answers are in `solutions/git/README.md`.
+- **Tasks**: two or three per exercise. Each states a result to reach. The last one is much harder and has no hint. Most people will not finish it in class.
+- **Hints**: the commands are in `HINTS.md` in the same folder. Read one only when you are stuck.
+- Answers are in `solutions/git/README.md`.
 - **Open question**: goes beyond today. Most people cannot answer it yet. Try it, or bring it to the trainer.
 
 ## Using Copilot
 
-You may use GitHub Copilot all day. No core task needs it.
+You may use GitHub Copilot all day. No task needs it.
 
 - Type the Git commands yourself today. You need the words to ask for the right thing later.
 - Read `git diff` before every commit, whoever wrote the change.
