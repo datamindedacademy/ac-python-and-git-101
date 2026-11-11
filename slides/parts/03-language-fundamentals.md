@@ -131,39 +131,8 @@ TypeError: can only concatenate str (not "int") to str
 </style>
 
 <!--
-Text read from a file or typed by a user is always a string, even if it looks like a number. Use float, int and str to convert. Python does not convert silently: adding text and a number is an error, and that is a feature. Here is our first error message, notice that it tells you the kind of error and what went wrong. The next slide shows how to read it. Question on the slide: it prints 7.57.5. On text, the star repeats. So a wrong type does not always crash: sometimes it gives a wrong result, which is worse.
+Text read from a file or typed by a user is always a string, even if it looks like a number. Use float, int and str to convert. Python does not convert silently: adding text and a number is an error, and that is a feature. Here is our first error message, notice that it tells you the kind of error and what went wrong. We read a full one just before the exercise. Question on the slide: it prints 7.57.5. On text, the star repeats. So a wrong type does not always crash: sometimes it gives a wrong result, which is worse.
 -->
-
----
-layout: default
-label: 3 · Language fundamentals
----
-
-# A <span class="dm-accent">traceback</span> is a map to the error
-
-```text {all|1|2-3|4|all}
-Traceback (most recent call last):
-  File "convert.py", line 2, in <module>
-    pressure_bar = float(text)
-ValueError: could not convert string to float: 'seven'
-```
-
-<v-clicks>
-
-- Line 1 is only a header, it says: read on
-- The middle shows the file, the line number and the code that failed
-- The last line names the error type and what went wrong. Read it first.
-
-</v-clicks>
-
-<style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-</style>
-
-<!--
-When Python fails it prints a traceback. It looks scary and it is the most useful thing it gives you. Start at the bottom: the error type, here ValueError, and the message, which says what could not be converted. Then look one line up: file, line number and the exact code. That is usually all you need to find the problem. Copilot can explain a traceback too, but you should be able to find the line yourself. Later today you handle errors you expect with try and except.
--->
-
 
 ---
 layout: default
@@ -283,6 +252,37 @@ to_kelvin(temperature_c)
 <!--
 From Oliver's Clean Code workshop. Code is read more often than it is written, and single-letter names optimise for writing, not for reading. A good name answers the question before it is asked: which quantity, in which unit. Python style is lowercase with underscores, and capitals for values that never change. There is a bonus today: Copilot follows the naming it sees, so good names also improve the code it generates for you. The classic example is the Mars Climate Orbiter in 1999: one team sent thruster data in pound-force seconds, the other read it as newton seconds, and the probe was lost. No error was raised anywhere. The name is the only place the unit can live in plain Python.
 -->
+
+---
+layout: default
+label: 3 · Language fundamentals
+---
+
+# A <span class="dm-accent">traceback</span> is a map to the error
+
+```text {all|1|2-3|4|all}
+Traceback (most recent call last):
+  File "convert.py", line 2, in <module>
+    pressure_bar = float(text)
+ValueError: could not convert string to float: 'seven'
+```
+
+<v-clicks>
+
+- Line 1 is only a header, it says: read on
+- The middle shows the file, the line number and the code that failed
+- The last line names the error type and what went wrong. Read it first.
+
+</v-clicks>
+
+<style>
+.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+</style>
+
+<!--
+Last slide before the exercise, because the exercise makes you read one. When Python fails it prints a traceback. It looks scary and it is the most useful thing it gives you. Start at the bottom: the error type, here ValueError, and the message, which says what could not be converted. Then look one line up: file, line number and the exact code. That is usually all you need to find the problem. Copilot can explain a traceback too, but you should be able to find the line yourself. Later today you handle errors you expect with try and except.
+-->
+
 
 ---
 layout: statement
