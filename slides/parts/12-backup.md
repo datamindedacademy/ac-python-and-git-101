@@ -6,7 +6,7 @@ title: Backup - More Python
 # Backup: more <span class="dm-accent">Python</span>
 
 <!--
-Backup slides, not part of the day. Each one stands alone: use it when a participant asks about the topic, or when Copilot writes it in someone's exercise. The first half is language: classes, dataclasses, pydantic, generators, decorators and context managers. The second half is for scripts that grow: logging, command-line arguments, the debugger and dates. The last slide is a reading aid for short syntax that generated code uses.
+Backup slides, not part of the day. Each one stands alone: use it when a participant asks about the topic, or when Copilot writes it in someone's exercise. Every title names the problem the tool solves. The first half is language: classes, dataclasses, pydantic, generators, decorators, context managers and asyncio. The second half is for scripts that grow: logging, command-line arguments, the debugger and dates. The last slide is a reading aid for short syntax that generated code uses.
 -->
 
 ---
@@ -14,7 +14,7 @@ layout: default
 label: Backup · More Python
 ---
 
-# A <span class="dm-accent">class</span> keeps data and its functions together
+# Same values passed to every function? Use a <span class="dm-accent">class</span>
 
 ```python
 class Compressor:
@@ -49,7 +49,7 @@ layout: default
 label: Backup · More Python
 ---
 
-# A <span class="dm-accent">dataclass</span> is a record with named, typed fields
+# A <span class="dm-accent">dataclass</span> catches the typo a dict lets through
 
 ```python
 from dataclasses import dataclass
@@ -83,7 +83,7 @@ layout: default
 label: Backup · More Python
 ---
 
-# <span class="dm-accent">pydantic</span> checks data where it enters your script
+# <span class="dm-accent">pydantic</span> rejects bad data before it spreads
 
 ```python
 from pydantic import BaseModel, Field
@@ -122,7 +122,7 @@ layout: default
 label: Backup · More Python
 ---
 
-# A <span class="dm-accent">generator</span> hands out one value at a time
+# A <span class="dm-accent">generator</span> reads a file too big for memory
 
 <DmColumns class="mt-2">
 <DmColumn header="A list: everything in memory" tone="plain">
@@ -171,7 +171,7 @@ layout: default
 label: Backup · More Python
 ---
 
-# A <span class="dm-accent">decorator</span> wraps a function with extra behaviour
+# Time or cache any function with a <span class="dm-accent">decorator</span>
 
 <DmColumns class="mt-2">
 <DmColumn header="Using one" tone="violet">
@@ -225,7 +225,7 @@ layout: default
 label: Backup · More Python
 ---
 
-# A <span class="dm-accent">context manager</span> cleans up, also after an error
+# A <span class="dm-accent">context manager</span> never forgets to clean up
 
 <DmColumns class="mt-2">
 <DmColumn header="with, as you know it" tone="plain">
@@ -277,7 +277,65 @@ layout: default
 label: Backup · More Python
 ---
 
-# <span class="dm-accent">logging</span> is print with a level, a time and a switch
+# <span class="dm-accent">asyncio</span> waits for many slow things at once
+
+<DmColumns class="mt-2">
+<DmColumn header="One after the other: 3 s" tone="plain">
+
+```python
+import time
+
+def read_pressure(name):
+    time.sleep(1)    # a slow network request
+    return name, 7.5
+
+def main():
+    names = ["C-101", "C-102", "C-103"]
+    readings = [read_pressure(name)
+                for name in names]
+    print(readings)
+
+main()
+```
+
+</DmColumn>
+<DmColumn header="All at once: 1 s" tone="violet" divider>
+
+```python
+import asyncio
+
+async def read_pressure(name):
+    await asyncio.sleep(1)
+    return name, 7.5
+
+async def main():
+    names = ["C-101", "C-102", "C-103"]
+    readings = await asyncio.gather(
+        *(read_pressure(name) for name in names))
+    print(readings)
+
+asyncio.run(main())
+```
+
+</DmColumn>
+</DmColumns>
+
+<p class="note">It speeds up <b>waiting</b> (network, databases, instruments), not <b>calculating</b>. For heavy maths: NumPy, or several processes.</p>
+
+<style>
+.slidev-code { font-size: 13.5px !important; line-height: 1.4 !important; }
+</style>
+
+<!--
+The problem: a script that asks fifty compressors, or fifty web pages, for a value spends almost all its time waiting for answers, one after the other. asyncio lets one script wait for all of them at the same time. The sleep of one second stands for a slow request. On the left the three requests take three seconds, on the right one second, and with fifty it is still about one second. Two new words. async def defines a coroutine: a function that can pause. await marks the point where it pauses, and while it waits Python runs the other coroutines. gather starts them together and collects the results in order, and asyncio.run starts the whole thing from normal code. It is still one thread doing one thing at a time, it only never sits idle while waiting. That is why it does not help with calculation: a loop that computes for a second keeps everything else waiting. For that, use NumPy, or several processes with concurrent.futures. Two practical points. Async spreads: a function that awaits must itself be async, so you choose it for a whole program, not for one function. And you need libraries that support it, such as httpx for web requests, because a normal time.sleep or requests call inside async code blocks everything. If generated code is full of async and await and your script only reads a few files, ask for the plain version.
+-->
+
+---
+layout: default
+label: Backup · More Python
+---
+
+# <span class="dm-accent">logging</span> shows what an unattended script did
 
 ```python
 import logging
@@ -313,7 +371,7 @@ layout: default
 label: Backup · More Python
 ---
 
-# <span class="dm-accent">argparse</span> reads arguments from the command line
+# <span class="dm-accent">argparse</span> changes the input without editing the script
 
 ```python
 import argparse
@@ -347,7 +405,7 @@ layout: default
 label: Backup · More Python
 ---
 
-# The <span class="dm-accent">debugger</span> stops the script so you can look inside
+# The <span class="dm-accent">debugger</span> finds the bug without ten print lines
 
 <DmSteps class="mt-4">
 <DmStep n="1" label="Set a breakpoint">Click left of a line number, a red dot appears. The script will pause <b>before</b> that line.</DmStep>
@@ -367,7 +425,7 @@ layout: default
 label: Backup · More Python
 ---
 
-# <span class="dm-accent">datetime</span> does the calendar arithmetic for you
+# <span class="dm-accent">datetime</span> gets durations and date formats right
 
 ```python
 from datetime import datetime, timedelta
@@ -399,7 +457,7 @@ layout: default
 label: Backup · More Python
 ---
 
-# Short syntax you will meet in <span class="dm-accent">generated code</span>
+# Decode the short syntax in <span class="dm-accent">generated code</span>
 
 | You read | It means |
 | --- | --- |
