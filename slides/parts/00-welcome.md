@@ -1,11 +1,12 @@
 ---
 layout: intro
-role: Dataminded
+role: Platform engineer and Dataminded Academy lead
+photo: /jan-vanbuel.jpg
 ---
 
 # Jan <span class="dm-accent">Vanbuel</span>
 
-<p class="mt-4">Your trainer today. Ask early, ask often: stuck for five minutes means wave at me.</p>
+<p class="mt-4">Your trainer today. I like Rust, playing the saxophone and triathlon.</p>
 
 <!--
 Introduce yourself briefly, then ask the room three questions with a show of hands: who has used MATLAB, who has written Excel macros or VBA, and who has written a little Python. That tells you how much to lean on the MATLAB analogies. Say clearly that Day 1 assumes some scripting experience and focuses on what is specific to Python. You are the only trainer today, so ask people to help their neighbour first while you walk around during the exercises.
@@ -166,7 +167,7 @@ git --version
 </div>
 
 <DmBanner class="mt-4" icon="i-mdi-lifebuoy" title="Something fails?">
-Do not debug alone. Wave at me: setup problems are normal on managed laptops.
+Do not debug alone. Call me over: setup problems are normal on managed laptops.
 </DmBanner>
 
 <style>
