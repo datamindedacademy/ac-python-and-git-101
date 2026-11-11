@@ -47,6 +47,43 @@ layout: default
 label: 2 · Scripts and notebooks
 ---
 
+# A notebook runs code <span class="dm-accent">cell by cell</span>
+
+<div class="nb">
+  <div class="cell"><span class="in">In [1]</span><code>pressure_bar = 7.5</code></div>
+  <div class="cell"><span class="in">In [2]</span><code>pressure_bar * 14.5038</code></div>
+  <div class="out"><span class="in">Out [2]</span><code>108.7785</code></div>
+  <div class="cell"><span class="in">In [3]</span><code>print(f"{pressure_bar} bar")</code></div>
+  <div class="out"><span class="in">Out</span><code>7.5 bar</code></div>
+</div>
+
+<v-clicks>
+
+- A file with the extension `.ipynb`, opened in VS Code or Jupyter
+- You run one **cell** at a time with `Shift+Enter`, in any order
+- The **kernel** is the Python process behind it. It keeps your variables between cells
+- Output, tables and plots are saved in the file, next to the code
+
+</v-clicks>
+
+<style>
+.nb { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.nb .cell, .nb .out { display: flex; align-items: center; gap: 14px; padding: 7px 14px; border-radius: 8px; }
+.nb .cell { background: var(--dm-surface); border-left: 4px solid var(--dm-connecting); }
+.nb .out { padding-left: 18px; }
+.nb .in { width: 60px; font-size: 13px; color: var(--dm-connecting); font-family: monospace; }
+.nb code { background: none !important; font-size: 16px; color: var(--dm-premium); }
+</style>
+
+<!--
+The second form. A notebook is one file made of cells. You type code in a cell, run it, and the result appears directly below it. Then you write the next cell. The kernel is a Python process that stays alive in the background and remembers every variable, so cell 2 can use what cell 1 defined. That is the same way of working as the MATLAB command window or a Live Script: try something, look, try the next thing. The file stores the code and the output together, including tables and plots, which makes a notebook good for showing results. The numbers between the brackets count the order in which you ran the cells. Remember that detail for the slide after the next one.
+-->
+
+---
+layout: default
+label: 2 · Scripts and notebooks
+---
+
 # Scripts repeat, <span class="dm-accent">notebooks</span> explore
 
 <DmComparison
@@ -76,7 +113,7 @@ layout: default
 label: 2 · Scripts and notebooks
 ---
 
-# A notebook can run code <span class="dm-accent">you no longer see</span>
+# A notebook has <span class="dm-accent">hidden state</span>
 
 <div class="nb">
   <div class="cell"><span class="in">In [1]</span><code>limit_bar = 9.0</code></div>
@@ -87,9 +124,10 @@ label: 2 · Scripts and notebooks
 
 <v-clicks>
 
-- You ran cell 1, then cell 2, then edited cell 2 away and forgot about it
-- Cell 3 prints a value that no longer appears anywhere in the visible code
+- The **kernel** remembers every cell you ran, also the one you deleted. That memory is the **hidden state**
+- Cell 3 prints a value that appears nowhere in the visible code
 - A colleague runs the notebook top to bottom and gets a different answer
+- Restart the kernel and run all cells before you trust a result
 
 </v-clicks>
 
@@ -108,7 +146,7 @@ label: 2 · Scripts and notebooks
 </style>
 
 <!--
-The kernel remembers variables from every cell you ran, in the order you ran them, not the order on the page. After an hour of exploring, the notebook on screen and the memory in the kernel can disagree. A script cannot do this to you, because it always starts from a clean process, which is what makes its result reproducible. The habit that protects you in notebooks: restart the kernel and run all cells before you trust a result. Rule of thumb: explore in a notebook, and once you would run it twice, move it into a script. We work with scripts today and meet notebooks again on day 2.
+The kernel remembers variables from every cell you ran, in the order you ran them, not the order on the page. That memory is called the hidden state of the notebook: it decides the result, and you cannot see it on the page. Here cell 2 was run and then deleted, so the kernel still holds 6.0. After an hour of exploring, the notebook on screen and the memory in the kernel can disagree. A script cannot do this to you, because it always starts from a clean process, which is what makes its result reproducible. The habit that protects you in notebooks: restart the kernel and run all cells before you trust a result. Rule of thumb: explore in a notebook, and once you would run it twice, move it into a script. We work with scripts today and meet notebooks again on day 2.
 -->
 
 ---
