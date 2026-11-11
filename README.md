@@ -4,8 +4,8 @@
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/datamindedacademy/ac-python-and-git-101)
 
 Course material for **day 1** of the Dataminded training *Python Programming and Data
-Analysis* for the FD and FT departments of Atlas Copco: development environment,
-programming fundamentals, and version control.
+Analysis* for Atlas Copco: development environment, programming fundamentals, and
+version control.
 
 Day 1 assumes basic scripting experience, for example in MATLAB or VBA. You do not need
 to know Python. After this day you can:

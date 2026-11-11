@@ -124,7 +124,7 @@ Create your personal folder and a file in it. Replace `anna` with your own name 
 
 ```powershell
 New-Item -ItemType Directory -Force participants/anna
-Set-Content participants/anna/about.md "# Anna`n`nI work in FD. I use Python to analyse compressor test data."
+Set-Content participants/anna/about.md "# Anna`n`nI work at Atlas Copco. I use Python to analyse compressor test data."
 ls participants/anna
 cat participants/anna/about.md
 ```

@@ -278,7 +278,7 @@ git branch -a
 uv run python check_setup.py
 git switch -c feature/anna-intro
 New-Item -ItemType Directory -Force participants/anna
-Set-Content participants/anna/about.md "# Anna`n`nI work in FD. I use Python to analyse compressor test data."
+Set-Content participants/anna/about.md "# Anna`n`nI work at Atlas Copco. I use Python to analyse compressor test data."
 git add participants/anna/about.md
 git commit -m "Add intro for Anna"
 git push -u origin feature/anna-intro
