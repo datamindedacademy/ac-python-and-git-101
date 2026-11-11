@@ -195,6 +195,9 @@ label: 8 · Git on the command line
 
 # Work on a branch, then <span class="dm-accent">merge</span> it into main
 
+<div class="bm">
+<div>
+
 ```powershell
 git switch -c feature/bar-to-psi
 git add conversions.py
@@ -208,11 +211,35 @@ Updating 9b221ad..1cd9279
 Fast-forward
 ```
 
-- **Fast-forward** if `main` did not move; otherwise Git makes a merge commit
-- `git branch` lists branches, `git branch -d <name>` deletes one
+- `git branch` lists branches
+- `git branch -d <name>` deletes one
+
+</div>
+<svg viewBox="0 0 400 300" class="graph" role="img" aria-label="Two small commit graphs. In a fast-forward the main label moves forward to the commit of the feature branch. In a merge commit, main and the feature branch both have a new commit and a new commit M joins them.">
+<text x="0" y="16" fill="var(--dm-premium)" style="font-size: 14px; font-weight: 600;">Fast-forward: main did not move</text>
+<path d="M40 80 L240 80" stroke="var(--dm-premium)" stroke-width="3" />
+<circle cx="40" cy="80" r="13" fill="var(--dm-premium)" /><text x="40" y="84" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">A</text><circle cx="140" cy="80" r="13" fill="var(--dm-premium)" /><text x="140" y="84" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">B</text><circle cx="240" cy="80" r="13" fill="var(--dm-connecting)" /><text x="240" y="84" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">C</text>
+<rect x="113" y="37" width="54" height="22" rx="5" fill="none" stroke="var(--dm-premium)" stroke-width="1.5" stroke-dasharray="4 3" /><text x="140" y="52" text-anchor="middle" fill="var(--dm-premium)" style="font-size: 12px;">main</text>
+<path d="M170 48 L206 48" stroke="var(--dm-premium)" stroke-width="1.5" stroke-dasharray="4 3" /><path d="M206 48 l-7 -4 M206 48 l-7 4" stroke="var(--dm-premium)" stroke-width="1.5" fill="none" />
+<rect x="213.0" y="37" width="54" height="22" rx="5" fill="var(--dm-premium)" /><text x="240" y="52" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">main</text><rect x="207.0" y="101" width="66" height="22" rx="5" fill="var(--dm-connecting)" /><text x="240" y="116" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">feature</text>
+<text x="290" y="84" fill="var(--dm-premium)" style="font-size: 12px;">the label moves,</text><text x="290" y="100" fill="var(--dm-premium)" style="font-size: 12px;">no new commit</text>
+<path d="M0 142 L400 142" stroke="#d8d5ee" stroke-width="1" />
+<text x="0" y="170" fill="var(--dm-premium)" style="font-size: 14px; font-weight: 600;">Merge commit: main moved too</text>
+<path d="M40 215 L340 215" stroke="var(--dm-premium)" stroke-width="3" />
+<path d="M140 215 C170 215 170 270 200 270 L250 270 C300 270 300 215 340 215" fill="none" stroke="var(--dm-connecting)" stroke-width="3" />
+<circle cx="40" cy="215" r="13" fill="var(--dm-premium)" /><text x="40" y="219" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">A</text><circle cx="140" cy="215" r="13" fill="var(--dm-premium)" /><text x="140" y="219" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">B</text><circle cx="240" cy="215" r="13" fill="var(--dm-premium)" /><text x="240" y="219" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">D</text><circle cx="225" cy="270" r="13" fill="var(--dm-connecting)" /><text x="225" y="274" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">C</text><circle cx="340" cy="215" r="13" fill="var(--dm-premium)" /><text x="340" y="219" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">M</text>
+<rect x="313.0" y="172" width="54" height="22" rx="5" fill="var(--dm-premium)" /><text x="340" y="187" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">main</text><rect x="97.0" y="259" width="66" height="22" rx="5" fill="var(--dm-connecting)" /><text x="130" y="274" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">feature</text>
+<text x="398" y="294" text-anchor="end" fill="var(--dm-premium)" style="font-size: 12px;">M has two parents: D and C</text>
+</svg>
+</div>
 
 <style>
-.slidev-code { font-size: 16px !important; line-height: 1.5 !important; }
+.slidev-code { font-size: 14px !important; line-height: 1.5 !important; }
+.bm { display: grid; grid-template-columns: 1fr 400px; gap: 28px; align-items: start; margin-top: 4px; }
+.bm > * { min-width: 0; }
+.graph { width: 400px; height: 300px; }
+.graph text { line-height: 1 !important; }
+li { font-size: 16px; }
 </style>
 
 <!--
@@ -226,6 +253,19 @@ label: 8 · Git on the command line
 
 # A <span class="dm-accent">conflict</span> means Git needs you to decide
 
+<div class="cf">
+<svg viewBox="0 0 330 250" class="graph2" role="img" aria-label="A commit graph. After commit B, main and feature/a each have a commit that changes the same line with a different factor. The merge is marked with a question mark.">
+<path d="M30 70 L300 70" stroke="var(--dm-premium)" stroke-width="3" />
+<path d="M110 70 C140 70 140 170 170 170 L200 170 C250 170 250 70 300 70" fill="none" stroke="var(--dm-connecting)" stroke-width="3" />
+<circle cx="30" cy="70" r="13" fill="var(--dm-premium)" /><text x="30" y="74" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">A</text><circle cx="110" cy="70" r="13" fill="var(--dm-premium)" /><text x="110" y="74" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">B</text><circle cx="200" cy="70" r="13" fill="var(--dm-premium)" /><text x="200" y="74" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">D</text><circle cx="185" cy="170" r="13" fill="var(--dm-connecting)" /><text x="185" y="174" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">C</text>
+<circle cx="300" cy="70" r="15" fill="#fff" stroke="#d1344b" stroke-width="3" /><text x="300" y="76" text-anchor="middle" fill="#d1344b" style="font-size: 17px; font-weight: 700;">?</text>
+<rect x="152.0" y="11" width="96" height="22" rx="5" fill="var(--dm-premium)" /><text x="200" y="26" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">main (HEAD)</text><rect x="62.0" y="159" width="76" height="22" rx="5" fill="var(--dm-connecting)" /><text x="100" y="174" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">feature/a</text>
+<text x="200" y="46" text-anchor="middle" fill="var(--dm-premium)" style="font-family: monospace; font-size: 12px;">psi * 0.068948</text>
+<text x="185" y="204" text-anchor="middle" fill="var(--dm-connecting)" style="font-family: monospace; font-size: 12px;">psi * 0.06895</text>
+<text x="165" y="238" text-anchor="middle" fill="var(--dm-premium)" style="font-size: 13px;">Both changed the same line after B.</text>
+</svg>
+<div>
+
 ```text
 CONFLICT (content): Merge conflict in conversions.py
 
@@ -237,14 +277,24 @@ def psi_to_bar(psi):
 >>>>>>> feature/a
 ```
 
-- A conflict is Git asking you to decide, nothing is lost
-- Edit the file, delete the marker lines, then `git add` and `git commit`
+<p class="sides"><b>Above</b> <code>=======</code> is your branch. <b>Below</b> is the incoming branch.</p>
+
+</div>
+</div>
+
+- Nothing is lost. Edit the file, delete the marker lines, then `git add` and `git commit`
 - Changed your mind? `git merge --abort`
 
 <p class="ask" v-click><b>Question</b>Two people change different lines of the same file. Is that a conflict?</p>
 
 <style>
-.slidev-code { font-size: 16px !important; line-height: 1.5 !important; }
+.slidev-code { font-size: 14px !important; line-height: 1.45 !important; }
+.cf { display: grid; grid-template-columns: 330px 1fr; gap: 24px; align-items: center; margin-top: 2px; }
+.cf > * { min-width: 0; }
+.graph2 { width: 330px; height: 250px; }
+.graph2 text { line-height: 1 !important; }
+.sides { font-size: 15px; margin: 4px 0 0; }
+li { font-size: 16px; }
 </style>
 
 <!--
