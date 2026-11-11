@@ -165,5 +165,5 @@ layout: statement
 </style>
 
 <!--
-Everyone creates a script, runs it from PowerShell and from VS Code, and changes it. About 15 minutes. I walk around, and any PATH or interpreter problem is exactly what we want to catch now.
+Everyone creates a script, runs it from PowerShell and from VS Code, and changes it. I walk around, and any PATH or interpreter problem is exactly what we want to catch now.
 -->

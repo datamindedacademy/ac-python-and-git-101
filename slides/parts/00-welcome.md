@@ -98,7 +98,7 @@ layout: default
 label: Welcome
 ---
 
-# This prompt will <span class="dm-accent">make sense</span> by 15:00
+# This prompt will <span class="dm-accent">make sense</span> after the Python part
 
 <p class="prompt">Write a function `summarize_run(path: Path) -> dict` that reads a CSV log with `csv.DictReader`, converts `pressure_bar` to float, skips and counts rows that raise `ValueError`, and returns the mean and max. Use a list comprehension where it fits. Standard library only, no classes. Add a pytest test using `pytest.approx`.</p>
 
@@ -115,7 +115,7 @@ layout: default
 label: Welcome
 ---
 
-# By 17:00 you can do <span class="dm-accent">six things</span> on your own laptop
+# Tonight you can do <span class="dm-accent">six things</span> on your own laptop
 
 <div class="grid-3 goals">
 <v-clicks>
@@ -201,5 +201,5 @@ Do not debug alone. Call me over: setup problems are normal on managed laptops.
 </style>
 
 <!--
-Use these 30 minutes to get every laptop to the same state. First the four tools: uv installed, Python 3.13 available through uv, VS Code starting, Git available. Then the course repository: clone it into Documents, run uv sync, and open the folder in VS Code. git clone copies the repository from the server, and we come back to it this afternoon. uv sync creates the folder .venv with the Python and the packages the exercises need. Every exercise today runs from this folder. Managed laptops sometimes block downloads or need a proxy setting, and that is exactly what I am here to solve. Nobody should start the content blocks with a broken setup.
+Use this time to get every laptop to the same state. First the four tools: uv installed, Python 3.13 available through uv, VS Code starting, Git available. Then the course repository: clone it into Documents, run uv sync, and open the folder in VS Code. git clone copies the repository from the server, and we come back to it this afternoon. uv sync creates the folder .venv with the Python and the packages the exercises need. Every exercise today runs from this folder. Managed laptops sometimes block downloads or need a proxy setting, and that is exactly what I am here to solve. Nobody should start the content blocks with a broken setup.
 -->

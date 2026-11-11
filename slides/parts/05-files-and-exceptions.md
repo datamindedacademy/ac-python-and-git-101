@@ -127,5 +127,5 @@ layout: statement
 </style>
 
 <!--
-Fix one broken script by reading its traceback, starting at the bottom line. Then skip and count bad rows. The last task makes people decide where to catch: stop or skip. About 20 minutes.
+Fix one broken script by reading its traceback, starting at the bottom line. Then skip and count bad rows. The last task makes people decide where to catch: stop or skip.
 -->

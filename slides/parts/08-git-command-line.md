@@ -143,7 +143,7 @@ title: Exercise - first commit
 # Exercise time: <span class="dm-accent">first commit</span>
 
 <p class="mt-6 text-lg opacity-80"><code>exercises/git/01-first-commit</code></p>
-<p class="mt-2 text-sm opacity-70">About 20 minutes: <code>uv run python exercises/git/setup_exercise.py 1</code></p>
+<p class="mt-2 text-sm opacity-70"><code>uv run python exercises/git/setup_exercise.py 1</code></p>
 
 <!--
 Participants run the setup script, which creates a sandbox folder in their home folder. The tasks state a result and give no commands: people find them in the slides, the cheat sheet in the exercises README, or git help. They init, make commits that each say one thing, and predict what status shows for a file that is staged and then edited again. Walk around and watch for people who forgot the identity configuration.
@@ -361,7 +361,7 @@ title: Exercise - branches
 # Exercise time: <span class="dm-accent">branches</span>
 
 <p class="mt-6 text-lg opacity-80"><code>exercises/git/03-branches</code></p>
-<p class="mt-2 text-sm opacity-70">About 20 minutes: <code>uv run python exercises/git/setup_exercise.py 3</code></p>
+<p class="mt-2 text-sm opacity-70"><code>uv run python exercises/git/setup_exercise.py 3</code></p>
 
 <p class="words"><b>Words you can now use</b> stage · commit message · diff · HEAD · merge · fast-forward · conflict · rebase</p>
 
@@ -371,5 +371,5 @@ title: Exercise - branches
 </style>
 
 <!--
-Create a branch, commit on it, merge it into main and look at the graph. They then merge `experiment/psi-precision` into main, which conflicts, and resolve it: the conflict is a core part, about 20 minutes in total. The words at the bottom are the ones they can now use when asking a colleague or Copilot for help, or when reviewing.
+Create a branch, commit on it, merge it into main and look at the graph. They then merge `experiment/psi-precision` into main, which conflicts, and resolve it: the conflict is a core part. The words at the bottom are the ones they can now use when asking a colleague or Copilot for help, or when reviewing.
 -->

@@ -300,7 +300,7 @@ layout: statement
 </style>
 
 <!--
-The values arrive as text, as they do from a file: convert, split value and unit, format, and read one deliberate type error from the bottom. Every exercise has two or three tasks that state the result. The hints are in HINTS.md in the exercise folder: ask people to try for two minutes before they open it. The last task is much harder and has no hint. Most people will not finish it, and nothing later depends on it. About 20 minutes.
+The values arrive as text, as they do from a file: convert, split value and unit, format, and read one deliberate type error from the bottom. Every exercise has two or three tasks that state the result. The hints are in HINTS.md in the exercise folder: ask people to try for two minutes before they open it. The last task is much harder and has no hint. Most people will not finish it, and nothing later depends on it.
 -->
 
 ---
@@ -507,7 +507,7 @@ layout: statement
 </style>
 
 <!--
-Lists, slicing, sorting, a dictionary, a list of dictionaries and a set, all without loops. Watch for the off-by-one in slices. About 20 minutes.
+Lists, slicing, sorting, a dictionary, a list of dictionaries and a set, all without loops. Watch for the off-by-one in slices.
 -->
 
 ---
@@ -713,7 +713,7 @@ layout: statement
 </style>
 
 <!--
-Conditions, for loops and list comprehensions on bench readings. The last task finds alarm episodes. About 25 minutes. Break time after this exercise if the room is ready for it.
+Conditions, for loops and list comprehensions on bench readings. The last task finds alarm episodes. Break time after this exercise if the room is ready for it.
 -->
 
 ---
@@ -995,5 +995,5 @@ layout: statement
 </style>
 
 <!--
-Write, call and combine small functions, test first: run the given tests, see them fail, and make them pass. This is the building block for everything after lunch. About 25 minutes.
+Write, call and combine small functions, test first: run the given tests, see them fail, and make them pass. This is the building block for everything after lunch.
 -->

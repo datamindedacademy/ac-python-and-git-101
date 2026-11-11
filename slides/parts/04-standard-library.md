@@ -206,5 +206,5 @@ layout: statement
 </style>
 
 <!--
-Use math, pathlib, with open, csv and json on a small set of fictional bench logs. The hints are in HINTS.md. About 30 minutes.
+Use math, pathlib, with open, csv and json on a small set of fictional bench logs. The hints are in HINTS.md.
 -->

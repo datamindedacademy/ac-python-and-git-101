@@ -9,7 +9,7 @@ layout: default
 label: 7 · Version control
 ---
 
-# This prompt will <span class="dm-accent">make sense</span> by 17:00
+# This prompt will <span class="dm-accent">make sense</span> by the end of today
 
 <p class="prompt">Fetch and rebase `feature/max-temperature` onto `origin/main`. If a commit conflicts, stop and show me both sides. Then stage only `analyse_run.py` and commit it as a conventional commit, type `fix`, scope `analysis`. Do not commit `output/`. Push with `--force-with-lease` and draft the pull request description from `git diff origin/main`.</p>
 

@@ -68,7 +68,7 @@ title: Exercise - remote
 # Exercise time: <span class="dm-accent">the remote</span>
 
 <p class="mt-6 text-lg opacity-80"><code>exercises/git/04-remote</code></p>
-<p class="mt-2 text-sm opacity-70">About 15 minutes: clone, branch, commit, push</p>
+<p class="mt-2 text-sm opacity-70">Clone, branch, commit, push</p>
 
 <!--
 Participants clone the training repository from the forge, create a branch, commit a small change and push it. This is the first time they sign in, so expect a few authentication questions. Have the URL on screen.
@@ -121,7 +121,7 @@ title: Exercise - pull request
 # Exercise time: <span class="dm-accent">pull request</span>
 
 <p class="mt-6 text-lg opacity-80"><code>exercises/git/05-pull-request</code></p>
-<p class="mt-2 text-sm opacity-70">About 20 minutes: PR into main, review, merge, pull</p>
+<p class="mt-2 text-sm opacity-70">PR into main, review, merge, pull</p>
 
 <!--
 Participants open a pull request for the branch from the previous exercise, review a neighbour's PR, merge it and pull the result. Pair people up so everyone gets to review.
