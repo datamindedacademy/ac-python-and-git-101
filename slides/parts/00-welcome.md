@@ -55,7 +55,9 @@ layout: default
 label: Welcome
 ---
 
-# AI is a <span class="dm-accent">multiplier</span> of experience
+# <span class="dm-accent">Learning</span> in the age of AI
+
+<p class="subtitle">AI is a multiplier of experience.</p>
 
 <div class="eq">
   <span class="term">your experience</span><span class="op">×</span><span class="term ai">AI</span><span class="op">=</span><span class="term">what you get</span>
@@ -76,12 +78,13 @@ There are several ways to do it, each with a cost. You choose
 </DmInfoCard>
 <DmInfoCard icon="i-mdi-target" title="Ask specific questions">
 
-A precise request gets code you can read and check
+A precise request gets code you can read and check, and makes AI workflows faster and cheaper
 
 </DmInfoCard>
 </div>
 
 <style>
+.subtitle { font-size: 21px; font-weight: 600; color: var(--dm-premium); margin: 0 0 4px; }
 .eq { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 8px; font-size: 26px; font-weight: 600; color: var(--dm-premium); }
 .eq .term { padding: 8px 20px; border-radius: 10px; background: var(--dm-surface); }
 .eq .ai { background: var(--dm-connecting); color: #fff; }
@@ -90,7 +93,7 @@ A precise request gets code you can read and check
 </style>
 
 <!--
-This is how we see AI at Dataminded, and it is why this day exists. AI multiplies the experience you bring. With a lot of experience you get a lot back. With zero experience there is nothing to multiply: you get code you cannot read, cannot check and cannot fix. So today is not about typing code faster than an assistant. It builds the three things the assistant cannot bring for you. First the language: the words a Python or Git specialist uses, so your request says exactly what you want. Second the tradeoffs: script or notebook, list or dict, skip a bad row or stop, merge or rebase. The assistant picks one silently unless you say which. Third specific questions: the next slide shows what that looks like. Copilot is allowed all day, starting now. Use it to explain an error or a line you do not understand, and to show a second way so you can compare. Keep only lines you understand, your name is on the commit. Judge what comes back in this order: is it correct, is it readable, and only then is it fast enough. Assistants tend to over-build, so ask for less. If your licence is not active yet, pair up with someone who has one. The exercises all work without it. Day 3 goes deeper into agents and reviewing AI-written code.
+This is how we see AI at Dataminded, and it is why this day exists. AI multiplies the experience you bring. With a lot of experience you get a lot back. With zero experience there is nothing to multiply: you get code you cannot read, cannot check and cannot fix. So today is not about typing code faster than an assistant. It builds the three things the assistant cannot bring for you. First the language: the words a Python or Git specialist uses, so your request says exactly what you want. Second the tradeoffs: script or notebook, list or dict, skip a bad row or stop, merge or rebase. The assistant picks one silently unless you say which. Third specific questions: the next slide shows what that looks like. A precise request also makes AI workflows faster and cheaper: the assistant needs fewer rounds, reads less, and writes less that you throw away. Copilot is allowed all day, starting now. Use it to explain an error or a line you do not understand, and to show a second way so you can compare. Keep only lines you understand, your name is on the commit. Judge what comes back in this order: is it correct, is it readable, and only then is it fast enough. Assistants tend to over-build, so ask for less. If your licence is not active yet, pair up with someone who has one. The exercises all work without it. Day 3 goes deeper into agents and reviewing AI-written code.
 -->
 
 ---
