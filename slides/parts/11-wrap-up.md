@@ -152,6 +152,52 @@ Day 2 builds on the first column: packages install through uv, the exercises ass
 -->
 
 ---
+layout: default
+label: Wrap-up
+---
+
+# More from <span class="dm-accent">Dataminded Academy</span>
+
+<div class="grid-2 mt-2 more">
+<DmInfoCard icon="i-mdi-docker" title="Containerization with Docker">
+
+Pack a script with its Python and packages, so it runs the same anywhere
+
+<a href="https://github.com/datamindedacademy/containerization_with_docker">github.com/datamindedacademy/containerization_with_docker</a>
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-calendar-clock" icon-tone="navy" title="Orchestration with Airflow">
+
+Run scripts on a schedule, in order, with retries and alerts
+
+<a href="https://github.com/datamindedacademy/workflows_with_airflow">github.com/datamindedacademy/workflows_with_airflow</a>
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-table-large" icon-tone="navy" title="Polars">
+
+Fast data frames on one machine, for analysis of large logs
+
+<a href="https://github.com/datamindedacademy/dataframe-of-mind">github.com/datamindedacademy/dataframe-of-mind</a>
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-server-network" title="PySpark">
+
+Data frames on a cluster, for data that does not fit on one machine
+
+<a href="https://github.com/datamindedacademy/getting_started_pyspark">github.com/datamindedacademy/getting_started_pyspark</a>
+
+</DmInfoCard>
+</div>
+
+<style>
+.more a { font-family: monospace; font-size: 12.5px; color: var(--dm-connecting); }
+</style>
+
+<!--
+For after the three days. These are other Dataminded Academy courses, and the material is in public repositories you can work through on your own. Docker is the next step after uv: a container packs the script, the Python version and the packages into one thing that runs the same on a server as on your laptop. Airflow is for when a script has to run every night, after another one, with a retry and an alert when it fails. Polars and PySpark are both for data frames, the tables you meet on day 2 with pandas: Polars when the data still fits on one machine but pandas gets slow, PySpark when it needs a cluster. The dataframe-of-mind repository covers Polars and PySpark side by side.
+-->
+
+---
 layout: thanks
 ---
 
