@@ -1,6 +1,6 @@
 # Python exercises - day 1
 
-Hands-on exercises for day 1 of the Python Programming and Data Analysis training. They assume basic scripting experience (MATLAB, VBA or a little Python) and no Python knowledge. All examples use one story: measurements from a (fictional) compressor test bench.
+Hands-on exercises for day 1 of the Python Programming and Data Analysis training. They assume basic scripting experience, for example in MATLAB or VBA. You do not need to know Python. All examples use one story: measurements from a (fictional) compressor test bench.
 
 ## Exercises
 

@@ -7,8 +7,8 @@ Course material for **day 1** of the Dataminded training *Python Programming and
 Analysis* for the FD and FT departments of Atlas Copco: development environment,
 programming fundamentals, and version control.
 
-Day 1 assumes basic scripting experience (MATLAB, VBA or a little Python) and no Python
-knowledge. After this day you can:
+Day 1 assumes basic scripting experience, for example in MATLAB or VBA. You do not need
+to know Python. After this day you can:
 
 - Set up a Python environment and run a script from PowerShell.
 - Create a virtual environment per project and install packages with uv.

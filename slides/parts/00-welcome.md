@@ -24,7 +24,7 @@ label: Welcome
   <DmIconBadge icon="i-mdi-source-branch" label="Version control" sub="Git and Azure DevOps" />
 </div>
 
-<p class="note">Some scripting experience assumed (MATLAB, VBA or a little Python). We focus on what is specific to Python.</p>
+<p class="note">Some scripting experience assumed, for example in MATLAB or VBA. No Python needed.</p>
 
 <!--
 The three blocks of the day. The environment comes first because nothing else works without it. Fundamentals is the biggest block. Git gets the end of the day, when you are comfortable with files and the terminal. The day assumes some scripting experience, so we spend the time on what is specific to Python.
