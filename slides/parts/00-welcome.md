@@ -148,8 +148,9 @@ label: Welcome
 
 # Check the tools, then <span class="dm-accent">clone the repository</span>
 
-<DmColumns class="mt-2">
-<DmColumn header="1 · The tools answer" tone="navy">
+<div class="setup">
+<div>
+<p class="step">1 · The tools answer</p>
 
 ```powershell
 uv --version
@@ -158,26 +159,30 @@ code --version
 git --version
 ```
 
-</DmColumn>
-<DmColumn header="2 · The course material is on your laptop" tone="violet" divider>
+</div>
+<div>
+<p class="step">2 · The course material is on your laptop</p>
 
 ```powershell
 cd $HOME\Documents
-git clone <url from the trainer>
+git clone https://github.com/datamindedacademy/ac-python-and-git-101
 cd ac-python-and-git-101
 uv sync
 code .
 ```
 
-</DmColumn>
-</DmColumns>
+</div>
+</div>
 
 <DmBanner class="mt-4" icon="i-mdi-lifebuoy" title="Something fails?">
 Do not debug alone. Call me over: setup problems are normal on managed laptops.
 </DmBanner>
 
 <style>
-.slidev-code { font-size: 16px !important; line-height: 1.5 !important; }
+.slidev-code { font-size: 13px !important; line-height: 1.6 !important; }
+.setup { display: grid; grid-template-columns: 270px 1fr; gap: 24px; margin-top: 8px; }
+.setup > * { min-width: 0; }
+.step { font-weight: 600; font-size: 15px; color: var(--dm-connecting); margin: 0 0 6px; }
 </style>
 
 <!--

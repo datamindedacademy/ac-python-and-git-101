@@ -32,12 +32,11 @@ You may use GitHub Copilot throughout. Do not keep a line you do not understand.
 ## Getting started
 
 You need the tools from the setup manual: Git for Windows, uv, and Visual Studio Code
-with GitHub Copilot. Open **PowerShell** and run these commands one by one. The trainer
-gives you the URL of this repository.
+with GitHub Copilot. Open **PowerShell** and run these commands one by one:
 
 ```powershell
 cd $HOME\Documents
-git clone <url-of-this-repository>
+git clone https://github.com/datamindedacademy/ac-python-and-git-101
 cd ac-python-and-git-101
 uv sync
 uv run python exercises/python/01-first-script/hello.py
