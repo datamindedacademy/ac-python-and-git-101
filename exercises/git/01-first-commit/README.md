@@ -46,7 +46,7 @@ If you get "The folder ... already exists", you ran the setup before. Add `--for
 
 ## Tasks
 
-Stuck on a task? The hints are in `HINTS.md` in this folder.
+Stuck on a task? Look at the slides, the cheat sheet in `exercises/git/README.md`, or `git help <command>`.
 
 Hashes are written as `<hash>`. Yours differ.
 
@@ -97,7 +97,7 @@ nothing to commit, working tree clean
 
 ### Task 3: Two edits in one file, and a typo in history
 
-This one is much harder. There is no hint. Use `git help <command>` or Copilot to find the commands.
+This one is much harder. Use `git help <command>` or Copilot to find the commands.
 
 Make two unrelated edits in `conversions.py`, save the file, and only then start staging:
 

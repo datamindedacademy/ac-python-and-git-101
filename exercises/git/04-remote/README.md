@@ -40,7 +40,7 @@ The trainer gives you the real URL. You can also copy it from the repository pag
 
 ## Tasks
 
-Stuck on a task? The hints are in `HINTS.md` in this folder.
+Stuck on a task? Look at the slides, the cheat sheet in `exercises/git/README.md`, or `git help <command>`.
 
 ### Task 1: Clone and look around
 
@@ -90,7 +90,7 @@ The forge may show a **Compare & pull request** button, and `git push` prints a 
 
 ### Task 3: The remote moved while you were committing
 
-This one is much harder. There is no hint.
+This one is much harder.
 
 A colleague pushes a commit to your branch on the remote while you have a new local commit that is not pushed yet. Do this with a neighbour who has access to your branch (they clone it, add a commit and push), or alone with a second clone of the repository in another folder, which plays the colleague.
 

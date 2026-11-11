@@ -34,7 +34,7 @@ You now have a repository with 5 commits by three colleagues. The commit hashes 
 
 ## Tasks
 
-Stuck on a task? The hints are in `HINTS.md` in this folder.
+Stuck on a task? Look at the slides, the cheat sheet in `exercises/git/README.md`, or `git help <command>`.
 
 ### Task 1: Read the history
 
@@ -82,7 +82,7 @@ nothing to commit, working tree clean
 
 ### Task 3: Undo one old commit, keep the later ones
 
-This one is much harder. There is no hint. Use `git help <command>` or Copilot to find the commands.
+This one is much harder. Use `git help <command>` or Copilot to find the commands.
 
 A report must match old results, so the Kelvin offset has to go back to `273.0`. Undo the commit "Fix Kelvin offset" only. Do not delete it from the history, and keep the commit "Use more precise bar to psi factor" that came after it, so `BAR_TO_PSI` stays `14.5038`.
 

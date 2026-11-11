@@ -20,8 +20,8 @@ Do the exercises in order. Exercise 2 is extra: do it when you are ahead, or aft
 ## How an exercise works
 
 - **Words to use**: the terms of that exercise.
-- **Tasks**: two or three per exercise. Each states a result to reach. The last one is much harder and has no hint. Most people will not finish it in class.
-- **Hints**: the commands are in `HINTS.md` in the same folder. Read one only when you are stuck.
+- **Tasks**: two or three per exercise. Each states a result to reach, not the commands. The last one is much harder. Most people will not finish it in class.
+- **No hints**: find the commands in the slides, in the cheat sheet below, or with `git help <command>`.
 - Answers are in `solutions/git/README.md`.
 - **Open question**: goes beyond today. Most people cannot answer it yet. Try it, or bring it to the trainer.
 

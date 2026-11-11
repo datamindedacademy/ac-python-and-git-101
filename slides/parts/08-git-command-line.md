@@ -146,7 +146,7 @@ title: Exercise - first commit
 <p class="mt-2 text-sm opacity-70">About 20 minutes: <code>uv run python exercises/git/setup_exercise.py 1</code></p>
 
 <!--
-Participants run the setup script, which creates a sandbox folder in their home folder. The tasks state a result and the commands are in HINTS.md: ask people to try for two minutes before opening it. They init, make commits that each say one thing, and predict what status shows for a file that is staged and then edited again. Walk around and watch for people who forgot the identity configuration.
+Participants run the setup script, which creates a sandbox folder in their home folder. The tasks state a result and give no commands: people find them in the slides, the cheat sheet in the exercises README, or git help. They init, make commits that each say one thing, and predict what status shows for a file that is staged and then edited again. Walk around and watch for people who forgot the identity configuration.
 -->
 
 ---

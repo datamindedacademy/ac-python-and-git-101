@@ -29,7 +29,7 @@ You need your branch `feature/<your-name>-intro` from exercise 4, pushed to the 
 
 ## Tasks
 
-Stuck on a task? The hints are in `HINTS.md` in this folder.
+Stuck on a task? Look at the slides, the cheat sheet in `exercises/git/README.md`, or `git help <command>`.
 
 ### Task 1: Open a pull request and review one
 
@@ -65,7 +65,7 @@ The hashes and the number of commits will differ. `git branch -a` shows only:
 
 ### Task 3: A pull request that conflicts with main
 
-This one is much harder. There is no hint.
+This one is much harder.
 
 `main` moves all the time, because everyone merges PRs into it. Reproduce the bad case. Two participants (or one participant with two branches) each change the same line of `README.md` in the training repository, each on their own branch, and each open a PR. Merge the first PR. The second PR now says **This branch has conflicts that must be resolved**.
 

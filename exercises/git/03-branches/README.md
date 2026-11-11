@@ -35,7 +35,7 @@ Run the `cd` command it prints. You get a repository with 4 commits on `main` an
 
 ## Tasks
 
-Stuck on a task? The hints are in `HINTS.md` in this folder.
+Stuck on a task? Look at the slides, the cheat sheet in `exercises/git/README.md`, or `git help <command>`.
 
 Do the tasks in order, in the same repository.
 
@@ -103,7 +103,7 @@ KELVIN_OFFSET = 273.15
 
 ### Task 3: Rebase
 
-This one is much harder. There is no hint.
+This one is much harder.
 
 The branch `feature/temperature-report` has three commits. It was started before `main` moved on, and one of its commits clashes with `main`. Get its three commits on top of the current `main`, with the same messages, so that the history after `main` is a straight line. Then merge the branch into `main` as a fast-forward and delete it.
 
