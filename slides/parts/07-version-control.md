@@ -9,7 +9,10 @@ layout: default
 label: 7 · Version control
 ---
 
-# The <span class="dm-accent">final_v3</span> problem
+# <span class="dm-accent">final_v3</span> is version control by hand
+
+<div class="split">
+<div>
 
 ```text
 \\fileserver\compressors\testbench\
@@ -18,15 +21,36 @@ label: 7 · Version control
     analyse_run_final_v3_USE_THIS_ONE.py
 ```
 
+<p class="note">With AI: <code>git diff</code> shows exactly what an assistant changed, so you keep what is good and undo the rest.</p>
+
+</div>
+
+<div class="grid-2">
 <v-clicks>
+<DmInfoCard icon="i-mdi-history" title="History">
 
-- **History**: which version produced last week's report?
-- **Who and why**: who changed the conversion factor?
-- **Undo**: how do I get back to the version that worked?
-- **Collaborate**: two people edit at once, whose version wins?
-- **With AI**: `git diff` shows exactly what an assistant changed, so you keep what is good and undo the rest
+Which version made last week's report?
 
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-account-question-outline" title="Who and why">
+
+Who changed the conversion factor?
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-undo-variant" title="Undo">
+
+How do I get back to what worked?
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-account-multiple-outline" icon-tone="navy" title="Collaborate">
+
+Two people edit, whose version wins?
+
+</DmInfoCard>
 </v-clicks>
+</div>
+</div>
+
 
 <style>
 .slidev-code { font-size: 16px !important; line-height: 1.5 !important; }
@@ -41,7 +65,7 @@ layout: default
 label: 7 · Version control
 ---
 
-# Repository, commit, <span class="dm-accent">branch</span>
+# A <span class="dm-accent">branch</span> is a movable label on a commit
 
 <DmColumns class="mt-2">
 <DmColumn>
@@ -79,7 +103,7 @@ layout: default
 label: 7 · Version control
 ---
 
-# Git, Azure DevOps and the <span class="dm-accent">remote</span>
+# Azure DevOps hosts the shared <span class="dm-accent">remote</span>
 
 ```mermaid {scale: 1.0}
 flowchart LR
@@ -103,7 +127,7 @@ layout: default
 label: 7 · Version control
 ---
 
-# Three areas on your <span class="dm-accent">laptop</span>
+# A change moves through <span class="dm-accent">three areas</span>
 
 ```mermaid {scale: 1.15}
 flowchart LR

@@ -13,7 +13,7 @@ layout: default
 label: 5 · Files and exceptions
 ---
 
-# Reading a text file
+# <span class="dm-accent">with open</span> reads a file and closes it again
 
 ```python {all|1-2|4-5|7|all}
 from pathlib import Path
@@ -49,7 +49,7 @@ layout: default
 label: 5 · Files and exceptions
 ---
 
-# Writing and appending
+# Mode <span class="dm-accent">w</span> overwrites, mode <span class="dm-accent">a</span> appends
 
 ```python {all|1-2|3-5|7-8|all}
 lines = ["run,max_pressure_bar", "TB-014,7.9"]
@@ -61,7 +61,7 @@ with open("summary.txt", "a", encoding="utf-8") as f:
     f.write("TB-015,8.2\n")
 ```
 
-<DmBanner class="mt-2" tone="violet" icon="mdi:alert-outline">
+<DmBanner class="mt-2" tone="violet" icon="i-mdi-alert-outline">
 Mode <code>"w"</code> replaces an existing file without asking. <code>"a"</code> adds at the end, <code>"r"</code> only reads.
 </DmBanner>
 
@@ -108,7 +108,10 @@ layout: default
 label: 5 · Files and exceptions
 ---
 
-# Handling errors with <span class="dm-accent">try / except</span>
+# <span class="dm-accent">try / except</span> handles an error you expect
+
+<div class="split">
+<div>
 
 ```python {all|2-3|4-6|all}
 text = "seven"
@@ -128,6 +131,21 @@ None
 ```
 
 </v-click>
+</div>
+
+<div v-click>
+
+```mermaid {scale: 0.85}
+flowchart TD
+    T["try: float(text)"] -- works --> C["carry on"]
+    T -- ValueError --> E["except: set None, print"]
+    E --> C
+    style E fill:#543edc,color:#fff,stroke:#543edc
+```
+
+</div>
+
+</div>
 
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }

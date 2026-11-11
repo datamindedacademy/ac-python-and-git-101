@@ -9,7 +9,7 @@ layout: default
 label: 9 · Remotes and Azure DevOps
 ---
 
-# <span class="dm-accent">Clone</span> a repository
+# <span class="dm-accent">Clone</span> copies the repository and its history
 
 ```powershell
 git clone https://dev.azure.com/<organisation>/<project>/_git/<training-repo>
@@ -37,7 +37,7 @@ layout: default
 label: 9 · Remotes and Azure DevOps
 ---
 
-# <span class="dm-accent">Push</span> and <span class="dm-accent">pull</span>
+# <span class="dm-accent">Push</span> uploads commits, <span class="dm-accent">pull</span> downloads them
 
 ```powershell
 git push -u origin feature/bar-to-psi   # first push of a new branch
@@ -76,7 +76,7 @@ layout: default
 label: 9 · Remotes and Azure DevOps
 ---
 
-# The pull request <span class="dm-accent">flow</span>
+# A <span class="dm-accent">pull request</span> lets a colleague review first
 
 <DmProcess class="mt-4">
 <DmPhase label="Push" />
@@ -86,12 +86,23 @@ label: 9 · Remotes and Azure DevOps
 <DmPhase label="Complete" />
 </DmProcess>
 
-<div class="mt-8"></div>
-<ul>
-  <li>A pull request (PR) proposes merging your branch into <code>main</code>; colleagues read the diff first</li>
-  <li><b>Complete</b>: pick the merge type (squash keeps <code>main</code> readable), tick <b>Delete source branch</b></li>
-  <li>Afterwards update your laptop: <code>git switch main</code>, <code>git pull</code></li>
-</ul>
+<div class="grid-3 mt-8">
+<DmInfoCard icon="i-mdi-source-pull" title="Propose">
+
+A pull request (PR) proposes merging your branch into `main`. Colleagues read the diff first.
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-check-all" title="Complete">
+
+Pick the merge type (squash keeps `main` readable) and tick **Delete source branch**.
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-laptop" icon-tone="navy" title="Update your laptop">
+
+`git switch main`, then `git pull`
+
+</DmInfoCard>
+</div>
 
 <!--
 Nobody commits straight to main; changes arrive through a PR that someone else reads. The PR is an Azure DevOps feature, not a Git one. Walk through the screens live if you can: the Files tab with the diff, comments, the Approve button and the Complete dialog. Squash merge turns a branch of ten messy commits into one clean one. After completing, pull on main so your laptop knows about the merge. On day 3 we make PRs mandatory with a branch policy.
@@ -116,7 +127,7 @@ layout: default
 label: 9 · Remotes and Azure DevOps
 ---
 
-# Keep files out: <span class="dm-accent">.gitignore</span>
+# <span class="dm-accent">.gitignore</span> keeps files out of history
 
 ```text
 # .gitignore
@@ -142,7 +153,7 @@ layout: default
 label: 9 · Remotes and Azure DevOps
 ---
 
-# Three ways to use <span class="dm-accent">Git</span>
+# Three tools drive <span class="dm-accent">the same Git</span>
 
 <DmComparison
   class="mt-2"

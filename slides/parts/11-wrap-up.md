@@ -3,31 +3,42 @@ layout: default
 label: Wrap-up
 ---
 
-# What you can do <span class="dm-accent">now</span>
+# You can now do <span class="dm-accent">all six things</span>
 
-<DmColumns class="mt-2">
-<DmColumn header="Python" tone="navy">
+<div class="grid-3">
+<DmInfoCard icon="i-mdi-check-bold" title="Run a script">
 
-- Run a script from PowerShell and from VS Code
-- A virtual environment per project with uv
-- Functions, conditionals, loops, importing a package
-- Read a stack trace
-- Read a folder of files and write a summary
+From PowerShell and VS Code
 
-</DmColumn>
-<DmColumn header="Git" tone="violet" divider>
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-check-bold" title="Manage a project">
 
-- Clone an Azure DevOps repository
-- Commit on a branch
-- Push, merge through a PR and pull
-- Read history, undo a change, recognise a conflict
+A .venv per project with uv
 
-</DmColumn>
-</DmColumns>
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-check-bold" title="Write a program">
 
-<div class="mt-6"></div>
+Functions, loops, imports
 
-<p class="text-center">Today: the <b>vocabulary</b> and the tradeoffs. Day 3: you use them to direct and review Copilot and coding agents.</p>
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-check-bold" icon-tone="navy" title="Read an error">
+
+Find the line in a stack trace
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-check-bold" icon-tone="navy" title="Automate files">
+
+Read files, write a summary
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-check-bold" icon-tone="navy" title="Work with Git">
+
+Branch, commit, push, PR, pull
+
+</DmInfoCard>
+</div>
+
+<p class="note">Today: the <b>vocabulary</b> and the tradeoffs. Day 3: you use them to direct and review Copilot and coding agents.</p>
 
 <!--
 Go through the list and ask for a show of hands for each item. This is the end level promised for the day. If a point gets few hands, note it for the homework. Close the loop with the opening question: AI can write the code, but you now have the words to ask for the right thing and the understanding to judge what comes back. Offer to stay a few minutes for anyone whose sign-in or pull request did not work.
@@ -38,7 +49,7 @@ layout: default
 label: Wrap-up
 ---
 
-# Git <span class="dm-accent">cheat sheet</span>
+# Eight commands cover <span class="dm-accent">daily Git</span>
 
 <DmColumns class="mt-2">
 <DmColumn header="Local" tone="navy">
@@ -82,7 +93,7 @@ layout: default
 label: Wrap-up
 ---
 
-# Before <span class="dm-accent">day 2</span>, and beyond
+# Before <span class="dm-accent">day 2</span>: one full cycle with a PR
 
 <DmColumns class="mt-2">
 <DmColumn header="Before day 2" tone="navy">

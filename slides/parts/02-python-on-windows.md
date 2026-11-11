@@ -13,14 +13,15 @@ layout: default
 label: 2 · Python on your laptop
 ---
 
-# Where <span class="dm-accent">Python</span> comes from
+# <span class="dm-accent">Python</span> is open source and runs on CPython
 
-- Created by Guido van Rossum, first released in 1991
-- Named after Monty Python, not the snake
-- Open source, steered by the Python Software Foundation and a steering council
-- On your laptop it is **CPython** 3.13, the reference interpreter, written in C
+<div class="grid-3">
+  <DmIconBadge icon="i-mdi-calendar-star" label="1991" sub="by Guido van Rossum, named after Monty Python" />
+  <DmIconBadge icon="i-mdi-account-group-outline" label="Open source" sub="steered by the PSF" />
+  <DmIconBadge icon="i-mdi-language-c" tone="dark" label="CPython 3.13" sub="the interpreter, written in C" />
+</div>
 
-<DmProcess class="mt-6">
+<DmProcess class="mt-8">
 <DmPhase label="Your .py file" />
 <DmPhase label="Compiled to bytecode" />
 <DmPhase label="CPython runs it" />
@@ -35,7 +36,7 @@ layout: default
 label: 2 · Python on your laptop
 ---
 
-# Which Python am I <span class="dm-accent">running</span>?
+# Check <span class="dm-accent">which Python</span> a command really runs
 
 ```powershell
 Get-Command python
@@ -49,7 +50,7 @@ Application  python.exe  C:\Users\you\AppData\Local\Microsoft\WindowsApps\python
 
 <v-click>
 
-<DmBanner class="mt-4" tone="violet" icon="mdi:alert-outline" title="Watch out">
+<DmBanner class="mt-4" tone="violet" icon="i-mdi-alert-outline" title="Watch out">
 A <code>WindowsApps</code> path is the Microsoft Store shortcut, not a real Python. It opens the Store or does nothing useful.
 </DmBanner>
 
@@ -68,7 +69,7 @@ layout: default
 label: 2 · Python on your laptop
 ---
 
-# Run a script from <span class="dm-accent">PowerShell</span>
+# Go to the folder, then <span class="dm-accent">uv run</span> the script
 
 ```python
 # hello.py
@@ -97,7 +98,7 @@ layout: default
 label: 2 · Python on your laptop
 ---
 
-# Running from <span class="dm-accent">VS Code</span>
+# <span class="dm-accent">VS Code</span> runs the same script in three steps
 
 <DmSteps class="mt-4">
 <DmStep n="1" label="Open the folder">File, Open Folder, choose your project folder</DmStep>
@@ -125,5 +126,5 @@ layout: statement
 </style>
 
 <!--
-Everyone creates a script, runs it from PowerShell and from VS Code, and changes it. About 15 minutes. Oliver and I walk around, and any PATH or interpreter problem is exactly what we want to catch now.
+Everyone creates a script, runs it from PowerShell and from VS Code, and changes it. About 15 minutes. I walk around, and any PATH or interpreter problem is exactly what we want to catch now.
 -->

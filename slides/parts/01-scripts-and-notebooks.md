@@ -47,7 +47,7 @@ layout: default
 label: 1 · Scripts and notebooks
 ---
 
-# Scripts versus <span class="dm-accent">notebooks</span>
+# Scripts repeat, <span class="dm-accent">notebooks</span> explore
 
 <DmComparison
   class="mt-4"
@@ -76,12 +76,14 @@ layout: default
 label: 1 · Scripts and notebooks
 ---
 
-# The notebook trap: <span class="dm-accent">hidden state</span>
+# A notebook can run code <span class="dm-accent">you no longer see</span>
 
-```python
-# Cell 1                  # Cell 2                  # Cell 3
-limit_bar = 9.0           limit_bar = 6.0           print(limit_bar)
-```
+<div class="nb">
+  <div class="cell"><span class="in">In [1]</span><code>limit_bar = 9.0</code></div>
+  <div class="cell ghost"><span class="in">In [2]</span><code>limit_bar = 6.0</code><span class="tag">ran, then deleted</span></div>
+  <div class="cell"><span class="in">In [3]</span><code>print(limit_bar)</code></div>
+  <div class="out"><span class="in">Out</span><code>6.0</code><span class="tag warn">not 9.0</span></div>
+</div>
 
 <v-clicks>
 
@@ -97,6 +99,16 @@ limit_bar = 9.0           limit_bar = 6.0           print(limit_bar)
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
 .words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
 .words b { margin-right: 8px; }
+.nb { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.nb .cell, .nb .out { display: flex; align-items: center; gap: 14px; padding: 7px 14px; border-radius: 8px; }
+.nb .cell { background: var(--dm-surface); border-left: 4px solid var(--dm-connecting); }
+.nb .ghost { background: none; border: 2px dashed #b9b3e6; opacity: 0.6; }
+.nb .ghost code { text-decoration: line-through; }
+.nb .out { padding-left: 18px; }
+.nb .in { width: 52px; font-size: 13px; color: var(--dm-connecting); font-family: monospace; }
+.nb code { background: none !important; font-size: 16px; color: var(--dm-premium); }
+.nb .tag { margin-left: auto; font-size: 12px; color: var(--dm-premium); }
+.nb .warn { color: #fff; background: var(--dm-connecting); padding: 2px 10px; border-radius: 99px; }
 </style>
 
 <!--

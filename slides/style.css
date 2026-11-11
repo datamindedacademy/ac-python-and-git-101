@@ -11,3 +11,28 @@
 .fig-sm { display: block; margin: 16px auto 0; max-height: 240px; }
 .small { font-size: 0.85em; }
 .muted { opacity: 0.7; }
+
+/* Equal-width card grids for DmInfoCard / DmIconBadge rows. */
+.grid-2, .grid-3 { display: grid; gap: 16px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+/* One-line takeaway under a table or diagram, so it never sits flush against it. */
+.note {
+  margin-top: 18px !important;
+  padding: 10px 16px;
+  border-left: 4px solid var(--dm-connecting);
+  background: var(--dm-authentic);
+  border-radius: 0 8px 8px 0;
+  color: var(--dm-premium);
+  font-size: 15px;
+}
+.note code { background: #fff; }
+
+/* Code on the left, a picture of what it does on the right. */
+.split { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; align-items: center; }
+.split > * { min-width: 0; }
+
+/* Card body text at the size bullets had, so cards stay readable from the back of the room. */
+.dm-info-body { font-size: 14.5px !important; }
+.dm-info-title { font-size: 17px !important; }

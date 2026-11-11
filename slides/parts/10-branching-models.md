@@ -9,7 +9,7 @@ layout: default
 label: 10 · Branching models
 ---
 
-# <span class="dm-accent">GitFlow</span>
+# <span class="dm-accent">GitFlow</span> keeps a branch per release stage
 
 ```mermaid {scale: 1.3}
 %%{init: {'gitGraph': {'rotateCommitLabel': false}}}%%
@@ -41,7 +41,7 @@ layout: default
 label: 10 · Branching models
 ---
 
-# <span class="dm-accent">Trunk-based</span> development
+# <span class="dm-accent">Trunk-based</span>: one main, short branches
 
 ```mermaid {scale: 1.3}
 %%{init: {'gitGraph': {'rotateCommitLabel': false}}}%%
@@ -70,7 +70,7 @@ layout: default
 label: 10 · Branching models
 ---
 
-# Our <span class="dm-accent">recommendation</span>
+# Use <span class="dm-accent">trunk-based</span> for scripts and analyses
 
 <DmComparison
   class="mt-2"

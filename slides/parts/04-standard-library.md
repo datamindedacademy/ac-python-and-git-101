@@ -13,7 +13,7 @@ layout: default
 label: 4 · The standard library
 ---
 
-# Batteries included: <span class="dm-accent">import</span> and math
+# <span class="dm-accent">import</span> gives you ready-made tools like math
 
 ```python {all|1|3-6|8|all}
 import math
@@ -48,7 +48,7 @@ layout: default
 label: 4 · The standard library
 ---
 
-# <span class="dm-accent">pathlib</span>: paths as objects
+# <span class="dm-accent">pathlib</span> builds paths and finds files
 
 ```python {all|2-3|5-6|8|all}
 from pathlib import Path
@@ -87,7 +87,7 @@ layout: default
 label: 4 · The standard library
 ---
 
-# <span class="dm-accent">csv</span>: reading rows
+# <span class="dm-accent">csv</span> turns each row into a dict of strings
 
 ```text
 t_s,pressure_bar,temperature_c
@@ -126,7 +126,7 @@ layout: default
 label: 4 · The standard library
 ---
 
-# <span class="dm-accent">json</span>: settings and nested data
+# <span class="dm-accent">json</span> stores settings and nested data
 
 ```python {all|2|3-4|5-6|all}
 import json

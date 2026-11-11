@@ -9,7 +9,7 @@ layout: default
 label: 8 · Git on the command line
 ---
 
-# Set up: identity and a <span class="dm-accent">first repository</span>
+# Set your identity once, then <span class="dm-accent">init a repository</span>
 
 ```powershell
 git config --global user.name "Your Name"
@@ -36,7 +36,7 @@ layout: default
 label: 8 · Git on the command line
 ---
 
-# Stage and <span class="dm-accent">commit</span>
+# <span class="dm-accent">Stage</span> what belongs together, then commit
 
 ```powershell
 git add conversions.py
@@ -64,7 +64,7 @@ layout: default
 label: 8 · Git on the command line
 ---
 
-# Read the history: <span class="dm-accent">log</span> and <span class="dm-accent">diff</span>
+# <span class="dm-accent">log</span> and <span class="dm-accent">diff</span> show what changed
 
 ```powershell
 git log --oneline
@@ -109,7 +109,7 @@ layout: default
 label: 8 · Git on the command line
 ---
 
-# Old versions: <span class="dm-accent">show</span> and <span class="dm-accent">restore</span>
+# <span class="dm-accent">show</span> and <span class="dm-accent">restore</span> bring back old versions
 
 ```powershell
 git show a055887                     # one commit: message and diff
@@ -148,7 +148,7 @@ layout: default
 label: 8 · Git on the command line
 ---
 
-# Branch and <span class="dm-accent">merge</span>
+# Work on a branch, then <span class="dm-accent">merge</span> it into main
 
 ```powershell
 git switch -c feature/bar-to-psi
@@ -179,7 +179,7 @@ layout: default
 label: 8 · Git on the command line
 ---
 
-# When two branches edit the <span class="dm-accent">same lines</span>
+# A <span class="dm-accent">conflict</span> means Git needs you to decide
 
 ```text
 CONFLICT (content): Merge conflict in conversions.py

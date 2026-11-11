@@ -15,6 +15,9 @@ label: 3 · Language fundamentals
 
 # Variables are <span class="dm-accent">names</span> for values
 
+<div class="split">
+<div>
+
 ```python {all|1-3|5|6-7|all}
 pressure_bar = 7.5
 temperature_c = 82.3
@@ -33,9 +36,27 @@ print(temperature_c)
 ```
 
 </v-click>
+</div>
+
+<div class="names" v-click>
+  <div class="row"><span class="name">pressure_bar</span><span class="arrow old">⇢</span><span class="val old">7.5</span></div>
+  <div class="row"><span class="name"></span><span class="arrow">→</span><span class="val now">8.0</span></div>
+  <div class="row"><span class="name">temperature_c</span><span class="arrow">→</span><span class="val">82.3</span></div>
+  <div class="row"><span class="name">run_id</span><span class="arrow">→</span><span class="val">"TB-014"</span></div>
+</div>
+</div>
 
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+.names { display: flex; flex-direction: column; gap: 12px; }
+.names .row { display: flex; align-items: center; gap: 12px; }
+.names .name { width: 150px; text-align: center; font-family: monospace; font-size: 15px; color: #fff; background: var(--dm-premium); border-radius: 99px; padding: 6px 0; }
+.names .name:empty { background: none; }
+.names .arrow { color: var(--dm-connecting); font-size: 22px; }
+.names .val { min-width: 90px; text-align: center; font-family: monospace; font-size: 16px; padding: 6px 12px; border-radius: 6px; background: var(--dm-authentic); border: 1.5px solid var(--dm-connecting); color: var(--dm-premium); }
+.names .now { font-weight: 700; border-width: 2.5px; }
+.names .old { opacity: 0.45; border-style: dashed; text-decoration: line-through; }
+.names .arrow.old { border: none; background: none; text-decoration: none; }
 </style>
 
 <!--
@@ -47,7 +68,7 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# The basic <span class="dm-accent">data types</span>
+# Every value has a <span class="dm-accent">type</span>
 
 ```python
 run_id = "TB-014"       # str: text
@@ -76,7 +97,7 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Converting <span class="dm-accent">between</span> types
+# Text that looks like a number is <span class="dm-accent">still text</span>
 
 ```python {all|1-3|5-6|all}
 text = "7.5"
@@ -108,7 +129,7 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Strings and <span class="dm-accent">f-strings</span>
+# <span class="dm-accent">f-strings</span> put values inside text
 
 ```python {all|3|4|all}
 run_id = "TB-014"
@@ -141,7 +162,7 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Names are <span class="dm-accent">signposts</span>
+# Put the <span class="dm-accent">unit</span> in the name
 
 <DmColumns class="mt-2">
 <DmColumn header="Written fast" tone="plain">
@@ -164,7 +185,7 @@ to_kelvin(temperature_c)
 </DmColumn>
 </DmColumns>
 
-<p class="mt-4">Put the unit in the name. Constants in capitals: <code>ALARM_LIMIT_BAR = 8.5</code></p>
+<p class="note">Put the unit in the name. Constants in capitals: <code>ALARM_LIMIT_BAR = 8.5</code></p>
 
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
@@ -198,7 +219,7 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Lists: an <span class="dm-accent">ordered</span> collection
+# A list keeps values <span class="dm-accent">in order</span>
 
 ```python {all|1|2|3|4-5|all}
 pressures_bar = [6.8, 7.1, 7.5, 7.4, 7.9]
@@ -264,7 +285,7 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Dictionaries: <span class="dm-accent">key to value</span>
+# A dict finds values <span class="dm-accent">by name</span>
 
 ```python {all|1|2|3-4|5|all}
 reading = {"run": "TB-014", "pressure_bar": 7.5}
@@ -297,7 +318,7 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# A choice: <span class="dm-accent">list</span> or <span class="dm-accent">dict</span>?
+# A <span class="dm-accent">list</span> for a series, a <span class="dm-accent">dict</span> for a record
 
 <DmComparison
   class="mt-2"
@@ -314,7 +335,7 @@ label: 3 · Language fundamentals
   <template #r2c1><code>reading["pressure_bar"]</code></template>
 </DmComparison>
 
-<p class="mt-4">Copilot will pick one for you unless you say which you want.</p>
+<p class="note">Copilot will pick one for you unless you say which you want.</p>
 
 <!--
 Both can hold the same measurements, and the choice shapes all the code that follows. A list is right for a time series: many values of one kind, where order matters and you loop over all of them. A dict is right for one record with named fields, where you want to ask for the pressure by name and not remember that it was column two. The cost of a list is that positions are easy to mix up, the cost of a dict is that a mistyped key fails. When you ask Copilot for code, say it: "return a list of floats" or "return a dict with these keys". If you do not, it chooses, and you inherit the choice.
@@ -344,7 +365,10 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Decisions with <span class="dm-accent">if</span>, elif, else
+# <span class="dm-accent">if</span> runs the first branch that is true
+
+<div class="split">
+<div>
 
 ```python {all|2|4|6|all}
 pressure_bar = 9.4
@@ -363,9 +387,25 @@ ALARM: over limit
 ```
 
 </v-click>
+</div>
+
+<div class="ladder" v-click>
+  <div class="rung hit"><code>pressure_bar &gt; 9.0</code><span>true: run this branch, skip the rest</span></div>
+  <div class="rung"><code>pressure_bar &lt; 5.0</code><span>not checked</span></div>
+  <div class="rung"><code>else</code><span>not checked</span></div>
+  <div class="caption">Checked top to bottom, the first true one wins</div>
+</div>
+
+</div>
 
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+.ladder { display: flex; flex-direction: column; gap: 10px; }
+.ladder .rung { display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 8px; background: var(--dm-surface); border-left: 4px solid #cacdf9; font-size: 13px; color: #6b6890; }
+.ladder .rung code { background: none !important; font-size: 15px; color: var(--dm-premium); }
+.ladder .hit { background: var(--dm-connecting); border-left-color: var(--dm-premium); color: #fff; }
+.ladder .hit code { color: #fff; }
+.ladder .caption { font-size: 13px; color: var(--dm-premium); opacity: 0.7; text-align: center; }
 </style>
 
 <!--
@@ -377,7 +417,7 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Repeating with <span class="dm-accent">for</span>
+# <span class="dm-accent">for</span> runs the block once per element
 
 ```python {all|2|1,3|all}
 pressures_bar = [6.8, 7.1, 9.4]
@@ -414,7 +454,10 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Loop pattern: <span class="dm-accent">filter and summarise</span>
+# Most scripts <span class="dm-accent">initialise, loop, test, collect</span>
+
+<div class="split" style="grid-template-columns: 1.6fr 1fr">
+<div>
 
 ```python {all|2-3|5-8|10|all}
 pressures_bar = [6.8, 7.1, 9.4, 7.4, 9.1]
@@ -436,6 +479,16 @@ print(high, round(total / len(pressures_bar), 2))
 ```
 
 </v-click>
+</div>
+
+<DmSteps>
+<DmStep n="1" label="Initialise">An empty list and a zero total</DmStep>
+<DmStep n="2" label="Loop">Take each value in turn</DmStep>
+<DmStep n="3" label="Test">Decide with an <code>if</code></DmStep>
+<DmStep n="4" label="Collect">Report at the end</DmStep>
+</DmSteps>
+
+</div>
 
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
@@ -469,7 +522,7 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Functions: <span class="dm-accent">name</span> a piece of logic
+# A function <span class="dm-accent">names</span> a piece of logic
 
 ```python {all|1-2|4|all}
 def to_psi(pressure_bar):
@@ -488,6 +541,16 @@ print(to_psi(10))
 
 </v-click>
 
+<div v-click>
+
+```mermaid {scale: 0.9}
+flowchart LR
+    I(["7.5 bar"]) -- argument --> F["to_psi(pressure_bar)"] -- return --> O(["108.8 psi"])
+    style F fill:#080635,color:#fff,stroke:#080635
+```
+
+</div>
+
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
 </style>
@@ -501,7 +564,7 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# <span class="dm-accent">return</span> is not print
+# <span class="dm-accent">return</span> passes a value on, print only shows it
 
 ```python {all|1-2|4-5|all}
 def double_and_print(x):
@@ -520,7 +583,7 @@ None
 
 </v-click>
 
-<p class="mt-2">A function without <code>return</code> gives back <code>None</code>. Use <code>print</code> to show, <code>return</code> to pass on.</p>
+<p class="note">A function without <code>return</code> gives back <code>None</code>. Use <code>print</code> to show, <code>return</code> to pass on.</p>
 
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
@@ -535,7 +598,9 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# A small <span class="dm-accent">program</span> made of functions
+# A script is small functions plus a <span class="dm-accent">main</span>
+
+<div class="split" style="grid-template-columns: 3fr 1fr; gap: 16px">
 
 ```python {all|1-3|5-6|8-11|13-14|all}
 def mean(values):
@@ -553,8 +618,18 @@ if __name__ == "__main__":
     main()
 ```
 
+```mermaid {scale: 0.6}
+flowchart TD
+    M["main()"] --> S["summarise()"]
+    S --> N["mean()"]
+    S --> B["min() · max()"]
+    style M fill:#080635,color:#fff,stroke:#080635
+```
+
+</div>
+
 <style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+.slidev-code { font-size: 13.5px !important; line-height: 1.5 !important; }
 </style>
 
 <!--
@@ -566,22 +641,32 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Type hints: <span class="dm-accent">reading</span> a signature
+# Type hints tell you <span class="dm-accent">how to call</span> a function
 
 ```python
 def to_psi(pressure_bar: float, decimals: int = 1) -> float:
     return round(pressure_bar * 14.5038, decimals)
 ```
 
-<div class="hints">
+<div class="grid-3 mt-4">
+<DmInfoCard icon="i-mdi-import" title="pressure_bar: float">
 
-- `pressure_bar: float` the parameter and the type it expects
-- `decimals: int = 1` a type and a default value
-- `-> float` the type of the return value
+The parameter and the type it expects
 
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-tune-variant" title="decimals: int = 1">
+
+A type and a default value, so you may leave it out
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-export" icon-tone="navy" title="-> float">
+
+The type of the value that comes back
+
+</DmInfoCard>
 </div>
 
-<p class="mt-4">Hints are documentation that the editor and tools can check. Python does not enforce them when the script runs.</p>
+<p class="note">Hints are documentation that the editor and tools can check. Python does not enforce them when the script runs.</p>
 
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
@@ -597,7 +682,7 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# A choice: <span class="dm-accent">script</span>, <span class="dm-accent">function</span> or <span class="dm-accent">module</span>?
+# Move code outward <span class="dm-accent">only when you need to</span>
 
 <DmComparison
   class="mt-2"
@@ -614,7 +699,7 @@ label: 3 · Language fundamentals
   <template #r2c1>One more file, and an <code>import</code></template>
 </DmComparison>
 
-<p class="mt-4">Copilot will pick one for you unless you say which you want.</p>
+<p class="note">Copilot will pick one for you unless you say which you want.</p>
 
 <!--
 Three places the same logic can live. Straight in the script is fine for a one-off. Once you repeat something, or a block of lines needs a comment to explain it, give it a name: a function. When a second script needs the same function, move it to its own .py file, a module, and import it, exactly like you import math after lunch. Do not start with modules: move code outward only when the need shows up. Keep it simple: the simplest version that works is the one to keep. Assistants tend to go to one extreme, either one long script or many small files, so tell Copilot which level you want: "keep it in one file, with a function per step".
@@ -641,7 +726,7 @@ def test_bar_to_psi():
 <DmPhase label="Test first: write the next test" />
 </DmProcess>
 
-<p class="mt-6">This loop is <b>test-driven development</b>.</p>
+<p class="note">This loop is <b>test-driven development</b>.</p>
 
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
