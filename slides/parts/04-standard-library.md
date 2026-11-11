@@ -131,7 +131,7 @@ t_s,pressure_bar,temperature_c
 ```python {all|2|3|4-5|all}
 import csv
 with open("data/run_014.csv", newline="", encoding="utf-8") as f:
-    rows = list(csv.DictReader(f))
+    rows = list(csv.DictReader(f))   # the header row gives the keys
 print(rows[0])
 print(float(rows[1]["pressure_bar"]) + 1)
 ```
@@ -145,12 +145,10 @@ print(float(rows[1]["pressure_bar"]) + 1)
 
 </v-click>
 
-<p class="note">The first row is the <b>header</b>. Its names become the keys of every row.</p>
-
 <p class="ask" v-click><b>Question</b>The log has ten million rows. What does <code>list(...)</code> on line 3 do?</p>
 
 <style>
-.slidev-code { font-size: 15px !important; line-height: 1.5 !important; }
+.slidev-code { font-size: 15px !important; line-height: 1.4 !important; }
 </style>
 
 <!--

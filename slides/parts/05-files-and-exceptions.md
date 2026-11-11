@@ -40,7 +40,7 @@ None
 
 <div v-click>
 
-```mermaid {scale: 0.85}
+```mermaid {scale: 0.7}
 flowchart TD
     T["try: float(text)"] -- works --> C["carry on"]
     T -- ValueError --> E["except: set None, print"]
