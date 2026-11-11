@@ -10,12 +10,14 @@ Hands-on exercises for day 1 of the Python Programming and Data Analysis trainin
 | 02 | `02-variables-and-types` | Variables, numbers, text, `type()`, f-strings, unit conversions | 10 min |
 | 03 | `03-collections` | Lists, tuples and dicts, indexing, slicing, methods | 15 min |
 | 04 | `04-control-flow` | `if/elif/else`, `for`, `range`, `enumerate`, `while`, alarm limits | 15 min |
-| 05 | `05-functions` | Functions, parameters, defaults, return values, docstrings, modules, `import` | 20 min |
+| 05 | `05-functions` | Functions, parameters, defaults, return values, modules, `import`, your first tests with pytest (test first, red and green) | 20 min |
 | 06 | `06-standard-library` | `math`, `pathlib`, `csv`, `json`: a script that summarises a folder of CSV logs | 20 min |
 | 07 | `07-files-and-exceptions` | Text files, `try/except`, reading a traceback (2 broken scripts) | 20 min |
 | 08 | `08-uv-project` | New uv project, `uv add`, `pyproject.toml`, `uv.lock`, `.venv`, comparison with pip | 15 min |
 
 Total core hands-on time: 130 minutes. The rest of the day is for setup (at most 30 minutes) and Git.
+
+Exercise 05 introduces tests: you run tests that fail, write functions until they pass, and write one test yourself before the function exists. Day 3 covers pytest in depth.
 
 Exercise 06 delivers the outcome "automate a repetitive task with a script that reads and writes files": it loops over all CSV logs in a folder and writes one summary file.
 

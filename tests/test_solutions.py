@@ -114,6 +114,45 @@ def test_05_report():
     assert direct.strip() == "108.7785"
 
 
+def run_pytest(folder):
+    """Run pytest on one folder in its own process.
+
+    Each folder gets its own process, so the two `conversions.py` and
+    `test_conversions.py` files (starter and solution) never meet in one run.
+    """
+    return subprocess.run(
+        [sys.executable, "-m", "pytest", str(folder), "-q", "-p", "no:cacheprovider"],
+        capture_output=True,
+        text=True,
+        cwd=ROOT,
+        timeout=120,
+    )
+
+
+def test_05_solution_tests_pass():
+    result = run_pytest(SOLUTIONS / "05-functions")
+    assert result.returncode == 0, result.stdout
+    assert "7 passed" in result.stdout
+    assert "failed" not in result.stdout
+
+
+def test_05_starter_tests_are_red():
+    result = run_pytest(EXERCISES / "05-functions")
+    assert result.returncode == 1, result.stdout
+    assert "4 failed, 1 passed" in result.stdout
+    for name in ("test_bar_to_psi", "test_celsius_to_kelvin", "test_average"):
+        assert f"FAILED exercises/python/05-functions/test_conversions.py::{name}" in (
+            result.stdout.replace("\\", "/")
+        )
+    # Failures must be failed assertions, not import or collection errors.
+    assert "error" not in result.stdout.lower().replace("assertionerror", "")
+
+
+def test_05_starter_has_no_psi_to_bar_yet():
+    source = (EXERCISES / "05-functions" / "conversions.py").read_text()
+    assert "def psi_to_bar" not in source
+
+
 def test_06_summarize_runs(tmp_path):
     runs = EXERCISES / "06-standard-library" / "runs"
     assert len(list(runs.glob("*.csv"))) == 3
