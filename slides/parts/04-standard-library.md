@@ -200,5 +200,5 @@ layout: statement
 </style>
 
 <!--
-Use math, pathlib, with open, csv and json on a small set of fictional bench logs. About 25 minutes.
+Use math, pathlib, with open, csv and json on a small set of fictional bench logs. The starter keeps its structure, the answers are in the collapsed hints. About 30 minutes.
 -->

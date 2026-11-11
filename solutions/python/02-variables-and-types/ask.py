@@ -1,4 +1,4 @@
-# Reference solution for exercise 02, task 8.
+# Reference solution for exercise 02, the optional ask.py task.
 
 BAR_TO_PSI = 14.5038
 

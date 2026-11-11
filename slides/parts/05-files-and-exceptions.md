@@ -76,5 +76,5 @@ layout: statement
 </style>
 
 <!--
-Read and write files, handle a bad row, and then fix several broken scripts by reading their tracebacks. Start each time at the bottom line. About 30 minutes.
+Read and write files, handle a bad row, and then fix one broken script by reading its traceback. Start at the bottom line. The other two broken scripts are optional. About 20 minutes.
 -->

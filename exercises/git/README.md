@@ -8,12 +8,14 @@ By the end you can: clone an Azure DevOps repository, commit on a branch, push, 
 
 | # | Folder | Topic | Why it matters |
 |---|---|---|---|
-| 1 | `01-first-commit` | `git init`, `status`, `add`, `commit`, `log`, `diff`. The three areas. | A commit is the unit you undo and review. |
-| 2 | `02-history` | `log`, `show`, find who changed a value and when, `restore`. | Find out what changed, who did it and why. |
+| 1 | `01-first-commit` | `git init`, `status`, `add`, `commit`, `log`, `diff`, `diff --staged`. The three areas. Commits that say one thing. | A commit is the unit you undo and review. |
+| 2 | `02-history` | Extra exercise (ahead, or after class): `log`, `show`, find who changed a value and when, `restore`. | Find out what changed, who did it and why. |
 | 3 | `03-branches` | `switch -c`, `merge` (fast-forward, merge conflict), `branch -d`. | Try things safely, and solve conflicts calmly. |
 | 4 | `04-azure-devops-remote` | `clone`, `remote`, `push -u` to Azure DevOps. | Your work is backed up and colleagues can get it. |
 | 5 | `05-pull-request` | Pull request, review, complete, `pull`, clean up. | A second pair of eyes before it reaches `main`. |
 | 6 | `06-git-in-vscode` | Trainer demo in class. Do it yourself afterwards. | Daily Git work, and keeping data out of history. |
+
+How to work: each core task states a result to reach or a question to answer. The exact commands are in a collapsed **Hint** block below it. Try the task with the hint closed, and open it when you are stuck. The expected output stays visible, so you can check yourself. Exercises 1, 3, 4 and 5 work this way. Exercise 2 is an extra exercise, not done in class: do it when you are ahead, or after class. Exercises 3 to 5 do not depend on it. Exercise 6 is a demo to follow after class.
 
 Every README starts with the core tasks and a "Words to use" list: the terms that exercise introduces. Each README has a **Why this matters** section and ends with an **Open question** that goes beyond the day. Each optional part has one **With Copilot** task. Everything under the heading **Optional: if you have time** at the end of a README is not needed to follow the training. Do it when you finish early or at home.
 
@@ -21,8 +23,8 @@ Exercises 1, 2, 3 and 5 end with a **Challenge** after the optional part. It is 
 
 What moved to optional:
 
-- Exercise 1: committing the data file (task 9) and the extras.
-- Exercise 2: comparing two commits, `git log -S`, `git blame`, visiting an old version (detached HEAD), `git restore --staged`.
+- Exercise 1: the Copilot task and the extras. Committing the data file is now core.
+- Exercise 2: the whole exercise is an extra exercise. Within it: comparing two commits, `git log -S`, `git blame`, visiting an old version (detached HEAD), `git restore --staged`.
 - Exercise 3: a merge commit without a conflict, rebase instead of merge.
 - Exercise 4: running `check_setup.py` and the extras.
 - Exercise 5: details on "main moved meanwhile", the GitFlow versus trunk-based table and the extras.

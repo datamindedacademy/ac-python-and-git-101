@@ -19,6 +19,7 @@ This is the main outcome of the day: work you now do by hand for each file is do
 - `csv.DictReader` reads a CSV file and gives you every row as a dict, with the header names as keys.
 - `json` saves and loads data in the JSON format: a text format for dicts, lists, numbers and text.
 - `with open(path, newline="") as file:` opens a file and closes it for you when the block ends.
+- `some_folder.mkdir(exist_ok=True)` creates a folder, and does nothing when it already exists. Writing a file into a folder that does not exist fails.
 
 ## Core tasks
 
@@ -30,14 +31,65 @@ This is the main outcome of the day: work you now do by hand for each file is do
    uv run python exercises/python/06-standard-library/summarize_runs.py
    ```
 
+   Each TODO says which result to reach. Try it with the hint closed first.
+
+   <details>
+   <summary>Hint for TODO 1</summary>
+
+   Use `float()` on `row["pressure_bar"]` and on `row["temperature_c"]`, and `.append()` the results to the two lists.
+
+   </details>
+
+   <details>
+   <summary>Hint for TODO 2</summary>
+
+   Sum divided by count: `sum()` and `len()`.
+
+   </details>
+
+   <details>
+   <summary>Hint for TODO 3</summary>
+
+   Use `math.sqrt()`. The sum of the squared differences can be a generator expression inside `sum(...)`.
+
+   ```python
+   variance = sum((p - mean_bar) ** 2 for p in pressures_bar) / len(pressures_bar)
+   std_bar = math.sqrt(variance)
+   ```
+
+   </details>
+
+   <details>
+   <summary>Hint for TODO 4</summary>
+
+   Use `max()` on the list of temperatures.
+
+   </details>
+
+   <details>
+   <summary>Hint for TODO 5</summary>
+
+   Use `round(value, 2)` for each value.
+
+   </details>
+
+   <details>
+   <summary>Hint for TODO 6</summary>
+
+   `output_path.parent.mkdir(exist_ok=True)` creates the folder, and does nothing when it already exists. Then open the file for writing with `with open(output_path, "w") as file:` and call `json.dump(summaries, file, indent=2)` inside the block.
+
+   </details>
+
 4. Open the new file `exercises/python/06-standard-library/output/summary.json` in VS Code and read it. The `output/` folder is ignored by Git.
 
 ## Check yourself
 
-The script prints three lines like this:
+The script prints:
 
 ```text
 run_01.csv: 8 rows, mean pressure 7.25 bar
+run_02.csv: 8 rows, mean pressure 7.73 bar
+run_03.csv: 8 rows, mean pressure 7.49 bar
 ```
 
 and `summary.json` is a list of three objects. The first one looks like this:
@@ -55,7 +107,14 @@ and `summary.json` is a list of three objects. The first one looks like this:
 ## Optional: if you have time
 
 - Add a fourth CSV file to `runs/` (copy one and change a number). Run the script again. The summary has four entries without changing the code. That is the point of automation.
-- Also write the summaries to `output/summary.csv` with `csv.DictWriter`. Use `writer.writeheader()` and `writer.writerows(summaries)`.
+- Also write the summaries to `output/summary.csv`, with a header row and one row per run.
+
+  <details>
+  <summary>Hint for the CSV file</summary>
+
+  Use `csv.DictWriter`. Its methods `writeheader()` and `writerows()` write the header and the rows.
+
+  </details>
 - Use `math.isclose(a, b, rel_tol=1e-3)` to compare two floats. Why is it safer than `==`?
 - Read `summary.json` back with `json.load` and print the run with the highest mean pressure.
 

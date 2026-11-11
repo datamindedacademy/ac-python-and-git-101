@@ -41,8 +41,6 @@ def test_average_rounds_to_decimals():
 
 
 # TODO 4: write your own test here, BEFORE you write the function.
-# The function psi_to_bar does not exist yet. Decide what it must return:
-#   14.5038 psi is 1 bar.
-#
-# def test_psi_to_bar():
-#     assert conversions.psi_to_bar(...) == pytest.approx(...)
+# The function psi_to_bar does not exist yet. Name your test test_psi_to_bar.
+# Decide what the function must return. One known value: 14.5038 psi is 1 bar.
+# Run the tests: your new test must fail before you write the function.

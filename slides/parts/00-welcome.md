@@ -16,56 +16,6 @@ layout: default
 label: Welcome
 ---
 
-# Today covers three things you will use <span class="dm-accent">every week</span>
-
-<div class="grid-3 mt-2">
-  <DmIconBadge icon="i-mdi-laptop" label="Development environment" sub="Python, uv, VS Code, PowerShell" />
-  <DmIconBadge icon="i-mdi-language-python" tone="dark" label="Programming fundamentals" sub="Types, loops, functions, files" />
-  <DmIconBadge icon="i-mdi-source-branch" label="Version control" sub="Git and Azure DevOps" />
-</div>
-
-<p class="note">Some scripting experience assumed, for example in MATLAB or VBA. No Python needed.</p>
-
-<!--
-The three blocks of the day. The environment comes first because nothing else works without it. Fundamentals is the biggest block. Git gets the end of the day, when you are comfortable with files and the terminal. The day assumes some scripting experience, so we spend the time on what is specific to Python.
--->
-
----
-layout: default
-label: Welcome
----
-
-# AI writes code, you <span class="dm-accent">ask, judge and choose</span>
-
-<div class="grid-3 mt-2">
-<DmInfoCard icon="i-mdi-chat-question-outline" title="Ask">
-
-You have to ask in the specialist's **vocabulary**
-
-</DmInfoCard>
-<DmInfoCard icon="i-mdi-scale-balance" icon-tone="navy" title="Judge">
-
-You have to read what comes back and decide if it is **right**
-
-</DmInfoCard>
-<DmInfoCard icon="i-mdi-call-split" title="Choose">
-
-There are several approaches, and someone must own the **tradeoff**
-
-</DmInfoCard>
-</div>
-
-<p class="note">"Loop over the CSV files in this folder and return a dict per run" beats "make it work for all my files".</p>
-
-<!--
-An assistant like Copilot can write a working script in seconds, so why spend a day on fundamentals? Because the quality of what you get depends on what you ask. Compare the two requests on the slide. Then you have to read the result and judge it: is it correct, does it handle the empty file, is it the simple version or the clever one? And there is nearly always more than one way, each with a cost, and the tool will pick one silently unless you say what you want. Today gives you the words and the tradeoffs. That is the part that stays yours.
--->
-
----
-layout: default
-label: Welcome
----
-
 # This prompt will <span class="dm-accent">make sense</span> by 15:00
 
 <p class="prompt">Write a function `summarize_run(path: Path) -> dict` that reads a CSV log with `csv.DictReader`, converts `pressure_bar` to float, skips and counts rows that raise `ValueError`, and returns the mean and max. Use a list comprehension where it fits. Standard library only, no classes. Add a pytest test using `pytest.approx`.</p>
@@ -75,9 +25,8 @@ label: Welcome
 </style>
 
 <!--
-This is what a specialist asks for. Every term in it is taught today: csv.DictReader, float conversion, ValueError and skipping bad rows, list comprehension, the standard library, pytest and pytest.approx, type hints and Path. Do not explain anything now. The same slide comes back in the wrap-up.
+An assistant can write a working script in seconds, so why spend a day on fundamentals? Because what you get depends on what you ask, and you have to judge what comes back and choose between approaches. This is what a specialist asks for. Every term in it is taught today: csv.DictReader, float conversion, ValueError and skipping bad rows, list comprehension, the standard library, pytest and pytest.approx, type hints and Path. Do not explain anything now. The same slide comes back in the wrap-up.
 -->
-
 
 ---
 layout: default
@@ -105,24 +54,7 @@ Your name is on it. Understand every line, or replace it
 </div>
 
 <!--
-GitHub Copilot is allowed all day, starting now. The most valuable uses today are asking it to explain an error message or a piece of code, and asking for a second way to do the same thing so you can compare. The one habit I insist on: if you do not understand a line, ask Copilot to explain it or replace it with something you understand. Your name is on the commit, so the responsibility is yours. One more habit, from Oliver's Clean Code workshop: keep it simple. The simplest version that works is the one to keep, and assistants tend to over-build, so ask for less. Some of you may not have an activated licence yet: pair up with a neighbour who has one, the exercises all work without it too. Day 3 goes deeper into agents, skills and reviewing AI-written code.
--->
-
----
-layout: default
-label: Welcome
----
-
-# Judge code in this order: <span class="dm-accent">correct, readable, fast</span>
-
-<div class="grid-3 mt-2">
-  <DmIconBadge icon="i-mdi-check-decagram" tone="dark" label="1 · Correct" sub="Does it do what it should?" />
-  <DmIconBadge icon="i-mdi-book-open-variant" label="2 · Readable" sub="Will you understand it in two months?" />
-  <DmIconBadge icon="i-mdi-speedometer" label="3 · Fast" sub="Is it fast enough? Ask this last." />
-</div>
-
-<!--
-From Oliver's Clean Code workshop. This is the checklist for the Judge step, and the order matters. First check that the code is correct: run it, try an odd input, compare with a value you know. Then check that it is readable, because code is read far more often than it is written. Performance comes last, because correct and readable code can be made fast, while the reverse is much harder. Use these three questions on everything Copilot hands back today.
+GitHub Copilot is allowed all day, starting now. The most valuable uses today are asking it to explain an error message or a piece of code, and asking for a second way to do the same thing so you can compare. The one habit I insist on: if you do not understand a line, ask Copilot to explain it or replace it with something you understand. Your name is on the commit, so the responsibility is yours. Judge what comes back in this order: is it correct, is it readable, and only then is it fast enough. One more habit, from Oliver's Clean Code workshop: keep it simple. The simplest version that works is the one to keep, and assistants tend to over-build, so ask for less. Some of you may not have an activated licence yet: pair up with a neighbour who has one, the exercises all work without it too. Day 3 goes deeper into agents, skills and reviewing AI-written code.
 -->
 
 ---

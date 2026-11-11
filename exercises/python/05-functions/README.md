@@ -14,19 +14,19 @@ A function is the unit you can test, reuse and ask Copilot for. A test is how yo
 
 - A **function** is a named block of code you can run many times. You **define** it with `def` and **call** it with its name and brackets.
 - **Parameters** are the inputs of a function. **Arguments** are the values you pass in.
-- A **default value** makes a parameter optional: `def average(values, decimals=2)`.
+- A **default value** makes a parameter optional: `def shorten(text, length=10)`. A call with one argument uses 10.
 - `return` sends a result back to the caller. A function without `return` gives back `None`.
 - A **docstring** is a text in triple quotes on the first line of a function. It explains what the function does.
 - A **module** is a `.py` file with functions. You `import` it to use its functions in another file.
-- A **test** is a small function that calls your code and states what the result must be. The statement is an **assertion**: `assert bar_to_psi(1) == 14.5038`. When the assertion is false, the test fails.
+- A **test** is a small function that calls your code and states what the result must be. The statement is an **assertion**: `assert kg_to_lb(1) == 2.2046`. When the assertion is false, the test fails.
 - **pytest** is the tool that finds the functions named `test_...` and runs them. A failing test is called **red**, a passing test **green**. You work in a loop: see a red test, write code until it is green, then go to the next one.
 - **Test-driven development** means that you write the test first and the code second. The test says precisely what "correct" means, to you, to a colleague, or to Copilot.
 - The tests compare floats with `pytest.approx(...)`, because floats have tiny rounding errors and `==` can fail on a correct result.
 
 ```python
-def bar_to_psi(pressure_bar):
-    """Convert a pressure from bar to psi."""
-    return pressure_bar * 14.5038
+def kg_to_lb(mass_kg):
+    """Convert a mass from kilogram to pound."""
+    return mass_kg * 2.2046
 ```
 
 ## How to read a failed test
@@ -65,18 +65,53 @@ Read from the bottom up, like the tracebacks you will meet in exercise 07.
 
    Four tests fail and one passes. For `test_average`, find the line number, the expected value and the actual value. Open `test_conversions.py` and read that test.
 
-2. **Green.** Open `conversions.py`. `l_s_to_m3_h` is already done as an example. Complete `bar_to_psi`, `celsius_to_kelvin` and `average` (TODO 1 to 3). Run the tests after each function, until you see `5 passed`.
+2. **Green.** Open `conversions.py`. `l_s_to_m3_h` is already done as an example. Complete `bar_to_psi`, `celsius_to_kelvin` and `average` (TODO 1 to 3). Each TODO names the result with a worked number. The tests say the rest. Run the tests after each function, until you see `5 passed`. Try with the hint closed first.
+
+   <details>
+   <summary>Hint for TODO 1</summary>
+
+   Multiply the pressure by the constant `BAR_TO_PSI`.
+
+   </details>
+
+   <details>
+   <summary>Hint for TODO 2</summary>
+
+   Add 273.15.
+
+   </details>
+
+   <details>
+   <summary>Hint for TODO 3</summary>
+
+   Divide `sum(values)` by `len(values)`, and pass the result to `round()` with `decimals` as second argument.
+
+   </details>
 
 3. **Test first.** You need a function `psi_to_bar`. It does not exist yet. Do TODO 4 in this order:
    1. In `test_conversions.py`, write `test_psi_to_bar`. Decide what the function must return for 14.5038 psi.
    2. Run the tests. Your new test must fail (red), with an `AttributeError`: the function is not there.
    3. Now write `psi_to_bar` in `conversions.py` and run the tests until you see `6 passed`.
 
-4. **Use the module.** Open `report.py`. Import the functions (TODO 5) and fill in the report. Run it:
+   <details>
+   <summary>Hint for TODO 4</summary>
+
+   A test is a function whose name starts with `test_`. Its body is an `assert` that compares the function result with the expected number, using `pytest.approx(...)`. Use the other tests in the file as a model. The function itself is the reverse of `bar_to_psi`.
+
+   </details>
+
+4. **Use the module.** Open `report.py`. Make the functions available (TODO 5) and fill in the report. Run it:
 
    ```powershell
    uv run python exercises/python/05-functions/report.py
    ```
+
+   <details>
+   <summary>Hint for TODO 5</summary>
+
+   `from conversions import name_one, name_two` makes functions from the module `conversions` available. It works because Python looks in the folder of the script first. The average in bar is a call of `average`. Convert that value for psi and round it with `round(..., 2)`.
+
+   </details>
 
 ## Check yourself
 
@@ -97,16 +132,18 @@ Flow (m3/h): 149.4
 
 ## Optional: if you have time
 
-1. Break `bar_to_psi` on purpose (multiply by 14 instead of `BAR_TO_PSI`) and run the tests. Which test catches it? Repair it again.
+1. Break `bar_to_psi` on purpose (change the factor) and run the tests. Which test catches it? Repair it again.
 2. Call `average` with and without the `decimals` argument. Also try a **keyword argument**: `average(values, decimals=0)`.
 3. What is the difference between a function that prints its result and a function that returns it? Which of the two can a test check?
 4. Test first again: write a test for `classify(pressure, limit=8.5)`, which returns `"ALARM"` or `"OK"`. Then write the function.
-5. Add this block at the end of `conversions.py` and run the file directly with `uv run python exercises/python/05-functions/conversions.py`. Then run `report.py`. The block runs only when you run the file itself, not when you import it.
+5. Make `conversions.py` print the psi value of 7.5 bar when you run the file itself, but not when `report.py` imports it. Run the file directly with `uv run python exercises/python/05-functions/conversions.py`, then run `report.py`.
 
-   ```python
-   if __name__ == "__main__":
-       print(bar_to_psi(7.5))
-   ```
+   <details>
+   <summary>Hint for optional task 5</summary>
+
+   Put the print under `if __name__ == "__main__":` at the end of the file. That block runs only when you run the file itself, not when you import it.
+
+   </details>
 
 ### With Copilot
 

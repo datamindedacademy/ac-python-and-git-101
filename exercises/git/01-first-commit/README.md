@@ -1,12 +1,12 @@
 # Exercise 1: Your first commit
 
-Core tasks: 1 to 8. Everything under "Optional" is extra.
+Core tasks: 1 to 7. Everything under "Optional" is extra.
 
 Words to use: repository, working tree, staging area, commit, commit message, hash, untracked, diff.
 
 ## Goal
 
-Create your first Git repository, make two commits, and understand the three places where your files can live.
+Create your first Git repository, make commits that each say one thing, and understand the three places where your files can live.
 
 ## Why this matters
 
@@ -23,14 +23,16 @@ Your files live in three places:
 | Place | Name | What it means |
 |---|---|---|
 | 1 | **Working tree** | The files you see and edit in your folder. |
-| 2 | **Staging area** | A waiting room. You choose which changes go into the next commit. |
+| 2 | **Staging area** (also called the **index**) | A waiting room. You choose which changes go into the next commit. |
 | 3 | **Repository** | The saved history of commits. |
 
-The commands move changes from left to right:
+A change moves from left to right: from the working tree into the staging area, and from there into a commit.
 
 ```
 working tree  --git add-->  staging area  --git commit-->  repository
 ```
+
+A commit contains what is in the staging area, not what is in the working tree. Two commands compare the places: one shows working tree against staging area, the other shows staging area against the last commit.
 
 ## Setup
 
@@ -44,7 +46,9 @@ It creates the folder `git-exercises\exercise_1` in your home folder, outside th
 
 If you get "The folder ... already exists", you ran the setup before. Add `--force` to delete the folder and start again.
 
-## Tasks
+## Core tasks
+
+Try each task with the hint closed. Open it when you are stuck.
 
 ### 1. Tell Git who you are
 
@@ -64,36 +68,23 @@ git config --global user.email "your.name@example.com"
 
 Run the two check commands again. You should see your name and email.
 
-### 2. Look at the folder before it is a repository
+### 2. Make the folder a repository
 
-```powershell
-ls
-git status
-```
+Result: the folder is a repository whose first branch is called `main`. A **branch** is a line of commits. For now you have only one.
 
-`ls` shows two files: `conversions.py` and `measurements.csv`.
+Check: `git status` says "No commits yet" and lists `conversions.py` and `measurements.csv` as untracked. **Untracked** means Git sees the files but does not follow them yet.
 
-`git status` says:
-
-```
-fatal: not a git repository (or any of the parent directories): .git
-```
-
-This is fine. Git only works inside a repository, and you have not made one yet.
-
-### 3. Create the repository
+<details>
+<summary>Hint</summary>
 
 ```powershell
 git init -b main
 git status
 ```
 
-`-b main` names the first branch `main`. A **branch** is a line of commits. For now you have only one.
-
-You should see something like:
+Expected:
 
 ```
-Initialized empty Git repository in .../exercise_1/.git/
 On branch main
 
 No commits yet
@@ -106,26 +97,28 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-**Untracked** means Git sees the files but does not follow them yet.
+</details>
 
-### 4. Stage one file
+### 3. First commit: one file only
+
+Result: the first commit contains only `conversions.py`. Give it a short message in the imperative ("Add ...", "Fix ...", "Change ..."), and always pass the message on the command line, because Git otherwise opens an editor that is hard to leave.
+
+Check: `git log --oneline` shows one commit, and `git status` still lists `measurements.csv` as untracked.
+
+Question: why might you want a file to stay out of a commit?
+
+<details>
+<summary>Hint</summary>
 
 ```powershell
 git add conversions.py
 git status
-```
-
-`conversions.py` is now listed under "Changes to be committed". It is in the staging area. `measurements.csv` is still untracked. That is on purpose: you choose what goes into each commit.
-
-### 5. Make the first commit
-
-```powershell
 git commit -m "Add bar to psi conversion"
+git log --oneline
+git status
 ```
 
-Always use `-m "message"`. Without it, Git opens a text editor that is hard to leave.
-
-Expected output:
+After `git add`, `git status` lists `conversions.py` under "Changes to be committed". The commit prints something like:
 
 ```
 [main (root-commit) <hash>] Add bar to psi conversion
@@ -133,33 +126,32 @@ Expected output:
  create mode 100644 conversions.py
 ```
 
-`<hash>` is a short code that identifies the commit. Yours will differ from the one in this text.
+`<hash>` is a short code that identifies the commit. Yours differs from the one in this text. If `git log` fills the screen and shows `:` or `(END)`, press `q`.
 
-Write messages in the form "Add ...", "Fix ...", "Change ...". Say what the commit does.
+</details>
 
-### 6. Read the history
+### 4. Second commit: the data file
+
+Result: `measurements.csv` is committed in its own commit, with its own message.
+
+Check: `git log --oneline` shows two commits.
+
+<details>
+<summary>Hint</summary>
 
 ```powershell
-git log
-```
-
-You see one commit with its hash, author, date and message. If the output fills the screen and shows `:` or `(END)` at the bottom, you are in a pager. Press `q` to leave it.
-
-For a compact view:
-
-```powershell
+git add measurements.csv
+git commit -m "Add first measurements"
 git log --oneline
 ```
 
-Expected:
+</details>
 
-```
-<hash> Add bar to psi conversion
-```
+### 5. Two unrelated changes
 
-### 7. Change a file and look at the difference
+Make both changes now, and save both files:
 
-Open the folder in VS Code (`code .`) and open `conversions.py`. Add this function at the end of the file:
+1. Add this function at the end of `conversions.py`:
 
 ```python
 
@@ -169,79 +161,86 @@ def celsius_to_kelvin(temperature_c):
     return temperature_c + 273.15
 ```
 
-Save the file. Now:
+2. Add a fourth run as a new last line of `measurements.csv`:
+
+```
+4,8.5,91.2
+```
+
+Question: before you stage anything, which command shows exactly what you changed? Run it and read the output. Lines that start with `+` were added, lines that start with `-` were removed.
+
+<details>
+<summary>Hint</summary>
 
 ```powershell
 git status
 git diff
 ```
 
-`git status` says `modified: conversions.py` under "Changes not staged for commit". `git diff` shows the difference between your working tree and the last commit. Lines that start with `+` were added. Lines that start with `-` were removed.
-
-```
-@@ -6,3 +6,8 @@ BAR_TO_PSI = 14.5
- def bar_to_psi(pressure_bar):
-     """Convert a pressure from bar to psi."""
-     return pressure_bar * BAR_TO_PSI
-+
-+
-+def celsius_to_kelvin(temperature_c):
-+    """Convert a temperature from degrees Celsius to Kelvin."""
-+    return temperature_c + 273.15
-```
-
 If `git diff` opens a pager, press `q`.
 
-### 8. Stage, check, commit
+</details>
+
+### 6. Two separate commits
+
+Result: each change is in its own commit with its own message. Do not undo or re-edit anything.
+
+Stop after you staged the first file and before you commit it. Compare the plain diff with the staged diff. Question: what does each one show now?
+
+Check: `git log --oneline` shows four commits, and `git status` says "nothing to commit, working tree clean".
+
+<details>
+<summary>Hint</summary>
 
 ```powershell
 git add conversions.py
 git diff
 git diff --staged
+git commit -m "Add Celsius to Kelvin conversion"
+git add measurements.csv
+git commit -m "Add fourth measurement run"
+git log --oneline
+git status
 ```
 
-After `git add`, plain `git diff` prints nothing. The change moved to the staging area. `git diff --staged` shows what is waiting there.
+</details>
+
+### 7. Predict, then check
+
+1. In the docstring of `bar_to_psi`, change `Convert a pressure from bar to psi.` to `Convert a pressure from bar (absolute) to psi.` Save, and stage the file.
+2. In `conversions.py`, change `BAR_TO_PSI = 14.5` to `BAR_TO_PSI = 14.5038`. Save. Do **not** stage this.
+
+Question: before you run it, what will `git status` say about `conversions.py`? Write your prediction down, then run it.
+
+Then make one commit that contains only the docstring change, and a second commit with the rest.
+
+Check: `git log --oneline` shows six commits.
+
+<details>
+<summary>Hint</summary>
 
 ```powershell
-git commit -m "Add Celsius to Kelvin conversion"
+git status
+git diff --staged
+git diff
+git commit -m "Clarify the bar_to_psi docstring"
+git add conversions.py
+git commit -m "Use a more precise psi factor"
 git log --oneline
 ```
 
-Expected:
-
-```
-<hash> Add Celsius to Kelvin conversion
-<hash> Add bar to psi conversion
-```
+</details>
 
 ## Check yourself
 
 Short questions to test yourself after class. The answers are in `solutions/git/README.md`.
 
-1. After `git add`, why does `git diff` show nothing? Which command shows the staged change?
+1. Which command shows the changes that are not staged yet? Which one shows the staged changes?
 2. What does "untracked" mean?
 3. Why do we write `-m "..."` after `git commit`?
+4. A file is listed under both "Changes to be committed" and "Changes not staged for commit". How can that be?
 
 ## Optional: if you have time
-
-### 9. Commit the data file
-
-`measurements.csv` is still untracked. Add it in a third commit:
-
-```powershell
-git add measurements.csv
-git commit -m "Add first measurements"
-git status
-```
-
-The last command should say:
-
-```
-On branch main
-nothing to commit, working tree clean
-```
-
-"Working tree clean" means the files on disk match the last commit.
 
 ### With Copilot
 
@@ -254,14 +253,13 @@ Before you commit, run `git diff`. Did it change anything you did not ask for? I
 ### More
 
 - Run `git log --stat`. What extra information do you get?
-- Edit `measurements.csv`, add a fourth run, then use `git diff` and commit it with a clear message.
 - Run `ls -Force` and find the `.git` folder. Do not open it.
 
 ## Challenge
 
 For those who finish early. No commands given: find them with `git help <command>` or Copilot, and check the result with `git log` and `git status`.
 
-In `conversions.py`, make two unrelated edits in different places of the file: add a new function, and change a comment or docstring of an existing one. Commit them as two separate commits, one per edit. Do not undo either edit and do not edit the file again between the commits.
+Tasks 5 to 7 split changes by file, or by the moment you stage. Here both changes are in the same file at the same time. In `conversions.py`, make two unrelated edits in different places: add a new function, and change the module docstring. Save the file, and only then start staging. Commit the two edits as two separate commits, one per edit. Do not undo either edit and do not edit the file again between the commits.
 
 ## Open question
 

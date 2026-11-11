@@ -100,10 +100,10 @@ title: Exercise - first commit
 # Exercise time: <span class="dm-accent">first commit</span>
 
 <p class="mt-6 text-lg opacity-80"><code>exercises/git/01-first-commit</code></p>
-<p class="mt-2 text-sm opacity-70">About 10 minutes: <code>uv run python exercises/git/setup_exercise.py 1</code></p>
+<p class="mt-2 text-sm opacity-70">About 20 minutes: <code>uv run python exercises/git/setup_exercise.py 1</code></p>
 
 <!--
-Participants run the setup script, which creates a sandbox repository in their home folder. They practice init, status, add, commit, log and diff. Walk around and watch for people who forgot the identity configuration.
+Participants run the setup script, which creates a sandbox folder in their home folder. The tasks state a result and the commands sit in collapsed hints: ask people to try for two minutes before opening one. They init, make commits that each say one thing, and predict what status shows for a file that is staged and then edited again. Walk around and watch for people who forgot the identity configuration.
 -->
 
 ---
@@ -136,13 +136,13 @@ layout: statement
 title: Exercise - history
 ---
 
-# Exercise time: <span class="dm-accent">history</span>
+# Extra exercise: <span class="dm-accent">history</span>
 
 <p class="mt-6 text-lg opacity-80"><code>exercises/git/02-history</code></p>
-<p class="mt-2 text-sm opacity-70">About 10 minutes: <code>uv run python exercises/git/setup_exercise.py 2</code></p>
+<p class="mt-2 text-sm opacity-70">When you are ahead, or after class: <code>uv run python exercises/git/setup_exercise.py 2</code></p>
 
 <!--
-Participants explore a repository that already has several commits: log, show, diff, look at an old version and restore it.
+Not done in class. It explores a repository that already has several commits: log, show, diff, look at an old version and restore it. Point early finishers here and move on to branches.
 -->
 
 ---

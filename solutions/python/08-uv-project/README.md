@@ -18,10 +18,11 @@ dependencies = [
 
 ## Questions
 
-- **Plain `python plot_pressure.py` (step 6)**: it uses the Python found on PATH. That Python usually has no matplotlib, so you get `ModuleNotFoundError: No module named 'matplotlib'`. `uv run` uses the project `.venv`, which has it.
-- **After `uv remove`**: `uv run` reports the same `ModuleNotFoundError`, because the package is gone from the environment and from `pyproject.toml`.
-- **Why delete `.venv` and run `uv sync`?** `.venv` can always be rebuilt from `pyproject.toml` and `uv.lock`. So you commit those two files to Git and do not commit `.venv`. `uv init` already created a `.gitignore` that excludes it.
-- **Why does `uv.lock` list more than matplotlib?** matplotlib needs numpy, pillow and others. The lockfile pins them all, so a colleague gets exactly the same versions.
+- **Plain `python plot_pressure.py` (step 5)**: it uses the Python found on PATH. That Python usually has no matplotlib, so you get `ModuleNotFoundError: No module named 'matplotlib'`. `uv run` uses the project `.venv`, which has it.
+- **Which package pulled in numpy (step 6)?** `uv tree` shows `numpy` under `matplotlib` and under `contourpy`, which matplotlib needs.
+- **After `uv remove` (step 7)**: `uv run` reports the same `ModuleNotFoundError`, because the package is gone from the environment and from `pyproject.toml`.
+- **Why delete `.venv` and run `uv sync` (step 8)?** `.venv` can always be rebuilt from `pyproject.toml` and `uv.lock`. So you commit those two files to Git and do not commit `.venv`. `uv init` already created a `.gitignore` that excludes it.
+- **Why does `uv.lock` list more than matplotlib (step 2)?** The dependency is recorded in `pyproject.toml` and the exact versions in `uv.lock`. About 10 packages came along. matplotlib needs numpy, pillow and others. The lockfile pins them all, so a colleague gets exactly the same versions.
 
 ## Challenge
 

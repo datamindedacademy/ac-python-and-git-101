@@ -1,6 +1,6 @@
 # Exercise 2: Explore the history
 
-Core tasks: 1 to 4. Everything under "Optional" is extra.
+Extra exercise: do it when you are ahead, or after class. Exercises 3 to 5 do not depend on it.
 
 Words to use: history, log, hash, HEAD, author, commit message, diff, restore.
 

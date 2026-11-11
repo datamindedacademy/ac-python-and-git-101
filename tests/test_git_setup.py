@@ -58,6 +58,68 @@ def test_exercise_1_has_files_but_no_repository(env, tmp_path):
     assert f'cd "{target}"' in result.stdout
 
 
+def test_exercise_1_core_flow(env, tmp_path):
+    """The seven core tasks of exercise 1, ending with six commits and a clean tree."""
+    target = tmp_path / "ex1"
+    run_setup(1, target)
+    git(target, "init", "-b", "main")
+    status = git(target, "status").stdout
+    assert "No commits yet" in status
+    assert "conversions.py" in status and "measurements.csv" in status
+
+    # Task 3: only conversions.py in the first commit.
+    git(target, "add", "conversions.py")
+    git(target, "commit", "-m", "Add bar to psi conversion")
+    assert commit_count(target) == 1
+    assert git(target, "status", "--short").stdout.strip() == "?? measurements.csv"
+
+    # Task 4.
+    git(target, "add", "measurements.csv")
+    git(target, "commit", "-m", "Add first measurements")
+
+    # Task 5: two unrelated changes.
+    with (target / "conversions.py").open("a") as file:
+        file.write(
+            "\n\ndef celsius_to_kelvin(temperature_c):\n"
+            '    """Convert a temperature from degrees Celsius to Kelvin."""\n'
+            "    return temperature_c + 273.15\n"
+        )
+    with (target / "measurements.csv").open("a") as file:
+        file.write("4,8.5,91.2\n")
+    assert git(target, "status", "--short").stdout.splitlines() == [
+        " M conversions.py",
+        " M measurements.csv",
+    ]
+
+    # Task 6: two commits. After staging, plain diff and staged diff show different files.
+    git(target, "add", "conversions.py")
+    assert "measurements.csv" in git(target, "diff").stdout
+    assert "conversions.py" not in git(target, "diff").stdout
+    assert "celsius_to_kelvin" in git(target, "diff", "--staged").stdout
+    git(target, "commit", "-m", "Add Celsius to Kelvin conversion")
+    git(target, "add", "measurements.csv")
+    git(target, "commit", "-m", "Add fourth measurement run")
+    assert commit_count(target) == 4
+    assert git(target, "status", "--porcelain").stdout == ""
+
+    # Task 7: one file with a staged and an unstaged change.
+    path = target / "conversions.py"
+    path.write_text(path.read_text().replace("from bar to psi.", "from bar (absolute) to psi."))
+    git(target, "add", "conversions.py")
+    path.write_text(path.read_text().replace("BAR_TO_PSI = 14.5\n", "BAR_TO_PSI = 14.5038\n"))
+    assert git(target, "status", "--short").stdout.strip() == "MM conversions.py"
+    status = git(target, "status").stdout
+    assert "Changes to be committed" in status and "Changes not staged for commit" in status
+    assert "absolute" in git(target, "diff", "--staged").stdout
+    assert "14.5038" in git(target, "diff").stdout
+    git(target, "commit", "-m", "Clarify the bar_to_psi docstring")
+    assert "14.5038" not in git(target, "show", "HEAD").stdout
+    git(target, "add", "conversions.py")
+    git(target, "commit", "-m", "Use a more precise psi factor")
+    assert commit_count(target) == 6
+    assert git(target, "status", "--porcelain").stdout == ""
+
+
 def test_exercise_2_history(env, tmp_path):
     target = tmp_path / "ex2"
     result = run_setup(2, target)

@@ -18,14 +18,17 @@ A script that only runs on your own laptop is not a tool yet. The project file a
 - A **virtual environment** (the `.venv` folder) is a private copy of Python plus the packages for one project. Each project gets its own, so projects do not disturb each other.
 - **`pyproject.toml`** is the project file. It lists the name, the Python version and the **dependencies** (the packages you asked for).
 - **`uv.lock`** is the **lockfile**. It records the exact version of every package, including packages your packages need. With the same lockfile everybody installs exactly the same versions.
-- `uv add` installs a package and records it in both files. `uv remove` undoes that. `uv sync` makes `.venv` match the lockfile. `uv run` runs a command inside the environment.
+- uv has one command each to add a package, remove it, rebuild the environment from the lockfile, show the dependency tree and run a command inside the environment. The hints show them.
 - Only install packages that are on the IT-approved list. `matplotlib` is. So are `numpy`, `pandas` and `requests`.
 
 ## Tasks
 
-Work in PowerShell. Choose a place outside the repo, for example your user folder.
+Work in PowerShell. Try each step with the hint closed first. Open the hint when you are stuck.
 
-1. Create a scratch folder and a new project in it:
+1. Make a new project called `pressure-demo` in your home folder, and go into it. Look at what is in the folder. There is no `.venv` yet.
+
+   <details>
+   <summary>Hint for step 1</summary>
 
    ```powershell
    cd ~
@@ -34,37 +37,80 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
    ls
    ```
 
-   `uv init` also creates a Git repository in this folder, so you will see a hidden `.git` folder and a `.gitignore` file next to `main.py`. Ignore them for now. Git is explained this afternoon.
+   </details>
 
-   You should see `main.py`, `pyproject.toml`, `README.md` and `.python-version`. There is no `.venv` yet.
+   `uv init` also creates a Git repository in this folder, so you will see a hidden `.git` folder and a `.gitignore` file. Ignore them for now. Git is explained this afternoon.
 
-2. Add the package:
+2. Add matplotlib to the project. Then answer three questions:
+   - In which file is the dependency recorded?
+   - In which file is the exact version pinned?
+   - How many packages came along that you did not ask for?
 
-   ```powershell
-   uv add matplotlib
-   ```
+   <details>
+   <summary>Hint for step 2</summary>
 
-   Run `ls` again. Now you also have `uv.lock` and `.venv`. Open `pyproject.toml`: the `dependencies` list has a line for matplotlib. Open `uv.lock` in VS Code and search for `matplotlib`. Notice that it also lists `numpy` and other packages. Those are dependencies of matplotlib.
+   Run `uv add matplotlib`. Run `ls` again and open `pyproject.toml` and `uv.lock` in VS Code. In `uv.lock`, search for `[[package]]`: every package has one block. The project itself has a block too.
 
-3. Copy `plot_pressure.py` from this repo folder into your project and open it in VS Code. If your repo is in `~/Documents/ac-python-and-git-101` (adjust the path if you cloned it somewhere else):
+   </details>
+
+3. Copy `plot_pressure.py` from this repo folder into your project and open the project in VS Code. If your repo is in `~/Documents/ac-python-and-git-101` (adjust the path if you cloned it somewhere else):
 
    ```powershell
    Copy-Item ~/Documents/ac-python-and-git-101/exercises/python/08-uv-project/plot_pressure.py .
    code .
    ```
 
-   Do TODO 1 to 4.
+   Do the TODO in the file. It describes the picture to draw. Matplotlib is a day 2 topic, so you get hints. Asking Copilot for this plot with the right words is a valid way to do it, as long as you read what comes back and understand each line.
 
-4. Run it, then look at the picture:
+   <details>
+   <summary>Hint 1 for the plot: the functions</summary>
+
+   You need these functions from `plt`: `plt.plot`, `plt.axhline`, `plt.xlabel`, `plt.ylabel`, `plt.title`, `plt.legend`, `plt.savefig`. Look up their arguments with Copilot or in the matplotlib documentation. `marker`, `color`, `linestyle`, `label` and `dpi` are the ones to find.
+
+   </details>
+
+   <details>
+   <summary>Hint 2 for the plot: the full code</summary>
+
+   ```python
+   plt.plot(minutes, pressures_bar, marker="o", label="Pressure")
+   plt.axhline(alarm_limit_bar, color="red", linestyle="--", label="Alarm limit")
+   plt.xlabel("Time (min)")
+   plt.ylabel("Pressure (bar)")
+   plt.title("Test run CB-0042")
+   plt.legend()
+   plt.savefig(output_file, dpi=150)
+   ```
+
+   </details>
+
+4. Run the script inside the project. Then look at the picture: open `pressure.png` in VS Code (it shows images).
+
+   <details>
+   <summary>Hint for step 4</summary>
 
    ```powershell
    uv run python plot_pressure.py
    ls *.png
    ```
 
-   Open `pressure.png` in VS Code (it shows images).
+   </details>
 
-5. Remove the package, see the error, then restore it:
+5. Run the script with plain `python plot_pressure.py`. Does it work? Say why it fails or works.
+
+6. Show the dependency tree and say which package pulled in `numpy`.
+
+   <details>
+   <summary>Hint for step 6</summary>
+
+   Run `uv tree`.
+
+   </details>
+
+7. Remove matplotlib from the project and run the script again. Name the exception. Then add the package back.
+
+   <details>
+   <summary>Hint for step 7</summary>
 
    ```powershell
    uv remove matplotlib
@@ -72,13 +118,20 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
    uv add matplotlib
    ```
 
-6. Delete the environment and rebuild it from the lockfile, as a colleague would after cloning your project:
+   </details>
+
+8. Delete the `.venv` folder. Restore it with one command, as a colleague would after cloning your project, and run the script again.
+
+   <details>
+   <summary>Hint for step 8</summary>
 
    ```powershell
    Remove-Item -Recurse -Force .venv
    uv sync
    uv run python plot_pressure.py
    ```
+
+   </details>
 
 ## Compare with pip
 
@@ -95,24 +148,19 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
 
 ## Check yourself
 
-- After step 2, `pyproject.toml` contains something like `dependencies = ["matplotlib>=3.10"]` (your version number may differ).
-- After step 4, `pressure.png` shows a line with markers and a red dashed line at 8.5 bar.
-- After step 6, the script works again without any `uv add`.
+- Step 1: the folder holds `pyproject.toml`, `README.md`, `.python-version` and a starter script (`main.py`, or a `src` folder, depending on your uv version). There is no `.venv`.
+- Step 2: the dependency is in `pyproject.toml`, in a line like `dependencies = ["matplotlib>=3.10"]` (your version number may differ). The exact versions are in `uv.lock`. About 10 packages came along (the number depends on the version).
+- Step 4: the script prints `Saved pressure.png`, and `pressure.png` shows a line with round markers, a red dashed line at 8.5 bar, axis labels with units, the title and a legend.
+- Step 5: `ModuleNotFoundError: No module named 'matplotlib'`, because the Python on your PATH does not know about the `.venv`. If it works on your laptop, that Python has its own matplotlib, which is not the one of the project.
+- Step 6: `matplotlib` asks for `numpy`, and so does `contourpy`, which matplotlib needs.
+- Step 7: `ModuleNotFoundError: No module named 'matplotlib'`.
+- Step 8: the script works again without any `uv add`.
 
 ## Optional: if you have time
 
-1. Try running it with plain `python`:
-
-   ```powershell
-   python plot_pressure.py
-   ```
-
-   Does it work? Why (not)? (Hint: this uses the Python on your PATH, which does not know about the `.venv`.)
-
-2. Select the `.venv` interpreter in VS Code (`Ctrl+Shift+P`, `Python: Select Interpreter`) and run the script with the Run button.
-3. Run `uv tree` to see which packages matplotlib pulled in.
-4. Add `requests` or `numpy` with `uv add` and use `numpy.mean(pressures_bar)` in the title of the plot.
-5. Run `uv add --dev pytest`. See that it goes in a separate `dev` group in `pyproject.toml`.
+1. Select the `.venv` interpreter in VS Code (`Ctrl+Shift+P`, `Python: Select Interpreter`) and run the script with the Run button.
+2. Add `numpy` with `uv add` and use `numpy.mean(pressures_bar)` in the title of the plot.
+3. Add pytest as a development dependency. See that it goes in a separate `dev` group in `pyproject.toml`. (Look up the flag with `uv add --help`.)
 
 ### With Copilot
 

@@ -2,6 +2,8 @@
 
 ## Traceback answers
 
+`broken_1.py` is core. `broken_2.py` and `broken_3.py` are optional.
+
 | Script | Exception type | Line | Meaning | Fix |
 |---|---|---|---|---|
 | `broken_1.py` | `NameError` | 12 | The name `maximum_bar` was used but never assigned. | Create it first: `maximum_bar = max(pressures_bar)`. Check for typos in names. |

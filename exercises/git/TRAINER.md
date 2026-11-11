@@ -110,13 +110,12 @@ Fallback if the laptops cannot reach Azure DevOps: use the devcontainer. Exercis
 
 ## 4. Running the session (15:05 to 16:50)
 
-The block is 105 minutes: about 30 minutes of instruction and 75 minutes of core exercises.
+The block is 105 minutes: 30 minutes of instruction and demo, and 75 minutes of exercises.
 
 | Time | Content |
 |---|---|
 | 15:05 | Slides (about 20 min): why version control, repository, commit, three areas, branch, merge, remote, pull request, GitFlow versus trunk-based in two minutes. |
-| 15:25 | Exercise 1 (10 min). Draw the three areas on the whiteboard first. |
-| 15:35 | Exercise 2 (10 min). |
+| 15:25 | Exercise 1 (20 min). Draw the three areas on the whiteboard first. Tasks 5 to 7 are about staging: walk around and ask for the prediction in task 7 before people run it. |
 | 15:45 | Exercise 3 (20 min). The merge conflict is a core task. |
 | 16:05 | Hand out the repository URL. Short instruction on remotes and Azure DevOps (about 8 min, live clone). |
 | 16:13 | Exercise 4 (15 min). Expect sign-in problems: see below. |
@@ -124,15 +123,16 @@ The block is 105 minutes: about 30 minutes of instruction and 75 minutes of core
 | 16:48 | Demo of exercise 6 in VS Code (about 2 min: the Source Control view only). Point to the README for doing it alone. |
 | 16:50 | End. |
 
-Exercise 3 grew from 15 to 20 minutes because the merge conflict is now core. The 5 extra minutes come from the remote instruction (10 to 8 minutes) and the exercise 6 demo (5 to 2 minutes). The block stays at 105 minutes. Times add up to roughly 30 minutes of instruction and 75 minutes of exercises. Exercise 6 is a demo only.
+Exercise 2 (history) is not done in class. It is for early finishers and for homework. Exercises 3 to 5 do not depend on it. Exercises 1, 3, 4 and 5 add up to 75 minutes. Exercise 6 is a demo only.
 
-**If the day runs late, drop in this order:**
+In exercises 1, 3, 4 and 5 each core task states a result, and the commands are in a collapsed hint. Tell participants to try each task with the hint closed. Tell people to open the hint after about two minutes stuck. Do not hand out commands before that.
 
-1. Exercise 2 (history). Show `git log --oneline` and `git show` in one minute during the slides instead.
-2. Do the merge conflict of exercise 3 (task 4) as a trainer demo on your screen instead of hands-on. Keep the branch, commit and fast-forward merge as exercises.
-3. Never drop exercises 4 and 5: they reach the end goal (clone, branch, commit, push, pull request).
+**If the day runs late:**
 
-Everything under "Optional: if you have time" in the READMEs is never done in class. The **Challenge** tasks at the end of exercises 1, 2, 3 and 5 are for participants who finish early, while you help the others. Mention only briefly: GitFlow versus trunk-based development, cherry-pick, stash, tags. Rebase has a slide and an optional task in exercise 3.
+1. Do the merge conflict of exercise 3 (task 4) as a trainer demo on your screen instead of hands-on. Keep tasks 1 to 3 (branch, commit, fast-forward merge) as exercises.
+2. Never drop exercises 4 and 5: they reach the end goal (clone, branch, commit, push, pull request).
+
+Everything under "Optional: if you have time" in the READMEs is never done in class. The **Challenge** tasks at the end of exercises 1, 2, 3 and 5 are for participants who finish early. So is exercise 2 as a whole, while you help the others. Mention only briefly: GitFlow versus trunk-based development, cherry-pick, stash, tags. Rebase has a slide and an optional task in exercise 3.
 
 ### Copilot and checking understanding
 
@@ -150,7 +150,7 @@ Everything under "Optional: if you have time" in the READMEs is never done in cl
 | Sign-in window does not appear | Run `git credential-manager --version`. Try a fresh `git clone`. Make sure the browser is not blocking pop-ups. |
 | `fatal: Authentication failed` after a password change or switch of account | Windows Credential Manager (Control Panel) > Windows Credentials > remove `git:https://dev.azure.com`. |
 | `TF401019` or "repository does not exist or you do not have permission" | URL typo, or the person is not in the permission group. Check Repos > Security. |
-| `Author identity unknown` on commit | Participant did not do the `git config` step of exercise 1. |
+| `Author identity unknown` on commit | Participant did not do the `git config` step (task 1) of exercise 1. |
 | Push to `main` rejected | That is the policy working. Participant should make a branch (`git switch -c ...`) and push that. |
 | Participant committed on `main` locally | `git switch -c feature/<name>-intro` creates a branch at the current commit. Then in `main`: `git fetch` and `git reset --hard origin/main`. This is outside the exercises, so do it for them. |
 | `git pull` says "divergent branches" | Run `git config --global pull.rebase false`, then `git pull` again. This keeps the merge behaviour explained in the exercises. |

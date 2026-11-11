@@ -60,9 +60,12 @@ def test_01_solution_notebook_code_runs():
 
 def test_02_units():
     out = run_ok(SOLUTIONS / "02-variables-and-types" / "units.py")
-    assert "Pressure in psi: 108.7785" in out
+    assert "7.5 bar <class 'str'>" in out
+    assert "82 <class 'str'>" in out
     assert "Temperature in K: 355.15" in out
-    assert "Unit CB-0042 runs at 7.50 bar and 82.0 C" in out
+    assert "7.5 <class 'float'>" in out
+    assert "Pressure in psi: 108.7785" in out
+    assert "Unit CB-0042 runs at 7.50 bar (108.78 psi) and 355.15 K" in out
     assert "Alarm: False" in out
 
 
@@ -79,7 +82,7 @@ def test_02_challenge_parse():
 
 def test_03_challenge():
     out = run_ok(SOLUTIONS / "03-collections" / "challenge.py")
-    assert "'pressure_bar': [7.1, 7.4, 7.6]" in out
+    assert "'pressure_bar': [7.1, 7.4, 7.6, 7.3]" in out
 
 
 def test_03_collections():
@@ -87,10 +90,16 @@ def test_03_collections():
     assert "Last: 7.5" in out
     assert "First three: [7.1, 7.3, 7.4]" in out
     assert "Number of readings: 7" in out
-    assert "Mean: 7.414285714285714" in out
+    assert "Max: 7.8 Min: 7.1 Mean: 7.414285714285714" in out
+    assert "Top three: [7.8, 7.6, 7.5]" in out
+    assert "Trimmed mean: 7.4" in out
+    assert "Latitude: 52.01 Longitude: 4.36" in out
+    assert "'temperature_c': 83.5, 'flow_l_s': 41.5}" in out
     assert "Temperature of second: 81.9" in out
-    assert "Pressures: [7.1, 7.4, 7.6]" in out
+    assert "Pressure of last: 7.6" in out
+    assert "Number of measurements: 4" in out
     assert "Unique sensors: 4" in out
+    assert "F1 present: True" in out
 
 
 def test_04_control_flow():

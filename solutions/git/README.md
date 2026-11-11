@@ -11,49 +11,64 @@ Commands are for Windows PowerShell 5.1. Replace `anna` with your own name.
 ```powershell
 uv run python exercises/git/setup_exercise.py 1
 cd "<path printed by the script>"
+# task 1
 git config user.name
 git config user.email
+# task 2
 git init -b main
 git status
+# task 3
 git add conversions.py
 git status
 git commit -m "Add bar to psi conversion"
-git log
 git log --oneline
-# edit conversions.py: add celsius_to_kelvin
+git status
+# task 4
+git add measurements.csv
+git commit -m "Add first measurements"
+git log --oneline
+# task 5: add celsius_to_kelvin to conversions.py, add the line 4,8.5,91.2 to measurements.csv
 git status
 git diff
+# task 6
 git add conversions.py
 git diff
 git diff --staged
 git commit -m "Add Celsius to Kelvin conversion"
+git add measurements.csv
+git commit -m "Add fourth measurement run"
+git log --oneline
+git status
+# task 7: edit the docstring of bar_to_psi, then
+git add conversions.py
+# change BAR_TO_PSI to 14.5038, do not stage
+git status
+git diff --staged
+git diff
+git commit -m "Clarify the bar_to_psi docstring"
+git add conversions.py
+git commit -m "Use a more precise psi factor"
 git log --oneline
 ```
 
-Final `git log --oneline`:
+Final `git log --oneline` has six commits, newest first: "Use a more precise psi factor", "Clarify the bar_to_psi docstring", "Add fourth measurement run", "Add Celsius to Kelvin conversion", "Add first measurements", "Add bar to psi conversion". `git status` says "nothing to commit, working tree clean".
 
-```
-<hash> Add Celsius to Kelvin conversion
-<hash> Add bar to psi conversion
-```
+Task 3, why keep a file out of a commit: a commit should say one thing. A file can be unfinished, unrelated to this change, generated, or private (data, credentials). Left out, it does not end up in a review or in history, and it is easy to commit later on its own.
+
+Task 6, the diffs after staging `conversions.py`: plain `git diff` shows only what is still unstaged, so the `measurements.csv` change and nothing of `conversions.py`. `git diff --staged` shows what is waiting in the staging area, the `celsius_to_kelvin` function.
+
+Task 7: `git status` lists `conversions.py` twice, once under "Changes to be committed" (the docstring) and once under "Changes not staged for commit" (the `BAR_TO_PSI` edit). Staging records the content of the file at the moment of `git add`. An edit made after it is a new change against the staged version. `git diff --staged` shows the docstring, `git diff` shows the constant. The first commit takes only what was staged. A second `git add` stages the rest.
 
 Check yourself:
 
-1. `git diff` compares the working tree with the staging area. After `git add` they are the same, so nothing shows. `git diff --staged` shows the staged change (staging area against the last commit).
+1. `git diff` shows the changes that are not staged yet (working tree against staging area). `git diff --staged` shows the staged changes (staging area against the last commit).
 2. "Untracked" means Git sees the file in the folder, but it is not in any commit and not staged.
 3. Without `-m`, Git opens a text editor to ask for the message. `-m` gives the message on the command line.
+4. You staged the file, then edited it again. The staged version and the newer working-tree version differ, so the file has a staged change and an unstaged change at the same time.
 
 ### Optional
 
-```powershell
-git add measurements.csv
-git commit -m "Add first measurements"
-git status
-```
-
-Final `git log --oneline` has a third commit, "Add first measurements", and `git status` says "nothing to commit, working tree clean".
-
-Challenge (two commits from one editing session):
+Challenge (two commits from one editing session, both edits saved in one file before staging):
 
 ```powershell
 git add -p conversions.py

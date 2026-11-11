@@ -67,14 +67,19 @@ Click **Complete merge**. The PR status changes to **Completed**.
 
 ### 4. Update your laptop
 
-The merge happened on the server. Your laptop does not know yet. Switch to `main` and pull:
+The merge happened on the server. Your laptop does not know yet. Result: your local `main` has the new commits, including your neighbours' folders. `git pull` downloads new commits from the remote and merges them into your current branch.
+
+<details>
+<summary>Hint</summary>
 
 ```powershell
 git switch main
 git pull
 ```
 
-`git pull` downloads new commits from the remote and merges them into your current branch. Expected:
+</details>
+
+Expected:
 
 ```
 Updating <hash>..<hash>
@@ -83,18 +88,26 @@ Fast-forward
  ...
 ```
 
-You now also get the files of your neighbours that were merged. Look:
+You now also get the files of your neighbours that were merged. Look at the `participants` folder and at the last 10 commits as a graph. You see your commit and the merge commit that Azure DevOps made.
+
+<details>
+<summary>Hint</summary>
 
 ```powershell
 ls participants
 git log --oneline --graph -10
 ```
 
-You see your commit and the merge commit that Azure DevOps made.
+</details>
 
 ### 5. Clean up
 
-Your branch is done. Delete the local copy:
+Your branch is done. Result: your local copy of the branch is deleted, and your laptop forgets the remote branch that Azure DevOps deleted.
+
+Check: `git branch -a` shows only `main` and `remotes/origin/main`.
+
+<details>
+<summary>Hint</summary>
 
 ```powershell
 git branch -d feature/anna-intro
@@ -102,11 +115,11 @@ git fetch --prune
 git branch -a
 ```
 
+</details>
+
 - `git branch -d` deletes the local branch. It only works if the branch was merged.
 - `git fetch` downloads information about the remote without changing your files.
 - `--prune` removes your local record of remote branches that no longer exist. Azure DevOps deleted `origin/feature/anna-intro` when you completed the PR.
-
-`git branch -a` should now show only `main` and `remotes/origin/main`.
 
 If `git branch -d` says "not fully merged" and your PR was completed with **Squash**, use `git branch -D feature/anna-intro` after you checked that the PR is completed.
 

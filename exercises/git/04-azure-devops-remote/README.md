@@ -72,12 +72,19 @@ You should see `README.md`, `check_setup.py`, `participants` and (hidden) `.giti
 
 ### 2. Look around
 
+Question: which branch are you on, is it up to date with the remote, where does `origin` point, and which remote branches does your laptop know about?
+
+<details>
+<summary>Hint</summary>
+
 ```powershell
 git status
 git remote -v
 git branch
 git branch -a
 ```
+
+</details>
 
 What you see:
 
@@ -98,13 +105,18 @@ You did this in exercise 1. Run `git config user.name` and `git config user.emai
 
 ### 4. Make a branch
 
-Never work on `main`. Create a branch with your name in it:
+Never work on `main`. Result: you are on a new branch with your name in it, for example `feature/anna-intro`. Branch names with a slash show up as folders in some tools. That is fine.
+
+Check: `git branch` shows `* feature/<your-name>-intro`.
+
+<details>
+<summary>Hint</summary>
 
 ```powershell
 git switch -c feature/<your-name>-intro
 ```
 
-For example `feature/anna-intro`. Branch names with a slash show up as folders in some tools. That is fine.
+</details>
 
 ### 5. Add a file in your folder
 
@@ -121,6 +133,13 @@ In PowerShell, the backtick followed by `n` is a new line. If you prefer, open t
 
 ### 6. Commit
 
+Result: one commit on your branch that contains only `participants/<your-name>/about.md`, with a message like `Add intro for Anna`.
+
+Check: `git log --oneline` shows your commit on top. It exists only on your laptop for now.
+
+<details>
+<summary>Hint</summary>
+
 ```powershell
 git status
 git add participants/anna/about.md
@@ -128,17 +147,11 @@ git commit -m "Add intro for Anna"
 git log --oneline
 ```
 
-Now you have a commit that exists only on your laptop.
+</details>
 
 ### 7. Push your branch
 
-The remote does not know your branch yet. Push it and link it to a remote branch in one go:
-
-```powershell
-git push -u origin feature/anna-intro
-```
-
-`-u` (short for `--set-upstream`) links your local branch to `origin/feature/anna-intro`. From now on `git push` and `git pull` on this branch need no extra arguments.
+The remote does not know your branch yet. Result: your branch exists on `origin`, and your local branch is linked to it, so later `git push` and `git pull` need no extra arguments. Question: which option links the two?
 
 Expected output ends with:
 
@@ -147,14 +160,20 @@ Expected output ends with:
 branch 'feature/anna-intro' set up to track 'origin/feature/anna-intro'.
 ```
 
-Check:
+Check: `git status` says `Your branch is up to date with 'origin/feature/anna-intro'`. `git branch -a` lists `remotes/origin/feature/anna-intro`.
+
+<details>
+<summary>Hint</summary>
+
+`-u` (short for `--set-upstream`) links your local branch to `origin/feature/anna-intro`.
 
 ```powershell
+git push -u origin feature/anna-intro
 git status
 git branch -a
 ```
 
-`git status` says `Your branch is up to date with 'origin/feature/anna-intro'`. `git branch -a` now lists `remotes/origin/feature/anna-intro`.
+</details>
 
 ### 8. See it in Azure DevOps
 

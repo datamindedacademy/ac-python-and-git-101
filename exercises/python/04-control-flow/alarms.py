@@ -9,45 +9,46 @@ pressures_bar = [7.1, 7.6, 8.1, 8.4, 8.7, 7.9, 8.6, 7.3]
 
 # --- if / elif / else ---
 pressure = 8.1
-# TODO 1: print "ALARM" if pressure is above PRESSURE_ALARM_BAR,
-# "WARNING" if it is above PRESSURE_WARNING_BAR, and "OK" otherwise.
-# Try the values 7.0, 8.2 and 9.0.
+# TODO 1: print the class of pressure as one word:
+#   ALARM when it is above PRESSURE_ALARM_BAR,
+#   WARNING when it is above PRESSURE_WARNING_BAR,
+#   OK otherwise.
+# With 8.1 it prints WARNING. Try 7.0 (OK) and 9.0 (ALARM) too.
 
-# --- for loop and range ---
-# TODO 2: use a for loop to print every pressure with its classification.
-# Example line: 8.1 bar -> WARNING
-for pressure in pressures_bar:
-    pass  # replace this line
+# --- for loop ---
+# TODO 2: print every pressure in pressures_bar with its class, one line each, like:
+#   8.1 bar -> WARNING
+# The class must come from the same rules as TODO 1.
 
-# TODO 3 (optional): print the numbers 1 to 5 with a for loop and range(1, 6).
+# TODO 3 (optional): print the numbers 1 to 5, one per line.
 
 # --- enumerate: index and value together ---
-# TODO 4: print "Reading 1: 7.1" ... for every pressure.
-# Hint: for number, pressure in enumerate(pressures_bar, start=1):
+# TODO 4: print every pressure with its number, counting from 1, one line each, like:
+#   Reading 1: 7.1
 
 # --- counting ---
 alarm_count = 0
-# TODO 5: count how many readings are above PRESSURE_ALARM_BAR.
-# Add 1 to alarm_count inside the loop with alarm_count += 1.
+# TODO 5: make alarm_count the number of readings above PRESSURE_ALARM_BAR.
 print("Alarms:", alarm_count)
 
 # --- building a list: loop and list comprehension ---
-# TODO 8: build the list alarm_readings of all readings above PRESSURE_ALARM_BAR.
-# First with a for loop and .append(). Then build the same list again,
-# in one line, with a list comprehension: [... for p in pressures_bar if ...]
+# TODO 8: fill alarm_readings with all readings above PRESSURE_ALARM_BAR, in a loop.
+# Then fill alarm_readings_short with the same readings, in one line, as a list comprehension.
+# Both lists must read [8.7, 8.6].
 alarm_readings = []
 print("Alarm readings (loop):", alarm_readings)
 alarm_readings_short = ...
 print("Alarm readings (comprehension):", alarm_readings_short)
 
 # --- while loop ---
-# The pressure rises 0.4 bar per minute. How many minutes until the alarm limit?
+# The pressure rises 0.4 bar per minute, starting at 7.0 bar.
 level = 7.0
 minutes = 0
-# TODO 6: use a while loop: while level is not above PRESSURE_ALARM_BAR,
-# add 0.4 to level and 1 to minutes.
+# TODO 6 (optional): count the minutes until level is above PRESSURE_ALARM_BAR.
+# Update level and minutes until then. The result is 4 minutes.
 print("Minutes to alarm:", minutes)
 
 # --- break and continue ---
-# TODO 7 (optional): loop over the pressures. Skip (continue) readings below 8.0.
-# Stop (break) at the first reading above PRESSURE_ALARM_BAR and print it.
+# TODO 7 (optional): print the first reading above PRESSURE_ALARM_BAR as:
+#   First alarm reading: 8.7
+# Skip readings below 8.0 on the way, and stop at the first alarm.

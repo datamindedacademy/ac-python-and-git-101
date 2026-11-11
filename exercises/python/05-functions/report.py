@@ -2,15 +2,19 @@
 # Run from the repo root:
 #   uv run python exercises/python/05-functions/report.py
 
-# TODO 5: import the functions you need from the module conversions.
-# Example: from conversions import bar_to_psi
-# (It works because Python looks in the folder of the script first.)
+# TODO 5: make the functions of conversions.py available in this script.
+# Then fill the four prints below, so the report reads:
+#   Average pressure (bar): 7.33
+#   Average pressure (psi): 106.31
+#   Temperature (K): 356.65
+#   Flow (m3/h): 149.4
+# The psi value starts from the average in bar as printed on the first line (7.33),
+# converted to psi and rounded to 2 decimals.
 
 pressures_bar = [7.1, 7.4, 7.6, 7.2]
 temperature_c = 83.5
 flow_l_s = 41.5
 
-# TODO 5 (continued): use the functions to print the report below.
 print("Average pressure (bar):", ...)
 print("Average pressure (psi):", ...)
 print("Temperature (K):", ...)

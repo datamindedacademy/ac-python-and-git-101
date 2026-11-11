@@ -2,7 +2,7 @@
 
 ## Challenge
 
-`challenge.py` is the reference solution. It loops over the keys of the first dict and uses a comprehension for each list.
+`challenge.py` is the reference solution. It loops over the keys of the first dict and uses a comprehension for each list. It has its own copy of the four measurements.
 
 ## Open question
 

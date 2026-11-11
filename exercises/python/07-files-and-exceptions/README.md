@@ -40,22 +40,58 @@ Real logs contain bad rows. A script that crashes on file 37 of 200 and a script
   ```
 
   Here the error is a `ZeroDivisionError` on line 6 in the function `main`, called from line 9.
+- `some_folder.mkdir(exist_ok=True)` creates a folder, and does nothing when it already exists. Writing a file into a folder that does not exist fails.
 
 ## Core tasks
 
 ### Part A: files and try/except
 
 1. Look at `pressures.txt`. Can you spot the bad lines?
-2. Open `files_and_exceptions.py`, do TODO 1 to 4.
+2. Open `files_and_exceptions.py`, do TODO 1 to 4. Each TODO says which result to reach. Try it with the hint closed first.
 3. Run it:
 
    ```powershell
    uv run python exercises/python/07-files-and-exceptions/files_and_exceptions.py
    ```
 
+<details>
+<summary>Hint for TODO 1</summary>
+
+Open the file with `with open(input_path) as file:`. Inside the block, `file.readlines()` gives a list of lines.
+
+</details>
+
+<details>
+<summary>Hint for TODO 2</summary>
+
+Wrap the conversion in `try:` and catch `ValueError` in an `except` branch.
+
+```python
+try:
+    pressures_bar.append(float(text))
+except ValueError:
+    bad_lines.append(text)
+```
+
+</details>
+
+<details>
+<summary>Hint for TODO 3</summary>
+
+Put the `open(missing_path)` call in a `try:` and catch `FileNotFoundError`. The `except` branch prints the line. `missing_path.name` is the file name.
+
+</details>
+
+<details>
+<summary>Hint for TODO 4</summary>
+
+`output_path.parent.mkdir(exist_ok=True)` creates the folder. Open the file with mode `"w"`. `enumerate(pressures_bar, start=1)` gives the number and the value. Write each line with `file.write(...)` and an f-string that ends in `\n`.
+
+</details>
+
 ### Part B: read the traceback
 
-Two scripts are broken on purpose. For each one:
+`broken_1.py` is broken on purpose.
 
 1. Run it and read the traceback from the bottom up.
 2. Write down the **exception type** and the **line number**.
@@ -63,13 +99,11 @@ Two scripts are broken on purpose. For each one:
 
 ```powershell
 uv run python exercises/python/07-files-and-exceptions/broken_1.py
-uv run python exercises/python/07-files-and-exceptions/broken_2.py
 ```
 
 | Script | Exception type | Line |
 |---|---|---|
 | `broken_1.py` | | |
-| `broken_2.py` | | |
 
 ## Check yourself
 
@@ -80,32 +114,63 @@ Lines read: 6
 Good values: [7.1, 7.4, 7.2, 7.5]
 Bad lines: ['7,6', 'abc']
 File not found: does_not_exist.txt
+Wrote .../output/report.txt
 ```
 
-Part B: after your fixes, `broken_1.py` prints a highest pressure and `broken_2.py` prints the message and the limit text.
+The file `output/report.txt` next to the script ends with the line `Reading 4: 7.5 bar`.
+
+Part B: after your fix, `broken_1.py` prints the average pressure and a highest pressure.
 
 ## Optional: if you have time
 
-1. **A traceback with more than one step.** Run `broken_3.py`. Read it from the bottom up. Write down the names of all the functions in the traceback, in the order they were called. Which one is the place where the error actually happens? Is that also the place where you want to fix it? Then fix it. After the fix it prints `Average pressure: 7.33 bar`.
+1. **Another traceback.** Do the same as in Part B for `broken_2.py`. Write down the exception type and the line. Fix it. After the fix it prints the message and `Pressure is below the limit`.
+
+   ```powershell
+   uv run python exercises/python/07-files-and-exceptions/broken_2.py
+   ```
+
+2. **A traceback with more than one step.** Run `broken_3.py`. Read it from the bottom up. Write down the names of all the functions in the traceback, in the order they were called. Which one is the place where the error actually happens? Is that also the place where you want to fix it? Then fix it. After the fix it prints `Average pressure: 7.33 bar`.
 
    ```powershell
    uv run python exercises/python/07-files-and-exceptions/broken_3.py
    ```
 
-2. **Append to a file.** Do TODO 5 in `files_and_exceptions.py`.
-3. **Folder script that survives bad data.** In exercise 06 you summarised a folder of logs. Here the folder `logs/` has one log with a bad value (`ERR`). Open `summarize_logs.py` and do TODO 1 to 3 so the script skips the bad row, counts it and keeps going:
+3. **Append to a file.** Do TODO 5 in `files_and_exceptions.py`. Expected: the printed file ends with the line `Bad lines: 2`.
+
+   <details>
+   <summary>Hint for TODO 5</summary>
+
+   Open the file with mode `"a"`. Read it back with `output_path.read_text()`.
+
+   </details>
+
+4. **Folder script that survives bad data.** In exercise 06 you summarised a folder of logs. Here the folder `logs/` has one log with a bad value (`ERR`). Open `summarize_logs.py` and do TODO 1 to 3 so the script skips the bad row, counts it and keeps going:
 
    ```powershell
    uv run python exercises/python/07-files-and-exceptions/summarize_logs.py
    ```
 
-   You should see a warning, and the line `run_02: mean 7.71 bar, 1 rows skipped`.
-4. In `broken_3.py`, make `parse_pressure` accept a decimal comma by replacing `","` with `"."` before converting.
-5. Write a function `read_pressures(path)` that returns the good values and prints a warning for every bad line.
+   You should see a warning, and these lines:
+
+   ```text
+   run_01: mean 7.25 bar, 0 rows skipped
+   run_02: mean 7.71 bar, 1 rows skipped
+   run_03: mean 7.49 bar, 0 rows skipped
+   ```
+
+   <details>
+   <summary>Hint for TODO 1 to 3 of summarize_logs.py</summary>
+
+   TODO 1: the same `try/except ValueError` as in Part A, with `skipped += 1` in the `except` branch. TODO 2: `round(sum(...) / len(...), 2)`. TODO 3: `output_path.parent.mkdir(exist_ok=True)`, then `output_path.write_text(...)` with the lines joined by `"\n"`.
+
+   </details>
+
+5. In `broken_3.py`, make `parse_pressure` accept a decimal comma by replacing `","` with `"."` before converting.
+6. Write a function `read_pressures(path)` that returns the good values and prints a warning for every bad line.
 
 ### With Copilot
 
-Run `broken_2.py` again (use the original, or undo your fix) and paste the full traceback into Copilot Chat. Ask: *"What is the cause of this exception, and which line raises it?"* Was it right? Which line of the traceback told you the same thing? Did Copilot propose the same fix as you, or a different one (for example `str()` instead of an f-string)? Which do you prefer?
+Run `broken_2.py` again (undo your fix, or use a fresh copy) and paste the full traceback into Copilot Chat. Ask: *"What is the cause of this exception, and which line raises it?"* Was it right? Which line of the traceback told you the same thing? Did Copilot propose the same fix as you, or a different one (for example `str()` instead of an f-string)? Which do you prefer?
 
 ## Challenge
 

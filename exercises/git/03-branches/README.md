@@ -37,12 +37,21 @@ Run the `cd` command it prints. The repository contains a `.gitignore` file that
 
 ## Core tasks
 
+Try each task with the hint closed. Open it when you are stuck.
+
 ### 1. Look at where you are
+
+Question: which branches exist, which one are you on, and which commit does each branch point to? Show all branches in one graph.
+
+<details>
+<summary>Hint</summary>
 
 ```powershell
 git branch
 git log --oneline --graph --all --decorate
 ```
+
+</details>
 
 `git branch` lists the local branches. The `*` marks the one you are on.
 
@@ -66,19 +75,7 @@ Read it from top to bottom, newest first. Each `*` is a commit. `HEAD -> main` m
 
 ### 2. Make a branch and commit on it
 
-Create a branch and switch to it in one step:
-
-```powershell
-git switch -c feature/pressure-kpa
-```
-
-Expected:
-
-```
-Switched to a new branch 'feature/pressure-kpa'
-```
-
-Branch names are free text. A common habit is `feature/<what-it-does>` or `fix/<what-it-fixes>`.
+Result: a new branch `feature/pressure-kpa` with one commit on it. Branch names are free text. A common habit is `feature/<what-it-does>` or `fix/<what-it-fixes>`.
 
 Open the folder in VS Code (`code .`). Add this function at the end of `conversions.py` and save:
 
@@ -90,16 +87,7 @@ def bar_to_kpa(pressure_bar):
     return pressure_bar * 100
 ```
 
-Commit it:
-
-```powershell
-git status
-git add conversions.py
-git commit -m "Add bar to kPa conversion"
-git log --oneline --graph --all --decorate
-```
-
-The graph now shows your commit on top, on the branch `feature/pressure-kpa`, as a straight line on top of `main`:
+Check: the graph shows your commit on top, on the branch `feature/pressure-kpa`, as a straight line on top of `main`:
 
 ```
 * <hash> (HEAD -> feature/pressure-kpa) Add bar to kPa conversion
@@ -110,16 +98,33 @@ The graph now shows your commit on top, on the branch `feature/pressure-kpa`, as
 ...
 ```
 
-### 3. Merge: the fast-forward
+<details>
+<summary>Hint</summary>
 
-Go back to `main` and look at `conversions.py` in VS Code. The new function is gone. It lives only on your branch. Switching branches changes the files on disk.
+Create a branch and switch to it in one step. Expected: `Switched to a new branch 'feature/pressure-kpa'`.
 
 ```powershell
-git switch main
-git merge feature/pressure-kpa
+git switch -c feature/pressure-kpa
 ```
 
-Expected:
+After you edited and saved the file:
+
+```powershell
+git status
+git add conversions.py
+git commit -m "Add bar to kPa conversion"
+git log --oneline --graph --all --decorate
+```
+
+</details>
+
+### 3. Merge: the fast-forward
+
+Result: `main` contains the kPa function, and the branch `feature/pressure-kpa` is deleted.
+
+Before you merge, go to `main` and look at `conversions.py` in VS Code. The new function is gone. It lives only on your branch. Switching branches changes the files on disk.
+
+Check: the merge output says `Fast-forward`:
 
 ```
 Updating <hash>..<hash>
@@ -130,27 +135,29 @@ Fast-forward
 
 "Fast-forward" means `main` had no new commits, so Git only moved the label. Check the file again: the function is back, now on `main`.
 
-Delete the branch. It is merged, so the commits are safe:
+Delete the branch once it is merged. The commits are safe. The delete command refuses to delete a branch that is not merged yet. That is a safety net.
+
+<details>
+<summary>Hint</summary>
 
 ```powershell
+git switch main
+git merge feature/pressure-kpa
 git branch -d feature/pressure-kpa
 git log --oneline --graph --all --decorate
 ```
 
-`-d` refuses to delete a branch that is not merged yet. That is a safety net.
+</details>
 
 ### 4. Merge: a conflict
 
 Now `main` and the branch `experiment/psi-precision` changed the same line (`BAR_TO_PSI`). Git cannot decide which version is right, so it asks you. This is a **merge conflict**. It is normal and not an emergency.
 
-1. Make sure you are on `main`, then try the merge:
+Result: `experiment/psi-precision` is merged into `main`, with `BAR_TO_PSI = 14.5038` and no conflict markers left in the file.
 
-```powershell
-git switch main
-git merge experiment/psi-precision
-```
+Steps:
 
-Expected:
+1. Make sure you are on `main`, then merge `experiment/psi-precision` into it. Expected:
 
 ```
 Auto-merging conversions.py
@@ -158,13 +165,7 @@ CONFLICT (content): Merge conflict in conversions.py
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-2. Git stopped halfway. Check:
-
-```powershell
-git status
-```
-
-It lists `conversions.py` under "Unmerged paths", "both modified".
+2. Git stopped halfway. `git status` lists `conversions.py` under "Unmerged paths", "both modified".
 
 3. Open `conversions.py` in VS Code. You see markers:
 
@@ -180,7 +181,20 @@ The part between `<<<<<<<` and `=======` is your version (`main`). The part betw
 
 4. VS Code shows buttons above the markers: **Accept Current Change**, **Accept Incoming Change**, **Accept Both Changes**, and **Compare Changes**. Choose **Accept Incoming Change** to keep `14.5038`. You can also click **Resolve in Merge Editor** at the bottom right for a three-pane view. Check that no `<<<<<<<`, `=======` or `>>>>>>>` lines are left. Save the file.
 
-5. Finish the merge and look at the result:
+5. Finish the merge: mark the file as resolved and make the merge commit with the message `Merge experiment/psi-precision`. Look at the graph. The merge commit has two parents. Because you saved a finished merge with a normal `git commit -m`, you are done.
+
+<details>
+<summary>Hint</summary>
+
+Steps 1 and 2:
+
+```powershell
+git switch main
+git merge experiment/psi-precision
+git status
+```
+
+Step 5:
 
 ```powershell
 git add conversions.py
@@ -188,7 +202,7 @@ git commit -m "Merge experiment/psi-precision"
 git log --oneline --graph --all --decorate
 ```
 
-The merge commit has two parents. Because you saved a finished merge with a normal `git commit -m`, you are done.
+</details>
 
 If you get lost, you can always go back to before the merge:
 

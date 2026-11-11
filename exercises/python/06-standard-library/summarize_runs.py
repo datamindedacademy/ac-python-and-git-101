@@ -23,25 +23,28 @@ for path in sorted(runs_folder.glob("*.csv")):
     with open(path, newline="") as file:
         reader = csv.DictReader(file)
         for row in reader:
-            # Every value from a CSV is text. Convert it to a number.
-            # TODO 1: append float(row["pressure_bar"]) to pressures_bar
-            # and float(row["temperature_c"]) to temperatures_c.
+            # Every value from a CSV is text.
+            # TODO 1: fill pressures_bar and temperatures_c with the values of all rows,
+            # as numbers. run_01.csv gives 8 values in each list.
             pass
 
-    # TODO 2: calculate the mean pressure (sum divided by len).
-    mean_bar = ...
+    # TODO 2: calculate the mean pressure of the run, and keep it in mean_bar.
+    # run_01 gives 7.25 (the print below rounds it to 2 decimals).
+    mean_bar = 0.0
 
-    # TODO 3: calculate the standard deviation of the pressure:
-    #   take math.sqrt of the mean of (p - mean_bar) ** 2 for every p.
-    # Hint: the sum of squares can be a comprehension inside sum(...).
-    std_bar = ...
+    # TODO 3: calculate the standard deviation of the pressures, and keep it in std_bar.
+    # Use the population standard deviation: the square root of the mean of the squared
+    # differences between each pressure and mean_bar. Divide by the number of rows.
+    # run_01 gives 0.2 after rounding to 2 decimals.
+    std_bar = 0.0
 
-    # TODO 4: find the maximum temperature with max().
-    max_temperature_c = ...
+    # TODO 4: find the highest temperature of the run, and keep it in max_temperature_c.
+    # run_01 gives 82.7.
+    max_temperature_c = 0.0
 
-    print(f"{path.name}: {len(pressures_bar)} rows, mean pressure {mean_bar} bar")
+    print(f"{path.name}: {len(pressures_bar)} rows, mean pressure {round(mean_bar, 2)} bar")
 
-    # TODO 5: fill the dict with your results, rounded to 2 decimals with round().
+    # TODO 5: fill the dict with your results, each rounded to 2 decimals.
     summary = {
         "run": path.stem,
         "rows": len(pressures_bar),
@@ -51,6 +54,7 @@ for path in sorted(runs_folder.glob("*.csv")):
     }
     summaries.append(summary)
 
-# TODO 6: make sure the output folder exists with output_path.parent.mkdir(exist_ok=True).
-# Then write the summaries to output_path with json.dump(summaries, file, indent=2).
+# TODO 6: write the summaries to output_path as a JSON file, indented by 2 spaces.
+# The folder of output_path may not exist yet. Make sure it does.
+# The file must hold a list of three objects, one per run.
 print("TODO: write", output_path)

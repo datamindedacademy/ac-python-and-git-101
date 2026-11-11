@@ -168,6 +168,7 @@ pressure_bar = 7.5
 print(f"Run {run_id}: {pressure_bar:.1f} bar")
 print(f"{pressure_bar * 14.5038:.0f} psi")
 print("TB" in run_id, run_id.lower())
+print("12.5 kW".split())
 ```
 
 <v-click>
@@ -176,6 +177,7 @@ print("TB" in run_id, run_id.lower())
 Run TB-014: 7.5 bar
 109 psi
 True tb-014
+['12.5', 'kW']
 ```
 
 </v-click>
@@ -185,7 +187,7 @@ True tb-014
 </style>
 
 <!--
-Put an f before the quote and you can place any expression inside curly braces. After the colon you control the format: .1f means one decimal place, .0f none. Strings also have methods such as lower, upper, strip, split and replace, called with a dot. Both single and double quotes work, pick one style and stay with it.
+Put an f before the quote and you can place any expression inside curly braces. After the colon you control the format: .1f means one decimal place, .0f none. Strings also have methods such as lower, upper, strip, split and replace, called with a dot. split cuts a text at the spaces and gives the pieces as a list, which is how you separate a value from its unit. Lists are the next block. Both single and double quotes work, pick one style and stay with it.
 -->
 
 ---
@@ -242,7 +244,7 @@ layout: statement
 </style>
 
 <!--
-Variables, types, f-strings and one deliberate type error to fix. Read the traceback from the bottom. About 15 minutes.
+The values arrive as text, as they do from a file: convert, split value and unit, format, and read one deliberate type error from the bottom. From this exercise on, the TODOs state the result and the hints sit collapsed in the README. Ask people to try for two minutes before they open one. About 20 minutes.
 -->
 
 ---
@@ -252,12 +254,13 @@ label: 3 · Language fundamentals
 
 # A list keeps values <span class="dm-accent">in order</span>
 
-```python {all|1|2|3|4-5|all}
+```python {all|1|2|3|4-5|6|all}
 pressures_bar = [6.8, 7.1, 7.5, 7.4, 7.9]
 print(pressures_bar[0])
 print(len(pressures_bar))
 pressures_bar.append(8.2)
 print(max(pressures_bar))
+print(sorted(pressures_bar, reverse=True))
 ```
 
 <v-click>
@@ -266,6 +269,7 @@ print(max(pressures_bar))
 6.8
 5
 8.2
+[8.2, 7.9, 7.5, 7.4, 7.1, 6.8]
 ```
 
 </v-click>
@@ -275,7 +279,7 @@ print(max(pressures_bar))
 </style>
 
 <!--
-A list holds many values in order, written in square brackets. It can mix types and it grows with append. Careful if you come from MATLAB: this is not a numeric matrix, you cannot multiply a list by two and expect element-wise results. Numeric arrays arrive with NumPy on day 2. Indexing is with square brackets, and it starts at zero.
+A list holds many values in order, written in square brackets. It can mix types and it grows with append. Careful if you come from MATLAB: this is not a numeric matrix, you cannot multiply a list by two and expect element-wise results. Numeric arrays arrive with NumPy on day 2. Indexing is with square brackets, and it starts at zero. sorted gives a new sorted list and leaves the original alone.
 -->
 
 ---
@@ -388,7 +392,7 @@ layout: statement
 </style>
 
 <!--
-Lists, slicing, a dictionary and a list of dictionaries. Watch for the off-by-one in slices. About 15 minutes.
+Lists, slicing, sorting, a dictionary, a list of dictionaries and a set, all without loops. Watch for the off-by-one in slices. About 20 minutes.
 -->
 
 ---
@@ -590,7 +594,7 @@ layout: statement
 </style>
 
 <!--
-Conditions, for loops, a while loop and one list comprehension on bench readings. About 25 minutes. Break time after this exercise if the room is ready for it.
+Conditions, for loops and one list comprehension on bench readings. The while loop is optional. About 25 minutes. Break time after this exercise if the room is ready for it.
 -->
 
 ---
