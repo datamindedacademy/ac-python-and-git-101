@@ -129,3 +129,16 @@ layout: statement
 <!--
 Fix one broken script by reading its traceback, starting at the bottom line. Then skip and count bad rows. The last task makes people decide where to catch: stop or skip. About 20 minutes.
 -->
+
+---
+layout: statement
+title: Questions - exceptions
+---
+
+# Questions?
+
+<p class="mt-6 text-lg opacity-80">exceptions</p>
+
+<!--
+Pause here. Ask for questions on try and except, and letting errors bubble up. Wait a few seconds longer than feels comfortable. If nobody asks, ask one person what was least clear.
+-->

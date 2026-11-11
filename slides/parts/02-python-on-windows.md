@@ -188,3 +188,15 @@ label: 1 · Python on your laptop
 Open the folder, not just a single file, so VS Code knows the project. The integrated terminal, Ctrl+backtick, is the same PowerShell you used before and starts in the project folder. Both ways of running do the same thing, the play button is just a shortcut. If the interpreter is wrong, a yellow warning shows in the bottom bar.
 -->
 
+---
+layout: statement
+title: Questions - Python on your laptop
+---
+
+# Questions?
+
+<p class="mt-6 text-lg opacity-80">Python on your laptop</p>
+
+<!--
+Pause here. Ask for questions on Python, CPython, uv and running a script. Wait a few seconds longer than feels comfortable. If nobody asks, ask one person what was least clear.
+-->

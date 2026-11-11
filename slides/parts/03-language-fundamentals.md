@@ -997,3 +997,16 @@ layout: statement
 <!--
 Write, call and combine small functions, test first: run the given tests, see them fail, and make them pass. This is the building block for everything after lunch. About 25 minutes.
 -->
+
+---
+layout: statement
+title: Questions - the language
+---
+
+# Questions?
+
+<p class="mt-6 text-lg opacity-80">the language</p>
+
+<!--
+Pause here. Ask for questions on variables, collections, control flow, functions and tests. Wait a few seconds longer than feels comfortable. If nobody asks, ask one person what was least clear.
+-->

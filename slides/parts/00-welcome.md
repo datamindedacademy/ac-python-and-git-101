@@ -17,6 +17,58 @@ layout: default
 label: Welcome
 ---
 
+# Today: from a <span class="dm-accent">first script</span> to a pull request
+
+<div class="day">
+<div class="lane"><span class="lane-title">Morning · Python</span><div class="stops">
+<div class="stop "><span class="time">09:00</span><div class="ico"><div class="i-mdi-laptop" /></div><b>Setup check</b><span class="txt">Tools answer, repository cloned</span></div>
+<div class="stop "><span class="time">09:30</span><div class="ico"><div class="i-mdi-console" /></div><b>Run a script</b><span class="txt">Python, uv, script or notebook</span></div>
+<div class="stop "><span class="time">10:15</span><div class="ico"><div class="i-mdi-code-braces" /></div><b>The language</b><span class="txt">Variables, collections, loops, functions, tests</span></div>
+<div class="stop rest"><span class="time">12:30</span><div class="ico"><div class="i-mdi-silverware-fork-knife" /></div><b>Lunch</b><span class="txt">Back at 13:15</span></div>
+</div></div>
+<div class="lane"><span class="lane-title">Afternoon · Files, projects and Git</span><div class="stops">
+<div class="stop navy"><span class="time">13:15</span><div class="ico"><div class="i-mdi-file-document-multiple-outline" /></div><b>Files and errors</b><span class="txt">Read a folder of logs, survive bad rows</span></div>
+<div class="stop navy"><span class="time">14:20</span><div class="ico"><div class="i-mdi-package-variant-closed" /></div><b>Projects with uv</b><span class="txt">Packages, lock file, one-file scripts</span></div>
+<div class="stop navy"><span class="time">15:05</span><div class="ico"><div class="i-mdi-source-branch" /></div><b>Git</b><span class="txt">Commit, branch, merge, rebase, pull request</span></div>
+<div class="stop rest"><span class="time">16:50</span><div class="ico"><div class="i-mdi-flag-checkered" /></div><b>Wrap-up</b><span class="txt">Done at 17:00</span></div>
+</div></div>
+</div>
+
+<div class="how">
+<span><div class="i-mdi-presentation" /> Short theory</span>
+<span class="arrow">→</span>
+<span><div class="i-mdi-keyboard-outline" /> Exercise: 2 or 3 tasks, the last one is hard</span>
+<span class="arrow">→</span>
+<span><div class="i-mdi-help-circle-outline" /> Questions</span>
+</div>
+
+<style>
+.day { display: flex; flex-direction: column; gap: 14px; margin-top: 6px; }
+.lane-title { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--dm-connecting); }
+.stops { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 6px; position: relative; }
+.stops::before { content: ""; position: absolute; left: 20px; right: 20px; top: 39px; height: 3px; background: var(--dm-connecting); opacity: 0.35; }
+.stop { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.stop .time { font-family: monospace; font-size: 12px; color: var(--dm-premium); opacity: 0.75; }
+.stop .ico { width: 40px; height: 40px; border-radius: 50%; background: var(--dm-connecting); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 2px 0 4px; }
+.stop.navy .ico { background: var(--dm-premium); }
+.stop.rest .ico { background: #fff; color: var(--dm-connecting); border: 2px solid var(--dm-connecting); }
+.stop b { font-size: 17px; color: var(--dm-premium); }
+.stop .txt { font-size: 13.5px; line-height: 1.35; color: var(--dm-premium); opacity: 0.85; }
+.how { display: flex; align-items: center; gap: 14px; margin-top: 18px; padding: 10px 16px; background: var(--dm-surface); border-radius: 8px; font-size: 15px; color: var(--dm-premium); }
+.how span { display: inline-flex; align-items: center; gap: 6px; }
+.how .arrow { color: var(--dm-connecting); font-weight: 700; }
+.how div { font-size: 19px; color: var(--dm-connecting); }
+</style>
+
+<!--
+This is the day in one picture. The morning is Python: we check every laptop, run a first script, and then work through the language itself, which is the biggest block. After lunch we read and write files, handle errors, and set up a project with uv. The last stretch is Git: commits, branches, and a pull request on a shared repository. Every block has the same rhythm: a short piece of theory, then an exercise with two or three tasks, then room for questions. The last task of each exercise is hard on purpose. Most of you will not finish it in class, and nothing later depends on it. This is the plan, not a contract. There are two 15 minute breaks, one around 11:00 and one at about 14:50, and we move them when an exercise is in full flow.
+-->
+
+---
+layout: default
+label: Welcome
+---
+
 # AI is a <span class="dm-accent">multiplier</span> of experience
 
 <div class="eq">
@@ -116,29 +168,6 @@ Clone, commit on a branch, push and pull from a remote
 
 <!--
 These are the six things you should be able to do at the end of the day. We come back to this slide in the wrap-up and tick them off. Day 2 builds on this with data analysis, and day 3 covers CI/CD, code quality and agentic AI. Today is the foundation for both.
--->
-
----
-layout: agenda
-label: Agenda
----
-
-# Agenda
-
-1. 09:00 Setup check
-2. 09:30 Python on your laptop, scripts and notebooks
-3. 10:15 Language fundamentals, lunch at 12:30
-4. 13:15 Files, the standard library and exceptions
-5. 14:20 Projects with uv
-6. 15:05 Version control and Git
-7. 16:50 Wrap-up
-
-<style>
-li { padding-top: 5px !important; padding-bottom: 5px !important; }
-</style>
-
-<!--
-This is the plan, not a contract. There are two 15 minute breaks, one around 11:00 inside the fundamentals block and one at about 14:50 after uv, and we move them when an exercise is in full flow. Lunch is at 12:30 and we restart at 13:15. Git gets the last stretch of the day because by then you are comfortable with files, folders and the terminal.
 -->
 
 ---

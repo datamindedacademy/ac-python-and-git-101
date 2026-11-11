@@ -373,3 +373,16 @@ title: Exercise - branches
 <!--
 Create a branch, commit on it, merge it into main and look at the graph. They then merge `experiment/psi-precision` into main, which conflicts, and resolve it: the conflict is a core part, about 20 minutes in total. The words at the bottom are the ones they can now use when asking a colleague or Copilot for help, or when reviewing.
 -->
+
+---
+layout: statement
+title: Questions - the Git commands
+---
+
+# Questions?
+
+<p class="mt-6 text-lg opacity-80">the Git commands</p>
+
+<!--
+Pause here. Ask for questions on staging, commits, branches, merge, conflicts and rebase. Wait a few seconds longer than feels comfortable. If nobody asks, ask one person what was least clear.
+-->

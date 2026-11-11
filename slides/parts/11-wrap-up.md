@@ -129,6 +129,7 @@ label: Wrap-up
 - A working uv environment
 - Redo the fundamentals you found hard
 - One full clone, commit, push, pull cycle with a PR
+- **Bring your own work**: a use case, an example or a question
 
 </DmColumn>
 <DmColumn header="Read more" tone="plain" divider>
@@ -148,7 +149,7 @@ label: Wrap-up
 </DmColumns>
 
 <!--
-Day 2 builds on the first column: packages install through uv, the exercises assume you can write a loop and read a file, and we store the work in Git, using .gitignore for data files and nbstripout for notebooks. Learn Git Branching is a good evening activity. Day 3 adds the safety net around it: tests, linting, type checking, pipelines and the branch protection rule that protects main. Copilot is allowed from today; day 3 goes deeper into coding agents and how to review their work.
+Invite everyone to bring something from their own work to the next sessions: a script they want to write, a data file they struggle with, an error they could not solve, or just a question. Real cases make days 2 and 3 better, and we will make time for them. Day 2 builds on the first column: packages install through uv, the exercises assume you can write a loop and read a file, and we store the work in Git, using .gitignore for data files and nbstripout for notebooks. Learn Git Branching is a good evening activity. Day 3 adds the safety net around it: tests, linting, type checking, pipelines and the branch protection rule that protects main. Copilot is allowed from today; day 3 goes deeper into coding agents and how to review their work.
 -->
 
 ---

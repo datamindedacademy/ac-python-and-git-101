@@ -100,3 +100,16 @@ label: 10 · Branching models
 <!--
 The longer a branch lives, the larger the merge and the higher the chance of conflicts. GitFlow accepts that cost to support parallel releases, which analysis and tooling code rarely has. So we recommend trunk-based: small branches, pull requests, pull main often, delete branches after merging. Cherry-pick copies a single commit, stash parks uncommitted edits. We name them so you recognise the words; the Pro Git book covers them. A coding assistant will pick a branching approach for you unless you say what you want, so being able to say trunk-based, short-lived feature branch and pull request is what lets you direct it and judge the result.
 -->
+
+---
+layout: statement
+title: Questions - branching models
+---
+
+# Questions?
+
+<p class="mt-6 text-lg opacity-80">branching models</p>
+
+<!--
+Pause here. Ask for questions on how a team uses branches. Wait a few seconds longer than feels comfortable. If nobody asks, ask one person what was least clear.
+-->
