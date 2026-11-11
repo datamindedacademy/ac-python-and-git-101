@@ -124,6 +124,25 @@ layout: default
 label: 1 · Python on your laptop
 ---
 
+# <span class="dm-accent">uv</span> is one tool for Python, packages and running
+
+<DmSteps class="mt-4">
+<DmStep n="1" label="Installs Python"><code>uv python install 3.13</code> puts a real CPython in your user folder, no admin rights needed</DmStep>
+<DmStep n="2" label="Installs packages"><code>uv sync</code> reads the project file and creates <code>.venv</code>, a folder with the packages this project needs</DmStep>
+<DmStep n="3" label="Runs your code"><code>uv run python script.py</code> uses that Python and those packages, every time</DmStep>
+</DmSteps>
+
+<p class="note">You did steps 1 and 2 in the setup check. Step 3 is how we run everything today. Creating your own project with uv comes this afternoon.</p>
+
+<!--
+You have been typing uv since nine o'clock, so here is what it is. uv is a single program, made by a company called Astral and written in Rust, that manages everything around Python: it downloads the interpreter, it installs packages, and it runs your code with the right combination of both. Before uv you needed a separate tool for each of those: an installer for Python, venv for environments, pip for packages. You will still meet those names in older tutorials and in what Copilot suggests. The folder .venv is a virtual environment: a private set of packages for this one project, so two projects cannot break each other. uv run looks for that folder, makes sure it matches the project file, and then starts Python inside it. That is why we never type plain python today, and why the WindowsApps shortcut from the previous slide cannot bite you. This afternoon you create a project of your own, add a package, and look at the two files uv keeps: pyproject.toml and uv.lock.
+-->
+
+---
+layout: default
+label: 1 · Python on your laptop
+---
+
 # Go to the repository, then <span class="dm-accent">uv run</span> the script
 
 ```python
