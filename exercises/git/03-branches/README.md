@@ -31,7 +31,7 @@ From the root of the course repository:
 uv run python exercises/git/setup_exercise.py 3
 ```
 
-Run the `cd` command it prints. You get a repository with 4 commits on `main` and two other branches: `experiment/psi-precision` (used in task 2) and `feature/temperature-report` (used in task 3). Leave them alone until then. Look at all branches in one graph at any time with `git log --oneline --graph --all --decorate`. If the output opens in a pager, press `q`.
+Run the two commands it prints: `cd` goes to the exercise folder and `code .` opens it in a second VS Code window, where you edit the files and type your Git commands (terminal: ``Ctrl+` ``). You get a repository with 4 commits on `main` and two other branches: `experiment/psi-precision` (used in task 2) and `feature/temperature-report` (used in task 3). Leave them alone until then. Look at all branches in one graph at any time with `git log --oneline --graph --all --decorate`. If the output opens in a pager, press `q`.
 
 ## Tasks
 

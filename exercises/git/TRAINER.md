@@ -93,7 +93,7 @@ git clone https://github.com/<organisation>/<training-repo>.git "$HOME\git-exerc
 - Git for Windows is installed and on the PATH.
 - Git Credential Manager pops up and signs in (it is part of Git for Windows). If a corporate proxy or conditional access blocks the pop-up, find out now.
 - The setup script runs: `uv run python exercises/git/setup_exercise.py 2`.
-- `code .` opens VS Code from the terminal.
+- `code .` opens VS Code from the terminal. Participants use it in every exercise to open the exercise folder in a second window, next to the course repository. Show the two windows once before exercise 1.
 - The execution policy is `Restricted`. Nothing in these exercises needs `.ps1` files.
 
 Fallback if the laptops cannot reach GitHub: use the devcontainer. Exercises 1 to 3 work offline. For 4 to 6 you can create a local "remote": `git init --bare $HOME\git-exercises\remote.git`, then clone it. Pull requests are not possible then; demonstrate them on your screen.

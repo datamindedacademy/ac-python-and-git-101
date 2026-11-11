@@ -40,7 +40,16 @@ Run this from the root of the course repository (the folder `ac-python-and-git-1
 uv run python exercises/git/setup_exercise.py 1
 ```
 
-It creates the folder `git-exercises\exercise_1` in your home folder, outside the course repository. It prints a `cd` command. Copy and run it. You can check where you are with `pwd` and what is in the folder with `ls`.
+It creates the folder `git-exercises\exercise_1` in your home folder, outside the course repository. It prints two commands. Copy and run them:
+
+```powershell
+cd "$HOME\git-exercises\exercise_1"
+code .
+```
+
+`code .` opens the exercise folder in a second VS Code window. Edit the files in that window, and type your Git commands in its terminal (``Ctrl+` ``), which starts in the exercise folder. Keep the first window open to read this text. If VS Code asks whether you trust the authors of the files, click **Yes**. If `code` is not recognised, use **File > New Window**, then **File > Open Folder**.
+
+You can check where you are with `pwd` and what is in the folder with `ls`.
 
 If you get "The folder ... already exists", you ran the setup before. Add `--force` to delete the folder and start again.
 

@@ -51,7 +51,10 @@ New-Item -ItemType Directory -Force "$HOME\git-exercises"
 cd "$HOME\git-exercises"
 git clone https://<forge>/<organisation>/<training-repo>.git
 cd <training-repo>
+code .
 ```
+
+`code .` opens the clone in its own VS Code window, as in exercises 1 to 3. Edit the files there and type your Git commands in its terminal (``Ctrl+` ``). You can close the window of the earlier exercise.
 
 ```
 Cloning into '<training-repo>'...

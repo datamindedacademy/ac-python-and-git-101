@@ -41,7 +41,23 @@ Exercises 1 to 3 start from a prepared folder. Create it with the setup script. 
 uv run python exercises/git/setup_exercise.py 1
 ```
 
-Use `2` or `3` for the other exercises. The script creates `git-exercises\exercise_<n>` in your home folder, outside the course repository, and prints the `cd` command you need next. Add `--force` to start again, or `--target <folder>` to put it somewhere else.
+Use `2` or `3` for the other exercises. The script creates `git-exercises\exercise_<n>` in your home folder, outside the course repository, and prints the two commands you need next. Add `--force` to start again, or `--target <folder>` to put it somewhere else.
+
+## Where you edit the files
+
+The exercise folder is outside the course repository, so its files do not show up in the VS Code window you have open now. Open the exercise folder in a second VS Code window:
+
+```powershell
+cd "$HOME\git-exercises\exercise_1"
+code .
+```
+
+- **Second window** (the exercise folder): edit the files here. Open its terminal with ``Ctrl+` ``. It starts in the exercise folder, so type your Git commands there.
+- **First window** (the course repository): keep it open to read the exercise text. Switch between the two with `Alt+Tab`.
+- If VS Code asks "Do you trust the authors of the files in this folder?", click **Yes**. You created them.
+- If `code` is not recognised, use **File > New Window**, then **File > Open Folder** and choose the exercise folder.
+
+Do the same for the clone of the training repository in exercises 4 to 6.
 
 Exercises 4 to 6 use the training repository on the forge and need no setup script. The trainer gives you its URL:
 

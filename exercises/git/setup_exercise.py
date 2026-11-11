@@ -250,8 +250,11 @@ def main(argv: list[str] | None = None) -> int:
     print(INTRO[n])
     print(f"Created: {target}")
     print()
-    print("Next, run this command:")
+    print("Next, run these two commands:")
     print(f'  cd "{target}"')
+    print("  code .")
+    print()
+    print("`code .` opens the folder in a second VS Code window. Edit the files there.")
     return 0
 
 

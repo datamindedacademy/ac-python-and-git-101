@@ -28,7 +28,7 @@ From the root of the course repository:
 uv run python exercises/git/setup_exercise.py 2
 ```
 
-Run the `cd` command it prints. The repository contains a `.gitignore` file that hides Python cache folders (`__pycache__/`), so they do not clutter `git status`. Exercise 6 explains `.gitignore`.
+Run the two commands it prints: `cd` goes to the exercise folder and `code .` opens it in a second VS Code window, where you edit the files and type your Git commands (terminal: ``Ctrl+` ``). The repository contains a `.gitignore` file that hides Python cache folders (`__pycache__/`), so they do not clutter `git status`. Exercise 6 explains `.gitignore`.
 
 You now have a repository with 5 commits by three colleagues. The commit hashes in this text are written as `<hash>`. Yours are the ones you see on your screen.
 
