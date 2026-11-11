@@ -79,3 +79,13 @@ Text with an unknown unit, such as `"3 atm"`, prints a clear message instead of 
 This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
 
 `0.1 + 0.2 == 0.3` is `False`, but `0.5 + 0.25 == 0.75` is `True`. Why? What does that mean for a script that checks whether two measured pressures are equal?
+
+A second one. Run this:
+
+```python
+import sys
+
+print(sys.getsizeof(1), sys.getsizeof(1.0))
+```
+
+It prints `28 24`: the whole number 1 takes more bytes than the float 1.0. Why? Try `sys.getsizeof(2**100)` as well. What does that tell you about the largest `int` Python can hold?
