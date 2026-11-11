@@ -209,6 +209,46 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
+# A comparison gives a <span class="dm-accent">boolean</span>: True or False
+
+```python {all|1-4|5-6|7|8|all}
+pressure_bar = 8.7
+temperature_c = 82
+is_alarm = pressure_bar > 8.5
+print(is_alarm, type(is_alarm))
+print(pressure_bar > 8.5 and temperature_c > 90)
+print(pressure_bar > 8.5 or temperature_c > 90)
+print(not is_alarm)
+print(7.0 < pressure_bar < 9.0)
+```
+
+<v-click>
+
+```text
+True <class 'bool'>
+False
+True
+False
+True
+```
+
+</v-click>
+
+<p class="note">Compare with <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code> <code>==</code> <code>!=</code>. Combine with <b>and</b>, <b>or</b>, <b>not</b>. One <code>=</code> assigns, two <code>==</code> compare.</p>
+
+<style>
+.slidev-code { font-size: 16px !important; line-height: 1.45 !important; }
+</style>
+
+<!--
+A boolean, type bool, has two values: True and False, with a capital. You rarely type them yourself. You get them from a comparison, and you can keep the result in a variable, which is how an alarm flag is made. Boolean logic combines them. and is True only when both sides are True. or is True when at least one side is True. not turns True into False. In Python these are words, where MATLAB writes two ampersands, two bars and a tilde. The last line is a Python extra: you can chain comparisons the way you write them in maths, so a range check is one expression. Two things go wrong often. A single equals sign assigns, a double one compares, and mixing them up is the classic error. And when you mix and with or, and is evaluated first: True or False and False is True. Use brackets and nobody has to remember that. The if statement after the break runs on exactly these booleans.
+-->
+
+---
+layout: default
+label: 3 · Language fundamentals
+---
+
 # A number has no unit, so put it <span class="dm-accent">in the name</span>
 
 <p class="why"><b>Why</b>Python stores 7.5, not 7.5 bar. Mix bar and psi and you get a wrong number, not an error.</p>
@@ -252,7 +292,7 @@ layout: statement
 
 `exercises/python/02-variables-and-types`
 
-<p class="words"><b>Words you can now use</b> variable · assignment · type · string · float · f-string · convert · traceback</p>
+<p class="words"><b>Words you can now use</b> variable · assignment · type · string · float · f-string · convert · traceback · boolean</p>
 
 <style>
 .words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
