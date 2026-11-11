@@ -17,49 +17,37 @@ layout: default
 label: Welcome
 ---
 
-# Today: from a <span class="dm-accent">first script</span> to a pull request
+# Three days: <span class="dm-accent">write</span> it, <span class="dm-accent">analyse</span> with it, <span class="dm-accent">trust</span> it
 
-<div class="day">
-<div class="lane"><span class="lane-title">Morning · Python</span><div class="stops">
-<div class="stop "><span class="time">09:00</span><div class="ico"><div class="i-mdi-laptop" /></div><b>Setup check</b><span class="txt">Tools answer, repository cloned</span></div>
-<div class="stop "><span class="time">09:30</span><div class="ico"><div class="i-mdi-console" /></div><b>Run a script</b><span class="txt">Python, uv, script or notebook</span></div>
-<div class="stop "><span class="time">10:15</span><div class="ico"><div class="i-mdi-code-braces" /></div><b>The language</b><span class="txt">Variables, collections, loops, functions, tests</span></div>
-<div class="stop rest"><span class="time">12:30</span><div class="ico"><div class="i-mdi-silverware-fork-knife" /></div><b>Lunch</b><span class="txt">Back at 13:15</span></div>
-</div></div>
-<div class="lane"><span class="lane-title">Afternoon · Files, projects and Git</span><div class="stops">
-<div class="stop navy"><span class="time">13:15</span><div class="ico"><div class="i-mdi-file-document-multiple-outline" /></div><b>Files and errors</b><span class="txt">Read a folder of logs, survive bad rows</span></div>
-<div class="stop navy"><span class="time">14:20</span><div class="ico"><div class="i-mdi-package-variant-closed" /></div><b>Projects with uv</b><span class="txt">Packages, lock file, one-file scripts</span></div>
-<div class="stop navy"><span class="time">15:05</span><div class="ico"><div class="i-mdi-source-branch" /></div><b>Git</b><span class="txt">Commit, branch, merge, rebase, pull request</span></div>
-<div class="stop rest"><span class="time">16:50</span><div class="ico"><div class="i-mdi-flag-checkered" /></div><b>Wrap-up</b><span class="txt">Done at 17:00</span></div>
-</div></div>
+<div class="days">
+<div class="dcard d1"><div class="top"><div class="ico"><div class="i-mdi-code-braces" /></div><span class="num">Day 1</span><span class="today">today</span></div><b>Python and Git 101</b><span class="sub">Write a script and share it</span><ul><li>Python on your laptop, uv</li><li>The language, files, errors</li><li>Git: commit, branch, pull request</li></ul></div>
+<div class="conn">→</div>
+<div class="dcard d2"><div class="top"><div class="ico"><div class="i-mdi-chart-line" /></div><span class="num">Day 2</span></div><b>Data analysis</b><span class="sub">Turn measurements into answers</span><ul><li>pandas and NumPy</li><li>SciPy and scikit-learn</li><li>Plots with Matplotlib</li></ul></div>
+<div class="conn">→</div>
+<div class="dcard d3"><div class="top"><div class="ico"><div class="i-mdi-shield-check-outline" /></div><span class="num">Day 3</span></div><b>Code you can trust</b><span class="sub">Quality, automation and agents</span><ul><li>Tests, linting, type checking</li><li>Pipelines on Azure DevOps</li><li>Coding agents, and reviewing their work</li></ul></div>
 </div>
 
-<div class="how">
-<span><div class="i-mdi-presentation" /> Short theory</span>
-<span class="arrow">→</span>
-<span><div class="i-mdi-keyboard-outline" /> Exercise: 2 or 3 tasks, the last one is hard</span>
-</div>
+<p class="bring"><b>Bring your own work.</b> A use case, an example or a question from your job is welcome in every session.</p>
 
 <style>
-.day { display: flex; flex-direction: column; gap: 14px; margin-top: 6px; }
-.lane-title { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--dm-connecting); }
-.stops { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 6px; position: relative; }
-.stops::before { content: ""; position: absolute; left: 20px; right: 20px; top: 39px; height: 3px; background: var(--dm-connecting); opacity: 0.35; }
-.stop { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
-.stop .time { font-family: monospace; font-size: 12px; color: var(--dm-premium); opacity: 0.75; }
-.stop .ico { width: 40px; height: 40px; border-radius: 50%; background: var(--dm-connecting); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 2px 0 4px; }
-.stop.navy .ico { background: var(--dm-premium); }
-.stop.rest .ico { background: #fff; color: var(--dm-connecting); border: 2px solid var(--dm-connecting); }
-.stop b { font-size: 17px; color: var(--dm-premium); }
-.stop .txt { font-size: 13.5px; line-height: 1.35; color: var(--dm-premium); opacity: 0.85; }
-.how { display: flex; align-items: center; gap: 14px; margin-top: 18px; padding: 10px 16px; background: var(--dm-surface); border-radius: 8px; font-size: 15px; color: var(--dm-premium); }
-.how span { display: inline-flex; align-items: center; gap: 6px; }
-.how .arrow { color: var(--dm-connecting); font-weight: 700; }
-.how div { font-size: 19px; color: var(--dm-connecting); }
+.days { display: grid; grid-template-columns: 1fr 26px 1fr 26px 1fr; align-items: stretch; margin-top: 10px; }
+.conn { display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: var(--dm-connecting); }
+.dcard { display: flex; flex-direction: column; gap: 4px; padding: 18px 18px 14px; border-radius: 12px; background: var(--dm-surface); border-top: 5px solid var(--dm-premium); }
+.dcard.d1 { border-top-color: var(--dm-connecting); box-shadow: 0 0 0 2px var(--dm-connecting); }
+.dcard .top { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.dcard .ico { width: 44px; height: 44px; border-radius: 10px; background: var(--dm-premium); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 26px; }
+.dcard.d1 .ico { background: var(--dm-connecting); }
+.dcard .num { font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--dm-premium); }
+.dcard .today { margin-left: auto; font-size: 12px; font-weight: 600; color: #fff; background: var(--dm-connecting); border-radius: 999px; padding: 2px 10px; }
+.dcard b { font-size: 20px; color: var(--dm-premium); }
+.dcard .sub { font-size: 14.5px; color: var(--dm-premium); opacity: 0.8; }
+.dcard ul { margin: 8px 0 0; padding-left: 18px; }
+.dcard li { font-size: 14.5px; line-height: 1.45; margin: 3px 0; }
+.bring { margin-top: 16px; padding: 10px 16px; border-left: 4px solid var(--dm-connecting); background: var(--dm-authentic); border-radius: 0 8px 8px 0; font-size: 15.5px; color: var(--dm-premium); }
 </style>
 
 <!--
-This is the day in one picture. The morning is Python: we check every laptop, run a first script, and then work through the language itself, which is the biggest block. After lunch we read and write files, handle errors, and set up a project with uv. The last stretch is Git: commits, branches, and a pull request on a shared repository. Every block has the same rhythm: a short piece of theory, then an exercise with two or three tasks. Ask questions at any time. There is a questions slide at the end of the Python part and at the end of the Git part. The last task of each exercise is hard on purpose. Most of you will not finish it in class, and nothing later depends on it. This is the plan, not a contract. There are two 15 minute breaks, one around 11:00 and one at about 14:50, and we move them when an exercise is in full flow.
+This is the whole training in one picture. Today you learn to write a Python script and to share it with Git. Day 2 uses that for data analysis: tables with pandas, numbers with NumPy and SciPy, plots with Matplotlib, and a first model with scikit-learn. Day 3 is about code you can trust: tests, linting and type checking, pipelines on Azure DevOps, and coding agents and how to review what they write. Each day builds on the one before, so today is the foundation. Invite everyone to bring something from their own work to the next sessions: a script they want to write, a data file they struggle with, an error they could not solve, or just a question. Real cases make days 2 and 3 better. For today: setup check at 09:00, Python until lunch at 12:30, restart at 13:15 with files, errors and uv, Git from about 15:05, wrap-up at 16:50. There are two 15 minute breaks, around 11:00 and around 14:50, and we move them when an exercise is in full flow.
 -->
 
 ---
