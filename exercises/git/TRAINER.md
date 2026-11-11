@@ -40,7 +40,7 @@ Go to **Repos > Branches**, open the **...** menu next to `main`, and choose **B
    - **Reset all approval votes** when new changes are pushed: your choice. Off is simpler.
 2. **Check for linked work items**: off.
 3. **Check for comment resolution**: off (or on, if you want to show it).
-4. **Limit merge types**: allow **Merge (no fast-forward)** and **Squash merge**. Do not allow only **Rebase** or **Semi-linear**: those force participants to update their branch first and rebase is out of scope.
+4. **Limit merge types**: allow **Merge (no fast-forward)** and **Squash merge**. Do not allow only **Rebase** or **Semi-linear**: those force participants to update their branch first, and rebasing a pushed branch is not practised in the exercises.
 5. Build validation and automatic reviewers: none.
 
 Test it: with your own account (not an admin), try `git push origin main` after a local change. It must be refused. Then create a PR with a second person's account and see that it cannot complete without an approval.
@@ -110,36 +110,37 @@ Fallback if the laptops cannot reach Azure DevOps: use the devcontainer. Exercis
 
 ## 4. Running the session (15:05 to 16:50)
 
-The block is 105 minutes: about 35 minutes of instruction and 70 minutes of core exercises.
+The block is 105 minutes: about 30 minutes of instruction and 75 minutes of core exercises.
 
 | Time | Content |
 |---|---|
 | 15:05 | Slides (about 20 min): why version control, repository, commit, three areas, branch, merge, remote, pull request, GitFlow versus trunk-based in two minutes. |
 | 15:25 | Exercise 1 (10 min). Draw the three areas on the whiteboard first. |
 | 15:35 | Exercise 2 (10 min). |
-| 15:45 | Exercise 3 (15 min). |
-| 16:00 | Hand out the repository URL. Short instruction on remotes and Azure DevOps (about 10 min, live clone). |
-| 16:10 | Exercise 4 (15 min). Expect sign-in problems: see below. |
-| 16:25 | Exercise 5 (20 min). Pair up neighbours before they start. |
-| 16:45 | Demo of exercise 6 in VS Code (about 5 min). Point to the README for doing it alone. |
+| 15:45 | Exercise 3 (20 min). The merge conflict is a core task. |
+| 16:05 | Hand out the repository URL. Short instruction on remotes and Azure DevOps (about 8 min, live clone). |
+| 16:13 | Exercise 4 (15 min). Expect sign-in problems: see below. |
+| 16:28 | Exercise 5 (20 min). Pair up neighbours before they start. |
+| 16:48 | Demo of exercise 6 in VS Code (about 2 min: the Source Control view only). Point to the README for doing it alone. |
 | 16:50 | End. |
 
-Times add up to roughly 35 minutes of instruction and 70 minutes of exercises. Exercise 6 is a demo only.
+Exercise 3 grew from 15 to 20 minutes because the merge conflict is now core. The 5 extra minutes come from the remote instruction (10 to 8 minutes) and the exercise 6 demo (5 to 2 minutes). The block stays at 105 minutes. Times add up to roughly 30 minutes of instruction and 75 minutes of exercises. Exercise 6 is a demo only.
 
 **If the day runs late, drop in this order:**
 
 1. Exercise 2 (history). Show `git log --oneline` and `git show` in one minute during the slides instead.
-2. The merge-commit part of exercise 3 (task 4). Keep the branch, commit and fast-forward merge.
+2. Do the merge conflict of exercise 3 (task 4) as a trainer demo on your screen instead of hands-on. Keep the branch, commit and fast-forward merge as exercises.
 3. Never drop exercises 4 and 5: they reach the end goal (clone, branch, commit, push, pull request).
 
-Everything under "Optional: if you have time" in the READMEs is never done in class. Mention only briefly: GitFlow versus trunk-based development, rebase, stash, tags.
+Everything under "Optional: if you have time" in the READMEs is never done in class. The **Challenge** tasks at the end of exercises 1, 2, 3 and 5 are for participants who finish early, while you help the others. Mention only briefly: GitFlow versus trunk-based development, cherry-pick, stash, tags. Rebase has a slide and an optional task in exercise 3.
 
-### Copilot and the "Explain it" questions
+### Copilot and checking understanding
 
 - Participants may use GitHub Copilot (inline completions and Copilot Chat in VS Code) all day, including in the Git block. The ground rules are in `exercises/git/README.md` under "Using Copilot". No core task needs Copilot.
 - Not every participant may have an activated Copilot licence yet. Pair those people with a neighbour who has one for the optional "With Copilot" tasks. Do not spend class time on licence problems.
 - Ask participants to type the Git commands themselves. Copilot is for explaining messages and for changing code, which they then inspect with `git diff`.
-- Every exercise ends with an "Explain it" task. This is your check on understanding: walk around, pick two or three people per exercise and let them answer out loud. Listen for the terms in the "Words to use" line. Model answers are in `solutions/git/README.md`.
+- To check understanding, walk around, pick two or three people per exercise and ask a "Check yourself" question out loud. Listen for the terms in the "Words to use" line. Model answers are in `solutions/git/README.md`.
+- Every exercise ends with an "Open question" that goes beyond the day. Nobody has to answer it. Answers are in `solutions/git/README.md`.
 - The message to repeat: an assistant can write the code, but you must know the words to ask for the right thing, read the diff to judge the result, and own what you commit.
 
 ## 5. Common problems
@@ -162,3 +163,14 @@ Everything under "Optional: if you have time" in the READMEs is never done in cl
 - Optionally keep the repositories read-only as examples (set **Contribute** to Deny for the group).
 - Delete the repositories when they are no longer needed. Ask Atlas Copco which retention they prefer.
 - Nothing in these repositories is secret, but remind participants not to commit real measurement data or credentials in any repository.
+
+## Checking the material
+
+From the repository root:
+
+```powershell
+uv run pytest         # checks the solutions and the Git setup script
+uv run ruff check .   # lint
+```
+
+The slide commands are in [`slides/README.md`](../../slides/README.md).

@@ -1,7 +1,5 @@
 # 08 - A uv project with a package
 
-Core time: 15 minutes. Optional tasks at the end if you have time.
-
 **Words to use:** package, dependency, transitive dependency, virtual environment, project file (`pyproject.toml`), lockfile (`uv.lock`), sync.
 
 ## Goal
@@ -9,6 +7,10 @@ Core time: 15 minutes. Optional tasks at the end if you have time.
 Create a new Python project with uv, add a package, look at the files uv creates, and run a script that imports the package.
 
 This exercise is different: you work **outside** this repo, in a scratch folder.
+
+## Why this matters
+
+A script that only runs on your own laptop is not a tool yet. The project file and the lockfile let a colleague, a build server or you in a year run it with the same package versions.
 
 ## Background
 
@@ -91,13 +93,6 @@ Work in PowerShell. Choose a place outside the repo, for example your user folde
 | Python version | `uv python install`, set in `.python-version` | you install it yourself |
 | Speed | very fast | slower |
 
-## Explain it
-
-This is the last core task. Answer each question in one or two sentences, to your neighbour or in writing. You do not need to write code.
-
-1. What breaks for a colleague if you share your project without `uv.lock`? And why is it fine to leave out `.venv`?
-2. `pyproject.toml` says something like `matplotlib>=3.10`, and `uv.lock` names one exact version. Why keep both files?
-
 ## Check yourself
 
 - After step 2, `pyproject.toml` contains something like `dependencies = ["matplotlib>=3.10"]` (your version number may differ).
@@ -122,3 +117,15 @@ This is the last core task. Answer each question in one or two sentences, to you
 ### With Copilot
 
 Ask Copilot Chat: *"What is the difference between `uv add`, `uv sync` and `uv pip install` in a project with a lockfile?"* Check one claim from the answer yourself with `uv help add` or by looking at `pyproject.toml` and `uv.lock` before and after. Which of the three commands should you use in a project like this one, and which one would silently leave the lockfile out of date?
+
+## Challenge
+
+For those who finish early. There are no TODOs and no hints.
+
+In your `pressure-demo` project, copy in `conversions.py` and `test_conversions.py` from exercise 05 (your own versions, with all tests green there). Add pytest as a development dependency with `uv add --dev pytest`. Get `uv run pytest` green in the new project.
+
+## Open question
+
+This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
+
+Package A needs `numpy` below version 2 and package B needs `numpy` 2 or higher. What does `uv add` do when you ask for both, and why can no tool give you both in one environment? `uv.lock` also stores a hash for every package. What is that hash for?

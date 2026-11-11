@@ -8,7 +8,7 @@ role: Dataminded
 <p class="mt-4">Your trainer today. Ask early, ask often: stuck for five minutes means wave at me.</p>
 
 <!--
-Introduce yourself briefly, then ask the room three questions with a show of hands: who has used MATLAB, who has written Excel macros or VBA, and who has never programmed. That tells you how much to lean on the MATLAB analogies. Say clearly that Day 1 assumes no programming experience and that nobody is behind. You are the only trainer today, so ask people to help their neighbour first while you walk around during the exercises.
+Introduce yourself briefly, then ask the room three questions with a show of hands: who has used MATLAB, who has written Excel macros or VBA, and who has written a little Python. That tells you how much to lean on the MATLAB analogies. Say clearly that Day 1 assumes some scripting experience and focuses on what is specific to Python. You are the only trainer today, so ask people to help their neighbour first while you walk around during the exercises.
 -->
 
 ---
@@ -24,10 +24,10 @@ label: Welcome
   <DmIconBadge icon="i-mdi-source-branch" label="Version control" sub="Git and Azure DevOps" />
 </div>
 
-<p class="note">No programming experience assumed. Nobody is behind.</p>
+<p class="note">Some scripting experience assumed (MATLAB, VBA or a little Python). We focus on what is specific to Python.</p>
 
 <!--
-The three blocks of the day. The environment comes first because nothing else works without it. Fundamentals is the biggest block. Git gets the end of the day, when you are comfortable with files and the terminal.
+The three blocks of the day. The environment comes first because nothing else works without it. Fundamentals is the biggest block. Git gets the end of the day, when you are comfortable with files and the terminal. The day assumes some scripting experience, so we spend the time on what is specific to Python.
 -->
 
 ---
@@ -66,7 +66,25 @@ layout: default
 label: Welcome
 ---
 
-# Use Copilot, keep only lines <span class="dm-accent">you can explain</span>
+# This prompt will <span class="dm-accent">make sense</span> by 15:00
+
+<p class="prompt">Write a function `summarize_run(path: Path) -> dict` that reads a CSV log with `csv.DictReader`, converts `pressure_bar` to float, skips and counts rows that raise `ValueError`, and returns the mean and max. Use a list comprehension where it fits. Standard library only, no classes. Add a pytest test using `pytest.approx`.</p>
+
+<style>
+.prompt { font-family: monospace; font-size: 19px; line-height: 1.6; background: var(--dm-surface); border-left: 4px solid var(--dm-connecting); border-radius: 8px; padding: 18px 22px; margin-top: 16px; }
+</style>
+
+<!--
+This is what a specialist asks for. Every term in it is taught today: csv.DictReader, float conversion, ValueError and skipping bad rows, list comprehension, the standard library, pytest and pytest.approx, type hints and Path. Do not explain anything now. The same slide comes back in the wrap-up.
+-->
+
+
+---
+layout: default
+label: Welcome
+---
+
+# Use Copilot, keep only lines <span class="dm-accent">you understand</span>
 
 <div class="grid-3 mt-2">
 <DmInfoCard icon="i-mdi-alert-circle-outline" title="Explain errors">
@@ -81,13 +99,13 @@ Then compare the two and pick the simpler one
 </DmInfoCard>
 <DmInfoCard icon="i-mdi-account-check-outline" icon-tone="navy" title="Own the commit">
 
-Your name is on it. Explain every line to your neighbour, or replace it
+Your name is on it. Understand every line, or replace it
 
 </DmInfoCard>
 </div>
 
 <!--
-GitHub Copilot is allowed all day, starting now. The most valuable uses for a beginner are asking it to explain an error message or a piece of code, and asking for a second way to do the same thing so you can compare. The one habit I insist on: if you cannot explain a line to the person next to you, ask Copilot to explain it or replace it with something you understand. Your name is on the commit, so the responsibility is yours. One more habit, from Oliver's Clean Code workshop: keep it simple. The simplest version that works is the one to keep, and assistants tend to over-build, so ask for less. Some of you may not have an activated licence yet: pair up with a neighbour who has one, the exercises all work without it too. Day 3 goes deeper into agents, skills and reviewing AI-written code.
+GitHub Copilot is allowed all day, starting now. The most valuable uses today are asking it to explain an error message or a piece of code, and asking for a second way to do the same thing so you can compare. The one habit I insist on: if you do not understand a line, ask Copilot to explain it or replace it with something you understand. Your name is on the commit, so the responsibility is yours. One more habit, from Oliver's Clean Code workshop: keep it simple. The simplest version that works is the one to keep, and assistants tend to over-build, so ask for less. Some of you may not have an activated licence yet: pair up with a neighbour who has one, the exercises all work without it too. Day 3 goes deeper into agents, skills and reviewing AI-written code.
 -->
 
 ---
@@ -161,9 +179,9 @@ label: Agenda
 # Agenda
 
 1. 09:00 Setup check
-2. 09:30 Scripts, notebooks and running Python
+2. 09:30 Python on your laptop, scripts and notebooks
 3. 10:15 Language fundamentals, lunch at 12:30
-4. 13:15 Standard library, files and exceptions
+4. 13:15 Files, the standard library and exceptions
 5. 14:20 Projects with uv
 6. 15:05 Version control and Git
 7. 16:50 Wrap-up

@@ -1,30 +1,31 @@
 # Git exercises
 
-Day 1, part 3: version control with Git and Azure DevOps. The whole Git block runs from 15:05 to 16:50: about 35 minutes of instruction and **70 minutes of core exercises**.
+Day 1, part 3: version control with Git and Azure DevOps.
 
 By the end you can: clone an Azure DevOps repository, commit on a branch, push, open a pull request, and pull.
 
 ## Overview
 
-| # | Folder | Topic | Core time |
+| # | Folder | Topic | Why it matters |
 |---|---|---|---|
-| 1 | `01-first-commit` | `git init`, `status`, `add`, `commit`, `log`, `diff`. The three areas. | 10 min |
-| 2 | `02-history` | `log`, `show`, find who changed a value and when, `restore`. | 10 min |
-| 3 | `03-branches` | `switch -c`, `merge` (fast-forward and merge commit), `branch -d`. | 15 min |
-| 4 | `04-azure-devops-remote` | `clone`, `remote`, `push -u` to Azure DevOps. | 15 min |
-| 5 | `05-pull-request` | Pull request, review, complete, `pull`, clean up. | 20 min |
-| 6 | `06-git-in-vscode` | Trainer demo in class. Do it yourself afterwards. | demo, 20 min on your own |
-| | | **Total core** | **70 min** |
+| 1 | `01-first-commit` | `git init`, `status`, `add`, `commit`, `log`, `diff`. The three areas. | A commit is the unit you undo and review. |
+| 2 | `02-history` | `log`, `show`, find who changed a value and when, `restore`. | Find out what changed, who did it and why. |
+| 3 | `03-branches` | `switch -c`, `merge` (fast-forward, merge conflict), `branch -d`. | Try things safely, and solve conflicts calmly. |
+| 4 | `04-azure-devops-remote` | `clone`, `remote`, `push -u` to Azure DevOps. | Your work is backed up and colleagues can get it. |
+| 5 | `05-pull-request` | Pull request, review, complete, `pull`, clean up. | A second pair of eyes before it reaches `main`. |
+| 6 | `06-git-in-vscode` | Trainer demo in class. Do it yourself afterwards. | Daily Git work, and keeping data out of history. |
 
-Every README starts with its core time and a "Words to use" list: the terms that exercise introduces. The last core task of each exercise is **Explain it**: one or two questions that you answer in a sentence, to your neighbour or in writing. Each optional part has one **With Copilot** task. Everything under the heading **Optional: if you have time** at the end of a README is not needed to follow the training. Do it when you finish early or at home.
+Every README starts with the core tasks and a "Words to use" list: the terms that exercise introduces. Each README has a **Why this matters** section and ends with an **Open question** that goes beyond the day. Each optional part has one **With Copilot** task. Everything under the heading **Optional: if you have time** at the end of a README is not needed to follow the training. Do it when you finish early or at home.
+
+Exercises 1, 2, 3 and 5 end with a **Challenge** after the optional part. It is for those who finish early. It describes a result to reach and gives no commands: find them with `git help <command>` or Copilot, and check the result with `git log` and `git status`. The answers are in `solutions/git/README.md`. Exercises 4 and 6 have no challenge.
 
 What moved to optional:
 
-- Exercise 1: committing the data file (task 10) and the extras.
+- Exercise 1: committing the data file (task 9) and the extras.
 - Exercise 2: comparing two commits, `git log -S`, `git blame`, visiting an old version (detached HEAD), `git restore --staged`.
-- Exercise 3: the merge conflict.
-- Exercise 4: running `check_setup.py`, the stretch.
-- Exercise 5: details on "main moved meanwhile", the GitFlow versus trunk-based table, the stretch.
+- Exercise 3: a merge commit without a conflict, rebase instead of merge.
+- Exercise 4: running `check_setup.py` and the extras.
+- Exercise 5: details on "main moved meanwhile", the GitFlow versus trunk-based table and the extras.
 
 Do the exercises in order. Open each `README.md` in VS Code (right-click, **Open Preview**) or read it on screen.
 
@@ -110,6 +111,7 @@ git branch -a                         # also list remote branches
 git switch <branch>                   # go to a branch
 git switch -c <new-branch>            # create a branch and go to it
 git merge <branch>                    # merge <branch> into the current branch
+git rebase main                       # replay this branch on top of main (unpushed commits only)
 git branch -d <branch>                # delete a merged branch
 git push -u origin <branch>           # first push of a new branch
 git fetch --prune                     # update remote info, forget deleted remote branches
@@ -134,6 +136,7 @@ git switch main                       # come back
 git restore <file>                    # throw away uncommitted edits (cannot be undone)
 git restore --staged <file>           # unstage, keep the edit
 git merge --abort                     # leave a merge that went wrong
+git rebase --abort                    # leave a rebase that went wrong
 ```
 
 ### The three areas

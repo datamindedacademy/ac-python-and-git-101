@@ -1,12 +1,14 @@
 # 01 - Your first script
 
-Core time: 15 minutes. Optional tasks at the end if you have time.
-
 **Words to use:** interpreter, script, notebook, cell, kernel, PATH, virtual environment.
 
 ## Goal
 
 Run a Python script from PowerShell and from VS Code. Find out where Python lives on your laptop. Compare a script with a notebook.
+
+## Why this matters
+
+Most "it works on my laptop but not on yours" problems come down to which Python ran the script. Checking which one ran takes one command and can save hours. Whether you hand over a script or a notebook decides if a colleague gets the same result when they run your work.
 
 ## Background
 
@@ -47,13 +49,6 @@ All commands below are for **PowerShell**, run from the **repo root** (the folde
 
 6. Open `first_notebook.ipynb` in VS Code. Select the `.venv` kernel at the top right. Fill in the TODO and run both code cells with `Shift+Enter`.
 
-## Explain it
-
-This is the last core task. Answer each question in one or two sentences, to your neighbour or in writing. You do not need to write code.
-
-1. You ran the same calculation as a script and as a notebook. Name one job where you would choose a script and one where you would choose a notebook. Say why.
-2. What does `uv run` do for you before it starts `python`? Why do we not just type `python hello.py`?
-
 ## Check yourself
 
 Step 4 should print:
@@ -88,3 +83,9 @@ Average pressure in bar: 7.233333333333334
 ### With Copilot
 
 Open Copilot Chat and ask: *"Explain step by step what happens when I run `uv run python hello.py`. Use the terms interpreter, PATH and virtual environment."* Compare the answer with the Background section above. Did it use a word you do not know yet? Ask it to define that word. Is there a sentence in the answer that you cannot check yourself? How would you check it?
+
+## Open question
+
+This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
+
+`uv run python hello.py` starts in a fraction of a second. What happens between pressing Enter and the first line of your script running? Which part of that work does Python save for next time, and where? (Look for a folder called `__pycache__` after exercise 05.)

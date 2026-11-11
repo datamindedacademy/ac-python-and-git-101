@@ -33,6 +33,7 @@ for path in sorted(runs_folder.glob("*.csv")):
 
     # TODO 3: calculate the standard deviation of the pressure:
     #   take math.sqrt of the mean of (p - mean_bar) ** 2 for every p.
+    # Hint: the sum of squares can be a comprehension inside sum(...).
     std_bar = ...
 
     # TODO 4: find the maximum temperature with max().

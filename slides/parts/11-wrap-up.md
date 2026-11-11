@@ -49,6 +49,34 @@ layout: default
 label: Wrap-up
 ---
 
+# Read these two prompts <span class="dm-accent">again</span>
+
+<DmColumns class="mt-2">
+<DmColumn header="Git" tone="navy">
+
+<p class="prompt">Create a branch `feature/max-temperature` from an up-to-date `main`. Stage only `analyse_run.py`, commit with an imperative message, push and set the upstream. Draft a pull request description from `git diff origin/main`. Do not commit `output/`. If the merge conflicts, stop and show me both sides.</p>
+
+</DmColumn>
+<DmColumn header="Python" tone="violet" divider>
+
+<p class="prompt">Write a function `summarize_run(path: Path) -> dict` that reads a CSV log with `csv.DictReader`, converts `pressure_bar` to float, skips and counts rows that raise `ValueError`, and returns the mean and max. Use a list comprehension where it fits. Standard library only, no classes. Add a pytest test using `pytest.approx`.</p>
+
+</DmColumn>
+</DmColumns>
+
+<style>
+.prompt { font-family: monospace; font-size: 14px; line-height: 1.55; background: var(--dm-surface); border-left: 4px solid var(--dm-connecting); border-radius: 8px; padding: 14px 16px; }
+</style>
+
+<!--
+Ask the room which terms they could not explain this morning and can now. Any term that is still unclear is a question for now, while we are all here. The Python prompt is the one from the start of the day, the Git prompt is the one from the start of this afternoon.
+-->
+
+---
+layout: default
+label: Wrap-up
+---
+
 # Eight commands cover <span class="dm-accent">daily Git</span>
 
 <DmColumns class="mt-2">

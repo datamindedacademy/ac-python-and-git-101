@@ -1,13 +1,9 @@
 # Solution notes - 03
 
-## Explain it: model answers
+## Challenge
 
-Your own words are fine. What matters is that you name the tradeoff.
+`challenge.py` is the reference solution. It loops over the keys of the first dict and uses a comprehension for each list.
 
-**You stored one measurement as a dict and the series of pressures as a list. Why not the other way round?**
+## Open question
 
-A measurement has a fixed set of named fields, so a dict with keys fits: you ask for `"pressure_bar"` by name. A series is many values of the same kind in order, so a list fits: you index, slice and loop over it. A list for one measurement would force you to remember that position 1 is the pressure. A dict for the series would need invented keys.
-
-**The position of the test hall is a tuple, not a list. What does a tuple promise that a list does not? When is that useful?**
-
-A tuple cannot change after you create it. That is a promise to the reader: these values belong together and stay as they are. The cost is that you cannot append or replace items, so use a list when the data grows.
+`b = a` does not copy the list. It gives the same list object a second name, so `b.append(4)` changes what `a` sees too. Use `a.copy()` when you want a separate list. A dict key must be hashable and must stay the same while it is in the dict. A list can change, so it is not hashable. A tuple cannot change, so it can be a key.

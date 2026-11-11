@@ -33,6 +33,14 @@ for pressure in pressures_bar:
         alarm_count += 1
 print("Alarms:", alarm_count)
 
+alarm_readings = []
+for pressure in pressures_bar:
+    if pressure > PRESSURE_ALARM_BAR:
+        alarm_readings.append(pressure)
+print("Alarm readings (loop):", alarm_readings)
+alarm_readings_short = [p for p in pressures_bar if p > PRESSURE_ALARM_BAR]
+print("Alarm readings (comprehension):", alarm_readings_short)
+
 level = 7.0
 minutes = 0
 while level <= PRESSURE_ALARM_BAR:
@@ -48,6 +56,5 @@ for pressure in pressures_bar:
         break
 
 # Stretch
-alarm_readings = [p for p in pressures_bar if p > PRESSURE_ALARM_BAR]
 share = len(alarm_readings) / len(pressures_bar) * 100
 print(f"Share in alarm: {share:.1f} %")

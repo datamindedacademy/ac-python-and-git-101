@@ -1,12 +1,14 @@
 # 07 - Files, exceptions and tracebacks
 
-Core time: 20 minutes. Optional tasks at the end if you have time.
-
 **Words to use:** exception, exception type, traceback (stack trace), raise, catch, try/except, file mode.
 
 ## Goal
 
 Read and write text files, handle errors without crashing, and learn to read a **traceback** to find what went wrong.
+
+## Why this matters
+
+Real logs contain bad rows. A script that crashes on file 37 of 200 and a script that silently skips rows are both a problem, so you choose the behaviour on purpose. Reading a traceback is the fastest way to find a fault, in your code and in Copilot's.
 
 ## Background
 
@@ -41,7 +43,7 @@ Read and write text files, handle errors without crashing, and learn to read a *
 
 ## Core tasks
 
-### Part A: files and try/except (about 10 minutes)
+### Part A: files and try/except
 
 1. Look at `pressures.txt`. Can you spot the bad lines?
 2. Open `files_and_exceptions.py`, do TODO 1 to 4.
@@ -51,7 +53,7 @@ Read and write text files, handle errors without crashing, and learn to read a *
    uv run python exercises/python/07-files-and-exceptions/files_and_exceptions.py
    ```
 
-### Part B: read the traceback (about 10 minutes)
+### Part B: read the traceback
 
 Two scripts are broken on purpose. For each one:
 
@@ -68,13 +70,6 @@ uv run python exercises/python/07-files-and-exceptions/broken_2.py
 |---|---|---|
 | `broken_1.py` | | |
 | `broken_2.py` | | |
-
-## Explain it
-
-This is the last core task. Answer each question in one or two sentences, to your neighbour or in writing. You do not need to write code.
-
-1. Why do you catch `ValueError` and not every exception with a bare `except:`?
-2. A traceback gives you a line number. Is that always the line you must change? Use `broken_1.py` as your example.
 
 ## Check yourself
 
@@ -111,3 +106,21 @@ Part B: after your fixes, `broken_1.py` prints a highest pressure and `broken_2.
 ### With Copilot
 
 Run `broken_2.py` again (use the original, or undo your fix) and paste the full traceback into Copilot Chat. Ask: *"What is the cause of this exception, and which line raises it?"* Was it right? Which line of the traceback told you the same thing? Did Copilot propose the same fix as you, or a different one (for example `str()` instead of an f-string)? Which do you prefer?
+
+## Challenge
+
+For those who finish early. There are no TODOs and no hints.
+
+Change `summarize_logs.py` so that a bad value stops the script with a `ValueError`. The message names the file and the line number in the file, for example:
+
+```text
+ValueError: run_02.csv line 4: cannot convert 'ERR'
+```
+
+Then add a switch (a constant or a command-line argument) to choose between stopping and skipping the bad row. Which default would you pick for a script that runs every night, and why?
+
+## Open question
+
+This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
+
+Your script is writing `summary.json` and the laptop loses power halfway. What is in the file now? How would you write the file so that a reader always finds either the complete old version or the complete new one, never half of one?

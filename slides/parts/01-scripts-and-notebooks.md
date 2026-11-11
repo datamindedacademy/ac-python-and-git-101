@@ -5,12 +5,12 @@ layout: section
 # Scripts and <span class="dm-accent">notebooks</span>
 
 <!--
-First decision: what form does your Python code take? Two forms dominate engineering work, scripts and notebooks. We compare them honestly, then pick one for today.
+Python now runs on your laptop. Next decision: what form does your code take? Two forms dominate engineering work, scripts and notebooks. We compare them honestly, then pick one for today. The first exercise comes at the end of this part.
 -->
 
 ---
 layout: default
-label: 1 · Scripts and notebooks
+label: 2 · Scripts and notebooks
 ---
 
 # A script is a <span class="dm-accent">text file</span> that runs top to bottom
@@ -44,7 +44,7 @@ A script is a plain text file with the extension .py. Python reads it from the f
 
 ---
 layout: default
-label: 1 · Scripts and notebooks
+label: 2 · Scripts and notebooks
 ---
 
 # Scripts repeat, <span class="dm-accent">notebooks</span> explore
@@ -73,7 +73,7 @@ Neither is better in general, they serve different jobs. This is the first trade
 
 ---
 layout: default
-label: 1 · Scripts and notebooks
+label: 2 · Scripts and notebooks
 ---
 
 # A notebook can run code <span class="dm-accent">you no longer see</span>
@@ -93,12 +93,8 @@ label: 1 · Scripts and notebooks
 
 </v-clicks>
 
-<p class="words"><b>Words you can now use</b> script · notebook · cell · kernel · hidden state · reproducible</p>
-
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-.words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
-.words b { margin-right: 8px; }
 .nb { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
 .nb .cell, .nb .out { display: flex; align-items: center; gap: 14px; padding: 7px 14px; border-radius: 8px; }
 .nb .cell { background: var(--dm-surface); border-left: 4px solid var(--dm-connecting); }
@@ -114,4 +110,24 @@ label: 1 · Scripts and notebooks
 <!--
 The kernel remembers variables from every cell you ran, in the order you ran them, not the order on the page. After an hour of exploring, the notebook on screen and the memory in the kernel can disagree. A script cannot do this to you, because it always starts from a clean process, which is what makes its result reproducible. The habit that protects you in notebooks: restart the kernel and run all cells before you trust a result. Rule of thumb: explore in a notebook, and once you would run it twice, move it into a script. We work with scripts today and meet notebooks again on day 2.
 -->
+
+---
+layout: statement
+---
+
+# Exercise 01: <span class="dm-accent">First script</span>
+
+`exercises/python/01-first-script`
+
+<p class="words"><b>Words you can now use</b> script · notebook · cell · kernel · hidden state · reproducible · interpreter · CPython · terminal · PATH · working folder · uv run</p>
+
+<style>
+.words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
+.words b { margin-right: 8px; }
+</style>
+
+<!--
+Everyone creates a script, runs it from PowerShell and from VS Code, and changes it. About 15 minutes. I walk around, and any PATH or interpreter problem is exactly what we want to catch now.
+-->
+
 

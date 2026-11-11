@@ -1,12 +1,16 @@
 # Exercise 4: Clone from Azure DevOps and push a branch
 
-Time: **15 minutes** for the core tasks (1 to 9). Everything under "Optional" is extra.
+Core tasks: 1 to 8. Everything under "Optional" is extra.
 
 Words to use: remote, `origin`, clone, push, upstream branch, remote-tracking branch (`origin/main`), fetch.
 
 ## Goal
 
 Get a copy of your group's training repository from Azure DevOps. Make a branch with a file in your own folder, and push it to Azure DevOps.
+
+## Why this matters
+
+A script that exists only on your laptop is gone when the laptop is. The remote is the backup, and the only way a colleague gets your work without an email attachment. You use it every day you work in a shared repository.
 
 ## Background
 
@@ -158,13 +162,6 @@ Open the repository in your browser. Go to **Repos > Branches**. Find your branc
 
 Azure DevOps may show a banner: "You updated feature/anna-intro just now. Create a pull request". Do not click it yet. That is the next exercise.
 
-### 9. Explain it
-
-Answer in one or two sentences each, to your neighbour or in writing.
-
-1. What does `origin/main` on your laptop know about the server right now? When does it get updated?
-2. After your push, where does your commit exist? Where does it not exist yet?
-
 ## Check yourself
 
 Short questions to test yourself after class. The answers are in `solutions/git/README.md`.
@@ -188,3 +185,9 @@ Use Copilot to explain, then check its explanation against your own repository. 
 > What is the difference between `git fetch` and `git pull`? What happens to my remote-tracking branch `origin/main` and to my local branch `main` in each case?
 
 Now run `git fetch`, then `git status` and `git branch -a`. Does what you see match what Copilot said? Which part of its answer could you verify, and which part did you have to take on trust?
+
+## Open question
+
+This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
+
+After `git fetch` your laptop holds commits that are in none of your own branches. Where are they? You can work a whole week without network: name two things you can do offline with Git, and one you cannot.

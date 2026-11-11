@@ -121,8 +121,39 @@ TypeError: can only concatenate str (not "int") to str
 </style>
 
 <!--
-Text read from a file or typed by a user is always a string, even if it looks like a number. Use float, int and str to convert. Python does not convert silently: adding text and a number is an error, and that is a feature. Here is our first error message, notice that it tells you the kind of error and what went wrong. We read these properly after lunch.
+Text read from a file or typed by a user is always a string, even if it looks like a number. Use float, int and str to convert. Python does not convert silently: adding text and a number is an error, and that is a feature. Here is our first error message, notice that it tells you the kind of error and what went wrong. The next slide shows how to read it.
 -->
+
+---
+layout: default
+label: 3 · Language fundamentals
+---
+
+# A <span class="dm-accent">traceback</span> is a map to the error
+
+```text {all|1|2-3|4|all}
+Traceback (most recent call last):
+  File "convert.py", line 2, in <module>
+    pressure_bar = float(text)
+ValueError: could not convert string to float: 'seven'
+```
+
+<v-clicks>
+
+- Line 1 is only a header, it says: read on
+- The middle shows the file, the line number and the code that failed
+- The last line names the error type and what went wrong. Read it first.
+
+</v-clicks>
+
+<style>
+.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+</style>
+
+<!--
+When Python fails it prints a traceback. It looks scary and it is the most useful thing it gives you. Start at the bottom: the error type, here ValueError, and the message, which says what could not be converted. Then look one line up: file, line number and the exact code. That is usually all you need to find the problem. Copilot can explain a traceback too, but you should be able to find the line yourself. Later today you handle errors you expect with try and except.
+-->
+
 
 ---
 layout: default
@@ -203,7 +234,7 @@ layout: statement
 
 `exercises/python/02-variables-and-types`
 
-<p class="words"><b>Words you can now use</b> variable · assignment · type · string · float · f-string · convert</p>
+<p class="words"><b>Words you can now use</b> variable · assignment · type · string · float · f-string · convert · traceback</p>
 
 <style>
 .words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
@@ -211,7 +242,7 @@ layout: statement
 </style>
 
 <!--
-Variables, types, f-strings and one deliberate type error to fix. About 15 minutes.
+Variables, types, f-strings and one deliberate type error to fix. Read the traceback from the bottom. About 15 minutes.
 -->
 
 ---
@@ -310,7 +341,7 @@ None
 </style>
 
 <!--
-A dictionary looks things up by name instead of by position. It is like a MATLAB struct, but you use square brackets and quoted keys. A missing key with square brackets is a KeyError, while get returns None, or a default you pass. A dict is the natural way to describe one measurement record with several fields. A list of such dicts is a small table, and that is exactly what the csv module hands you in the next block.
+A dictionary looks things up by name instead of by position. It is like a MATLAB struct, but you use square brackets and quoted keys. A missing key with square brackets is a KeyError, while get returns None, or a default you pass. A dict is the natural way to describe one measurement record with several fields. A list of such dicts is a small table, and that is exactly what the csv module hands you this afternoon.
 -->
 
 ---
@@ -357,7 +388,7 @@ layout: statement
 </style>
 
 <!--
-Lists, slicing, a dictionary and a list of dictionaries. Watch for the off-by-one in slices. About 20 minutes.
+Lists, slicing, a dictionary and a list of dictionaries. Watch for the off-by-one in slices. About 15 minutes.
 -->
 
 ---
@@ -499,6 +530,51 @@ This is the shape of most automation scripts: start with an empty list and a run
 -->
 
 ---
+layout: default
+label: 3 · Language fundamentals
+---
+
+# A <span class="dm-accent">list comprehension</span> is that loop on one line
+
+<DmColumns class="mt-2">
+<DmColumn header="The loop" tone="plain">
+
+```python
+high = []
+for p in pressures_bar:
+    if p > 9.0:
+        high.append(p)
+```
+
+</DmColumn>
+<DmColumn header="The comprehension" tone="violet">
+
+```python
+high = [p for p in pressures_bar if p > 9.0]
+```
+
+</DmColumn>
+</DmColumns>
+
+```python
+# transform every value
+psi = [p * 14.5038 for p in pressures_bar]
+
+# the same idea without the brackets
+total_high = sum(p for p in pressures_bar if p > 9.0)
+```
+
+<p class="note">One <code>for</code>, one <code>if</code>. Anything more, write the loop.</p>
+
+<style>
+.slidev-code { font-size: 15px !important; line-height: 1.5 !important; }
+</style>
+
+<!--
+A comprehension builds a list in one expression: the value to keep, the for, and an optional if. It gives the same list as the loop on the left, using the names from the previous slide. Most Python code, and most of what Copilot writes, uses comprehensions for build-a-list loops, so you must be able to read them. MATLAB users can think of logical indexing: pressures(pressures > 9.0). The second example transforms every value. The sum line is a generator expression: the same idea without the brackets, and no list is built. The rule is one for and one if. Anything more gets hard to read, so write the loop. Exercise 04 has you rewrite a loop as a comprehension, and exercise 06 uses one for the standard deviation.
+-->
+
+---
 layout: statement
 ---
 
@@ -506,7 +582,7 @@ layout: statement
 
 `exercises/python/04-control-flow`
 
-<p class="words"><b>Words you can now use</b> condition · branch · loop · iterate · block · indentation</p>
+<p class="words"><b>Words you can now use</b> condition · branch · loop · iterate · block · indentation · comprehension</p>
 
 <style>
 .words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
@@ -514,7 +590,7 @@ layout: statement
 </style>
 
 <!--
-Conditions, for loops and a while loop on bench readings. About 20 minutes. Break time after this exercise if the room is ready for it.
+Conditions, for loops, a while loop and one list comprehension on bench readings. About 25 minutes. Break time after this exercise if the room is ready for it.
 -->
 
 ---
@@ -682,6 +758,42 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
+# <span class="dm-accent">import</span> gives you ready-made tools like math
+
+```python {all|1|2|4-7|9|all}
+import math
+from math import sqrt
+
+diameter_m = 0.05
+area_m2 = math.pi * (diameter_m / 2) ** 2
+flow_m3_s = 18.4 / 1000
+print(round(flow_m3_s / area_m2, 2))
+
+print(math.isclose(0.1 + 0.2, 0.3), sqrt(16))
+```
+
+<v-click>
+
+```text
+9.37
+True 4.0
+```
+
+</v-click>
+
+<style>
+.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+</style>
+
+<!--
+import makes a module available, and you reach its contents with a dot: math.pi. The second form, from math import sqrt, brings one name in so you write sqrt without the prefix. You will see both, and from pathlib import Path this afternoon is the second form. Here we compute the flow velocity in a 50 mm pipe: 18.4 litres per second is 9.37 metres per second. Floats are binary approximations, so 0.1 + 0.2 is not exactly 0.3 and you should never compare floats with equality. math.isclose is the safe way. The standard library is like the toolboxes that come with MATLAB, only free and already installed. Other useful names are math.log, math.floor and math.ceil.
+-->
+
+---
+layout: default
+label: 3 · Language fundamentals
+---
+
 # Move code outward <span class="dm-accent">only when you need to</span>
 
 <DmComparison
@@ -702,7 +814,7 @@ label: 3 · Language fundamentals
 <p class="note">Copilot will pick one for you unless you say which you want.</p>
 
 <!--
-Three places the same logic can live. Straight in the script is fine for a one-off. Once you repeat something, or a block of lines needs a comment to explain it, give it a name: a function. When a second script needs the same function, move it to its own .py file, a module, and import it, exactly like you import math after lunch. Do not start with modules: move code outward only when the need shows up. Keep it simple: the simplest version that works is the one to keep. Assistants tend to go to one extreme, either one long script or many small files, so tell Copilot which level you want: "keep it in one file, with a function per step".
+Three places the same logic can live. Straight in the script is fine for a one-off. Once you repeat something, or a block of lines needs a comment to explain it, give it a name: a function. When a second script needs the same function, move it to its own .py file, a module, and import it, exactly like the math import on the previous slide: from conversions import bar_to_psi. Do not start with modules: move code outward only when the need shows up. Keep it simple: the simplest version that works is the one to keep. Assistants tend to go to one extreme, either one long script or many small files, so tell Copilot which level you want: "keep it in one file, with a function per step".
 -->
 
 ---
@@ -744,7 +856,7 @@ layout: statement
 
 `exercises/python/05-functions`
 
-<p class="words"><b>Words you can now use</b> function · argument · return value · type hint · test · assertion · test-driven development</p>
+<p class="words"><b>Words you can now use</b> function · argument · return value · type hint · test · assertion · test-driven development · import · module</p>
 
 <style>
 .words { font-size: 15px; opacity: 0.9; margin-top: 14px; }

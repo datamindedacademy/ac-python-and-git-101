@@ -132,6 +132,97 @@ def test_exercise_3_ff_and_merge_commit_paths_work(env, tmp_path):
     assert len(parents) == 3  # the commit itself plus two parents
 
 
+def _ff_merge_kpa(target):
+    """The fast-forward merge of core task 3."""
+    git(target, "switch", "-c", "feature/pressure-kpa")
+    with (target / "conversions.py").open("a") as file:
+        file.write("\n\ndef bar_to_kpa(pressure_bar):\n    return pressure_bar * 100\n")
+    git(target, "commit", "-am", "Add bar to kPa conversion")
+    git(target, "switch", "main")
+    git(target, "merge", "feature/pressure-kpa")
+    git(target, "branch", "-d", "feature/pressure-kpa")
+
+
+def test_exercise_3_conflict_after_fast_forward_and_resolve(env, tmp_path):
+    """Core task 4: after task 3, merging experiment/psi-precision conflicts and can be resolved."""
+    target = tmp_path / "ex3"
+    run_setup(3, target)
+    _ff_merge_kpa(target)
+    merge = git(target, "merge", "experiment/psi-precision", check=False)
+    assert merge.returncode != 0
+    unmerged = git(target, "diff", "--name-only", "--diff-filter=U").stdout.split()
+    assert unmerged == ["conversions.py"]
+    text = (target / "conversions.py").read_text()
+    assert "<<<<<<< HEAD" in text and ">>>>>>> experiment/psi-precision" in text
+    # Accept the incoming line, as the README suggests.
+    resolved = "BAR_TO_PSI = 14.5038  # psi per bar, more precise"
+    lines = [
+        resolved if line.startswith("BAR_TO_PSI = 14.504 ") else line
+        for line in text.splitlines()
+        if not line.startswith(("<<<<<<<", "=======", ">>>>>>>", "BAR_TO_PSI = 14.5038"))
+    ]
+    (target / "conversions.py").write_text("\n".join(lines) + "\n")
+    git(target, "add", "conversions.py")
+    git(target, "commit", "-m", "Merge experiment/psi-precision")
+    parents = git(target, "rev-list", "--parents", "-n", "1", "HEAD").stdout.split()
+    assert len(parents) == 3
+
+
+def test_exercise_3_rebase_flow_after_core_tasks(env, tmp_path):
+    """Optional rebase task, started after the conflict merge of core task 4."""
+    target = tmp_path / "ex3"
+    run_setup(3, target)
+    _ff_merge_kpa(target)
+    git(target, "merge", "experiment/psi-precision", check=False)
+    git(target, "checkout", "--theirs", "conversions.py")
+    git(target, "commit", "-am", "Merge experiment/psi-precision")
+
+    git(target, "switch", "-c", "feature/min-temperature")
+    path = target / "analyse_run.py"
+    path.write_text(
+        path.read_text().replace(
+            "K)\")\n",
+            "K)\")\n    print(f\"Min temperature: {min(temperatures):.1f} C\")\n",
+        )
+    )
+    git(target, "commit", "-am", "Print min temperature")
+    before = git(target, "rev-parse", "HEAD").stdout
+    git(target, "switch", "main")
+    with (target / "README.md").open("a") as file:
+        file.write("Output: mean pressure and temperature.\n")
+    git(target, "commit", "-am", "Describe the output in the README")
+    git(target, "switch", "feature/min-temperature")
+    git(target, "rebase", "main")
+    assert git(target, "rev-parse", "HEAD").stdout != before
+    git(target, "switch", "main")
+    assert "Fast-forward" in git(target, "merge", "feature/min-temperature").stdout
+    git(target, "branch", "-d", "feature/min-temperature")
+    assert git(target, "status", "--porcelain").stdout == ""
+
+
+def test_exercise_3_stash_challenge(env, tmp_path):
+    target = tmp_path / "ex3"
+    run_setup(3, target)
+    (target / "conversions.py").write_text("# half finished\n")
+    git(target, "switch", "experiment/psi-precision", check=False)  # refused: would be overwritten
+    git(target, "stash")
+    assert git(target, "status", "--porcelain").stdout == ""
+    git(target, "switch", "experiment/psi-precision")
+    git(target, "switch", "main")
+    git(target, "stash", "pop")
+    assert (target / "conversions.py").read_text() == "# half finished\n"
+
+
+def test_exercise_2_revert_challenge_applies_cleanly(env, tmp_path):
+    """The challenge reverts the newest commit by its message."""
+    target = tmp_path / "ex2"
+    run_setup(2, target)
+    sha = git(target, "log", "--grep=Use more precise", "--format=%h").stdout.strip()
+    git(target, "revert", "--no-edit", sha)
+    assert commit_count(target) == 6
+    assert "BAR_TO_PSI = 14.5\n" in (target / "conversions.py").read_text()
+
+
 @pytest.mark.parametrize("n", [1, 2, 3])
 def test_rerun_without_force_fails_and_force_works(env, tmp_path, n):
     target = tmp_path / f"ex{n}"

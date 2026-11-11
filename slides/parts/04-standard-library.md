@@ -2,50 +2,15 @@
 layout: section
 ---
 
-# The standard <span class="dm-accent">library</span>
+# Files and the standard <span class="dm-accent">library</span>
 
 <!--
-Python ships with a large collection of ready-made modules. This block covers the four that you need for almost any automation job: math, pathlib, csv and json.
+Scripts that automate work read and write files. Python ships with a large collection of ready-made modules for that. This block covers pathlib, reading and writing files with open, csv and json. You met import with math this morning.
 -->
 
 ---
 layout: default
-label: 4 · The standard library
----
-
-# <span class="dm-accent">import</span> gives you ready-made tools like math
-
-```python {all|1|3-6|8|all}
-import math
-
-diameter_m = 0.05
-area_m2 = math.pi * (diameter_m / 2) ** 2
-flow_m3_s = 18.4 / 1000
-print(round(flow_m3_s / area_m2, 2))
-
-print(math.isclose(0.1 + 0.2, 0.3))
-```
-
-<v-click>
-
-```text
-9.37
-True
-```
-
-</v-click>
-
-<style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-</style>
-
-<!--
-import makes a module available, and you reach its contents with a dot. Here we compute the flow velocity in a 50 mm pipe: 18.4 litres per second is 9.37 metres per second. Floats are binary approximations, so 0.1 + 0.2 is not exactly 0.3 and you should never compare floats with equality. math.isclose is the safe way. The standard library is like the toolboxes that come with MATLAB, only free and already installed. Other useful names are math.sqrt, math.log, math.floor and math.ceil.
--->
-
----
-layout: default
-label: 4 · The standard library
+label: 4 · Files and the standard library
 ---
 
 # <span class="dm-accent">pathlib</span> builds paths and finds files
@@ -79,12 +44,77 @@ data\run_015.csv
 </style>
 
 <!--
-Path wraps a file or folder path. The slash operator joins parts correctly with the Windows separator, so you never glue strings together by hand. You get the name, suffix and stem for free, you can test existence, and glob finds all files matching a pattern. The loop over glob is the key pattern for exercises 06 and 07: one script that processes every log in a folder. On Windows the backslash in a normal string starts an escape sequence, so write paths with Path and forward slashes, not by gluing strings.
+Path wraps a file or folder path. This is the second form of import from this morning: from pathlib import Path. The slash operator joins parts correctly with the Windows separator, so you never glue strings together by hand. You get the name, suffix and stem for free, you can test existence, and glob finds all files matching a pattern. The loop over glob is the key pattern for exercises 06 and 07: one script that processes every log in a folder. On Windows the backslash in a normal string starts an escape sequence, so write paths with Path and forward slashes, not by gluing strings.
 -->
 
 ---
 layout: default
-label: 4 · The standard library
+label: 4 · Files and the standard library
+---
+
+# <span class="dm-accent">with open</span> reads a file and closes it again
+
+```python {all|1-2|4-5|7|all}
+from pathlib import Path
+
+with open("data/run_014.csv", encoding="utf-8") as f:
+    for line in f:
+        print(line.strip())
+
+text = Path("data/run_014.csv").read_text(encoding="utf-8")
+```
+
+<v-click>
+
+```text
+t_s,pressure_bar,temperature_c
+0,6.8,71.2
+10,7.1,74.5
+20,7.5,78.9
+```
+
+</v-click>
+
+<style>
+.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+</style>
+
+<!--
+open with the with keyword guarantees the file is closed when the block ends, even if an error happens in between. The name f is the file handle: your grip on the open file. Looping over the file gives one line at a time, each still carrying its newline character, so strip removes it. For small files Path.read_text reads everything in one go. Always state the encoding, utf-8 is the safe choice.
+-->
+
+---
+layout: default
+label: 4 · Files and the standard library
+---
+
+# Mode <span class="dm-accent">w</span> overwrites, mode <span class="dm-accent">a</span> appends
+
+```python {all|1-2|3-5|7-8|all}
+lines = ["run,max_pressure_bar", "TB-014,7.9"]
+with open("summary.txt", "w", encoding="utf-8") as f:
+    for line in lines:
+        f.write(line + "\n")
+
+with open("summary.txt", "a", encoding="utf-8") as f:
+    f.write("TB-015,8.2\n")
+```
+
+<DmBanner class="mt-2" tone="violet" icon="i-mdi-alert-outline">
+Mode <code>"w"</code> replaces an existing file without asking. <code>"a"</code> adds at the end, <code>"r"</code> only reads.
+</DmBanner>
+
+<style>
+.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+</style>
+
+<!--
+Three modes cover nearly everything: r to read, w to write from scratch, a to append. The dangerous one is w, because it silently wipes a file with that name. write does not add a newline, you add it yourself. When your script produces output, write to a new file rather than over your raw data.
+-->
+
+---
+layout: default
+label: 4 · Files and the standard library
 ---
 
 # <span class="dm-accent">csv</span> turns each row into a dict of strings
@@ -118,12 +148,12 @@ print(float(rows[1]["pressure_bar"]) + 1)
 </style>
 
 <!--
-DictReader turns every row into a dictionary keyed by the header names, so you get exactly the list of dicts from the fundamentals block. The with block opens the file and closes it again, we look at that properly in the next block. One thing to remember: every value comes back as a string, so convert with float before calculating. Writing rows works the same way with csv.DictWriter, and the exercise shows it.
+DictReader turns every row into a dictionary keyed by the header names, so you get exactly the list of dicts from the fundamentals block. The with block opens the file and closes it again, as on the earlier slide. One thing to remember: every value comes back as a string, so convert with float before calculating. Writing rows works the same way with csv.DictWriter, and the exercise shows it.
 -->
 
 ---
 layout: default
-label: 4 · The standard library
+label: 4 · Files and the standard library
 ---
 
 # <span class="dm-accent">json</span> stores settings and nested data
@@ -162,7 +192,7 @@ layout: statement
 
 `exercises/python/06-standard-library`
 
-<p class="words"><b>Words you can now use</b> standard library · module · import · path · glob · CSV · JSON</p>
+<p class="words"><b>Words you can now use</b> standard library · path · glob · file handle · encoding · CSV · JSON</p>
 
 <style>
 .words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
@@ -170,5 +200,5 @@ layout: statement
 </style>
 
 <!--
-Use math, pathlib, csv and json on a small set of fictional bench logs. About 25 minutes.
+Use math, pathlib, with open, csv and json on a small set of fictional bench logs. About 25 minutes.
 -->

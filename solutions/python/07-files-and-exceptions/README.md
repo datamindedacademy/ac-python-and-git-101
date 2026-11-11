@@ -22,14 +22,12 @@ Read from the top: `<module>` calls `main` (line 25). `main` calls `average_pres
 
 `summarize_logs.py` wraps `float()` in `try/except ValueError`, counts the skipped rows and keeps going. Expected last lines: `run_02: mean 7.71 bar, 1 rows skipped`.
 
-## Explain it: model answers
+## Challenge
 
-Your own words are fine. What matters is that you name the tradeoff.
+`challenge.py` is the reference solution. It uses `reader.line_num`, which counts lines in the file including the header, so `ERR` in `run_02.csv` is on line 4. Run it with `--skip` to skip bad rows. Without the switch it stops with `ValueError: run_02.csv line 4: cannot convert 'ERR'`.
 
-**Why do you catch `ValueError` and not every exception with a bare `except:`?**
+Default for a nightly script: stopping is the safer default. A silent skip changes the mean without anybody noticing. If the night run must always finish, skip but make the warning visible (a log or a mail) and count the skipped rows in the result.
 
-`ValueError` is the one failure you expect and know how to handle: text that is not a number. A bare `except:` also swallows typos (`NameError`), wrong types and even `Ctrl+C`, so real bugs stay hidden and the script reports wrong results without a warning. Catching narrowly costs a little thought about what can go wrong.
+## Open question
 
-**A traceback gives you a line number. Is that always the line you must change? Use `broken_1.py` as your example.**
-
-No. The line number is where Python noticed the problem, not always where the cause is. In `broken_1.py` the traceback points at line 12, where `maximum_bar` is used, but the fix is to add a line above it that creates the variable.
+The file holds a partial document, which is not valid JSON, so the next reader fails. Write the new content to a temporary file in the same folder and then rename it over the real one with `os.replace` (or `Path.replace`). A rename on the same disk either happens or does not, so a reader sees the old file or the new one. The temporary file must be on the same disk, otherwise the rename becomes a copy.

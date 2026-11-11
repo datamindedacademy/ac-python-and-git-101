@@ -87,7 +87,7 @@ label: 10 · Branching models
 <div class="mt-6"></div>
 <ul>
   <li><b>Use trunk-based</b>: short-lived <code>feature/...</code> branches and PRs; day 3 adds a branch policy on <code>main</code></li>
-  <li>Exists, not today: <code>git rebase</code>, <code>git cherry-pick</code>, <code>git stash</code></li>
+  <li>Exists, not today: <code>git cherry-pick</code>, <code>git stash</code></li>
 </ul>
 
 <p class="words"><b>Words you can now use</b> trunk-based · GitFlow · feature branch · short-lived · branch policy</p>
@@ -98,5 +98,5 @@ label: 10 · Branching models
 </style>
 
 <!--
-The longer a branch lives, the larger the merge and the higher the chance of conflicts. GitFlow accepts that cost to support parallel releases, which analysis and tooling code rarely has. So we recommend trunk-based: small branches, pull requests, pull main often, delete branches after merging. Rebase replays your commits on the latest main, cherry-pick copies a single commit, stash parks uncommitted edits. We name them so you recognise the words; the Pro Git book covers them. A coding assistant will pick a branching approach for you unless you say what you want, so being able to say trunk-based, short-lived feature branch and pull request is what lets you direct it and judge the result.
+The longer a branch lives, the larger the merge and the higher the chance of conflicts. GitFlow accepts that cost to support parallel releases, which analysis and tooling code rarely has. So we recommend trunk-based: small branches, pull requests, pull main often, delete branches after merging. Cherry-pick copies a single commit, stash parks uncommitted edits. We name them so you recognise the words; the Pro Git book covers them. A coding assistant will pick a branching approach for you unless you say what you want, so being able to say trunk-based, short-lived feature branch and pull request is what lets you direct it and judge the result.
 -->

@@ -1,14 +1,18 @@
 # Exercise 6: Git in VS Code
 
-**Demo in class, do it yourself afterwards (20 min).**
+**Demo in class, do it yourself afterwards.**
 
-The trainer shows this exercise on the screen in class. It is not part of the timed hands-on block. Do it yourself after the training, or whenever you have time. You can do all of it alone, without a neighbour.
+The trainer shows this exercise on the screen in class. It is not part of the hands-on block. Do it yourself after the training, or whenever you have time. You can do all of it alone.
 
 Words to use: Source Control view, stage, commit, publish branch, sync, `.gitignore`, tracked file, ignored file.
 
 ## Goal
 
 Repeat the whole daily cycle with the **Source Control** view in VS Code instead of the command line: branch, edit, stage, commit, push, pull request, pull. Then learn how to keep files out of Git with `.gitignore`.
+
+## Why this matters
+
+Most daily Git work happens in the editor. `.gitignore` keeps measurement data, output files and secrets out of a history that cannot easily forget them. A file that was committed once stays in the history, even after you delete it.
 
 ## Background
 
@@ -135,13 +139,6 @@ A `.gitignore` only affects files that Git does not follow yet. If you already c
 
 Push the branch and open a PR if you want, or leave it local.
 
-### 9. Explain it
-
-Answer in one or two sentences each, in writing or to a colleague.
-
-1. Which files belong in a repository and which do not? Give one example of each from your own work, and say why.
-2. When would you use the Source Control view in VS Code, and when the command line? Name one strength of each.
-
 ## Command line, VS Code and SourceTree
 
 | Action | Command line | VS Code | SourceTree |
@@ -178,3 +175,9 @@ VS Code can let Copilot write the commit message. Change a line in your `about.m
 
 - Install the **Git Graph** extension and look at the history of the training repository.
 - Open the **Timeline** view at the bottom of the Explorer for `about.md`. It shows the commits that changed it.
+
+## Open question
+
+This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
+
+You commit a 200 MB data file by mistake and delete it again in the next commit. How big is the repository now? Why does adding the file to `.gitignore` afterwards not help, and what would you have to do instead?

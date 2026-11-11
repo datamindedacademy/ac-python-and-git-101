@@ -1,12 +1,14 @@
 # 05 - Functions and modules
 
-Core time: 20 minutes. Optional tasks at the end if you have time.
-
 **Words to use:** function, parameter, argument, default value, return value, docstring, module, import, test, assertion, test-driven development.
 
 ## Goal
 
 Write your own functions in a module, let tests tell you when they are correct, and import the module from a script.
+
+## Why this matters
+
+A function is the unit you can test, reuse and ask Copilot for. A test is how you accept code you did not write yourself: it states what correct means before the code exists.
 
 ## Background
 
@@ -76,13 +78,6 @@ Read from the bottom up, like the tracebacks you will meet in exercise 07.
    uv run python exercises/python/05-functions/report.py
    ```
 
-## Explain it
-
-This is the last core task. Answer each question in one or two sentences, to your neighbour or in writing. You do not need to write code.
-
-1. What do you gain by moving the conversions into `conversions.py`? What does it cost?
-2. You wrote the test for `psi_to_bar` before the function. What did the test force you to decide before you wrote any code?
-
 ## Check yourself
 
 The tests end with:
@@ -116,3 +111,18 @@ Flow (m3/h): 149.4
 ### With Copilot
 
 Do this with a function that does not exist yet, for example `kelvin_to_celsius`. Write the test yourself first. Then select the failing test and ask Copilot Chat: *"Write the function in `conversions.py` that makes this test pass."* Run the tests. Green? Now ask: *"Write a second test for this function that covers an edge case: a negative value, zero, or a string as argument."* Read that test before you run it. Does it describe behaviour you actually want? For example: must a temperature below 0 K raise an exception, or is that not the job of a conversion function? Keep the test only if you agree with what it demands.
+
+## Challenge
+
+For those who finish early. There are no TODOs and no hints.
+
+Test first. In a new test file, write tests for a function `convert(value, from_unit, to_unit)`. Then write the function in `conversions.py`. It converts between the units `bar`, `psi` and `kPa`. For example, `convert(7.5, "bar", "psi")` gives `108.7785`.
+
+- Use one lookup dict. No chain of `if`s.
+- An unknown unit raises `ValueError`. Test that with `pytest.raises`.
+
+## Open question
+
+This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
+
+Write `def add_reading(value, readings=[]):` with a body that appends `value` to `readings` and returns `readings`. Call it three times with only the first argument. Explain the third result. What does this tell you about when Python evaluates a default value?

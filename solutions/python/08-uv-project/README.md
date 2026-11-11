@@ -23,14 +23,16 @@ dependencies = [
 - **Why delete `.venv` and run `uv sync`?** `.venv` can always be rebuilt from `pyproject.toml` and `uv.lock`. So you commit those two files to Git and do not commit `.venv`. `uv init` already created a `.gitignore` that excludes it.
 - **Why does `uv.lock` list more than matplotlib?** matplotlib needs numpy, pillow and others. The lockfile pins them all, so a colleague gets exactly the same versions.
 
-## Explain it: model answers
+## Challenge
 
-Your own words are fine. What matters is that you name the tradeoff.
+There is no solution file. The steps:
 
-**What breaks for a colleague if you share your project without `uv.lock`? And why is it fine to leave out `.venv`?**
+1. In `pressure-demo`, copy `conversions.py` and `test_conversions.py` from your exercise 05 folder next to `main.py`.
+2. Run `uv add --dev pytest`. `pyproject.toml` gets a `[dependency-groups]` section with `dev = ["pytest>=..."]`, and `uv.lock` is updated.
+3. Run `uv run pytest`. All tests pass, for example `6 passed`.
 
-Without `uv.lock` the colleague gets whatever versions are newest on that day, so the same code can behave differently or fail on their laptop. `.venv` can be left out because `uv sync` rebuilds it from `pyproject.toml` and `uv.lock`. It is also large and only works on the machine that made it.
+Without step 2, `uv run pytest` reports that pytest is not found, because the project `.venv` does not have it.
 
-**`pyproject.toml` says something like `matplotlib>=3.10`, and `uv.lock` names one exact version. Why keep both files?**
+## Open question
 
-`pyproject.toml` states what you need, as a range that you write and read as a human. `uv.lock` records what was actually installed, including transitive dependencies, so that everybody gets the same set. The range keeps upgrades possible, the lockfile keeps the result reproducible.
+uv reports that it cannot find a set of versions that satisfies both packages, and it adds nothing. One environment has one `numpy` folder, so only one version can be imported, and no tool can change that. The hash lets uv check that a downloaded file is exactly the one that was locked. A changed or tampered file is rejected.

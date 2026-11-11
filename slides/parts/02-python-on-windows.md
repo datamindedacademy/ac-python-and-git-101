@@ -5,12 +5,12 @@ layout: section
 # Python on <span class="dm-accent">your laptop</span>
 
 <!--
-Now the practical part: making sure Python runs on your managed Windows laptop, and running a script from PowerShell.
+We start with the practical part: making sure Python runs on your managed Windows laptop, and running a script from PowerShell. Then we look at the two forms your code can take, scripts and notebooks, and do the first exercise.
 -->
 
 ---
 layout: default
-label: 2 · Python on your laptop
+label: 1 · Python on your laptop
 ---
 
 # <span class="dm-accent">Python</span> is open source and runs on CPython
@@ -33,7 +33,7 @@ A minute of background. Python is more than thirty years old and is developed in
 
 ---
 layout: default
-label: 2 · Python on your laptop
+label: 1 · Python on your laptop
 ---
 
 # Check <span class="dm-accent">which Python</span> a command really runs
@@ -66,7 +66,7 @@ Get-Command shows which program a name resolves to. On many Windows machines, py
 
 ---
 layout: default
-label: 2 · Python on your laptop
+label: 1 · Python on your laptop
 ---
 
 # Go to the folder, then <span class="dm-accent">uv run</span> the script
@@ -95,7 +95,7 @@ Two steps: move to the folder that contains the file, then tell uv to run Python
 
 ---
 layout: default
-label: 2 · Python on your laptop
+label: 1 · Python on your laptop
 ---
 
 # <span class="dm-accent">VS Code</span> runs the same script in three steps
@@ -110,21 +110,3 @@ label: 2 · Python on your laptop
 Open the folder, not just a single file, so VS Code knows the project. The integrated terminal, Ctrl+backtick, is the same PowerShell you used before and starts in the project folder. Both ways of running do the same thing, the play button is just a shortcut. If the interpreter is wrong, a yellow warning shows in the bottom bar.
 -->
 
----
-layout: statement
----
-
-# Exercise 01: <span class="dm-accent">First script</span>
-
-`exercises/python/01-first-script`
-
-<p class="words"><b>Words you can now use</b> interpreter · CPython · terminal · PATH · working folder · uv run</p>
-
-<style>
-.words { font-size: 15px; opacity: 0.9; margin-top: 14px; }
-.words b { margin-right: 8px; }
-</style>
-
-<!--
-Everyone creates a script, runs it from PowerShell and from VS Code, and changes it. About 15 minutes. I walk around, and any PATH or interpreter problem is exactly what we want to catch now.
--->

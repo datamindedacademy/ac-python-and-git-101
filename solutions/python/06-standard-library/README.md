@@ -1,13 +1,9 @@
 # Solution notes - 06
 
-## Explain it: model answers
+## Challenge
 
-Your own words are fine. What matters is that you name the tradeoff.
+The first half is already in `summarize_runs.py`: it takes a runs folder and an output folder from `sys.argv`. `challenge.py` adds the second half. It takes only the runs folder and prints a warning for every run with a standard deviation above `LIMIT_STD_BAR` (0.18). With the three given runs only `run_01` (0.20 bar) gives a warning.
 
-**Why use `csv.DictReader` and not split each line on commas yourself?**
+## Open question
 
-`csv.DictReader` handles the header, quoted fields that contain commas, and line endings, and gives every row as a dict so you read columns by name. Splitting on commas yourself is shorter to start with but breaks on the first quoted value and depends on the column order. The cost of `DictReader` is one import and knowing that every value is still text.
-
-**The script finds its input with `Path(__file__).parent` and `glob("*.csv")` instead of three file names typed in the code. What do you gain? What could surprise you one day?**
-
-The script works from any folder and on any laptop, and a new log file is picked up without a code change. The surprise is the other side of that: every file that matches the glob pattern is processed, also a wrong or half-finished CSV that somebody dropped in the folder.
+Read the file row by row, which the `csv` reader already does, and keep only running totals: the count, the sum, the sum of squares and the maximum. The mean is sum divided by count, and the standard deviation follows from the three totals. Welford's method gives the same result with less rounding error, because it avoids subtracting two large, nearly equal numbers. Memory use stays constant, whatever the file size.

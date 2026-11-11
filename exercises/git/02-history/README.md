@@ -1,12 +1,16 @@
 # Exercise 2: Explore the history
 
-Time: **10 minutes** for the core tasks (1 to 5). Everything under "Optional" is extra.
+Core tasks: 1 to 4. Everything under "Optional" is extra.
 
 Words to use: history, log, hash, HEAD, author, commit message, diff, restore.
 
 ## Goal
 
 Read the history of a repository: see what changed, when, and who did it. Throw away a change you do not want.
+
+## Why this matters
+
+When a number in a report changes, the history tells you what changed, who did it and why. That only works when commits are small and the messages say something. Without it you compare old and new files by hand and guess.
 
 ## Background
 
@@ -32,10 +36,17 @@ You now have a repository with 5 commits by three colleagues. The commit hashes 
 
 ### 1. See the history
 
+Question: is the working tree clean, and which 5 commits does the repository have, newest first?
+
+<details>
+<summary>Hint</summary>
+
 ```powershell
 git status
 git log --oneline
 ```
+
+</details>
 
 Expected:
 
@@ -51,64 +62,69 @@ nothing to commit, working tree clean
 <hash> Add bar to psi conversion
 ```
 
-The newest commit is on top.
+The newest commit is on top. If the screen shows `:` or `(END)` at the bottom, you are in a pager. Press `q`.
 
 ### 2. Look inside a commit
 
-Pick the hash of "Fix Kelvin offset" from the `--oneline` list:
+Question: what was the old value of `KELVIN_OFFSET`, and what is the new one? Which lines did the commit "Fix Kelvin offset" remove and add?
+
+<details>
+<summary>Hint</summary>
+
+Take the hash of "Fix Kelvin offset" from the `--oneline` list:
 
 ```powershell
 git show <hash>
 ```
 
-You see the message, the author, the date, and the exact lines that changed. Lines that start with `-` were removed. Lines that start with `+` were added. If the screen shows `:` or `(END)` at the bottom, you are in a pager. Press `q` to leave it.
+</details>
 
-Question: what was the old value of `KELVIN_OFFSET`, and what is the new one?
+You see the message, the author, the date, and the exact lines that changed. Lines that start with `-` were removed. Lines that start with `+` were added.
 
 ### 3. Find when a value changed, and who changed it
 
-Your colleague asks: "Who changed the Kelvin offset, and when?" You already have the answer from task 2: read the `Author:` and `Date:` lines of the commit. To find such a commit in a longer history, list only the commits that touched one file:
+Your colleague asks: "Which commit changed the Kelvin offset, who made it and when?" Answer it without opening `git show` again. Then find out which commits touched `conversions.py` at all.
+
+<details>
+<summary>Hint</summary>
+
+The long form of the log shows author and date per commit. Give it a file name to list only the commits that touched that file:
 
 ```powershell
 git log conversions.py
 ```
 
-This is the long form of the log: each commit shows its author and date. Press `q` if needed. Read the messages. Which commit is about the offset? Who made it?
+Press `q` if needed.
+
+</details>
 
 Expected: "Fix Kelvin offset" by Sofie Claes, 5 March 2025. She changed `273.0` into `273.15`.
 
 ### 4. Throw away a change
 
-Open `conversions.py` in VS Code. Change `KELVIN_OFFSET = 273.15` to `KELVIN_OFFSET = 0`. Save.
+Open `conversions.py` in VS Code. Change `KELVIN_OFFSET = 273.15` to `KELVIN_OFFSET = 0`. Save. You decide it was a mistake.
+
+Question: how do you see exactly what you changed, and how do you get the file back to the last commit? Check that `KELVIN_OFFSET` is `273.15` again and that the working tree is clean.
+
+<details>
+<summary>Hint</summary>
 
 ```powershell
 git status
 git diff
-```
-
-You see the change in red and green. You decide it was a mistake. Restore the file to the last commit:
-
-```powershell
 git restore conversions.py
 git status
 ```
 
-Expected:
+</details>
+
+`git diff` shows the change in red and green. After the restore, `git status` says:
 
 ```
 nothing to commit, working tree clean
 ```
 
-Check that `KELVIN_OFFSET` is back to `273.15`.
-
 Be careful: `git restore` on a file permanently throws away your uncommitted changes. Git cannot get them back, because they were never committed. This is why you commit often.
-
-### 5. Explain it
-
-Answer in one or two sentences each, to your neighbour or in writing.
-
-1. A colleague says: "The Kelvin values in my report changed last week." Which parts of a commit help you find out what changed, who did it and why? What does that say about writing a good commit message?
-2. `git restore` threw away your edit for good, but a committed change can always be found again. What does that tell you about when to commit?
 
 ## Check yourself
 
@@ -120,7 +136,7 @@ Short questions to test yourself after class. The answers are in `solutions/git/
 
 ## Optional: if you have time
 
-### 6. Compare two commits
+### 5. Compare two commits
 
 ```powershell
 git diff <hash-of-first-commit> <hash-of-last-commit>
@@ -134,7 +150,7 @@ A shortcut: `HEAD~1` means "one commit before HEAD".
 git diff HEAD~1 HEAD
 ```
 
-### 7. Search the history
+### 6. Search the history
 
 Ask Git which commits added or removed a piece of text:
 
@@ -145,7 +161,7 @@ git log --oneline --author=Jan
 
 The first command lists one commit, "Fix Kelvin offset", with its author and date. The second lists the commits by one author.
 
-### 8. Who wrote each line
+### 7. Who wrote each line
 
 ```powershell
 git blame conversions.py
@@ -153,7 +169,7 @@ git blame conversions.py
 
 `git blame` prints each line of the file with the commit and author that last changed it. Press `q` if needed.
 
-### 9. Visit an old version
+### 8. Visit an old version
 
 Go back to the commit "Add measurements and analyse_run script". It is the first commit that has `analyse_run.py`.
 
@@ -185,7 +201,7 @@ Mean temperature: 85.3 C (358.48 K)
 
 Always come back with `git switch main` when you are done looking.
 
-### 10. Unstage a file
+### 9. Unstage a file
 
 Edit `README.md`, add any line, and run `git add README.md`. Then:
 
@@ -219,3 +235,15 @@ Run `git diff` again. Which of the two diffs could you review and commit with co
 - Which commit added `analyse_run.py`? Find it with `git log --oneline -- analyse_run.py`.
 - Run `git log --stat`. Which commit changed the most files?
 - Run `git log --oneline --reverse`. What changes?
+
+## Challenge
+
+For those who finish early. No commands given: find them with `git help <command>` or Copilot, and check the result with `git log` and `git status`.
+
+The commit "Use more precise bar to psi factor" turns out to be wrong. Undo that one commit without deleting it from the history, so the log shows both the original commit and its undo. `BAR_TO_PSI` must be back to `14.5`.
+
+## Open question
+
+This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
+
+`git restore` threw your edit away for good. A commit that no branch points to any more is different: Git keeps it for a while. How would you find it again?

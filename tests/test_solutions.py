@@ -71,6 +71,17 @@ def test_02_ask():
     assert "108.8 psi" in out
 
 
+def test_02_challenge_parse():
+    out = run_ok(SOLUTIONS / "02-variables-and-types" / "parse.py")
+    assert "7.5 bar = 108.78 psi" in out
+    assert "Unknown unit 'atm'" in out
+
+
+def test_03_challenge():
+    out = run_ok(SOLUTIONS / "03-collections" / "challenge.py")
+    assert "'pressure_bar': [7.1, 7.4, 7.6]" in out
+
+
 def test_03_collections():
     out = run_ok(SOLUTIONS / "03-collections" / "collections_intro.py")
     assert "Last: 7.5" in out
@@ -90,6 +101,14 @@ def test_04_control_flow():
     assert "Alarms: 2" in out
     assert "Minutes to alarm: 4" in out
     assert "First alarm reading: 8.7" in out
+    assert "Alarm readings (loop): [8.7, 8.6]" in out
+    assert "Alarm readings (comprehension): [8.7, 8.6]" in out
+
+
+def test_04_challenge():
+    out = run_ok(SOLUTIONS / "04-control-flow" / "challenge.py")
+    assert "start at reading 3" in out
+    assert "No three readings in a row above 8.0 bar" in out
 
 
 def test_05_import_has_no_side_effects():
@@ -132,8 +151,14 @@ def run_pytest(folder):
 def test_05_solution_tests_pass():
     result = run_pytest(SOLUTIONS / "05-functions")
     assert result.returncode == 0, result.stdout
-    assert "7 passed" in result.stdout
+    assert "10 passed" in result.stdout
     assert "failed" not in result.stdout
+
+
+def test_05_challenge_convert_tests_pass():
+    result = run_pytest(SOLUTIONS / "05-functions" / "test_challenge_convert.py")
+    assert result.returncode == 0, result.stdout
+    assert "3 passed" in result.stdout
 
 
 def test_05_starter_tests_are_red():
@@ -184,6 +209,25 @@ def test_07_summarize_logs_survives_bad_value():
     out = run_ok(SOLUTIONS / "07-files-and-exceptions" / "summarize_logs.py")
     assert "run_02: mean 7.71 bar, 1 rows skipped" in out
     assert "run_01: mean 7.25 bar, 0 rows skipped" in out
+
+
+def test_06_challenge_warns_on_high_std():
+    out = run_ok(
+        SOLUTIONS / "06-standard-library" / "challenge.py",
+        str(EXERCISES / "06-standard-library" / "runs"),
+    )
+    assert "Warning: run_01 has a pressure standard deviation of 0.2 bar" in out
+    assert "Warning: run_02" not in out
+
+
+def test_07_challenge_stops_or_skips():
+    script = SOLUTIONS / "07-files-and-exceptions" / "challenge.py"
+    result = run(script)
+    assert result.returncode != 0
+    assert result.stderr.strip().splitlines()[-1] == (
+        "ValueError: run_02.csv line 4: cannot convert 'ERR'"
+    )
+    assert "run_02: mean 7.71 bar, 1 rows skipped" in run_ok(script, "--skip")
 
 
 def test_07_files_and_exceptions():

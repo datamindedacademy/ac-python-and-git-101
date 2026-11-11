@@ -1,12 +1,12 @@
 # Git exercises: solutions
 
-Expected command sequences and answers to the "check yourself" questions. Each exercise has the core part first (the timed tasks) and then the optional part. Hashes are written as `<hash>`. Yours will differ unless noted.
+Expected command sequences and answers to the "check yourself" questions. Each exercise has the core part first and then the optional part. Hashes are written as `<hash>`. Yours will differ unless noted.
 
 Commands are for Windows PowerShell 5.1. Replace `anna` with your own name.
 
 ## Exercise 1: Your first commit
 
-### Core (10 min)
+### Core
 
 ```powershell
 uv run python exercises/git/setup_exercise.py 1
@@ -37,11 +37,6 @@ Final `git log --oneline`:
 <hash> Add bar to psi conversion
 ```
 
-Explain it (model answers):
-
-1. The working tree is the folder with the files you edit. The staging area is the list of changes you selected for the next commit. The repository is the saved history of commits in `.git`. After `git add` the change is in the staging area; after `git commit` it is in the repository.
-2. You decide what belongs together. You can put one logical change in a commit and leave unfinished or unrelated edits out, which keeps each commit small, easy to describe and easy to review or undo. The cost is one extra step (`git add`) and the risk of forgetting to stage a file.
-
 Check yourself:
 
 1. `git diff` compares the working tree with the staging area. After `git add` they are the same, so nothing shows. `git diff --staged` shows the staged change (staging area against the last commit).
@@ -58,11 +53,28 @@ git status
 
 Final `git log --oneline` has a third commit, "Add first measurements", and `git status` says "nothing to commit, working tree clean".
 
+Challenge (two commits from one editing session):
+
+```powershell
+git add -p conversions.py
+# answer y for the hunk of the first edit, n for the other
+git commit -m "Add kelvin_to_celsius"
+git add conversions.py
+git commit -m "Reword the module docstring"
+git log --oneline
+```
+
+`git add -p` goes through the changes hunk by hunk and stages only the ones you accept, so one file can go into two commits. Check with `git diff --staged` before each commit. The two edits must be far enough apart to be separate hunks (`s` splits a hunk further).
+
 More: `git log --stat` adds the list of changed files and the number of added and removed lines per commit. The `.git` folder is hidden. `ls -Force` shows it.
+
+### Open question
+
+About 50 MB, once (less if the content compresses). Git stores the content of a file under the hash of that content, and the file name is not part of it. The names live in the snapshot, which points twice at the same stored content. The two commits do not get the same hash. The hash of a commit covers the snapshot, the parent, the author, the committer, the dates and the message. Your names and the times differ, so the hashes differ, although both commits point at the same snapshot.
 
 ## Exercise 2: Explore the history
 
-### Core (10 min)
+### Core
 
 ```powershell
 uv run python exercises/git/setup_exercise.py 2
@@ -77,11 +89,6 @@ git diff
 git restore conversions.py
 git status
 ```
-
-Explain it (model answers):
-
-1. The diff of a commit shows what changed, the author and date show who and when, and the commit message is the only place that says why. Git records the first three for you; the message is yours to write. A message like "Fix Kelvin offset" lets a colleague find the commit in seconds, while "update" does not.
-2. Git can only bring back what was committed. Uncommitted edits exist in one place, your working tree, and `git restore` or a mistake can remove them for good. So commit small and often: every commit is a point you can return to.
 
 Check yourself:
 
@@ -126,9 +133,24 @@ Answers:
 
 More: `git log --oneline -- analyse_run.py` gives "Add measurements and analyse_run script". `git log --stat` shows that the first commit changed the most files (3: `conversions.py`, `README.md` and `.gitignore`). `--reverse` prints the oldest commit first.
 
+### Challenge: undo one commit, keep the history
+
+```powershell
+git log --oneline
+git revert <hash-of-Use-more-precise-bar-to-psi-factor> --no-edit
+git log --oneline
+git show HEAD
+```
+
+`git revert` makes a new commit that does the opposite of the chosen commit. The original stays in the log, followed by `Revert "Use more precise bar to psi factor"`, and `BAR_TO_PSI` is `14.5` again. It applies without a conflict because it is the newest commit and no later commit touches that line. (Checked with the setup script history.)
+
+### Open question
+
+`git reflog` lists where HEAD has been, including commits that no branch points to. Find the hash there, then `git switch -c rescue <hash>` gives the commit a branch again. Git removes unreferenced commits only after a period, 30 or 90 days by default, so there is time to find them. This does not help for edits that were never committed.
+
 ## Exercise 3: Branches and merging
 
-### Core (15 min)
+### Core
 
 ```powershell
 uv run python exercises/git/setup_exercise.py 3
@@ -146,36 +168,7 @@ git switch main
 git merge feature/pressure-kpa
 git branch -d feature/pressure-kpa
 
-# merge commit
-git switch -c feature/max-temperature
-# edit analyse_run.py: add the max temperature print line
-uv run python analyse_run.py
-git add analyse_run.py
-git commit -m "Print max temperature"
-git switch main
-Add-Content README.md "Run it with: uv run python analyse_run.py"
-git add README.md
-git commit -m "Explain how to run analyse_run.py"
-git merge feature/max-temperature --no-edit
-git log --oneline --graph --all --decorate
-git branch -d feature/max-temperature
-git status
-```
-
-Explain it (model answers):
-
-1. The first time `main` had no new commits since the branch started, so Git only moved the `main` label forward to the branch's commit: a fast-forward. The second time both `main` and the branch had a new commit, so the history had split. Git joined the two lines with a new merge commit that has two parents.
-2. On a branch you can commit unfinished work without breaking `main`, drop the work if the idea fails, and have it reviewed before it lands. `main` stays in a working state for everyone else. The cost is a merge at the end, and the longer a branch lives, the larger the chance of a merge conflict.
-
-Check yourself:
-
-1. `git switch main` goes to an existing branch. `git switch -c feature/x` creates the new branch at the current commit and goes to it.
-2. Git replaces the files in your folder with the version of the branch you switch to. Your uncommitted edits stay, as long as they do not clash with the files that change.
-3. A branch is only a label. The commits are in `main` too, so nothing is lost. `git branch -d` also refuses if the branch is not merged.
-
-### Optional: the merge conflict
-
-```powershell
+# merge conflict
 git merge experiment/psi-precision
 git status
 # open conversions.py in VS Code, click "Accept Incoming Change" (or choose your own line)
@@ -185,11 +178,78 @@ git commit -m "Merge experiment/psi-precision"
 git log --oneline --graph --all --decorate
 ```
 
-There is no single correct result. Either value is acceptable, as long as the markers are gone, the file still runs (`uv run python analyse_run.py`) and the merge is committed. The line that survives is `BAR_TO_PSI = 14.504  # ...` (current) or `BAR_TO_PSI = 14.5038  # ...` (incoming). If someone is lost: `git merge --abort` returns to the state before the merge.
+There is no single correct result. Either value is acceptable, as long as the markers are gone, the file still runs (`uv run python analyse_run.py`) and the merge is committed. The line that survives is `BAR_TO_PSI = 14.504  # ...` (current) or `BAR_TO_PSI = 14.5038  # ...` (incoming). If someone is lost: `git merge --abort` returns to the state before the merge. The new `bar_to_kpa` function from task 3 is not part of the conflict.
+
+Check yourself:
+
+1. `git switch main` goes to an existing branch. `git switch -c feature/x` creates the new branch at the current commit and goes to it.
+2. Git replaces the files in your folder with the version of the branch you switch to. Your uncommitted edits stay, as long as they do not clash with the files that change.
+3. A branch is only a label. The commits are in `main` too, so nothing is lost. `git branch -d` also refuses if the branch is not merged.
+
+### Optional
+
+Merge commit without a conflict (task 5):
+
+```powershell
+git switch -c feature/max-temperature
+# edit analyse_run.py: add the max temperature print line
+git commit -am "Print max temperature"
+git switch main
+Add-Content README.md "Run it with: uv run python analyse_run.py"
+git commit -am "Explain how to run analyse_run.py"
+git merge feature/max-temperature --no-edit
+git log --oneline --graph --all --decorate
+git branch -d feature/max-temperature
+```
+
+Rebase instead of merge (task 6):
+
+```powershell
+git switch -c feature/min-temperature
+# edit analyse_run.py: add the min temperature print line
+git commit -am "Print min temperature"
+git log --oneline -1
+git switch main
+Add-Content README.md "Output: mean pressure and temperature."
+git commit -am "Describe the output in the README"
+git log --oneline --graph --all --decorate
+git switch feature/min-temperature
+git rebase main
+git log --oneline --graph --all --decorate
+git switch main
+git merge feature/min-temperature
+git branch -d feature/min-temperature
+```
+
+Answers:
+
+1. A commit's hash covers its content, its parent and its metadata. After the rebase the commit has a different parent (the new tip of `main`), so Git has made a new commit with the same change and a new hash. The old one is no longer on the branch.
+2. It is safe here because the branch was never pushed: nobody else has the old commits. It is not safe for commits that are already pushed and used by others. They hold the old commits, and after your rewrite and a force push they get duplicates and a confusing history. If you must, use `git push --force-with-lease`, and rebase before the first push instead.
+
+Both tasks solve the same situation. Merge records what happened. Rebase tidies the branch before it is shared and leaves a straight history.
+
+The "With Copilot" part is covered at the end of this file.
+
+### Challenge: park half-finished work
+
+```powershell
+# you have uncommitted edits in conversions.py
+git stash
+git switch main
+# look around, run what you need
+git switch <your-branch>
+git stash pop
+```
+
+`git stash` saves the uncommitted edits and gives you a clean working tree, so the switch works. `git stash pop` puts the edits back and removes the stash. `git stash list` shows what is parked.
+
+### Open question
+
+Each commit stores the hash of its parent, or of both parents for a merge commit. `git log --graph` draws the lines from those links, not from branch names. A branch is a small text file under `.git/refs/heads/` that contains one commit hash (or a line in `.git/packed-refs`). Creating a branch writes that file, which is why it costs nothing.
 
 ## Exercise 4: Clone from Azure DevOps and push a branch
 
-### Core (15 min)
+### Core
 
 ```powershell
 New-Item -ItemType Directory -Force "$HOME\git-exercises"
@@ -211,11 +271,6 @@ git status
 git branch -a
 ```
 
-Explain it (model answers):
-
-1. `origin/main` is a remote-tracking branch: your laptop's memory of where `main` was on the server the last time you talked to it. Right now it shows the state at your clone. It does not update by itself; it changes only when you run `git fetch`, `git pull` or `git push`. Colleagues may have pushed since then without you seeing it.
-2. The commit exists in your local repository and, after the push, on Azure DevOps in your branch `feature/<your-name>-intro`. It is not in `main` yet, neither on the server nor on your laptop, and not on your colleagues' laptops until they fetch.
-
 Check yourself:
 
 1. `git branch` lists only local branches. `git branch -a` also lists the remote-tracking branches (`remotes/origin/...`), which are your laptop's record of what the remote has.
@@ -225,9 +280,13 @@ Check yourself:
 
 Stretch: `git fetch` followed by `git branch -a` lists the branches other participants pushed. In the graph, `origin/main` is where the remote `main` was at the last fetch, and your branch is one commit ahead of it.
 
+### Open question
+
+They sit under the remote-tracking branches such as `origin/main` and `origin/<other branches>`. `git branch -a` lists them. Offline you can commit, branch, merge, read the history and diff. You cannot push, pull, fetch or open a pull request, because those need the remote.
+
 ## Exercise 5: Pull request, review and merge
 
-### Core (20 min)
+### Core
 
 Web steps in Azure DevOps: **Repos > Pull requests > New pull request**, from `feature/anna-intro` into `main`, title, description, reviewer, **Create**. The reviewer opens the PR, reads **Files**, comments, **Approve**. The author clicks **Complete**, keeps "Merge (no fast-forward)", ticks "Delete feature/anna-intro after merging", **Complete merge**.
 
@@ -260,11 +319,6 @@ git commit -m "Merge main into feature/anna-intro"
 git push
 ```
 
-Explain it (model answers):
-
-1. A pull request puts a second pair of eyes on every change before it reaches `main`, and it records what was changed, why, and who approved it. That catches mistakes early and keeps `main` working for everyone. The cost is waiting time and effort from a colleague, which is why pull requests should be small.
-2. You are. The author of a commit stays responsible for it; the reviewer shares responsibility for letting it in. It makes no difference whether you typed the code or Copilot generated it: you read the diff, you committed it, and your name is on it.
-
 Check yourself:
 
 1. The reviewer saw the changes of the PR in one view (Files tab) with fresh eyes. They could spot unclear text, mistakes or files that should not be there.
@@ -274,11 +328,38 @@ Check yourself:
 
 A PR shows conflicts when someone else merged a change into `main` that touches the same lines as your branch.
 
+Challenge (a conflict between two pull requests):
+
+```powershell
+git switch main
+git pull
+git switch -c feature/anna-conflict
+# change the same line of README.md as your neighbour does, save
+git add README.md
+git commit -m "Change the README intro"
+git push -u origin feature/anna-conflict
+# open the PR, complete the first PR of the two (needs an approval)
+# the second PR now shows Conflicts: fix it on your laptop
+git switch feature/anna-conflict
+git pull origin main
+# fix README.md in VS Code, keep the line you want
+git add README.md
+git commit -m "Merge main into feature/anna-conflict"
+git push
+# the PR updates itself: complete it
+```
+
+The second PR conflicts because `main` now holds a different version of the same line. Merging `main` into your branch moves the decision to your laptop, where you can see both sides. Do not leave real changes in the shared README afterwards; the trainer may reset it.
+
 Branching models: trunk-based development uses short-lived branches into one `main` branch. GitFlow uses long-lived `develop`, `release/*` and `hotfix/*` branches next to `main`. The exercise followed the trunk-based style.
+
+### Open question
+
+A squash merge makes one new commit on `main` with a new hash and a single parent. The commits on your branch are not ancestors of `main`, and `git branch -d` checks ancestry, not content. So Git sees commits on the branch that `main` does not contain, although the same changes are there. `git branch -D` deletes the branch anyway. Use it once the pull request shows Completed.
 
 ## Exercise 6: Git in VS Code
 
-Trainer demo in class. Participants repeat it alone afterwards (20 min). Everything here is optional for the timed block.
+Trainer demo in class. Participants repeat it alone afterwards. Everything here is optional.
 
 Equivalent commands for the VS Code clicks:
 
@@ -308,17 +389,16 @@ git status
 
 Before the `.gitignore` exists, `git status` lists `participants/anna/output/`. Afterwards it lists only `participants/anna/.gitignore` as new. After the commit: "nothing to commit, working tree clean".
 
-Explain it (model answers):
-
-1. In the repository: what a person wrote and what others need to reproduce your work, such as scripts, small configuration files, documentation and the `.gitignore` itself. Not in the repository: what can be regenerated or is specific to your laptop (`.venv/`, `__pycache__/`, plots and output files), large raw data, and anything secret such as passwords. Generated files bloat the history and cause needless conflicts.
-2. The Source Control view is fast for the daily cycle and shows diffs side by side, next to your code. The command line is exact, works the same on every machine and server, and is what documentation and error messages refer to, so it is the tool for anything unusual. Both run the same Git underneath, so you can mix them.
-
 Check yourself:
 
 1. The **+** (Stage Changes) button.
 2. `U` is untracked (new file, not yet in Git). `M` is modified (a tracked file with changes).
 3. `git push -u origin <branch>`: it creates the branch on the remote and links the local branch to it.
 4. No. A file that is already tracked stays tracked and stays in the history. You would need `git rm --cached <file>` to stop tracking it (not covered in this training).
+
+### Open question
+
+The repository is about 200 MB larger (less if the data compresses well), because the file is still in the history. `.gitignore` only affects files that Git does not track yet, so it does nothing for a file that is already committed. Removing it needs a history rewrite, for example with `git filter-repo`, and a forced push. Everyone then has to clone again. It is cheaper to ignore data files from the start.
 
 ## The "With Copilot" tasks
 

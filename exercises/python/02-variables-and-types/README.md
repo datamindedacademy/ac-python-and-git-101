@@ -1,12 +1,14 @@
 # 02 - Variables and types
 
-Core time: 10 minutes. Optional tasks at the end if you have time.
-
 **Words to use:** variable, assignment, type, int, float, str, f-string, constant.
 
 ## Goal
 
 Store values in variables, know their types, convert between types and units, and print nice messages with f-strings.
+
+## Why this matters
+
+Measurement data almost always arrives as text. A value with the wrong type or the wrong unit gives a wrong number, often without any error message. A name that carries the unit, like `pressure_bar`, is the cheapest protection.
 
 ## Background
 
@@ -28,13 +30,6 @@ Open `exercises/python/02-variables-and-types/units.py` and do TODO 1 to 4. Run 
 ```powershell
 uv run python exercises/python/02-variables-and-types/units.py
 ```
-
-## Explain it
-
-This is the last core task. Answer each question in one or two sentences, to your neighbour or in writing. You do not need to write code.
-
-1. `temperature_c = 82` is an `int` and `pressure_bar = 7.5` is a `float`. What is the difference? What type is `temperature_k` after you add 273.15, and why?
-2. Why call a variable `pressure_bar` and not just `p`? What does the longer name cost you, and what does it buy you?
 
 ## Check yourself
 
@@ -66,3 +61,21 @@ Hint: floats can show tiny extra digits. That is normal.
 ### With Copilot
 
 Ask Copilot Chat: *"Show two other ways to format a float with 2 decimals inside a Python string, besides an f-string."* You will probably get `str.format()` and the `%` operator. Run both. Which of the three would you rather read in a colleague's script, and why?
+
+## Challenge
+
+For those who finish early. There are no TODOs and no hints.
+
+Write `parse.py`. It gets text such as `"7.5 bar"` or `"108.8 psi"`. Split it into a value and a unit, convert the value to the other unit, and print the result:
+
+```text
+7.5 bar = 108.78 psi
+```
+
+Text with an unknown unit, such as `"3 atm"`, prints a clear message instead of crashing.
+
+## Open question
+
+This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
+
+`0.1 + 0.2 == 0.3` is `False`, but `0.5 + 0.25 == 0.75` is `True`. Why? What does that mean for a script that checks whether two measured pressures are equal?

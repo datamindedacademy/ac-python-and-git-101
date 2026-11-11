@@ -31,6 +31,15 @@ alarm_count = 0
 # Add 1 to alarm_count inside the loop with alarm_count += 1.
 print("Alarms:", alarm_count)
 
+# --- building a list: loop and list comprehension ---
+# TODO 8: build the list alarm_readings of all readings above PRESSURE_ALARM_BAR.
+# First with a for loop and .append(). Then build the same list again,
+# in one line, with a list comprehension: [... for p in pressures_bar if ...]
+alarm_readings = []
+print("Alarm readings (loop):", alarm_readings)
+alarm_readings_short = ...
+print("Alarm readings (comprehension):", alarm_readings_short)
+
 # --- while loop ---
 # The pressure rises 0.4 bar per minute. How many minutes until the alarm limit?
 level = 7.0

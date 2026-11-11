@@ -17,11 +17,11 @@ src: ./parts/00-welcome.md
 ---
 
 ---
-src: ./parts/01-scripts-and-notebooks.md
+src: ./parts/02-python-on-windows.md
 ---
 
 ---
-src: ./parts/02-python-on-windows.md
+src: ./parts/01-scripts-and-notebooks.md
 ---
 
 ---

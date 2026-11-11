@@ -1,12 +1,16 @@
 # Exercise 1: Your first commit
 
-Time: **10 minutes** for the core tasks (1 to 9). Everything under "Optional" is extra.
+Core tasks: 1 to 8. Everything under "Optional" is extra.
 
 Words to use: repository, working tree, staging area, commit, commit message, hash, untracked, diff.
 
 ## Goal
 
 Create your first Git repository, make two commits, and understand the three places where your files can live.
+
+## Why this matters
+
+A commit is the unit you can undo and the unit a colleague reviews. Staging lets you make a commit that says one thing, also when you (or Copilot) changed five things at once. Without it you get one large commit that nobody can review or undo in part.
 
 ## Background
 
@@ -210,13 +214,6 @@ Expected:
 <hash> Add bar to psi conversion
 ```
 
-### 9. Explain it
-
-Answer in one or two sentences each, to your neighbour or in writing. Use the words from the top of this page.
-
-1. What is the difference between the working tree, the staging area and the repository? Where is your change after `git add`, and where after `git commit`?
-2. Git lets you stage some changes and leave others out of a commit. What do you gain from that, compared with a tool that always saves everything at once?
-
 ## Check yourself
 
 Short questions to test yourself after class. The answers are in `solutions/git/README.md`.
@@ -227,7 +224,7 @@ Short questions to test yourself after class. The answers are in `solutions/git/
 
 ## Optional: if you have time
 
-### 10. Commit the data file
+### 9. Commit the data file
 
 `measurements.csv` is still untracked. Add it in a third commit:
 
@@ -259,3 +256,15 @@ Before you commit, run `git diff`. Did it change anything you did not ask for? I
 - Run `git log --stat`. What extra information do you get?
 - Edit `measurements.csv`, add a fourth run, then use `git diff` and commit it with a clear message.
 - Run `ls -Force` and find the `.git` folder. Do not open it.
+
+## Challenge
+
+For those who finish early. No commands given: find them with `git help <command>` or Copilot, and check the result with `git log` and `git status`.
+
+In `conversions.py`, make two unrelated edits in different places of the file: add a new function, and change a comment or docstring of an existing one. Commit them as two separate commits, one per edit. Do not undo either edit and do not edit the file again between the commits.
+
+## Open question
+
+This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
+
+You commit the same 50 MB file twice, under two different names. How much space does Git need for it, and why? Then a harder one: you and a colleague each make a commit with exactly the same files and the same message. Do the two commits get the same hash?

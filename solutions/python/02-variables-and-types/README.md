@@ -1,13 +1,9 @@
 # Solution notes - 02
 
-## Explain it: model answers
+## Challenge
 
-Your own words are fine. What matters is that you name the tradeoff.
+`parse.py` is the reference solution. It splits the text with `.split()` and converts with a dict of factors.
 
-**`temperature_c = 82` is an `int` and `pressure_bar = 7.5` is a `float`. What is the difference? What type is `temperature_k` after you add 273.15, and why?**
+## Open question
 
-An `int` is a whole number and is exact. A `float` has decimals and is stored with limited precision, so tiny rounding errors are normal. `temperature_k` is a `float`, because an `int` plus a `float` gives a `float`.
-
-**Why call a variable `pressure_bar` and not just `p`? What does the longer name cost you, and what does it buy you?**
-
-The name `pressure_bar` tells the reader what the value is and in which unit, so nobody mixes bar and psi. It costs more typing and longer lines. Code is read more often than it is written, so the clear name wins.
+Floats are stored as binary fractions. 0.5, 0.25 and 0.75 are sums of powers of two, so they are exact. 0.1, 0.2 and 0.3 have no exact binary form, so each one is stored slightly off and the sum lands on a different float than 0.3. Never compare measured floats with `==`. Use `math.isclose(a, b, rel_tol=1e-6)` or compare the difference with a tolerance that fits the sensor.

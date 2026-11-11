@@ -1,12 +1,16 @@
 # Exercise 3: Branches and merging
 
-Time: **15 minutes** for the core tasks (1 to 5). The merge conflict at the end is optional (10 minutes).
+Core tasks: 1 to 4. Everything under "Optional" is extra.
 
-Words to use: branch, HEAD, switch, merge, fast-forward, merge commit, merge conflict.
+Words to use: branch, HEAD, switch, merge, fast-forward, merge commit, merge conflict, rebase.
 
 ## Goal
 
-Work on a change in a separate branch, then merge it back into `main`. See both kinds of merge: fast-forward and merge commit.
+Work on a change in a separate branch, then merge it back into `main`. See both kinds of merge: fast-forward and merge commit. Resolve a merge conflict.
+
+## Why this matters
+
+A branch lets you try something without breaking the version that works. Conflicts are normal as soon as two people touch the same script. Solving one calmly is a skill you need in the first week of working together.
 
 ## Background
 
@@ -19,7 +23,7 @@ A branch is only a label that points to a commit. Making one costs nothing. `HEA
 There are two kinds of merge:
 
 - **Fast-forward**: `main` did not change while you worked. Git just moves the `main` label forward. No new commit.
-- **Merge commit**: `main` moved on while you worked. Git combines both lines in a new commit with two parents.
+- **Merge commit**: `main` moved on while you worked. Git combines both lines in a new commit with two parents. If both lines changed the same lines, you decide first: a **merge conflict**.
 
 ## Setup
 
@@ -29,7 +33,7 @@ From the root of the course repository:
 uv run python exercises/git/setup_exercise.py 3
 ```
 
-Run the `cd` command it prints. The repository contains a `.gitignore` file that hides Python cache folders (`__pycache__/`), so they do not clutter `git status`. Exercise 6 explains `.gitignore`. You get a repository with 4 commits on `main`, and a second branch called `experiment/psi-precision`. Leave that branch alone until the optional part.
+Run the `cd` command it prints. The repository contains a `.gitignore` file that hides Python cache folders (`__pycache__/`), so they do not clutter `git status`. Exercise 6 explains `.gitignore`. You get a repository with 4 commits on `main`, and a second branch called `experiment/psi-precision`. Leave that branch alone until task 4.
 
 ## Core tasks
 
@@ -135,117 +139,14 @@ git log --oneline --graph --all --decorate
 
 `-d` refuses to delete a branch that is not merged yet. That is a safety net.
 
-### 4. Merge: the merge commit
+### 4. Merge: a conflict
 
-Now a more realistic case. Two things happen at the same time.
+Now `main` and the branch `experiment/psi-precision` changed the same line (`BAR_TO_PSI`). Git cannot decide which version is right, so it asks you. This is a **merge conflict**. It is normal and not an emergency.
 
-First, start a new branch and change `analyse_run.py`:
-
-```powershell
-git switch -c feature/max-temperature
-```
-
-In VS Code, open `analyse_run.py`. Add one line at the end of the `main` function, right after the line that prints the mean temperature. Keep the 4 spaces of indentation:
-
-```python
-    print(f"Max temperature: {max(temperatures):.1f} C")
-```
-
-Save, then run and commit:
-
-```powershell
-uv run python analyse_run.py
-git add analyse_run.py
-git commit -m "Print max temperature"
-```
-
-The script prints three lines. The last one is `Max temperature: 88.4 C`.
-
-Second, imagine a colleague changed `main` in the meantime. Do it yourself:
+1. Make sure you are on `main`, then try the merge:
 
 ```powershell
 git switch main
-Add-Content README.md "Run it with: uv run python analyse_run.py"
-git add README.md
-git commit -m "Explain how to run analyse_run.py"
-git log --oneline --graph --all --decorate
-```
-
-Now the history has split in two. Both lines have a new commit:
-
-```
-* <hash> (feature/max-temperature) Print max temperature
-| * <hash> (HEAD -> main) Explain how to run analyse_run.py
-|/
-* <hash> Add bar to kPa conversion
-...
-```
-
-Merge:
-
-```powershell
-git merge feature/max-temperature --no-edit
-```
-
-`--no-edit` accepts the automatic merge message. Without it, Git opens an editor. If that ever happens, close the editor tab in VS Code (or type `:wq` in vim) and the merge is completed.
-
-Expected:
-
-```
-Merge made by the 'ort' strategy.
- analyse_run.py | 1 +
- 1 file changed, 1 insertion(+)
-```
-
-Look at the result:
-
-```powershell
-git log --oneline --graph --all --decorate
-```
-
-```
-*   <hash> (HEAD -> main) Merge branch 'feature/max-temperature'
-|\
-| * <hash> (feature/max-temperature) Print max temperature
-* | <hash> Explain how to run analyse_run.py
-|/
-* <hash> Add bar to kPa conversion
-...
-```
-
-The merge commit has two parents. The two changes touched different files, so Git combined them without help.
-
-Clean up:
-
-```powershell
-git branch -d feature/max-temperature
-git status
-```
-
-### 5. Explain it
-
-Answer in one or two sentences each, to your neighbour or in writing.
-
-1. Git made a fast-forward the first time and a merge commit the second time. Why?
-2. What do you gain by doing your work on a branch instead of directly on `main`? What does it cost you?
-
-## Check yourself
-
-Short questions to test yourself after class. The answers are in `solutions/git/README.md`.
-
-1. What is the difference between `git switch main` and `git switch -c feature/x`?
-2. What happens to the files on disk when you switch branches?
-3. Why can you safely delete a branch after it is merged?
-
-## Optional: if you have time
-
-### A merge conflict (10 minutes)
-
-A **merge conflict** happens when two branches changed the same lines. Git cannot decide which version is right, so it asks you. This is normal and not an emergency.
-
-The branch `experiment/psi-precision` changes the same line as `main` did (`BAR_TO_PSI`). Try to merge it:
-
-```powershell
 git merge experiment/psi-precision
 ```
 
@@ -257,13 +158,15 @@ CONFLICT (content): Merge conflict in conversions.py
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-Git stopped halfway. Check:
+2. Git stopped halfway. Check:
 
 ```powershell
 git status
 ```
 
-It lists `conversions.py` under "Unmerged paths", "both modified". Open the file in VS Code. You see markers:
+It lists `conversions.py` under "Unmerged paths", "both modified".
+
+3. Open `conversions.py` in VS Code. You see markers:
 
 ```
 <<<<<<< HEAD
@@ -275,9 +178,9 @@ BAR_TO_PSI = 14.5038  # psi per bar, more precise
 
 The part between `<<<<<<<` and `=======` is your version (`main`). The part between `=======` and `>>>>>>>` is the other branch.
 
-If you want to try the "With Copilot" task at the end of this page, do it now, before you resolve the conflict.
+4. VS Code shows buttons above the markers: **Accept Current Change**, **Accept Incoming Change**, **Accept Both Changes**, and **Compare Changes**. Choose **Accept Incoming Change** to keep `14.5038`. You can also click **Resolve in Merge Editor** at the bottom right for a three-pane view. Check that no `<<<<<<<`, `=======` or `>>>>>>>` lines are left. Save the file.
 
-VS Code shows buttons above the markers: **Accept Current Change**, **Accept Incoming Change**, **Accept Both Changes**, and **Compare Changes**. Choose **Accept Incoming Change** to keep `14.5038`. You can also click **Resolve in Merge Editor** at the bottom right for a three-pane view. Check that no `<<<<<<<`, `=======` or `>>>>>>>` lines are left. Save the file. Then:
+5. Finish the merge and look at the result:
 
 ```powershell
 git add conversions.py
@@ -285,7 +188,7 @@ git commit -m "Merge experiment/psi-precision"
 git log --oneline --graph --all --decorate
 ```
 
-Because you saved a finished merge in a normal `git commit -m`, you are done.
+The merge commit has two parents. Because you saved a finished merge with a normal `git commit -m`, you are done.
 
 If you get lost, you can always go back to before the merge:
 
@@ -295,10 +198,107 @@ git merge --abort
 
 This works as long as you have not committed the merge yet.
 
+## Check yourself
+
+Short questions to test yourself after class. The answers are in `solutions/git/README.md`.
+
+1. What is the difference between `git switch main` and `git switch -c feature/x`?
+2. What happens to the files on disk when you switch branches?
+3. Why can you safely delete a branch after it is merged?
+
+## Optional: if you have time
+
+### 5. A merge commit without a conflict
+
+When both lines changed but not the same lines, Git joins them for you. Make a branch with a change in `analyse_run.py`, commit it, then switch to `main` and commit a change in `README.md`:
+
+```powershell
+git switch -c feature/max-temperature
+# edit analyse_run.py, then:
+git commit -am "Print max temperature"
+git switch main
+Add-Content README.md "Run it with: uv run python analyse_run.py"
+git commit -am "Explain how to run analyse_run.py"
+git merge feature/max-temperature --no-edit
+git log --oneline --graph --all --decorate
+git branch -d feature/max-temperature
+```
+
+`--no-edit` accepts the automatic merge message. Without it, Git opens an editor. If that happens, close the editor tab in VS Code (or type `:wq` in vim) and the merge is completed. The merge commit has two parents, and no help from you was needed.
+
+Task 6 solves the same situation in a different way.
+
+### 6. Rebase instead of merge
+
+Same situation as task 5: `main` moved while you worked on a branch. A **rebase** replays your commits on top of the latest `main`, so the history stays a straight line. Start on `main`, with a clean `git status`.
+
+1. Make a branch and commit a change on it. In `analyse_run.py`, add this line at the end of the `main` function, after the line that prints the mean temperature (keep the 4 spaces):
+
+```python
+    print(f"Min temperature: {min(temperatures):.1f} C")
+```
+
+```powershell
+git switch -c feature/min-temperature
+git commit -am "Print min temperature"
+git log --oneline -1
+```
+
+Write down the hash of your commit.
+
+2. Let `main` move on:
+
+```powershell
+git switch main
+Add-Content README.md "Output: mean pressure and temperature."
+git commit -am "Describe the output in the README"
+git log --oneline --graph --all --decorate
+```
+
+The graph shows two lines: your branch and `main` both have a new commit.
+
+3. Go back to your branch and rebase it on `main`:
+
+```powershell
+git switch feature/min-temperature
+git rebase main
+git log --oneline --graph --all --decorate
+```
+
+Expected: `Successfully rebased and updated refs/heads/feature/min-temperature.` The graph is now one straight line, with your commit on top. Compare its hash with the one you wrote down.
+
+4. Merge. This is a fast-forward, because your branch is already ahead of `main`:
+
+```powershell
+git switch main
+git merge feature/min-temperature
+git branch -d feature/min-temperature
+git log --oneline --graph --all --decorate
+```
+
+If a rebase hits a conflict, fix the file, then `git add <file>` and `git rebase --continue`. To give up: `git rebase --abort`.
+
+Questions:
+
+1. Compare the hash of your commit before and after the rebase. Why did it change?
+2. Why is it safe to rebase here, and when would it not be?
+
 ### With Copilot
 
-Do this while the conflict above is still open (after `git merge experiment/psi-precision`, before you resolve it). Select the conflict in `conversions.py`, open Copilot Chat (`Ctrl+Alt+I`) and ask:
+Do this during core task 4: after `git merge experiment/psi-precision`, before you resolve the conflict. Select the conflict in `conversions.py`, open Copilot Chat (`Ctrl+Alt+I`) and ask:
 
 > This is a merge conflict between HEAD (`main`) and the branch `experiment/psi-precision`. Explain what each side changed and suggest which side to keep.
 
-Do you agree with its suggestion? What did you check before you accepted it? Copilot can read both lines, but it does not know how precise your test-bench results must be. That is your call as the engineer. Finish with `git add` and `git commit` as described above.
+Do you agree with its suggestion? What did you check before you accepted it? Copilot can read both lines, but it does not know how precise your test-bench results must be. That is your call as the engineer. Finish with `git add` and `git commit` as in task 4.
+
+## Challenge
+
+For those who finish early. No commands given: find them with `git help <command>` or Copilot, and check the result with `git log` and `git status`.
+
+Make a new branch and edit `conversions.py` on it, but do not commit. Now you must look at `main` to check something. Switch to `main` without committing half-finished work and without losing it. Then come back and carry on with your edits where you left them.
+
+## Open question
+
+This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
+
+Git does not record on which branch a commit was made. So how can `git log --graph` draw the lines? And what is a branch, physically, inside the `.git` folder?

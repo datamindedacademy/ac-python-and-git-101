@@ -68,6 +68,7 @@ label: 8 · Git on the command line
 
 ```powershell
 git log --oneline
+git log --oneline --graph --all
 ```
 
 ```text
@@ -80,6 +81,7 @@ git diff            # edits not yet staged
 git diff --staged   # what the next commit will contain
 ```
 
+- `--graph --all` draws every branch as lines: you will read it in the branches exercise
 - If the output is long, Git opens a pager: **q** leaves it
 
 <style>
@@ -201,7 +203,64 @@ def psi_to_bar(psi):
 </style>
 
 <!--
-Both branches changed the same line, and Git cannot know which is right. The file now contains markers: above the equals line is your current branch, below is the incoming branch. VS Code highlights this and offers Accept Current, Incoming or Both. We only show the principle; conflicts are rare when branches are short-lived and people talk. The stretch part of the branches exercise lets them try one.
+Both branches changed the same line, and Git cannot know which is right. The file now contains markers: above the equals line is your current branch, below is the incoming branch. VS Code highlights this and offers Accept Current, Incoming or Both. We only show the principle; conflicts are rare when branches are short-lived and people talk. The branches exercise lets everyone create and resolve one.
+-->
+
+---
+layout: default
+label: 8 · Git on the command line
+---
+
+# <span class="dm-accent">Rebase</span> replays your commits on top of main
+
+<DmColumns class="mt-2">
+<DmColumn header="git merge main" tone="navy">
+
+```mermaid {scale: 0.55}
+%%{init: {'gitGraph': {'rotateCommitLabel': false}}}%%
+gitGraph
+    commit id: "A"
+    branch feature/x
+    commit id: "B"
+    checkout main
+    commit id: "C"
+    checkout feature/x
+    merge main
+```
+
+Keeps both lines, adds a merge commit.
+
+</DmColumn>
+<DmColumn header="git rebase main" tone="violet" divider>
+
+```mermaid {scale: 0.55}
+%%{init: {'gitGraph': {'rotateCommitLabel': false}}}%%
+gitGraph
+    commit id: "A"
+    commit id: "C"
+    branch feature/x
+    commit id: "B'"
+```
+
+Replays your commits after the latest `main`: a straight line, new hashes.
+
+</DmColumn>
+</DmColumns>
+
+```powershell
+git switch feature/x; git rebase main
+git add <file>; git rebase --continue   # after fixing a conflict
+git rebase --abort                      # give up
+```
+
+<p class="note">Rebase only commits you have not pushed. Rebasing rewrites them, and colleagues who pulled the old ones get duplicates.</p>
+
+<style>
+.slidev-code { font-size: 14px !important; line-height: 1.4 !important; }
+</style>
+
+<!--
+The situation: you branched from main, and main got new commits since. There are two ways to catch up. Merge records what happened. Rebase tidies the branch before you share it. After a rebase, merging the branch into main is a fast-forward. The commits get new hashes because their parent changed. If the branch was already pushed, a rebase needs git push with force-with-lease, which is why the rule is to rebase before the first push. A squash merge in a pull request gives a similarly clean main without anyone rebasing. There is an optional rebase task in the branches exercise.
 -->
 
 ---
@@ -212,9 +271,9 @@ title: Exercise - branches
 # Exercise time: <span class="dm-accent">branches</span>
 
 <p class="mt-6 text-lg opacity-80"><code>exercises/git/03-branches</code></p>
-<p class="mt-2 text-sm opacity-70">About 15 minutes: <code>uv run python exercises/git/setup_exercise.py 3</code></p>
+<p class="mt-2 text-sm opacity-70">About 20 minutes: <code>uv run python exercises/git/setup_exercise.py 3</code></p>
 
-<p class="words"><b>Words you can now use</b> stage · commit message · diff · HEAD · merge · fast-forward · conflict</p>
+<p class="words"><b>Words you can now use</b> stage · commit message · diff · HEAD · merge · fast-forward · conflict · rebase</p>
 
 <style>
 .words { font-size: 15px; opacity: 0.9; margin-top: 40px; }
@@ -222,5 +281,5 @@ title: Exercise - branches
 </style>
 
 <!--
-Create a branch, commit on it, merge it into main and look at the graph. The stretch goal is to create and resolve a conflict. The words at the bottom are the ones they can now use when asking a colleague or Copilot for help, or when reviewing.
+Create a branch, commit on it, merge it into main and look at the graph. They then merge `experiment/psi-precision` into main, which conflicts, and resolve it: the conflict is a core part, about 20 minutes in total. The words at the bottom are the ones they can now use when asking a colleague or Copilot for help, or when reviewing.
 -->

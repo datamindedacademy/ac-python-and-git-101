@@ -46,7 +46,8 @@ git pull                                 # fetch and merge new commits
 git fetch                                # only download, change nothing
 ```
 
-- `-u` links your local branch to the remote one, needed only once
+- `-u` sets the upstream: it links your local branch to the remote one, needed only once
+- `origin/main` is your laptop's last known copy of `main` on the server, updated by `fetch` and `pull`
 - `pull` is `fetch` plus merge: commit or restore your edits first
 
 <style>
@@ -54,7 +55,7 @@ git fetch                                # only download, change nothing
 </style>
 
 <!--
-The first push of a new branch creates it on the server, and Azure DevOps prints a link in the output to create a pull request. Pull is what you type daily. Fetch is the careful variant when you want to see what is coming before it touches your files. If a pull produces a conflict, it is the same conflict you saw earlier.
+The first push of a new branch creates it on the server, and Azure DevOps prints a link in the output to create a pull request. Pull is what you type daily. Fetch is the careful variant when you want to see what is coming before it touches your files. The upstream is the remote branch your local branch follows, so later push and pull need no arguments. Origin slash main is a remote-tracking branch: your laptop's memory of main on the server, which only changes when you fetch or pull. If a pull produces a conflict, it is the same conflict you saw earlier.
 -->
 
 ---
@@ -186,7 +187,7 @@ title: Demo - Git in VS Code
 
 <p class="mt-6 text-lg opacity-80">Optional practice: <code>exercises/git/06-git-in-vscode</code></p>
 
-<p class="words"><b>Words you can now use</b> clone · origin · push · pull · fetch · pull request · review</p>
+<p class="words"><b>Words you can now use</b> clone · origin · push · pull · fetch · upstream · origin/main · pull request · review</p>
 
 <style>
 .words { font-size: 15px; opacity: 0.9; margin-top: 40px; }

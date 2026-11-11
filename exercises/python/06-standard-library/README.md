@@ -1,12 +1,14 @@
 # 06 - The standard library: math, pathlib, csv, json
 
-Core time: 20 minutes. Optional tasks at the end if you have time.
-
 **Words to use:** standard library, import, path, glob pattern, header, DictReader, JSON, context manager (`with`).
 
 ## Goal
 
 Use four modules that come with Python. Write your first **automation script**: it loops over all CSV logs in a folder, reads each one, and writes one summary file.
+
+## Why this matters
+
+This is the main outcome of the day: work you now do by hand for each file is done by one script for a whole folder of test-bench logs. Everything used here ships with Python, so there is nothing extra to install or get approved.
 
 ## Background
 
@@ -29,13 +31,6 @@ Use four modules that come with Python. Write your first **automation script**: 
    ```
 
 4. Open the new file `exercises/python/06-standard-library/output/summary.json` in VS Code and read it. The `output/` folder is ignored by Git.
-
-## Explain it
-
-This is the last core task. Answer each question in one or two sentences, to your neighbour or in writing. You do not need to write code.
-
-1. Why use `csv.DictReader` and not split each line on commas yourself?
-2. The script finds its input with `Path(__file__).parent` and `glob("*.csv")` instead of three file names typed in the code. What do you gain? What could surprise you one day?
 
 ## Check yourself
 
@@ -67,3 +62,22 @@ and `summary.json` is a list of three objects. The first one looks like this:
 ### With Copilot
 
 Ask Copilot Chat: *"Rewrite the mean and the standard deviation in this script with the `statistics` module from the standard library."* Run it and compare the standard deviation with your own. The module has `stdev` (sample) and `pstdev` (population). Which one did Copilot pick, and which one matches your formula? Would you have noticed the difference without your own version?
+
+## Challenge
+
+For those who finish early. There are no TODOs and no hints.
+
+Change `summarize_runs.py` in two ways:
+
+1. It takes the folder with the runs as a command-line argument (`sys.argv`) instead of the fixed `runs/` folder.
+2. It prints a warning for every run whose pressure standard deviation is above a limit that you choose, for example:
+
+```text
+Warning: run_01 has a pressure standard deviation of 0.2 bar (limit 0.18)
+```
+
+## Open question
+
+This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
+
+Your script reads each log completely into memory. How would you summarise a 50 GB log on a laptop with 16 GB of memory, with only the standard library? Can you still get the standard deviation if you may read every row only once?

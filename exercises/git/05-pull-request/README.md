@@ -1,12 +1,16 @@
 # Exercise 5: Pull request, review and merge
 
-Time: **20 minutes** for the core tasks (1 to 6). Everything under "Optional" is extra.
+Core tasks: 1 to 5. Everything under "Optional" is extra.
 
 Words to use: pull request, reviewer, approve, complete, branch policy, merge commit, squash merge, pull.
 
 ## Goal
 
 Get your branch into `main` the way teams do it: with a pull request that a colleague reviews. Then bring your laptop up to date and clean up.
+
+## Why this matters
+
+A pull request puts a second pair of eyes on a change before it reaches the version everyone uses, and it keeps the record of why. That matters more when part of the code was written by an assistant. You are still the one who answers for it.
 
 ## Background
 
@@ -106,13 +110,6 @@ git branch -a
 
 If `git branch -d` says "not fully merged" and your PR was completed with **Squash**, use `git branch -D feature/anna-intro` after you checked that the PR is completed.
 
-### 6. Explain it
-
-Answer in one or two sentences each, to your neighbour or in writing.
-
-1. Why merge through a pull request instead of pushing straight to `main`? What does it cost, and what do you get in return?
-2. Your reviewer approved and the pull request is completed. Who is responsible for the change now? Does the answer change if Copilot wrote part of it?
-
 Note: if `main` moved while your PR was open, Azure DevOps still merges it when the changes touch different lines. If they touch the same lines, the PR shows **Conflicts** and you fix them first. The details are in the optional part.
 
 ## Check yourself
@@ -138,7 +135,7 @@ git switch feature/anna-intro
 git pull origin main
 ```
 
-`git pull origin main` brings the new `main` into your branch. If Git reports a conflict, open the file in VS Code, choose the right version (see the stretch of exercise 3), then:
+`git pull origin main` brings the new `main` into your branch. If Git reports a conflict, open the file in VS Code, choose the right version (see task 4 of exercise 3), then:
 
 ```powershell
 git add <file>
@@ -149,6 +146,8 @@ git push
 The PR updates itself. Pushing more commits to a branch with an open PR adds them to the PR.
 
 Because everyone has their own folder in this training, you probably will not see conflicts. In a real project you will meet them. Do not panic: read the markers, choose, commit.
+
+Some teams rebase the branch on `origin/main` instead of merging it. That rewrites commits you already pushed and needs `git push --force-with-lease`. This training uses the merge.
 
 ### Branching models
 
@@ -175,3 +174,15 @@ Read the draft. Is the "what" correct? Copilot only sees the diff, so the "why" 
 
 - Create a second small change (for example edit your `about.md`) on a new branch, push it, and open a second PR. Add a second commit to the branch while the PR is open and see it appear in the PR.
 - Open a PR **Overview** and read the "Policies" section. Which rules protect `main`?
+
+## Challenge
+
+For those who finish early. No commands given: find them with `git help <command>` or Copilot, and check the result with `git log` and `git status`.
+
+Work with a neighbour. Both of you change the same line of the same shared file, the `README.md` of the training repository, each on your own branch, and each open a pull request. Complete the first pull request. The second one then shows a conflict. Resolve it on your laptop and complete the second pull request. The optional section "What if `main` moved while my PR was open?" above is the reference.
+
+## Open question
+
+This goes beyond today. Most people cannot answer it yet. Try it anyway, or bring it to the trainer.
+
+With a squash merge your change lands on `main` as one new commit. Afterwards `git branch -d` refuses to delete your branch, although everything in it is on `main`. Why does Git think the branch is not merged?
