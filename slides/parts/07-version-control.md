@@ -38,7 +38,7 @@ label: 7 · Version control
     analyse_run_final_v3_USE_THIS_ONE.py
 ```
 
-<p class="note">With AI: <code>git diff</code> shows exactly what an assistant changed, so you keep what is good and undo the rest.</p>
+<p class="note">Git answers these four questions without copies of the file.</p>
 
 </div>
 
