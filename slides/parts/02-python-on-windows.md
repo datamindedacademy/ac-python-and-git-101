@@ -13,22 +13,63 @@ layout: default
 label: 1 · Python on your laptop
 ---
 
-# <span class="dm-accent">Python</span> is open source and runs on CPython
+# Python fills the gap between <span class="dm-accent">shell scripts and C</span>
 
-<div class="grid-3">
-  <DmIconBadge icon="i-mdi-calendar-star" label="1991" sub="by Guido van Rossum, named after Monty Python" />
-  <DmIconBadge icon="i-mdi-account-group-outline" label="Open source" sub="steered by the PSF" />
-  <DmIconBadge icon="i-mdi-language-c" tone="dark" label="CPython 3.13" sub="the interpreter, written in C" />
+<div class="grid-3 mt-2">
+<DmInfoCard icon="i-mdi-console" title="Shell scripts">
+
+Quick to write. Painful once you need real logic, numbers or data structures
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-language-python" icon-tone="navy" title="Python">
+
+Reads like a script, with lists, dicts, functions and a large library built in
+
+</DmInfoCard>
+<DmInfoCard icon="i-mdi-language-c" title="C">
+
+Can do everything. Slow to write, and easy to get wrong
+
+</DmInfoCard>
 </div>
 
-<DmProcess class="mt-8">
-<DmPhase label="Your .py file" />
-<DmPhase label="Compiled to bytecode" />
-<DmPhase label="CPython runs it" />
-</DmProcess>
+<p class="note">Guido van Rossum started it in 1989 at CWI in Amsterdam, for system administration work that was too much for a shell script and not worth a C program. First release in 1991.</p>
 
 <!--
-A minute of background. Python is more than thirty years old and is developed in the open, with no single vendor behind it. If you come from MATLAB you know one vendor and one runtime. Here the language is a specification, and CPython is the implementation almost everyone uses: a program written in C that reads your text file, compiles it to bytecode and executes it. That is why uv python install downloads CPython. Other implementations exist, PyPy is one, but you will rarely meet them. We use Python 3.13 in this training.
+Why does Python exist? Guido van Rossum worked at CWI in Amsterdam on an operating system called Amoeba. The administration tasks were too complex for Unix shell scripts, and writing each of them in C took too long. He wanted something in between: as quick to write as a shell script, with the data structures and error handling of a real language. That is still the reason people pick it today, and it is the same gap you may know between a batch file and a compiled program, or between an Excel macro and a full application. The name comes from Monty Python, not the snake. Python is open source and has no vendor: the Python Software Foundation owns the trademark and the core developers steer the language. If you come from MATLAB, that is the big difference: no licence, no single company.
+-->
+
+---
+layout: default
+label: 1 · Python on your laptop
+---
+
+# Python is the language, <span class="dm-accent">CPython</span> runs it
+
+<DmProcess class="mt-2">
+<DmPhase label="Your .py file" />
+<DmPhase label="Compiled to bytecode" />
+<DmPhase label="Run by the virtual machine" />
+</DmProcess>
+
+<p class="note">The <b>interpreter</b> is the program that does the last two steps: <code>python.exe</code>.</p>
+
+<DmComparison
+  class="mt-4"
+  :rows="['What it is', 'When you meet it']"
+  :cols="['CPython', 'PyPy', 'MicroPython']"
+>
+  <template #r0c0>The reference implementation, written in C</template>
+  <template #r0c1>Compiles hot loops to machine code while running</template>
+  <template #r0c2>A small Python for microcontrollers</template>
+
+  <template #r1c0>Always: it is what uv installs</template>
+  <template #r1c1>Long pure-Python calculations</template>
+  <template #r1c2>Sensors and embedded boards</template>
+</DmComparison>
+
+<!--
+Two things carry the name Python, and it helps to keep them apart. The language is a specification: a document that says what a for loop or a list must do. An implementation is a program that follows that specification and runs your code. CPython is the reference implementation, written in C by the core developers, and it is what almost everyone uses and what uv python install downloads. How does it run your file? It first compiles the text to bytecode, a compact list of simple instructions. Then a virtual machine executes those instructions one by one. Both steps happen inside one program, the interpreter, every time you run a script, which is why there is no separate build step as in C. The virtual machine is also why the same script runs unchanged on Windows and Linux: the bytecode is the same, only the interpreter differs per platform. It is also why plain Python loops are slower than C. Other implementations exist. PyPy adds a just-in-time compiler and can be much faster on long loops. MicroPython fits on a microcontroller. You will rarely need them, but when someone says Python is slow or Python cannot run there, the answer depends on which implementation. We use CPython 3.13 in this training.
 -->
 
 ---
