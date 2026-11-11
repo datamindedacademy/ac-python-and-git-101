@@ -66,7 +66,7 @@ label: 1 · Python on your laptop
 <DmPhase label="Run by the virtual machine" />
 </DmProcess>
 
-<p class="note">The <b>interpreter</b> is the program that does the last two steps: <code>python.exe</code>.</p>
+<p class="note">The <b>interpreter</b> is the program that does the last two steps: <code>python.exe</code>.<br/>To view the bytecode of a script: <code>uv run python -m dis &lt;script.py&gt;</code></p>
 
 <DmComparison
   class="mt-4"
@@ -83,7 +83,7 @@ label: 1 · Python on your laptop
 </DmComparison>
 
 <!--
-Two things carry the name Python, and it helps to keep them apart. The language is a specification: a document that says what a for loop or a list must do. An implementation is a program that follows that specification and runs your code. CPython is the reference implementation, written in C by the core developers, and it is what almost everyone uses and what uv python install downloads. How does it run your file? It first compiles the text to bytecode, a compact list of simple instructions. Then a virtual machine executes those instructions one by one. Both steps happen inside one program, the interpreter, every time you run a script, which is why there is no separate build step as in C. The virtual machine is also why the same script runs unchanged on Windows and Linux: the bytecode is the same, only the interpreter differs per platform. It is also why plain Python loops are slower than C. Other implementations exist. PyPy adds a just-in-time compiler and can be much faster on long loops. MicroPython fits on a microcontroller. You will rarely need them, but when someone says Python is slow or Python cannot run there, the answer depends on which implementation. We use CPython 3.13 in this training.
+Two things carry the name Python, and it helps to keep them apart. The language is a specification: a document that says what a for loop or a list must do. An implementation is a program that follows that specification and runs your code. CPython is the reference implementation, written in C by the core developers, and it is what almost everyone uses and what uv python install downloads. How does it run your file? It first compiles the text to bytecode, a compact list of simple instructions. Then a virtual machine executes those instructions one by one. You can look at the bytecode with the dis module: run it on hello.py and you see instructions such as LOAD_NAME and CALL. Both steps happen inside one program, the interpreter, every time you run a script, which is why there is no separate build step as in C. The virtual machine is also why the same script runs unchanged on Windows and Linux: the bytecode is the same, only the interpreter differs per platform. It is also why plain Python loops are slower than C. Other implementations exist. PyPy adds a just-in-time compiler and can be much faster on long loops. MicroPython fits on a microcontroller. You will rarely need them, but when someone says Python is slow or Python cannot run there, the answer depends on which implementation. We use CPython 3.13 in this training.
 -->
 
 ---
