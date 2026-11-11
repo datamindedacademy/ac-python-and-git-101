@@ -33,7 +33,21 @@ Can do everything. Slow to write, and easy to get wrong
 </DmInfoCard>
 </div>
 
+<div class="guido">
+<figure>
+<img src="/guido-van-rossum.jpg" alt="Portrait of Guido van Rossum" />
+<figcaption>Photo: Daniel Stroud, CC BY-SA 4.0</figcaption>
+</figure>
 <p class="note">Guido van Rossum started it in 1989 at CWI in Amsterdam, for system administration work that was too much for a shell script and not worth a C program. First release in 1991.</p>
+</div>
+
+<style>
+.guido { display: grid; grid-template-columns: 230px 1fr; gap: 24px; align-items: center; margin-top: 18px; }
+.guido figure { margin: 0; }
+.guido img { width: 230px; height: 153px; object-fit: cover; border-radius: 10px; display: block; }
+.guido figcaption { font-size: 10px; opacity: 0.6; margin-top: 4px; }
+.guido .note { margin-top: 0 !important; }
+</style>
 
 <!--
 Why does Python exist? Guido van Rossum worked at CWI in Amsterdam on an operating system called Amoeba. The administration tasks were too complex for Unix shell scripts, and writing each of them in C took too long. He wanted something in between: as quick to write as a shell script, with the data structures and error handling of a real language. That is still the reason people pick it today, and it is the same gap you may know between a batch file and a compiled program, or between an Excel macro and a full application. The name comes from Monty Python, not the snake. Python is open source and has no vendor: the Python Software Foundation owns the trademark and the core developers steer the language. If you come from MATLAB, that is the big difference: no licence, no single company.
