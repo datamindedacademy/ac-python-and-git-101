@@ -4,7 +4,7 @@
 
 ## Goal
 
-Use four modules that come with Python. Write your first **automation script**: it loops over all CSV logs in a folder, reads each one, and writes files with the results.
+Use a few modules that come with Python. Write your first **automation script**: it loops over all CSV logs in a folder, reads each one, and writes files with the results.
 
 ## Why this matters
 

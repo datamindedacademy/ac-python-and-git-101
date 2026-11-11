@@ -1,5 +1,9 @@
 # Solution notes - 07
 
+## Task 1
+
+`broken_1_fixed.py` is `broken_1.py` with the fix. The comment at the top names the error.
+
 ## Task 3
 
 `check_logs.py` is the reference solution. The decisions:

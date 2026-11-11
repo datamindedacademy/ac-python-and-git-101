@@ -19,6 +19,7 @@ uv sync --locked
 uv sync --frozen
 uv run --frozen python -c "import matplotlib; print(matplotlib.__version__)"
 uv sync
+uv run python -c "import matplotlib; print(matplotlib.__version__)"
 ```
 
 - `tzdata` comes from `python-dateutil`, which comes from `matplotlib`. `uv tree --invert --package` reads the tree from the bottom up.

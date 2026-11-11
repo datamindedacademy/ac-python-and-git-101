@@ -33,12 +33,13 @@ If you add or rename a file under `parts/`, restart the dev server: Slidev resol
   dividers.
 - Dividers use `layout: section`, exercise pointers use `layout: statement` and name the
   exercise folder.
-- Components (`DmColumns`, `DmComparison`, `DmSteps`, `DmProcess`, `DmIconBadge`) come
-  from the theme.
+- Components (`DmColumns`, `DmComparison`, `DmSteps`, `DmProcess`, `DmInfoCard`,
+  `DmBanner`) come from the theme.
 - Icons are UnoCSS classes such as `i-mdi-console` (any [Material Design Icon](https://pictogrammers.com/library/mdi/)),
-  passed as `icon="i-mdi-..."` to `DmIconBadge`, `DmInfoCard` and `DmBanner`.
-- `style.css` has the layout helpers `grid-2`, `grid-3`, `split` (code left, picture right) and `note`
-  (a one-line takeaway under a table or diagram).
+  passed as `icon="i-mdi-..."` to `DmInfoCard` and `DmBanner`.
+- `style.css` has the layout helpers `grid-2`, `grid-3`, `split` (code left, picture right), `note`
+  (a one-line takeaway under a table or diagram), `ask` (a question for the room) and
+  `why` (one line on why the slide matters).
 - `setup/mermaid.ts` gives every Mermaid diagram the brand palette, git graphs included.
 - Commands are PowerShell: participants work on managed Windows laptops.
 - No emdashes, and bold marks a single term rather than a whole claim.

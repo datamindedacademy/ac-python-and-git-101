@@ -115,7 +115,7 @@ The block is 105 minutes: 30 minutes of instruction and demo, and 75 minutes of 
 
 Exercise 2 (history) is not done in class. It is for early finishers and for homework. Exercises 3 to 5 do not depend on it. Exercises 1, 3, 4 and 5 add up to 75 minutes. Exercise 6 is a demo only.
 
-Each exercise has two or three tasks. Each task states a result. There are no hints: participants find the commands in the slides, the cheat sheet in `exercises/git/README.md` or `git help`. The full command sequences are in `solutions/git/README.md`. Point a stuck participant to the right slide before you give a command. The last task of each exercise is much harder and has no hint. The times above cover the tasks before it. Most participants will not finish the last task in class, and nothing later depends on it.
+Exercises 1 to 5 have three tasks each. Each task states a result. There are no hints: participants find the commands in the slides, the cheat sheet in `exercises/git/README.md` or `git help`. The full command sequences are in `solutions/git/README.md`. Point a stuck participant to the right slide before you give a command. The last task of each exercise is much harder and has no hint. The times above cover the tasks before it. Most participants will not finish the last task in class, and nothing later depends on it.
 
 **If the day runs late:**
 

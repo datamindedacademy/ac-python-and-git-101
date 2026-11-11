@@ -52,7 +52,7 @@ End state:
 |\
 | * abca709 Add intro for Anna
 |/
-* 0575ff7 Initial commit
+* 0575ff7 Add seed content for the training repository
 ```
 
 The hashes and the number of commits will differ. `git branch -a` shows only:

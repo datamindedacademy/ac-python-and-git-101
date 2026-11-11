@@ -139,7 +139,7 @@ Functions, conditions, loops and imports, run from VS Code
 </DmInfoCard>
 <DmInfoCard icon="i-mdi-bug-outline" icon-tone="navy" title="Read an error">
 
-Find the line a stack trace points to
+Find the line a traceback points to
 
 </DmInfoCard>
 <DmInfoCard icon="i-mdi-file-document-multiple-outline" icon-tone="navy" title="Automate files">

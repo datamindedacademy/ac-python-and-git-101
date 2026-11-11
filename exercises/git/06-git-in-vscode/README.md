@@ -81,7 +81,7 @@ Open the forge in your browser. The branch is there.
 
 ### 6. Pull request (optional, needs a second person)
 
-On the forge, open a PR as in exercise 5. The branch protection rule needs an approval, and you cannot approve your own PR. If you work alone, skip tasks 6 and 7. Just leave the pushed branch as it is, and go on with task 8. If a colleague or the trainer is around, ask them to approve, then merge the PR.
+On the forge, open a PR as in exercise 5. The branch protection rule needs an approval, and you cannot approve your own PR. If you work alone, leave the pushed branch as it is, switch back to `main` (last line of step 7) and go on with step 8. If a colleague or the trainer is around, ask them to approve, then merge the PR.
 
 ### 7. Pull the result (only after the PR is merged)
 

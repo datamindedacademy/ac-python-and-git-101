@@ -23,7 +23,7 @@ Functions, loops, imports
 </DmInfoCard>
 <DmInfoCard icon="i-mdi-check-bold" icon-tone="navy" title="Read an error">
 
-Find the line in a stack trace
+Find the line in a traceback
 
 </DmInfoCard>
 <DmInfoCard icon="i-mdi-check-bold" icon-tone="navy" title="Automate files">

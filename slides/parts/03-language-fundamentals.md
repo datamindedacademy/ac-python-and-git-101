@@ -174,7 +174,7 @@ True tb-014
 </style>
 
 <!--
-Put an f before the quote and you can place any expression inside curly braces. After the colon you control the format: .1f means one decimal place, .0f none. Strings also have methods such as lower, upper, strip, split and replace, called with a dot. split cuts a text at the spaces and gives the pieces as a list, which is how you separate a value from its unit. Lists are the next block. Both single and double quotes work, pick one style and stay with it. Why it matters: a number printed as 108.77849999999999 with no unit is how reports go wrong. Formatting is where the reader meets your result.
+Put an f before the quote and you can place any expression inside curly braces. After the colon you control the format: .1f means one decimal place, .0f none. Strings also have methods such as lower, upper, strip, split and replace, called with a dot. split cuts a text at the spaces and gives the pieces as a list, which is how you separate a value from its unit. Lists are the next block. Both single and double quotes work, pick one style and stay with it. Why it matters: a number printed as 108.7785 with no unit is how reports go wrong. Formatting is where the reader meets your result.
 -->
 
 ---
@@ -214,7 +214,7 @@ True
 </style>
 
 <!--
-A boolean, type bool, has two values: True and False, with a capital. You rarely type them yourself. You get them from a comparison, and you can keep the result in a variable, which is how an alarm flag is made. Boolean logic combines them. and is True only when both sides are True. or is True when at least one side is True. not turns True into False. In Python these are words, where MATLAB writes two ampersands, two bars and a tilde. The last line is a Python extra: you can chain comparisons the way you write them in maths, so a range check is one expression. Two things go wrong often. A single equals sign assigns, a double one compares, and mixing them up is the classic error. And when you mix and with or, and is evaluated first: True or False and False is True. Use brackets and nobody has to remember that. The if statement after the break runs on exactly these booleans.
+A boolean, type bool, has two values: True and False, with a capital. You rarely type them yourself. You get them from a comparison, and you can keep the result in a variable, which is how an alarm flag is made. Boolean logic combines them. and is True only when both sides are True. or is True when at least one side is True. not turns True into False. In Python these are words, where MATLAB writes two ampersands, two bars and a tilde. The last line is a Python extra: you can chain comparisons the way you write them in maths, so a range check is one expression. Two things go wrong often. A single equals sign assigns, a double one compares, and mixing them up is the classic error. And when you mix and with or, and is evaluated first: True or False and False is True. Use brackets and nobody has to remember that. The if statement later on runs on exactly these booleans.
 -->
 
 ---
@@ -807,7 +807,7 @@ label: 3 · Language fundamentals
 
 <div class="split" style="grid-template-columns: 3fr 1fr; gap: 16px">
 
-```python {all|1-3|5-6|8-11|13-14|all}
+```python {all|1-3|5-6|8-10|12-13|all}
 def mean(values):
     """Return the arithmetic mean of a list of numbers."""
     return sum(values) / len(values)
@@ -840,7 +840,7 @@ flowchart TD
 </style>
 
 <!--
-Real scripts are small functions that call each other, plus a main function that does the work. The string right under def is a docstring: the function's documentation, shown by help() and by VS Code on hover, like the help text at the top of a MATLAB function. On comments in general: a comment explains why, the code says what. Delete commented-out code, Git remembers it for you, and Git comes this afternoon. The last two lines mean: run main only when this file is started directly, not when another script imports it. You will see this phrase in most generated code; it is optional in small scripts, including exercise 05. The output is a dictionary with min 6.8, max 9.4 and mean 7.675.
+Real scripts are small functions that call each other, plus a main function that does the work. The string right under def is a docstring: the function's documentation, shown by help() and by VS Code on hover, like the help text at the top of a MATLAB function. On comments in general: a comment explains why, the code says what. Delete commented-out code, Git remembers it for you, and Git comes this afternoon. The last two lines mean: run main only when this file is started directly, not when another script imports it. You will see this phrase in most generated code; it is optional in small scripts, but report.py in exercise 05 needs it. The output is a dictionary with min 6.8, max 9.4 and mean 7.675.
 -->
 
 ---

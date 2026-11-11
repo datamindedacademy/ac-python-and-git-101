@@ -131,7 +131,7 @@ def setup_2(repo: Path) -> None:
 
 
 def setup_3(repo: Path) -> None:
-    """Four commits on main plus two prepared branches that conflict with main."""
+    """Four commits on main plus two prepared side branches."""
     init_repo(repo)
     steps = [
         ("step1", "Add unit conversions", ANNA, "2025-03-03T09:15:00+01:00"),
@@ -195,8 +195,10 @@ def check_target(target: Path) -> None:
             f"{target} is inside the course repository.\n"
             "Do not nest Git repositories. Use the default folder or pick one outside."
         )
-    if target in COURSE_ROOT.parents or target == Path.cwd().resolve():
+    if target in COURSE_ROOT.parents:
         raise SetupError(f"Refusing to use {target}: it contains the course repository.")
+    if target == Path.cwd().resolve():
+        raise SetupError(f"Refusing to use {target}: it is the folder you are in.")
 
 
 def parse_args(argv: list[str] | None) -> argparse.Namespace:

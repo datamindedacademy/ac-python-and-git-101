@@ -15,7 +15,7 @@ label: 4 · Files and the standard library
 
 # <span class="dm-accent">pathlib</span> builds paths and finds files
 
-```python {all|2-3|5-6|8|all}
+```python {all|3-4|6-7|9-10|all}
 from pathlib import Path
 
 data_dir = Path("data")
@@ -54,7 +54,7 @@ label: 4 · Files and the standard library
 
 # <span class="dm-accent">with open</span> reads a file and closes it again
 
-```python {all|1-2|4-5|7|all}
+```python {all|1|3-5|7|all}
 from pathlib import Path
 
 with open("data/run_014.csv", encoding="utf-8") as f:
@@ -92,7 +92,7 @@ label: 4 · Files and the standard library
 
 # Mode <span class="dm-accent">w</span> overwrites, mode <span class="dm-accent">a</span> appends
 
-```python {all|1-2|3-5|7-8|all}
+```python {all|1|2-4|6-7|all}
 lines = ["run,max_pressure_bar", "TB-014,7.9"]
 with open("summary.txt", "w", encoding="utf-8") as f:
     for line in lines:

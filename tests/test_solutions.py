@@ -280,9 +280,9 @@ def test_08_plot(tmp_path):
         "05-functions/bench.py",
         "05-functions/report.py",
         "06-standard-library/summarize_runs.py",
-        "08-uv-project/plot_pressure.py",
         "07-files-and-exceptions/summarize_logs.py",
         "07-files-and-exceptions/check_logs.py",
+        "08-uv-project/plot_pressure.py",
     ],
 )
 def test_starters_do_not_crash(script, tmp_path):

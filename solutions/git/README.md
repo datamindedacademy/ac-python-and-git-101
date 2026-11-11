@@ -6,7 +6,34 @@ Commands are for Windows PowerShell 5.1. Replace `anna` with your own name.
 
 ## Exercise 1: Your first commit
 
-### Task 3: two edits in one file, and a typo in history
+### Tasks 1 and 2
+
+```powershell
+# task 1
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git init -b main
+git add conversions.py
+git commit -m "Add bar to psi conversion"
+git add measurements.csv
+git commit -m "Add first measurements"
+git log --oneline
+
+# task 2: edit both files and save them
+git status
+git add conversions.py
+git diff --staged
+git commit -m "Add Celsius to Kelvin conversion"
+git add measurements.csv
+git diff --staged
+git commit -m "Add fourth measurement run"
+git log --oneline
+git status
+```
+
+Before the first `git add` in task 2, `git status` lists both files as modified under "Changes not staged for commit".
+
+### Task 3
 
 ```powershell
 git add -p conversions.py
@@ -38,7 +65,24 @@ About 50 MB, once (less if the content compresses). Git stores the content of a 
 
 ## Exercise 2: Explore the history
 
-### Task 3: undo one old commit, keep the later ones
+### Tasks 1 and 2
+
+```powershell
+# task 1
+git log --oneline
+git show --stat <hash-of-Add-measurements-and-analyse_run-script>
+
+# task 2
+git log -S273.15 --format="%h %an %ad %s" --date=short
+# edit conversions.py: KELVIN_OFFSET = 0, save
+git status
+git restore conversions.py
+git status
+```
+
+`git log -S<text>` lists the commits that added or removed that text. `git restore <file>` throws away the uncommitted edit for good. There is no undo for it.
+
+### Task 3
 
 ```powershell
 git log --oneline
@@ -153,7 +197,9 @@ Set-Content participants/anna/mine.md "my change"
 git add participants/anna/mine.md
 git commit -m "My commit"
 
-# in the other clone: switch to the branch, commit, push
+# make the other clone, switch to the branch, commit, push
+git clone https://<forge>/<organisation>/<training-repo>.git ..\other
+cd ..\other
 git switch feature/anna-intro
 Set-Content participants/anna/theirs.md "colleague change"
 git add participants/anna/theirs.md
@@ -161,6 +207,7 @@ git commit -m "Colleague commit"
 git push
 
 # back in your clone: the push is rejected
+cd ..\<training-repo>
 git push
 git fetch
 git status -sb

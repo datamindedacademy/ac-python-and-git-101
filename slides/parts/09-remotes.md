@@ -19,6 +19,7 @@ git remote -v
 
 ```text
 origin  https://<forge>/<organisation>/<training-repo>.git (fetch)
+origin  https://<forge>/<organisation>/<training-repo>.git (push)
 ```
 
 - The first time, a browser window asks you to sign in (Git Credential Manager)
@@ -97,7 +98,7 @@ A pull request (PR) proposes merging your branch into `main`. Colleagues read th
 </DmInfoCard>
 <DmInfoCard icon="i-mdi-check-all" title="Merge">
 
-Click **Merge pull request** (squash keeps `main` readable), then **Delete branch**.
+Click **Merge pull request**, then **Delete branch**.
 
 </DmInfoCard>
 <DmInfoCard icon="i-mdi-laptop" icon-tone="navy" title="Update your laptop">
@@ -110,7 +111,7 @@ Click **Merge pull request** (squash keeps `main` readable), then **Delete branc
 <p class="note">A <b>branch protection rule</b> on <code>main</code> can require a pull request with an approval before it can be merged.</p>
 
 <!--
-Nobody commits straight to main; changes arrive through a PR that someone else reads. The PR is a feature of the forge, not a Git one. Walk through the screens live if you can: the Files tab with the diff, comments, the Approve option in Review changes and the Merge pull request button. Squash merge turns a branch of ten messy commits into one clean one. After merging, pull on main so your laptop knows about the merge. On day 3 we make PRs mandatory with a branch protection rule.
+Nobody commits straight to main; changes arrive through a PR that someone else reads. The PR is a feature of the forge, not a Git one. Walk through the screens live if you can: the Files changed tab with the diff, comments, the Approve option in Review changes and the Merge pull request button. The exercise keeps the default merge commit. A squash merge is the other common choice: it turns a branch of ten messy commits into one clean one. After merging, pull on main so your laptop knows about the merge. In the training repository a branch protection rule already makes the PR mandatory.
 -->
 
 ---

@@ -20,7 +20,7 @@ Do the exercises in order. Exercise 2 is extra: do it when you are ahead, or aft
 ## How an exercise works
 
 - **Words to use**: the terms of that exercise.
-- **Tasks**: two or three per exercise. Each states a result to reach, not the commands. The last one is much harder. Most people will not finish it in class.
+- **Tasks**: three per exercise (exercise 6 is a list of steps). Each states a result to reach, not the commands. The last one is much harder. Most people will not finish it in class.
 - **No hints**: find the commands in the slides, in the cheat sheet below, or with `git help <command>`.
 - Answers are in `solutions/git/README.md`.
 - **Open question**: goes beyond today. Most people cannot answer it yet. Try it, or bring it to the trainer.
