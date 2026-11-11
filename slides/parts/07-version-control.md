@@ -85,16 +85,32 @@ label: 7 · Version control
 # Stage a hold, then <span class="dm-accent">hammer in an anchor</span>
 
 <div class="climb">
-<svg viewBox="0 0 430 380" class="wall" role="img" aria-label="A climber on a rock wall. Three anchors below the climber are joined by a rope. The climber reaches for a marked hold. A dashed arrow shows that a fall stops at the last anchor.">
-<rect x="4" y="4" width="422" height="372" rx="14" fill="var(--dm-surface)" />
-<path d="M40 376 L95 250 L70 150 L130 4" fill="none" stroke="#c9c5e8" stroke-width="2" />
-<path d="M330 376 L300 270 L345 170 L315 60 L350 4" fill="none" stroke="#c9c5e8" stroke-width="2" />
-<g fill="#c9c5e8">
-<ellipse cx="120" cy="300" rx="9" ry="5" /><ellipse cx="235" cy="320" rx="9" ry="5" /><ellipse cx="130" cy="215" rx="9" ry="5" />
-<ellipse cx="250" cy="235" rx="9" ry="5" /><ellipse cx="125" cy="120" rx="9" ry="5" /><ellipse cx="175" cy="45" rx="9" ry="5" />
-<ellipse cx="270" cy="40" rx="9" ry="5" /><ellipse cx="215" cy="152" rx="9" ry="5" /><ellipse cx="178" cy="150" rx="9" ry="5" />
+<svg viewBox="0 0 430 380" class="wall" role="img" aria-label="A climber on a rock face with cracks and ledges. Three anchors below the climber are joined by a rope. The climber reaches for a marked hold. A dashed arrow shows that a fall stops at the last anchor.">
+<defs><clipPath id="wallclip"><rect x="4" y="4" width="422" height="372" rx="14" /></clipPath></defs>
+<g clip-path="url(#wallclip)">
+<rect x="4" y="4" width="422" height="372" fill="#eef3fb" />
+<path d="M4 376 L4 58 L38 30 L78 44 L112 18 L150 34 L186 12 L236 30 L270 14 L312 40 L348 22 L388 48 L426 36 L426 376 Z" fill="#dedbef" />
+<path d="M4 58 L38 30 L78 44 L70 130 L96 240 L60 352 L4 352 Z" fill="#cfcbe6" />
+<path d="M312 40 L348 22 L388 48 L426 36 L426 352 L340 352 L310 270 L352 170 L322 90 Z" fill="#d3cfe9" />
+<path d="M112 18 L150 34 L140 80 L118 60 Z M236 30 L270 14 L282 70 L250 62 Z" fill="#ebe9f6" />
+<g fill="none" stroke="#b3aed6" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+<path d="M78 44 L70 130 L96 240 L60 352" /><path d="M322 90 L352 170 L310 270 L340 352" />
+<path d="M150 34 L140 80 L156 128 L146 170" /><path d="M270 14 L282 70 L268 112 L290 150" />
+<path d="M96 240 L128 262 L120 300" /><path d="M310 270 L276 288 L284 326" /><path d="M352 170 L384 190 L378 232" />
+<path d="M20 150 L48 162 L40 200" /><path d="M396 96 L372 118" />
 </g>
-<polyline points="170,376 170,335 205,255 180,175 196,122" fill="none" stroke="var(--dm-premium)" stroke-width="2.5" stroke-linejoin="round" />
+<g stroke="#a59fce" stroke-width="3" stroke-linecap="round">
+<path d="M104 196 L150 192" /><path d="M232 214 L286 210" /><path d="M214 300 L262 296" /><path d="M24 262 L58 258" /><path d="M356 300 L404 296" />
+</g>
+<g fill="#a59fce">
+<path d="M112 296 l14 -5 l6 7 l-12 6 z" /><path d="M228 322 l13 -6 l7 6 l-11 7 z" /><path d="M122 214 l13 -5 l6 7 l-12 5 z" />
+<path d="M243 238 l13 -6 l6 7 l-12 6 z" /><path d="M118 122 l13 -6 l6 7 l-11 6 z" /><path d="M168 48 l13 -5 l6 7 l-12 5 z" />
+<path d="M262 44 l13 -6 l6 7 l-11 6 z" /><path d="M208 154 l13 -5 l6 6 l-12 6 z" /><path d="M170 152 l13 -5 l6 7 l-12 5 z" />
+</g>
+<rect x="4" y="352" width="422" height="24" fill="#b9b4dc" />
+<path d="M4 352 L426 352" stroke="#8f88c4" stroke-width="2" />
+</g>
+<polyline points="170,352 170,335 205,255 180,175 196,122" fill="none" stroke="var(--dm-premium)" stroke-width="2.5" stroke-linejoin="round" />
 <g fill="var(--dm-connecting)" stroke="#fff" stroke-width="2.5">
 <circle cx="170" cy="335" r="9" /><circle cx="205" cy="255" r="9" /><circle cx="180" cy="175" r="9" />
 </g>
