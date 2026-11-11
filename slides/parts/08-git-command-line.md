@@ -309,39 +309,31 @@ label: 8 · Git on the command line
 
 # <span class="dm-accent">Rebase</span> replays your commits on top of main
 
-<DmColumns class="mt-2">
-<DmColumn header="git merge main" tone="navy">
-
-```mermaid {scale: 0.55}
-%%{init: {'gitGraph': {'rotateCommitLabel': false}}}%%
-gitGraph
-    commit id: "A"
-    branch feature/x
-    commit id: "B"
-    checkout main
-    commit id: "C"
-    checkout feature/x
-    merge main
-```
-
-Keeps both lines, adds a merge commit.
-
-</DmColumn>
-<DmColumn header="git rebase main" tone="violet" divider>
-
-```mermaid {scale: 0.55}
-%%{init: {'gitGraph': {'rotateCommitLabel': false}}}%%
-gitGraph
-    commit id: "A"
-    commit id: "C"
-    branch feature/x
-    commit id: "B'"
-```
-
-Replays your commits after the latest `main`: a straight line, new hashes.
-
-</DmColumn>
-</DmColumns>
+<svg viewBox="0 0 860 200" class="rb" role="img" aria-label="Three commit graphs. Before: main has commits A, B and D, and the feature branch has commit C that starts at B. After git merge main: a merge commit M on the feature branch joins C and D. After git rebase main: commit C is replayed after D as a new commit C prime, in one straight line.">
+<text x="0" y="16" fill="var(--dm-premium)" style="font-size: 14px; font-weight: 600;">Before: main moved on</text>
+<path d="M30 70 L200 70" stroke="var(--dm-premium)" stroke-width="3" />
+<path d="M115 70 C140 70 140 135 165 135" fill="none" stroke="var(--dm-connecting)" stroke-width="3" />
+<circle cx="30" cy="70" r="13" fill="var(--dm-premium)" /><text x="30" y="74" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">A</text><circle cx="115" cy="70" r="13" fill="var(--dm-premium)" /><text x="115" y="74" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">B</text><circle cx="200" cy="70" r="13" fill="var(--dm-premium)" /><text x="200" y="74" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">D</text><circle cx="165" cy="135" r="13" fill="var(--dm-connecting)" /><text x="165" y="139" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">C</text>
+<rect x="173.0" y="29" width="54" height="22" rx="5" fill="var(--dm-premium)" /><text x="200" y="44" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">main</text><rect x="67.0" y="124" width="66" height="22" rx="5" fill="var(--dm-connecting)" /><text x="100" y="139" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">feature</text>
+<text x="0" y="194" fill="var(--dm-premium)" style="font-size: 12px;">C was made on top of B.</text>
+<path d="M262 30 L262 196" stroke="#d8d5ee" stroke-width="1" />
+<text x="290" y="16" fill="var(--dm-premium)" style="font-size: 14px; font-weight: 600;">git merge main</text>
+<path d="M320 70 L490 70" stroke="var(--dm-premium)" stroke-width="3" />
+<path d="M405 70 C430 70 430 135 455 135 L540 135" fill="none" stroke="var(--dm-connecting)" stroke-width="3" />
+<path d="M490 70 C515 70 515 135 540 135" fill="none" stroke="var(--dm-connecting)" stroke-width="3" />
+<circle cx="320" cy="70" r="13" fill="var(--dm-premium)" /><text x="320" y="74" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">A</text><circle cx="405" cy="70" r="13" fill="var(--dm-premium)" /><text x="405" y="74" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">B</text><circle cx="490" cy="70" r="13" fill="var(--dm-premium)" /><text x="490" y="74" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">D</text><circle cx="455" cy="135" r="13" fill="var(--dm-connecting)" /><text x="455" y="139" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">C</text><circle cx="540" cy="135" r="13" fill="var(--dm-connecting)" /><text x="540" y="139" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">M</text>
+<rect x="463.0" y="29" width="54" height="22" rx="5" fill="var(--dm-premium)" /><text x="490" y="44" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">main</text><rect x="507.0" y="155" width="66" height="22" rx="5" fill="var(--dm-connecting)" /><text x="540" y="170" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">feature</text>
+<text x="290" y="194" fill="var(--dm-premium)" style="font-size: 12px;">Both lines stay, plus a merge commit M.</text>
+<path d="M582 30 L582 196" stroke="#d8d5ee" stroke-width="1" />
+<text x="610" y="16" fill="var(--dm-premium)" style="font-size: 14px; font-weight: 600;">git rebase main</text>
+<path d="M630 70 L760 70" stroke="var(--dm-premium)" stroke-width="3" /><path d="M760 70 L825 70" stroke="var(--dm-connecting)" stroke-width="3" />
+<path d="M695 70 C715 70 715 135 735 135" fill="none" stroke="var(--dm-connecting)" stroke-width="2" stroke-dasharray="4 3" />
+<path d="M750 128 Q800 122 818 90" fill="none" stroke="var(--dm-connecting)" stroke-width="1.5" stroke-dasharray="4 3" /><path d="M818 90 l-9 3 M818 90 l1 10" stroke="var(--dm-connecting)" stroke-width="1.5" fill="none" />
+<circle cx="630" cy="70" r="13" fill="var(--dm-premium)" /><text x="630" y="74" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">A</text><circle cx="695" cy="70" r="13" fill="var(--dm-premium)" /><text x="695" y="74" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">B</text><circle cx="760" cy="70" r="13" fill="var(--dm-premium)" /><text x="760" y="74" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">D</text><circle cx="735" cy="135" r="13" fill="#fff" stroke="var(--dm-connecting)" stroke-width="2" stroke-dasharray="4 3" /><text x="735" y="139" text-anchor="middle" fill="var(--dm-connecting)" style="font-size: 12px; font-weight: 600;">C</text><circle cx="825" cy="70" r="13" fill="var(--dm-connecting)" /><text x="825" y="74" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">C'</text>
+<rect x="725.0" y="29" width="54" height="22" rx="5" fill="var(--dm-premium)" /><text x="752" y="44" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">main</text><rect x="789.0" y="29" width="66" height="22" rx="5" fill="var(--dm-connecting)" /><text x="822" y="44" text-anchor="middle" fill="#fff" style="font-size: 12px; font-weight: 600;">feature</text>
+<text x="790" y="150" fill="var(--dm-connecting)" style="font-size: 12px;">replayed</text>
+<text x="610" y="194" fill="var(--dm-premium)" style="font-size: 12px;">One straight line. C' has a new hash.</text>
+</svg>
 
 ```powershell
 git switch feature/x; git rebase main
@@ -353,6 +345,8 @@ git rebase --abort                      # give up
 
 <style>
 .slidev-code { font-size: 14px !important; line-height: 1.4 !important; }
+.rb { width: 100%; height: auto; margin: 4px 0 8px; }
+.rb text { line-height: 1 !important; }
 </style>
 
 <!--
