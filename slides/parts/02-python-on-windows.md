@@ -124,20 +124,20 @@ layout: default
 label: 1 · Python on your laptop
 ---
 
-# Go to the folder, then <span class="dm-accent">uv run</span> the script
+# Go to the repository, then <span class="dm-accent">uv run</span> the script
 
 ```python
-# hello.py
-print("Compressor test bench online")
+# exercises/python/01-first-script/hello.py
+print("Hello, test engineer!")
 ```
 
 ```powershell
-cd C:\Users\you\training
-uv run python hello.py
+cd $HOME\Documents\ac-python-and-git-101
+uv run python exercises/python/01-first-script/hello.py
 ```
 
 ```text
-Compressor test bench online
+Hello, test engineer!
 ```
 
 <style>
@@ -145,7 +145,7 @@ Compressor test bench online
 </style>
 
 <!--
-Two steps: move to the folder that contains the file, then tell uv to run Python on it. The most common mistake is running the command from the wrong folder, which gives the error "can't open file". Use Get-Location to see where you are and dir to list the files. uv run takes care of finding the right interpreter.
+Two steps: move to the repository you cloned during the setup check, then tell uv to run Python on a file in it. We always run from the root of the repository and give the path to the script. The script prints two more lines, left out here. The most common mistake is running the command from the wrong folder, which gives the error "can't open file". Use Get-Location to see where you are and dir to list the files. uv run takes care of finding the right interpreter.
 -->
 
 ---
@@ -156,9 +156,9 @@ label: 1 · Python on your laptop
 # <span class="dm-accent">VS Code</span> runs the same script in three steps
 
 <DmSteps class="mt-4">
-<DmStep n="1" label="Open the folder">File, Open Folder, choose your project folder</DmStep>
+<DmStep n="1" label="Open the folder">File, Open Folder, choose <code>ac-python-and-git-101</code></DmStep>
 <DmStep n="2" label="Select the interpreter">Command Palette, Python: Select Interpreter, pick the one in <code>.venv</code> or the uv Python 3.13</DmStep>
-<DmStep n="3" label="Run">Play button at the top right, or <code>uv run python hello.py</code> in the integrated terminal</DmStep>
+<DmStep n="3" label="Run">Play button at the top right, or the same <code>uv run python</code> command in the integrated terminal</DmStep>
 </DmSteps>
 
 <!--

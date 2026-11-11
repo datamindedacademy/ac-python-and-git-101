@@ -146,9 +146,10 @@ layout: default
 label: Welcome
 ---
 
-# Four commands prove your laptop is <span class="dm-accent">ready</span>
+# Check the tools, then <span class="dm-accent">clone the repository</span>
 
-<div class="split">
+<DmColumns class="mt-2">
+<DmColumn header="1 · The tools answer" tone="navy">
 
 ```powershell
 uv --version
@@ -157,26 +158,28 @@ code --version
 git --version
 ```
 
-<div class="grid-2">
-  <DmIconBadge icon="i-mdi-lightning-bolt" label="uv" sub="Python and packages" />
-  <DmIconBadge icon="i-mdi-language-python" tone="dark" label="Python 3.13" sub="installed by uv" />
-  <DmIconBadge icon="i-mdi-microsoft-visual-studio-code" tone="dark" label="VS Code" sub="the editor" />
-  <DmIconBadge icon="i-mdi-git" label="Git" sub="version control" />
-</div>
+</DmColumn>
+<DmColumn header="2 · The course material is on your laptop" tone="violet" divider>
 
-</div>
+```powershell
+cd $HOME\Documents
+git clone <url from the trainer>
+cd ac-python-and-git-101
+uv sync
+code .
+```
+
+</DmColumn>
+</DmColumns>
 
 <DmBanner class="mt-4" icon="i-mdi-lifebuoy" title="Something fails?">
 Do not debug alone. Call me over: setup problems are normal on managed laptops.
 </DmBanner>
 
 <style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
-.split :deep(.dm-badge-circle) { width: 64px; height: 64px; }
-.split :deep(.dm-badge-icon) { width: 30px; height: 30px; }
-.split :deep(.dm-badge) { gap: 6px; }
+.slidev-code { font-size: 16px !important; line-height: 1.5 !important; }
 </style>
 
 <!--
-Use these 30 minutes to get every laptop to the same state: uv installed, Python 3.13 available through uv, VS Code starting, Git available. The commands on the slide are the quick check. Managed laptops sometimes block downloads or need a proxy setting, and that is exactly what I am here to solve. Nobody should start the content blocks with a broken setup.
+Use these 30 minutes to get every laptop to the same state. First the four tools: uv installed, Python 3.13 available through uv, VS Code starting, Git available. Then the course repository: clone it into Documents, run uv sync, and open the folder in VS Code. git clone copies the repository from the server, and we come back to it this afternoon. uv sync creates the folder .venv with the Python and the packages the exercises need. Every exercise today runs from this folder. Managed laptops sometimes block downloads or need a proxy setting, and that is exactly what I am here to solve. Nobody should start the content blocks with a broken setup.
 -->
