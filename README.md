@@ -18,7 +18,7 @@ to know Python. After this day you can:
 - Automate a repetitive task with a script that reads and writes files.
 - Clone a remote repository, commit on a branch, push and pull.
 
-You may use GitHub Copilot throughout. Do not keep a line you do not understand.
+You're free to use GitHub Copilot throughout. Make sure that you understand everything it writes or proposes (i.e. don't become a *meat proxy*).
 
 ## What is in this repository
 
