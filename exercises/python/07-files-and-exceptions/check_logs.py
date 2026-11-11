@@ -8,4 +8,4 @@ MAX_BAD_SHARE = 0.2  # a file with a larger share of bad rows stops the script
 logs_folder = Path(__file__).parent / "logs"
 
 # --- Task 3: stop or skip ---
-# See the README. No hints for this one.
+# See the README.

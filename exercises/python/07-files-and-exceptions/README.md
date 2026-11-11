@@ -40,8 +40,6 @@ Real logs contain bad rows. A script that crashes on file 37 of 200 and a script
 
 ## Tasks
 
-Stuck on a task? The hints are in `HINTS.md` in this folder.
-
 Run each script from the repo root in PowerShell.
 
 ### Task 1: read a traceback
@@ -74,7 +72,7 @@ run_04: mean 7.37 bar, 4 rows skipped
 
 ### Task 3: stop or skip
 
-This one is much harder. There is no hint.
+This one is much harder.
 
 Open `exercises/python/07-files-and-exceptions/check_logs.py`. Write a script that reads the logs and has two modes:
 

@@ -24,5 +24,5 @@ pressures_bar = [7.1, 7.6, 8.1, 8.4, 8.7, 7.9, 8.6, 7.3]
 
 
 # --- Task 3: alarm episodes ---
-# See the README. No hints for this one.
+# See the README.
 trend_bar = [7.2, 8.1, 8.3, 8.2, 7.6, 8.4, 7.9, 8.2, 8.6, 8.9, 8.1, 7.8, 8.3, 8.5]

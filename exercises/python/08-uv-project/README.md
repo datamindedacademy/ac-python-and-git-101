@@ -23,8 +23,6 @@ A script that only runs on your own laptop is not a tool yet. The project file a
 
 ## Tasks
 
-Stuck on a task? The hints are in `HINTS.md` in this folder.
-
 Work in PowerShell. `plot_pressure.py` in this exercise folder already draws the picture, you only run it.
 
 ### Task 1: a project
@@ -45,7 +43,7 @@ Saved pressure.png
 
 ### Task 3: the same environment, from the lockfile
 
-This one is much harder. There is no hint.
+This one is much harder.
 
 Go back to the project of task 1. Do these things with uv commands only, and answer the questions from the output:
 

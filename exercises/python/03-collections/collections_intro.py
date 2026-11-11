@@ -32,4 +32,4 @@ sensor_ids = ["P1", "T1", "P1", "F1", "T1", "P2"]
 
 
 # --- Task 3: median and peak ---
-# See the README. No hints for this one.
+# See the README.

@@ -15,14 +15,13 @@ Most "it works on my laptop but not on yours" problems come down to which Python
 - **Python** is the programming language. The **interpreter** is the program that reads your `.py` file and runs it, line by line.
 - A **script** is a text file with Python code. You run it with one command and it runs from top to bottom.
 - A **notebook** (`.ipynb`) is a document made of cells. You run cells one at a time and see the result under each cell. The **kernel** is the Python process that keeps the variables between cells.
+- The module `sys` knows about the running interpreter: `sys.version` is its version and `sys.executable` is the path of the `python.exe` that runs your script.
 - **PATH** is a list of folders. When you type a command, Windows looks in these folders to find the program.
 - **uv** manages Python for you. It installed Python 3.13 and it creates the `.venv` folder, a private Python environment for this repo. `uv run` always uses that environment.
 
 All commands below are for **PowerShell**, run from the **repo root** (the folder `ac-python-and-git-101`). Check where you are with `pwd`.
 
 ## Tasks
-
-Stuck on a task? The hints are in `HINTS.md` in this folder.
 
 ### Task 1: run a script
 
@@ -46,7 +45,7 @@ Python runs from: C:\path\to\ac-python-and-git-101\.venv\Scripts\python.exe
 
 ### Task 2: hidden state in a notebook
 
-This one is much harder. There is no hint.
+This one is much harder.
 
 Open `exercises/python/01-first-script/first_notebook.ipynb` in VS Code and select the `.venv` kernel at the top right. Run the cells. Then get the notebook into a state where one cell shows a result that **Restart** followed by **Run All** does not give. Write in the last cell of the notebook why that happens.
 

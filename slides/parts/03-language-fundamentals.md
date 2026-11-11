@@ -302,7 +302,7 @@ layout: statement
 </style>
 
 <!--
-The values arrive as text, as they do from a file: convert, split value and unit, format, and read one deliberate type error from the bottom. Every exercise has two or three tasks that state the result. The hints are in HINTS.md in the exercise folder: ask people to try for two minutes before they open it. The last task is much harder and has no hint. Most people will not finish it, and nothing later depends on it.
+The values arrive as text, as they do from a file: convert, split value and unit, format, and read one deliberate type error from the bottom. Every exercise has two or three tasks that state the result. There are no hints: people use the Background section of the README, the slides, help() or Copilot. The last task is much harder. Most people will not finish it, and nothing later depends on it.
 -->
 
 ---

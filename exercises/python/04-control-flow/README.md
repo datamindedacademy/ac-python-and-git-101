@@ -36,8 +36,6 @@ A loop with a condition is the core of nearly every automation script: go over a
 
 ## Tasks
 
-Stuck on a task? The hints are in `HINTS.md` in this folder.
-
 Open `exercises/python/04-control-flow/alarms.py`. There are three tasks. Each one states the output to reach. Run with:
 
 ```powershell
@@ -71,7 +69,7 @@ In psi: [103.0, 110.2, 117.5, 121.8, 126.2, 114.6, 124.7, 105.9]
 
 ### Task 3: alarm episodes
 
-This one is much harder. There is no hint.
+This one is much harder.
 
 `trend_bar` holds 14 readings. An **episode** is a run of consecutive readings above `PRESSURE_WARNING_BAR`. Print every episode with the numbers of its first and last reading (counting from 1), its length and its highest value. Then print the longest episode.
 

@@ -36,8 +36,6 @@ Measurement data almost always arrives as text. A value with the wrong type or t
 
 ## Tasks
 
-Stuck on a task? The hints are in `HINTS.md` in this folder.
-
 Open `exercises/python/02-variables-and-types/units.py`. There are three tasks. No task needs a loop or an `if`. Run with:
 
 ```powershell
@@ -75,7 +73,7 @@ TypeError: can only concatenate str (not "float") to str
 
 ### Task 3: a full reading
 
-This one is much harder. There is no hint.
+This one is much harder.
 
 `reading_line` is one line from a sensor log, with the fields separated by `;`. The pressure is in psi and the temperature is in degrees Fahrenheit. Print the reading in bar and degrees Celsius, and say whether the pressure is above `ALARM_LIMIT_BAR`.
 

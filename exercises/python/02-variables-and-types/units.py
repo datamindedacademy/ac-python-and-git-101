@@ -20,5 +20,5 @@ temperature_text = "82 degC"
 
 
 # --- Task 3: a full reading ---
-# See the README. No hints for this one.
+# See the README.
 reading_line = "2026-01-15 09:00:00;P1;108.8 psi;179.6 degF"

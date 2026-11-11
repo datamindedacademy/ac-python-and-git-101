@@ -24,8 +24,6 @@ This is the main outcome of the day: work you now do by hand for each file is do
 
 ## Tasks
 
-Stuck on a task? The hints are in `HINTS.md` in this folder.
-
 Open `exercises/python/06-standard-library/summarize_runs.py`. The folder `runs/` holds three test-run logs: one row per minute, with a `timestamp`, `pressure_bar` and `temperature_c` column. Each task states the output to reach. Run with:
 
 ```powershell
@@ -63,7 +61,7 @@ The first object of `summary.json`:
 
 ### Task 3: find the odd run
 
-This one is much harder. There is no hint.
+This one is much harder.
 
 Compare every run with all the other runs, and flag the runs that do not fit. For one run: take the readings of all the other runs together, and calculate their mean and their standard deviation (divide by the number of readings). The deviation of the run is its mean pressure minus the mean of the others, divided by the standard deviation of the others. Flag the run when the deviation is above a threshold, in either direction.
 

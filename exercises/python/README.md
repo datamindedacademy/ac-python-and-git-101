@@ -18,8 +18,8 @@ All exercises use one story: measurements from a (fictional) compressor test ben
 Start with the `README.md` in the folder. It has these parts:
 
 - **Words to use**: the terms of that exercise. Use them with the trainer and with Copilot.
-- **Tasks**: two or three per exercise. Each states the result to reach, not the code. The last one is much harder and has no hint. Most people will not finish it in class.
-- **Hints**: in `HINTS.md` in the same folder. Read one only when you are stuck.
+- **Tasks**: two or three per exercise. Each states the result to reach, not the code. The last one is much harder. Most people will not finish it in class.
+- **No hints**: use the Background section, the slides, `help()` or Copilot.
 - **Open question**: goes beyond today. Most people cannot answer it yet. Try it, or bring it to the trainer.
 
 A reference solution is in `solutions/python/<same-folder>/`. Try first, then look.

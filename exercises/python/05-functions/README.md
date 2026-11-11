@@ -47,8 +47,6 @@ The header line above it names the test. The line marked `>` is the failing asse
 
 ## Tasks
 
-Stuck on a task? The hints are in `HINTS.md` in this folder.
-
 Everything for tasks 1 and 2 is in `exercises/python/05-functions`. Task 3 uses new files in the same folder.
 
 ### Task 1: red to green
@@ -88,7 +86,7 @@ Flow (m3/h): 149.4
 
 ### Task 3: one convert function
 
-This one is much harder. There is no hint.
+This one is much harder.
 
 Write a function `convert(value, from_unit, to_unit)` in a new file `units.py`, with its tests in a new file `test_units.py`, both in `exercises/python/05-functions`. Write the tests first. Run them with:
 
