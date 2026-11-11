@@ -115,9 +115,9 @@ label: 7 · Version control
 <circle cx="170" cy="335" r="9" /><circle cx="205" cy="255" r="9" /><circle cx="180" cy="175" r="9" />
 </g>
 <g style="font-family: monospace; font-size: 12px;" fill="var(--dm-premium)">
-<text x="188" y="339">a05588 Add conversion</text>
-<text x="223" y="259">9b221a Add measurement</text>
-<text x="36" y="179">c41d07 Fix factor</text>
+<text x="188" y="339">a055887 Add conversion</text>
+<text x="223" y="259">9b221ad Add measurement</text>
+<text x="36" y="179">c41d07a Fix factor</text>
 </g>
 <g stroke="var(--dm-premium)" stroke-width="4.5" stroke-linecap="round" fill="none">
 <circle cx="200" cy="88" r="9" fill="var(--dm-premium)" stroke="none" />

@@ -6,7 +6,7 @@ layout: section
 
 ---
 layout: default
-label: 9 · Remotes
+label: 9 · Remotes and pull requests
 ---
 
 # <span class="dm-accent">Clone</span> copies the repository and its history
@@ -35,7 +35,7 @@ Clone copies the whole repository, history included, into a new folder and sets 
 
 ---
 layout: default
-label: 9 · Remotes
+label: 9 · Remotes and pull requests
 ---
 
 # <span class="dm-accent">Push</span> uploads commits, <span class="dm-accent">pull</span> downloads them
@@ -77,7 +77,7 @@ Participants clone the training repository from the forge, create a branch, comm
 
 ---
 layout: default
-label: 9 · Remotes
+label: 9 · Remotes and pull requests
 ---
 
 # A <span class="dm-accent">pull request</span> lets a colleague review first
@@ -130,7 +130,7 @@ Participants open a pull request for the branch from the previous exercise, revi
 
 ---
 layout: default
-label: 9 · Remotes
+label: 9 · Remotes and pull requests
 ---
 
 # <span class="dm-accent">.gitignore</span> keeps files out of history

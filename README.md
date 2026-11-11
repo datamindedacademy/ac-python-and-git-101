@@ -28,6 +28,7 @@ You're free to use GitHub Copilot throughout. Make sure that you understand ever
 | [`exercises/git/`](exercises/git/) | Git exercises, with a script that prepares a practice repository |
 | [`solutions/`](solutions/) | Reference solutions. Try the exercise first. |
 | [`slides/`](slides/) | The slide deck |
+| [`tests/`](tests/) | Tests for the solutions and the Git setup script |
 
 ## Getting started
 

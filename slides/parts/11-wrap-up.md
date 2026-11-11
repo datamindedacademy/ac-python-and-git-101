@@ -77,7 +77,7 @@ layout: default
 label: Wrap-up
 ---
 
-# Eight commands cover <span class="dm-accent">daily Git</span>
+# Eleven commands cover <span class="dm-accent">daily Git</span>
 
 <DmColumns class="mt-2">
 <DmColumn header="Local" tone="navy">
@@ -113,7 +113,7 @@ git push -u origin feature/x
 </style>
 
 <!--
-Point out that this will be in the handout. Eight commands cover almost everything in daily use, and the right column is the daily cycle: update main, branch, commit, push, pull request, then back to the start. Status is the one to run when in doubt.
+Point out that this will be in the handout. Eleven commands cover almost everything in daily use: eight local ones on the left, plus clone, pull and push, and the right column is the daily cycle: update main, branch, commit, push, pull request, then back to the start. Status is the one to run when in doubt.
 -->
 
 ---
