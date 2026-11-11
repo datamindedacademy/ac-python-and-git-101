@@ -284,21 +284,22 @@ def psi_to_bar(psi):
 
 - Nothing is lost. Edit the file, delete the marker lines, then `git add` and `git commit`
 - Changed your mind? `git merge --abort`
+- **Tip:** agents are excellent at solving merge conflicts. Read the result with `git diff` before you commit
 
 <p class="ask" v-click><b>Question</b>Two people change different lines of the same file. Is that a conflict?</p>
 
 <style>
 .slidev-code { font-size: 14px !important; line-height: 1.45 !important; }
-.cf { display: grid; grid-template-columns: 330px 1fr; gap: 24px; align-items: center; margin-top: 2px; }
+.cf { display: grid; grid-template-columns: 290px 1fr; gap: 24px; align-items: center; margin-top: 2px; }
 .cf > * { min-width: 0; }
-.graph2 { width: 330px; height: 250px; }
+.graph2 { width: 290px; height: 220px; }
 .graph2 text { line-height: 1 !important; }
 .sides { font-size: 15px; margin: 4px 0 0; }
 li { font-size: 16px; }
 </style>
 
 <!--
-Both branches changed the same line, and Git cannot know which is right. The file now contains markers: above the equals line is your current branch, below is the incoming branch. VS Code highlights this and offers Accept Current, Incoming or Both. We only show the principle; conflicts are rare when branches are short-lived and people talk. The branches exercise lets everyone create and resolve one. Question on the slide: no. Git merges line by line and combines both changes without asking. A conflict only happens when both changed the same lines.
+Both branches changed the same line, and Git cannot know which is right. The file now contains markers: above the equals line is your current branch, below is the incoming branch. VS Code highlights this and offers Accept Current, Incoming or Both. We only show the principle; conflicts are rare when branches are short-lived and people talk. The branches exercise lets everyone create and resolve one. The tip: resolving a conflict is mostly reading two versions and combining them, which an agent does well, and it can explain both sides to you first. You still decide which factor is right, so read the diff before you commit. Question on the slide: no. Git merges line by line and combines both changes without asking. A conflict only happens when both changed the same lines.
 -->
 
 ---
