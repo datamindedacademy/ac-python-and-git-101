@@ -1,4 +1,4 @@
-# Hints: Exercise 4: Clone from Azure DevOps and push a branch
+# Hints: Exercise 4: Clone from GitHub and push a branch
 
 Try the task first. Read a hint only when you are stuck.
 

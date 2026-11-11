@@ -86,11 +86,11 @@ label: 10 · Branching models
 
 <div class="mt-6"></div>
 <ul>
-  <li><b>Use trunk-based</b>: short-lived <code>feature/...</code> branches and PRs; day 3 adds a branch policy on <code>main</code></li>
+  <li><b>Use trunk-based</b>: short-lived <code>feature/...</code> branches and PRs; day 3 adds a branch protection rule on <code>main</code></li>
   <li>Exists, not today: <code>git cherry-pick</code>, <code>git stash</code></li>
 </ul>
 
-<p class="words"><b>Words you can now use</b> trunk-based · GitFlow · feature branch · short-lived · branch policy</p>
+<p class="words"><b>Words you can now use</b> trunk-based · GitFlow · feature branch · short-lived · branch protection rule</p>
 
 <style>
 .words { font-size: 15px; opacity: 0.9; margin-top: 14px; }

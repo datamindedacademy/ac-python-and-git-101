@@ -1,10 +1,10 @@
-# Exercise 4: Clone from Azure DevOps and push a branch
+# Exercise 4: Clone from GitHub and push a branch
 
 Words to use: remote, `origin`, clone, push, upstream branch, remote-tracking branch (`origin/main`), fetch, pull.
 
 ## Goal
 
-Get a copy of your group's training repository from Azure DevOps. Make a branch with a file in your own folder, and push it to Azure DevOps.
+Get a copy of your group's training repository from GitHub. Make a branch with a file in your own folder, and push it to GitHub.
 
 ## Why this matters
 
@@ -12,7 +12,7 @@ A script that exists only on your laptop is gone when the laptop is. The remote 
 
 ## Background
 
-So far your repository lived only on your laptop. Real projects have a shared copy on a server. This shared copy is called a **remote**. In this training the remote is an **Azure DevOps Repos** repository. Atlas Copco hosts it, and your group has one.
+So far your repository lived only on your laptop. Real projects have a shared copy on a server. This shared copy is called a **remote**. In this training the remote is a **GitHub** repository, and your group has one. Azure DevOps comes on day 3. The Git commands are the same.
 
 Terms used in this exercise:
 
@@ -26,17 +26,17 @@ Terms used in this exercise:
 
 Everyone in your group works in the same repository. To avoid getting in each other's way, each person only adds files in their own folder: `participants/<your-name>/`. Use your first name in lowercase, without spaces or special characters, for example `anna`.
 
-You sign in with your Atlas Copco account through **Git Credential Manager**. The first time you clone or push, a browser window opens and asks you to sign in. After that, it remembers you.
+You sign in to GitHub through **Git Credential Manager**, which comes with Git for Windows. The first time you clone or push, a browser window opens and asks you to sign in. After that, it remembers you.
 
 ## Before you start
 
 Your trainer gives you the repository URL. It looks like this:
 
 ```
-https://dev.azure.com/<organisation>/<project>/_git/<training-repo>
+https://github.com/<organisation>/<training-repo>.git
 ```
 
-Replace the three placeholders with the real values from the trainer. You can also copy the URL in Azure DevOps: open the repository, go to **Repos > Files**, and click **Clone** at the top right.
+Replace the two placeholders with the real values from the trainer. You can also copy the URL on GitHub: open the repository and click the green **Code** button.
 
 ## Tasks
 
@@ -44,19 +44,18 @@ Stuck on a task? The hints are in `HINTS.md` in this folder.
 
 ### Task 1: Clone and look around
 
-Clone the training repository into a folder next to your other exercises, not inside the course repository. A sign-in window opens in your browser the first time. Sign in with your work account.
+Clone the training repository into a folder next to your other exercises, not inside the course repository. A sign-in window opens in your browser the first time. Sign in to GitHub.
 
 ```powershell
 New-Item -ItemType Directory -Force "$HOME\git-exercises"
 cd "$HOME\git-exercises"
-git clone https://dev.azure.com/<organisation>/<project>/_git/<training-repo>
+git clone https://github.com/<organisation>/<training-repo>.git
 cd <training-repo>
 ```
 
 ```
 Cloning into '<training-repo>'...
-remote: Azure Repos
-remote: Found 8 objects to send. (3 ms)
+remote: Enumerating objects: 8, done.
 Receiving objects: 100% (8/8), done.
 ```
 
@@ -74,7 +73,7 @@ The numbers will differ. Then answer three questions from inside the clone, usin
 
 Everyone in your group works in the same repository, each in their own folder `participants/<your-name>/`. Use your first name in lowercase, for example `anna`.
 
-Never work on `main`. Make a branch named `feature/<your-name>-intro`. On it, add the file `participants/<your-name>/about.md` with a few lines about yourself, and commit it as the only change. Push the branch to Azure DevOps so that your local branch is linked to it, and later `git push` and `git pull` need no extra arguments. Then find your branch and your commit in Azure DevOps under **Repos > Branches** and **Repos > Commits**.
+Never work on `main`. Make a branch named `feature/<your-name>-intro`. On it, add the file `participants/<your-name>/about.md` with a few lines about yourself, and commit it as the only change. Push the branch to GitHub so that your local branch is linked to it, and later `git push` and `git pull` need no extra arguments. Then find your branch and your commit on GitHub: the branch dropdown on the **Code** tab, and the **Commits** link.
 
 Exercise 5 starts from this branch, so finish this task.
 
@@ -87,7 +86,7 @@ branch 'feature/anna-intro' set up to track 'origin/feature/anna-intro'.
 
 `git status` says `Your branch is up to date with 'origin/feature/anna-intro'`, and `git branch -a` lists `remotes/origin/feature/anna-intro`.
 
-Azure DevOps may show a banner "Create a pull request". Do not click it yet.
+GitHub may show a **Compare & pull request** button, and `git push` prints a `https://github.com/.../pull/new/feature/anna-intro` link. Do not use them yet.
 
 ### Task 3: The remote moved while you were committing
 

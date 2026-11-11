@@ -49,7 +49,7 @@ src: ./parts/08-git-command-line.md
 ---
 
 ---
-src: ./parts/09-remotes-and-azure-devops.md
+src: ./parts/09-remotes-and-github.md
 ---
 
 ---

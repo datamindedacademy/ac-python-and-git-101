@@ -9,6 +9,40 @@ layout: default
 label: 8 · Git on the command line
 ---
 
+# Use Git from the <span class="dm-accent">command line</span> or VS Code
+
+<DmColumns class="mt-2">
+<DmColumn header="VS Code" tone="navy">
+
+Easier to use.
+
+- Changed files, diffs and conflicts side by side
+- Stage, commit and push with a click
+- Next to the code you are editing
+
+</DmColumn>
+<DmColumn header="Command line" tone="violet" divider>
+
+A skill that carries over.
+
+- Works the same on a server, in a pipeline, on any laptop
+- Every feature, and every error message and tutorial uses it
+- Shows what Git does, step by step
+
+</DmColumn>
+</DmColumns>
+
+<p class="note">An agent drives Git through commands. You can only judge what it did, or is about to do, if you can read them. So today: the command line first.</p>
+
+<!--
+Both drive the same Git on the same repository, so you can switch between them at any moment. The Source Control view in VS Code is the better experience for daily work: you see what changed, you click to stage, and the conflict view is good. The command line is the skill that transfers: it is the same on a build server, over a remote connection, in a pipeline and in every tutorial. There is a third reason, and it matters more each month. Coding agents work through the command line. When an agent proposes git reset, git push with force, or a rebase, you approve or refuse it, and you can only do that if you know what the command does. So we learn the commands today, by typing them. At the end of the afternoon there is a short demo of the same cycle in VS Code, and many of you will use that from tomorrow.
+-->
+
+---
+layout: default
+label: 8 · Git on the command line
+---
+
 # Set your identity once, then <span class="dm-accent">init a repository</span>
 
 ```powershell
@@ -20,7 +54,7 @@ git init -b main
 git status
 ```
 
-- Identity: once per laptop, same email as your Azure DevOps account
+- Identity: once per laptop, same email as your GitHub account
 - `git status` never changes anything: run it all the time
 
 <p class="note">A new file is <b>untracked</b>: Git sees it, but does not follow it until you <code>git add</code> it.</p>
@@ -30,7 +64,7 @@ git status
 </style>
 
 <!--
-Git refuses to commit without an identity, and it stamps name and email on every commit. Use the work email that matches the Azure DevOps account. Then make a folder and turn it into a repository with init. From now on git status is the command you run all the time, because it tells you where every change is.
+Git refuses to commit without an identity, and it stamps name and email on every commit. Use the work email that matches the GitHub account. Then make a folder and turn it into a repository with init. From now on git status is the command you run all the time, because it tells you where every change is.
 -->
 
 ---

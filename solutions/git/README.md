@@ -119,14 +119,14 @@ Notes:
 
 Each commit stores the hash of its parent, or of both parents for a merge commit. `git log --graph` draws the lines from those links, not from branch names. A branch is a small text file under `.git/refs/heads/` that contains one commit hash (or a line in `.git/packed-refs`). Creating a branch writes that file, which is why it costs nothing.
 
-## Exercise 4: Clone from Azure DevOps and push a branch
+## Exercise 4: Clone from GitHub and push a branch
 
 ### Tasks 1 and 2
 
 ```powershell
 New-Item -ItemType Directory -Force "$HOME\git-exercises"
 cd "$HOME\git-exercises"
-git clone https://dev.azure.com/<organisation>/<project>/_git/<training-repo>
+git clone https://github.com/<organisation>/<training-repo>.git
 cd <training-repo>
 git remote -v
 git branch -a
@@ -183,7 +183,7 @@ They sit under the remote-tracking branches such as `origin/main` and `origin/<o
 
 ### Tasks 1 and 2
 
-Web steps in Azure DevOps: **Repos > Pull requests > New pull request**, from `feature/anna-intro` into `main`, title, description, reviewer, **Create**. The reviewer opens the PR, reads **Files**, comments on a line, **Approve**. The author clicks **Complete**, keeps "Merge (no fast-forward)", ticks "Delete feature/anna-intro after merging", **Complete merge**.
+Web steps on GitHub: **Compare & pull request** (or **Pull requests > New pull request**), from `feature/anna-intro` into `main`, title, description, reviewer, **Create pull request**. The reviewer opens the PR, reads **Files changed**, comments on a line (blue **+**, **Start a review**), then **Review changes**, **Approve**, **Submit review**. The author clicks **Merge pull request**, keeps "Create a merge commit", confirms, then **Delete branch**.
 
 ```powershell
 git switch main
@@ -213,8 +213,8 @@ git switch -c feature/anna-conflict
 git add README.md
 git commit -m "Change the README intro"
 git push -u origin feature/anna-conflict
-# open the PR, complete the first PR of the two (needs an approval)
-# the second PR now shows Conflicts: fix it on your laptop
+# open the PR, merge the first PR of the two (needs an approval)
+# the second PR now says "This branch has conflicts that must be resolved": fix it on your laptop
 git fetch
 git merge origin/main
 ```
@@ -225,7 +225,7 @@ The merge stops with `CONFLICT (content): Merge conflict in README.md`, and `git
 git add README.md
 git commit -m "Merge main into feature/anna-conflict"
 git push
-# the PR updates itself: complete it
+# the PR updates itself: merge it
 ```
 
 `git fetch` plus `git merge origin/main` is used instead of `git pull origin main` because on a branch that has diverged from `main`, a plain `git pull` can stop with `fatal: Need to specify how to reconcile divergent branches`.
@@ -245,11 +245,11 @@ git push --force-with-lease
 
 The rebase replays your commit on top of `origin/main`, so the commit gets a new hash. The remote branch still holds the old one, so a plain `git push` is rejected as non-fast-forward. `--force-with-lease` overwrites the remote branch only if it is still where your last fetch saw it, so it does not wipe a colleague's push that you have not seen. A plain `--force` would.
 
-Which one for the branch policy: either answer is fine if the reason is given. Merge is the safer default for a team that is new to Git: it never rewrites pushed commits, a reviewer's comments stay attached to the same commits, and nobody needs a force push. Rebase gives a straight history, but it needs the force option and everyone sharing the branch must know to expect it. Do not leave real changes in the shared README afterwards; the trainer may reset it.
+Which one for the branch protection rule: either answer is fine if the reason is given. Merge is the safer default for a team that is new to Git: it never rewrites pushed commits, a reviewer's comments stay attached to the same commits, and nobody needs a force push. Rebase gives a straight history, but it needs the force option and everyone sharing the branch must know to expect it. Do not leave real changes in the shared README afterwards; the trainer may reset it.
 
 ### Open question
 
-A squash merge makes one new commit on `main` with a new hash and a single parent. The commits on your branch are not ancestors of `main`, and `git branch -d` checks ancestry, not content. So Git sees commits on the branch that `main` does not contain, although the same changes are there. `git branch -D` deletes the branch anyway. Use it once the pull request shows Completed.
+A squash merge makes one new commit on `main` with a new hash and a single parent. The commits on your branch are not ancestors of `main`, and `git branch -d` checks ancestry, not content. So Git sees commits on the branch that `main` does not contain, although the same changes are there. `git branch -D` deletes the branch anyway. Use it once the pull request shows Merged.
 
 ## Exercise 6: Git in VS Code
 

@@ -16,7 +16,7 @@ to know Python. After this day you can:
   run it from VS Code.
 - Read a stack trace and find the error it points to.
 - Automate a repetitive task with a script that reads and writes files.
-- Clone an Azure DevOps repository, commit on a branch, push and pull.
+- Clone a GitHub repository, commit on a branch, push and pull.
 
 You may use GitHub Copilot throughout. Do not keep a line you do not understand.
 

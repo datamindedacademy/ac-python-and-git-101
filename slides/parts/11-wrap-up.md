@@ -102,7 +102,7 @@ git switch main
 git pull
 git switch -c feature/x
 git push -u origin feature/x
-# open the PR, complete it, repeat
+# open the PR, merge it, repeat
 ```
 
 </DmColumn>
@@ -148,7 +148,7 @@ label: Wrap-up
 </DmColumns>
 
 <!--
-Day 2 builds on the first column: packages install through uv, the exercises assume you can write a loop and read a file, and we store the work in Git, using .gitignore for data files and nbstripout for notebooks. Learn Git Branching is a good evening activity. Day 3 adds the safety net around it: tests, linting, type checking, pipelines and the branch policy that protects main. Copilot is allowed from today; day 3 goes deeper into coding agents and how to review their work.
+Day 2 builds on the first column: packages install through uv, the exercises assume you can write a loop and read a file, and we store the work in Git, using .gitignore for data files and nbstripout for notebooks. Learn Git Branching is a good evening activity. Day 3 adds the safety net around it: tests, linting, type checking, pipelines and the branch protection rule that protects main. Copilot is allowed from today; day 3 goes deeper into coding agents and how to review their work.
 -->
 
 ---

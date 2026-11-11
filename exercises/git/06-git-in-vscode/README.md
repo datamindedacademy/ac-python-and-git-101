@@ -77,13 +77,13 @@ You see both commits.
 
 The Source Control view shows a **Publish Branch** button. Click it. It does `git push -u origin feature/anna-vscode`. If VS Code asks whether to run `git fetch` periodically, answer as you like.
 
-Open Azure DevOps. The branch is there.
+Open GitHub. The branch is there.
 
 ### 6. Pull request (optional, needs a second person)
 
-In Azure DevOps, open a PR as in exercise 5. The branch policy needs an approval, and you cannot approve your own PR. If you work alone, skip tasks 6 and 7. Just leave the pushed branch as it is, and go on with task 8. If a colleague or the trainer is around, ask them to approve, then complete the PR.
+On GitHub, open a PR as in exercise 5. The branch protection rule needs an approval, and you cannot approve your own PR. If you work alone, skip tasks 6 and 7. Just leave the pushed branch as it is, and go on with task 8. If a colleague or the trainer is around, ask them to approve, then merge the PR.
 
-### 7. Pull the result (only after the PR is completed)
+### 7. Pull the result (only after the PR is merged)
 
 In VS Code, click the branch name in the bottom-left and choose `main`. Then open the **...** menu in the Source Control view and choose **Pull**. Or click the **Sync Changes** button in the status bar.
 

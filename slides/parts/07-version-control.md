@@ -261,11 +261,11 @@ layout: default
 label: 7 · Version control
 ---
 
-# Azure DevOps hosts the shared <span class="dm-accent">remote</span>
+# GitHub hosts the shared <span class="dm-accent">remote</span>
 
 ```mermaid {scale: 1.0}
 flowchart LR
-    R[("Azure DevOps<br/>origin")]
+    R[("GitHub<br/>origin")]
     A["Your laptop<br/>local repository"]
     B["Colleague's laptop<br/>local repository"]
     A -- "push" --> R
@@ -273,7 +273,7 @@ flowchart LR
     R -- "clone / pull" --> B
 ```
 
-- **Git** is the free tool on your laptop, **Azure DevOps** hosts the shared copy
+- **Git** is the free tool on your laptop, **GitHub** hosts the shared copy
 - A **remote** is that shared copy, by convention called `origin`
 
 <p class="words"><b>Words you can now use</b> repository · commit · branch · remote · working tree · staging area</p>
@@ -284,5 +284,5 @@ flowchart LR
 </style>
 
 <!--
-Keep these two apart in your head, because people mix them up. Git is the program, and every laptop holds the full history. Azure DevOps is a website that hosts a shared copy and adds sign-in, review and pipelines. GitHub and GitLab are alternatives; the Git commands are identical. Push sends your commits up, pull brings others' commits down, clone makes the first copy. The strip at the bottom lists the words they should now be able to use in a request to a colleague or to Copilot.
+Keep these two apart in your head, because people mix them up. Git is the program, and every laptop holds the full history. GitHub is a website that hosts a shared copy and adds sign-in, review and pipelines. Azure DevOps and GitLab are alternatives; the Git commands are identical. Atlas Copco uses Azure DevOps, which comes on day 3; only the web pages differ. Push sends your commits up, pull brings others' commits down, clone makes the first copy. The strip at the bottom lists the words they should now be able to use in a request to a colleague or to Copilot.
 -->
