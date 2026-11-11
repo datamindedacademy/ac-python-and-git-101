@@ -12,7 +12,7 @@ A pull request puts a second pair of eyes on a change before it reaches the vers
 
 ## Background
 
-Nobody pushes directly to `main` in a team project. In this training, `main` is **protected**: GitHub refuses direct pushes (a branch protection rule on `main`). Changes get in through a **pull request** (PR).
+Nobody pushes directly to `main` in a team project. In this training, `main` is **protected**: the forge refuses direct pushes (a branch protection rule on `main`). Changes get in through a **pull request** (PR).
 
 A pull request says: "I have a branch. Please look at it, and merge it into `main`." It has:
 
@@ -21,11 +21,11 @@ A pull request says: "I have a branch. Please look at it, and merge it into `mai
 - a place for comments,
 - a **reviewer** who can approve it.
 
-This is how most teams check each other's work. It catches mistakes, spreads knowledge, and keeps `main` working. In this training, the rule requires a pull request with one approval before you can merge it. Azure DevOps comes on day 3. The Git commands are the same.
+This is how most teams check each other's work. It catches mistakes, spreads knowledge, and keeps `main` working. In this training, the rule requires a pull request with one approval before you can merge it.
 
 ## Before you start
 
-You need your branch `feature/<your-name>-intro` from exercise 4, pushed to GitHub. Sit next to a neighbour: you review each other's PR.
+You need your branch `feature/<your-name>-intro` from exercise 4, pushed to the remote. Sit next to a neighbour: you review each other's PR.
 
 ## Tasks
 
@@ -33,7 +33,7 @@ Stuck on a task? The hints are in `HINTS.md` in this folder.
 
 ### Task 1: Open a pull request and review one
 
-On GitHub, open a pull request from `feature/<your-name>-intro` into `main`, with a title, a short description of what and why, and your neighbour as reviewer. Look at the **Conversation**, **Commits** and **Files changed** tabs and at the checks at the bottom of the Conversation.
+On the forge, open a pull request from `feature/<your-name>-intro` into `main`, with a title, a short description of what and why, and your neighbour as reviewer. Look at the **Conversation**, **Commits** and **Files changed** tabs and at the checks at the bottom of the Conversation.
 
 Then review your neighbour's pull request: read the **Files changed** tab, leave at least one comment on a line (hover over the line, click the blue **+**, then **Start a review**), and finish with **Review changes**, **Approve**, **Submit review**. A good review answers three things. Is the change what the description says? Does it do anything it should not? Is it clear?
 
@@ -43,7 +43,7 @@ Result: your PR is open with a reviewer, and your neighbour's PR has your approv
 
 When your PR has its approval and the merge box is green, click **Merge pull request**. Keep the default **Create a merge commit**, confirm, then click **Delete branch**. If your neighbour left a comment that needs an answer, reply and click **Resolve conversation** first.
 
-Then update your laptop: your local `main` gets the new commits, including your neighbours' folders, and your local copy of the branch is deleted. Your laptop also forgets the remote branch that GitHub deleted.
+Then update your laptop: your local `main` gets the new commits, including your neighbours' folders, and your local copy of the branch is deleted. Your laptop also forgets the remote branch that was deleted.
 
 End state:
 
@@ -75,7 +75,7 @@ This one is much harder. There is no hint.
 
 Rules:
 
-- Do not edit the file in the GitHub web page.
+- Do not edit the file in the web page of the forge.
 - Do not use `git push --force` for the merge route.
 - Do not leave a real change in the shared `README.md`. The trainer may reset it.
 

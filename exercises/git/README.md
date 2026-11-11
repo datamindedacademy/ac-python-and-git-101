@@ -1,8 +1,8 @@
 # Git exercises
 
-Day 1, part 3: version control with Git and GitHub. Azure DevOps comes on day 3. The Git commands are the same.
+Day 1, part 3: version control with Git and a remote forge.
 
-By the end you can: clone a GitHub repository, commit on a branch, push, open a pull request, and pull.
+By the end you can: clone a remote repository, commit on a branch, push, open a pull request, and pull.
 
 ## Overview
 
@@ -11,7 +11,7 @@ By the end you can: clone a GitHub repository, commit on a branch, push, open a 
 | 1 | `01-first-commit` | `git init`, `status`, `add`, `commit`, `log`, `diff`, `diff --staged`. The three areas. Commits that say one thing. | A commit is the unit you undo and review. |
 | 2 | `02-history` | Extra exercise (ahead, or after class): `log`, `show`, find who changed a value and when, `restore`. | Find out what changed, who did it and why. |
 | 3 | `03-branches` | `switch -c`, `merge` (fast-forward, merge conflict), `rebase`, `branch -d`. | Try things safely, and solve conflicts calmly. |
-| 4 | `04-github-remote` | `clone`, `remote`, `push -u` to GitHub. | Your work is backed up and colleagues can get it. |
+| 4 | `04-remote` | `clone`, `remote`, `push -u` to the remote. | Your work is backed up and colleagues can get it. |
 | 5 | `05-pull-request` | Pull request, review, merge, `pull`, clean up. | A second pair of eyes before it reaches `main`. |
 | 6 | `06-git-in-vscode` | Trainer demo in class. Do it yourself afterwards. | Daily Git work, and keeping data out of history. |
 
@@ -43,10 +43,10 @@ uv run python exercises/git/setup_exercise.py 1
 
 Use `2` or `3` for the other exercises. The script creates `git-exercises\exercise_<n>` in your home folder, outside the course repository, and prints the `cd` command you need next. Add `--force` to start again, or `--target <folder>` to put it somewhere else.
 
-Exercises 4 to 6 use the training repository on GitHub and need no setup script. The trainer gives you its URL:
+Exercises 4 to 6 use the training repository on the forge and need no setup script. The trainer gives you its URL:
 
 ```
-https://github.com/<organisation>/<training-repo>.git
+https://<forge>/<organisation>/<training-repo>.git
 ```
 
 ## If you get stuck
@@ -137,7 +137,7 @@ git switch -c feature/<name>-<topic>      1. branch
 (edit files)                              2. work
 git add <file> ; git commit -m "..."      3. commit (in PowerShell 5.1 use ; instead of &&)
 git push -u origin feature/<name>-<topic> 4. push
-GitHub: New pull request                5. PR, review, approve, merge
+Forge: new pull request                 5. PR, review, approve, merge
 git switch main ; git pull                6. update your laptop
 git branch -d feature/<name>-<topic>      7. clean up
 git fetch --prune

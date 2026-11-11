@@ -77,11 +77,11 @@ You see both commits.
 
 The Source Control view shows a **Publish Branch** button. Click it. It does `git push -u origin feature/anna-vscode`. If VS Code asks whether to run `git fetch` periodically, answer as you like.
 
-Open GitHub. The branch is there.
+Open the forge in your browser. The branch is there.
 
 ### 6. Pull request (optional, needs a second person)
 
-On GitHub, open a PR as in exercise 5. The branch protection rule needs an approval, and you cannot approve your own PR. If you work alone, skip tasks 6 and 7. Just leave the pushed branch as it is, and go on with task 8. If a colleague or the trainer is around, ask them to approve, then merge the PR.
+On the forge, open a PR as in exercise 5. The branch protection rule needs an approval, and you cannot approve your own PR. If you work alone, skip tasks 6 and 7. Just leave the pushed branch as it is, and go on with task 8. If a colleague or the trainer is around, ask them to approve, then merge the PR.
 
 ### 7. Pull the result (only after the PR is merged)
 

@@ -2,27 +2,27 @@
 layout: section
 ---
 
-# Remotes and <span class="dm-accent">GitHub</span>
+# Remotes and <span class="dm-accent">pull requests</span>
 
 ---
 layout: default
-label: 9 · Remotes and GitHub
+label: 9 · Remotes
 ---
 
 # <span class="dm-accent">Clone</span> copies the repository and its history
 
 ```powershell
-git clone https://github.com/<organisation>/<training-repo>.git
+git clone https://<forge>/<organisation>/<training-repo>.git
 cd <training-repo>
 git remote -v
 ```
 
 ```text
-origin  https://github.com/<organisation>/<training-repo>.git (fetch)
+origin  https://<forge>/<organisation>/<training-repo>.git (fetch)
 ```
 
 - The first time, a browser window asks you to sign in (Git Credential Manager)
-- `clone` creates the remote `origin`; the URL is under the green **Code** button on GitHub
+- `clone` creates the remote `origin`; the URL is on the repository page of the forge
 
 <style>
 .slidev-code { font-size: 16px !important; line-height: 1.5 !important; }
@@ -34,7 +34,7 @@ Clone copies the whole repository, history included, into a new folder and sets 
 
 ---
 layout: default
-label: 9 · Remotes and GitHub
+label: 9 · Remotes
 ---
 
 # <span class="dm-accent">Push</span> uploads commits, <span class="dm-accent">pull</span> downloads them
@@ -57,26 +57,26 @@ git fetch                                # only download, change nothing
 </style>
 
 <!--
-The first push of a new branch creates it on the server, and GitHub prints a link in the output to open a pull request. On the repository page it also shows a **Compare & pull request** button. Pull is what you type daily. Fetch is the careful variant when you want to see what is coming before it touches your files. The upstream is the remote branch your local branch follows, so later push and pull need no arguments. Origin slash main is a remote-tracking branch: your laptop's memory of main on the server, which only changes when you fetch or pull. If a pull produces a conflict, it is the same conflict you saw earlier. Question on the slide: every commit you did not push, and every change you did not commit. What is on the server is safe. Push at the end of every working session.
+The first push of a new branch creates it on the server, and the forge prints a link in the output to open a pull request. On the repository page it also shows a **Compare & pull request** button. Pull is what you type daily. Fetch is the careful variant when you want to see what is coming before it touches your files. The upstream is the remote branch your local branch follows, so later push and pull need no arguments. Origin slash main is a remote-tracking branch: your laptop's memory of main on the server, which only changes when you fetch or pull. If a pull produces a conflict, it is the same conflict you saw earlier. Question on the slide: every commit you did not push, and every change you did not commit. What is on the server is safe. Push at the end of every working session.
 -->
 
 ---
 layout: statement
-title: Exercise - GitHub remote
+title: Exercise - remote
 ---
 
-# Exercise time: <span class="dm-accent">GitHub remote</span>
+# Exercise time: <span class="dm-accent">the remote</span>
 
-<p class="mt-6 text-lg opacity-80"><code>exercises/git/04-github-remote</code></p>
+<p class="mt-6 text-lg opacity-80"><code>exercises/git/04-remote</code></p>
 <p class="mt-2 text-sm opacity-70">About 15 minutes: clone, branch, commit, push</p>
 
 <!--
-Participants clone the training repository from GitHub, create a branch, commit a small change and push it. This is the first time they sign in, so expect a few authentication questions. Have the URL on screen.
+Participants clone the training repository from the forge, create a branch, commit a small change and push it. This is the first time they sign in, so expect a few authentication questions. Have the URL on screen.
 -->
 
 ---
 layout: default
-label: 9 · Remotes and GitHub
+label: 9 · Remotes
 ---
 
 # A <span class="dm-accent">pull request</span> lets a colleague review first
@@ -110,7 +110,7 @@ Click **Merge pull request** (squash keeps `main` readable), then **Delete branc
 <p class="note">A <b>branch protection rule</b> on <code>main</code> can require a pull request with an approval before it can be merged.</p>
 
 <!--
-Nobody commits straight to main; changes arrive through a PR that someone else reads. The PR is a GitHub feature, not a Git one. Walk through the screens live if you can: the Files tab with the diff, comments, the Approve option in Review changes and the Merge pull request button. Squash merge turns a branch of ten messy commits into one clean one. After merging, pull on main so your laptop knows about the merge. On day 3 we make PRs mandatory with a branch protection rule.
+Nobody commits straight to main; changes arrive through a PR that someone else reads. The PR is a feature of the forge, not a Git one. Walk through the screens live if you can: the Files tab with the diff, comments, the Approve option in Review changes and the Merge pull request button. Squash merge turns a branch of ten messy commits into one clean one. After merging, pull on main so your laptop knows about the merge. On day 3 we make PRs mandatory with a branch protection rule.
 -->
 
 ---
@@ -129,7 +129,7 @@ Participants open a pull request for the branch from the previous exercise, revi
 
 ---
 layout: default
-label: 9 · Remotes and GitHub
+label: 9 · Remotes
 ---
 
 # <span class="dm-accent">.gitignore</span> keeps files out of history

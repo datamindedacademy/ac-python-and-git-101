@@ -119,14 +119,14 @@ Notes:
 
 Each commit stores the hash of its parent, or of both parents for a merge commit. `git log --graph` draws the lines from those links, not from branch names. A branch is a small text file under `.git/refs/heads/` that contains one commit hash (or a line in `.git/packed-refs`). Creating a branch writes that file, which is why it costs nothing.
 
-## Exercise 4: Clone from GitHub and push a branch
+## Exercise 4: Clone from the remote and push a branch
 
 ### Tasks 1 and 2
 
 ```powershell
 New-Item -ItemType Directory -Force "$HOME\git-exercises"
 cd "$HOME\git-exercises"
-git clone https://github.com/<organisation>/<training-repo>.git
+git clone https://<forge>/<organisation>/<training-repo>.git
 cd <training-repo>
 git remote -v
 git branch -a
@@ -183,7 +183,7 @@ They sit under the remote-tracking branches such as `origin/main` and `origin/<o
 
 ### Tasks 1 and 2
 
-Web steps on GitHub: **Compare & pull request** (or **Pull requests > New pull request**), from `feature/anna-intro` into `main`, title, description, reviewer, **Create pull request**. The reviewer opens the PR, reads **Files changed**, comments on a line (blue **+**, **Start a review**), then **Review changes**, **Approve**, **Submit review**. The author clicks **Merge pull request**, keeps "Create a merge commit", confirms, then **Delete branch**.
+Web steps on the forge: **Compare & pull request** (or **Pull requests > New pull request**), from `feature/anna-intro` into `main`, title, description, reviewer, **Create pull request**. The reviewer opens the PR, reads **Files changed**, comments on a line (blue **+**, **Start a review**), then **Review changes**, **Approve**, **Submit review**. The author clicks **Merge pull request**, keeps "Create a merge commit", confirms, then **Delete branch**.
 
 ```powershell
 git switch main

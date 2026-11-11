@@ -108,7 +108,7 @@ Read a folder of files and write a summary
 </DmInfoCard>
 <DmInfoCard icon="i-mdi-source-pull" icon-tone="navy" title="Work with Git">
 
-Clone, commit on a branch, push and pull from GitHub
+Clone, commit on a branch, push and pull from a remote
 
 </DmInfoCard>
 </v-clicks>

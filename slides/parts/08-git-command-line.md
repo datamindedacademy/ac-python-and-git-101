@@ -54,7 +54,7 @@ git init -b main
 git status
 ```
 
-- Identity: once per laptop, same email as your GitHub account
+- Identity: once per laptop, same email as your account on the forge
 - `git status` never changes anything: run it all the time
 
 <p class="note">A new file is <b>untracked</b>: Git sees it, but does not follow it until you <code>git add</code> it.</p>
@@ -64,7 +64,7 @@ git status
 </style>
 
 <!--
-Git refuses to commit without an identity, and it stamps name and email on every commit. Use the work email that matches the GitHub account. Then make a folder and turn it into a repository with init. From now on git status is the command you run all the time, because it tells you where every change is.
+Git refuses to commit without an identity, and it stamps name and email on every commit. Use the work email that matches your account on the forge. Then make a folder and turn it into a repository with init. From now on git status is the command you run all the time, because it tells you where every change is.
 -->
 
 ---

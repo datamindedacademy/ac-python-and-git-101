@@ -223,7 +223,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if n in REMOTE_EXERCISES:
         print(f"Exercise {n} does not need a setup script.")
-        print("You work in your clone of the training repository on GitHub.")
+        print("You work in your clone of the training repository on the forge.")
         print("Follow the README of the exercise.")
         return 0
 

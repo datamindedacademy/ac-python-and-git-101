@@ -1,10 +1,10 @@
-# Exercise 4: Clone from GitHub and push a branch
+# Exercise 4: Clone from the remote and push a branch
 
 Words to use: remote, `origin`, clone, push, upstream branch, remote-tracking branch (`origin/main`), fetch, pull.
 
 ## Goal
 
-Get a copy of your group's training repository from GitHub. Make a branch with a file in your own folder, and push it to GitHub.
+Get a copy of your group's training repository from the remote. Make a branch with a file in your own folder, and push it.
 
 ## Why this matters
 
@@ -12,7 +12,7 @@ A script that exists only on your laptop is gone when the laptop is. The remote 
 
 ## Background
 
-So far your repository lived only on your laptop. Real projects have a shared copy on a server. This shared copy is called a **remote**. In this training the remote is a **GitHub** repository, and your group has one. Azure DevOps comes on day 3. The Git commands are the same.
+So far your repository lived only on your laptop. Real projects have a shared copy on a server. This shared copy is called a **remote**. It lives on a **forge**: a website that hosts repositories and adds sign-in and pull requests. Your group has one repository there. The Git commands are the same on every forge.
 
 Terms used in this exercise:
 
@@ -26,17 +26,17 @@ Terms used in this exercise:
 
 Everyone in your group works in the same repository. To avoid getting in each other's way, each person only adds files in their own folder: `participants/<your-name>/`. Use your first name in lowercase, without spaces or special characters, for example `anna`.
 
-You sign in to GitHub through **Git Credential Manager**, which comes with Git for Windows. The first time you clone or push, a browser window opens and asks you to sign in. After that, it remembers you.
+You sign in to the forge through **Git Credential Manager**, which comes with Git for Windows. The first time you clone or push, a browser window opens and asks you to sign in. After that, it remembers you.
 
 ## Before you start
 
 Your trainer gives you the repository URL. It looks like this:
 
 ```
-https://github.com/<organisation>/<training-repo>.git
+https://<forge>/<organisation>/<training-repo>.git
 ```
 
-Replace the two placeholders with the real values from the trainer. You can also copy the URL on GitHub: open the repository and click the green **Code** button.
+The trainer gives you the real URL. You can also copy it from the repository page on the forge.
 
 ## Tasks
 
@@ -44,12 +44,12 @@ Stuck on a task? The hints are in `HINTS.md` in this folder.
 
 ### Task 1: Clone and look around
 
-Clone the training repository into a folder next to your other exercises, not inside the course repository. A sign-in window opens in your browser the first time. Sign in to GitHub.
+Clone the training repository into a folder next to your other exercises, not inside the course repository. A sign-in window opens in your browser the first time. Sign in to the forge.
 
 ```powershell
 New-Item -ItemType Directory -Force "$HOME\git-exercises"
 cd "$HOME\git-exercises"
-git clone https://github.com/<organisation>/<training-repo>.git
+git clone https://<forge>/<organisation>/<training-repo>.git
 cd <training-repo>
 ```
 
@@ -73,7 +73,7 @@ The numbers will differ. Then answer three questions from inside the clone, usin
 
 Everyone in your group works in the same repository, each in their own folder `participants/<your-name>/`. Use your first name in lowercase, for example `anna`.
 
-Never work on `main`. Make a branch named `feature/<your-name>-intro`. On it, add the file `participants/<your-name>/about.md` with a few lines about yourself, and commit it as the only change. Push the branch to GitHub so that your local branch is linked to it, and later `git push` and `git pull` need no extra arguments. Then find your branch and your commit on GitHub: the branch dropdown on the **Code** tab, and the **Commits** link.
+Never work on `main`. Make a branch named `feature/<your-name>-intro`. On it, add the file `participants/<your-name>/about.md` with a few lines about yourself, and commit it as the only change. Push the branch to the remote so that your local branch is linked to it, and later `git push` and `git pull` need no extra arguments. Then find your branch and your commit on the forge: the branch dropdown on the **Code** tab, and the **Commits** link.
 
 Exercise 5 starts from this branch, so finish this task.
 
@@ -86,7 +86,7 @@ branch 'feature/anna-intro' set up to track 'origin/feature/anna-intro'.
 
 `git status` says `Your branch is up to date with 'origin/feature/anna-intro'`, and `git branch -a` lists `remotes/origin/feature/anna-intro`.
 
-GitHub may show a **Compare & pull request** button, and `git push` prints a `https://github.com/.../pull/new/feature/anna-intro` link. Do not use them yet.
+The forge may show a **Compare & pull request** button, and `git push` prints a `https://<forge>/.../pull/new/feature/anna-intro` link. Do not use them yet.
 
 ### Task 3: The remote moved while you were committing
 
