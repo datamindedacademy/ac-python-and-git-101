@@ -75,6 +75,8 @@ t_s,pressure_bar,temperature_c
 
 </v-click>
 
+<p class="note"><code>f</code> is the <b>file handle</b>. State the <b>encoding</b>, or Windows picks its own.</p>
+
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
 </style>
@@ -143,12 +145,16 @@ print(float(rows[1]["pressure_bar"]) + 1)
 
 </v-click>
 
+<p class="note">The first row is the <b>header</b>. Its names become the keys of every row.</p>
+
+<p class="ask" v-click><b>Question</b>The log has ten million rows. What does <code>list(...)</code> on line 3 do?</p>
+
 <style>
 .slidev-code { font-size: 15px !important; line-height: 1.5 !important; }
 </style>
 
 <!--
-DictReader turns every row into a dictionary keyed by the header names, so you get exactly the list of dicts from the fundamentals block. The with block opens the file and closes it again, as on the earlier slide. One thing to remember: every value comes back as a string, so convert with float before calculating. Writing rows works the same way with csv.DictWriter, and the exercise shows it.
+DictReader turns every row into a dictionary keyed by the header names, so you get exactly the list of dicts from the fundamentals block. The with block opens the file and closes it again, as on the earlier slide. One thing to remember: every value comes back as a string, so convert with float before calculating. Writing rows works the same way with csv.DictWriter, and the exercise shows it. Question on the slide: it reads every row into memory at once, each as a dict of strings, which takes several gigabytes. Without list you can loop over the reader and handle one row at a time.
 -->
 
 ---
@@ -157,6 +163,8 @@ label: 4 · Files and the standard library
 ---
 
 # <span class="dm-accent">json</span> stores settings and nested data
+
+<p class="why"><b>Why</b>CSV holds one flat table. Settings, limits and nested results need a format with names and levels.</p>
 
 ```python {all|2|3-4|5-6|all}
 import json

@@ -1,6 +1,6 @@
 # 04 - Control flow
 
-**Words to use:** condition, comparison operator, branch, for loop, while loop, iteration, indentation, enumerate, list comprehension.
+**Words to use:** condition, comparison operator, branch, for loop, iteration, indentation, enumerate, list comprehension.
 
 ## Goal
 

@@ -46,6 +46,10 @@ print(temperature_c)
 </div>
 </div>
 
+<p class="note"><code>=</code> is <b>assignment</b>: it gives a value a name.</p>
+
+<p class="ask" v-click><b>Question</b>After <code>pressure_bar = 8.0</code>, what happens to the bytes that held 7.5?</p>
+
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
 .names { display: flex; flex-direction: column; gap: 12px; }
@@ -60,7 +64,7 @@ print(temperature_c)
 </style>
 
 <!--
-The equals sign does not mean mathematical equality, it means: give this value this name. No declaration, no type, no semicolon, no end keyword. Assigning again to the same name simply points it at a new value. Compared with MATLAB, there is no output echo: nothing prints unless you call print.
+The equals sign does not mean mathematical equality, it means: give this value this name. No declaration, no type, no semicolon, no end keyword. Assigning again to the same name simply points it at a new value. Compared with MATLAB, there is no output echo: nothing prints unless you call print. Question on the slide: let them guess first. Nothing points at that 7.5 any more. CPython counts how many names refer to each value, and when the count drops to zero it frees the memory at once. You never free memory yourself in Python. This is called garbage collection.
 -->
 
 ---
@@ -70,8 +74,10 @@ label: 3 · Language fundamentals
 
 # Every value has a <span class="dm-accent">type</span>
 
+<p class="why"><b>Why</b>The type decides what an operation does: <code>7 + 5</code> is 12, <code>"7" + "5"</code> is "75".</p>
+
 ```python
-run_id = "TB-014"       # str: text
+run_id = "TB-014"       # str: text, a string
 cycles = 12             # int: whole number
 flow_l_s = 18.4         # float: decimal number
 is_stable = True        # bool: True or False
@@ -116,12 +122,16 @@ TypeError: can only concatenate str (not "int") to str
 
 </v-click>
 
+<p class="note"><code>float(text)</code> <b>converts</b> text to a number. Python never converts for you.</p>
+
+<p class="ask" v-click><b>Question</b><code>"7.5" * 2</code> gives no error. What does it print?</p>
+
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
 </style>
 
 <!--
-Text read from a file or typed by a user is always a string, even if it looks like a number. Use float, int and str to convert. Python does not convert silently: adding text and a number is an error, and that is a feature. Here is our first error message, notice that it tells you the kind of error and what went wrong. The next slide shows how to read it.
+Text read from a file or typed by a user is always a string, even if it looks like a number. Use float, int and str to convert. Python does not convert silently: adding text and a number is an error, and that is a feature. Here is our first error message, notice that it tells you the kind of error and what went wrong. The next slide shows how to read it. Question on the slide: it prints 7.57.5. On text, the star repeats. So a wrong type does not always crash: sometimes it gives a wrong result, which is worse.
 -->
 
 ---
@@ -162,6 +172,8 @@ label: 3 · Language fundamentals
 
 # <span class="dm-accent">f-strings</span> put values inside text
 
+<p class="why"><b>Why</b>Every result you report is text with numbers in it: a log line, a file name, a plot title. An f-string sets the decimals and the unit in one place.</p>
+
 ```python {all|3|4|all}
 run_id = "TB-014"
 pressure_bar = 7.5
@@ -182,12 +194,14 @@ True tb-014
 
 </v-click>
 
+<p class="note">A <b>method</b> is a function you call on a value with a dot: <code>run_id.lower()</code></p>
+
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
 </style>
 
 <!--
-Put an f before the quote and you can place any expression inside curly braces. After the colon you control the format: .1f means one decimal place, .0f none. Strings also have methods such as lower, upper, strip, split and replace, called with a dot. split cuts a text at the spaces and gives the pieces as a list, which is how you separate a value from its unit. Lists are the next block. Both single and double quotes work, pick one style and stay with it.
+Put an f before the quote and you can place any expression inside curly braces. After the colon you control the format: .1f means one decimal place, .0f none. Strings also have methods such as lower, upper, strip, split and replace, called with a dot. split cuts a text at the spaces and gives the pieces as a list, which is how you separate a value from its unit. Lists are the next block. Both single and double quotes work, pick one style and stay with it. Why it matters: a number printed as 108.77849999999999 with no unit is how reports go wrong. Formatting is where the reader meets your result.
 -->
 
 ---
@@ -195,7 +209,9 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# Put the <span class="dm-accent">unit</span> in the name
+# A number has no unit, so put it <span class="dm-accent">in the name</span>
+
+<p class="why"><b>Why</b>Python stores 7.5, not 7.5 bar. Mix bar and psi and you get a wrong number, not an error.</p>
 
 <DmColumns class="mt-2">
 <DmColumn header="Written fast" tone="plain">
@@ -225,7 +241,7 @@ to_kelvin(temperature_c)
 </style>
 
 <!--
-From Oliver's Clean Code workshop. Code is read more often than it is written, and single-letter names optimise for writing, not for reading. A good name answers the question before it is asked: which quantity, in which unit. Python style is lowercase with underscores, and capitals for values that never change. There is a bonus today: Copilot follows the naming it sees, so good names also improve the code it generates for you.
+From Oliver's Clean Code workshop. Code is read more often than it is written, and single-letter names optimise for writing, not for reading. A good name answers the question before it is asked: which quantity, in which unit. Python style is lowercase with underscores, and capitals for values that never change. There is a bonus today: Copilot follows the naming it sees, so good names also improve the code it generates for you. The classic example is the Mars Climate Orbiter in 1999: one team sent thruster data in pound-force seconds, the other read it as newton seconds, and the probe was lost. No error was raised anywhere. The name is the only place the unit can live in plain Python.
 -->
 
 ---
@@ -304,6 +320,10 @@ print(p[1:3], p[:2], p[-2:])
 [7.1, 7.5] [6.8, 7.1] [7.4, 7.9]
 ```
 
+<p class="note">A <b>slice</b> such as <code>p&#91;1:3&#93;</code> takes a part of the list. The end index is not included.</p>
+
+<p class="ask" v-click><b>Question</b><code>p&#91;10&#93;</code> and <code>p&#91;3:10&#93;</code>: which one fails?</p>
+
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
 .idx { margin: 0 auto 12px; border-collapse: collapse; font-size: 0.95em; }
@@ -312,7 +332,7 @@ print(p[1:3], p[:2], p[-2:])
 </style>
 
 <!--
-This is the one that bites MATLAB users. The first element is index 0, not 1, and the slice 1:3 is MATLAB 2:3: the end of a slice is excluded. Negative indexes count from the end, so -1 is the last element, no end keyword needed. Slices give you a new list. If a script is off by one, suspect this first.
+This is the one that bites MATLAB users. The first element is index 0, not 1, and the slice 1:3 is MATLAB 2:3: the end of a slice is excluded. Negative indexes count from the end, so -1 is the last element, no end keyword needed. Slices give you a new list. If a script is off by one, suspect this first. Question on the slide: index 10 fails with an IndexError. The slice from 3 to 10 does not fail, it gives the two values that exist, 7.4 and 7.9. A slice that runs past the end is cut off silently, so a wrong slice gives fewer values, not an error.
 -->
 
 ---
@@ -320,7 +340,7 @@ layout: default
 label: 3 · Language fundamentals
 ---
 
-# A dict finds values <span class="dm-accent">by name</span>
+# A dict maps <span class="dm-accent">keys</span> to values
 
 ```python {all|1|2|3-4|5|all}
 reading = {"run": "TB-014", "pressure_bar": 7.5}
@@ -340,12 +360,51 @@ None
 
 </v-click>
 
+<p class="note">Each entry is a <b>key</b> with its <b>value</b>: <code>"pressure_bar"</code> is a key, <code>7.5</code> is its value.</p>
+
+<p class="ask" v-click><b>Question</b>A dict with a million keys finds one as fast as a dict with ten. How?</p>
+
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
 </style>
 
 <!--
-A dictionary looks things up by name instead of by position. It is like a MATLAB struct, but you use square brackets and quoted keys. A missing key with square brackets is a KeyError, while get returns None, or a default you pass. A dict is the natural way to describe one measurement record with several fields. A list of such dicts is a small table, and that is exactly what the csv module hands you this afternoon.
+A dictionary looks things up by name instead of by position. It is like a MATLAB struct, but you use square brackets and quoted keys. A missing key with square brackets is a KeyError, while get returns None, or a default you pass. A dict is the natural way to describe one measurement record with several fields. A list of such dicts is a small table, and that is exactly what the csv module hands you this afternoon. Question on the slide: it does not search. It calculates a number from the key, a hash, and that number says where the value is stored. The same idea comes back this afternoon: Git finds every commit by a hash.
+-->
+
+---
+layout: default
+label: 3 · Language fundamentals
+---
+
+# A tuple is a <span class="dm-accent">fixed</span> group of values
+
+```python {all|1|2-3|4|all}
+position = (52.01, 4.36)
+latitude, longitude = position
+print(latitude)
+position[0] = 0.0
+```
+
+<v-click>
+
+```text
+52.01
+TypeError: 'tuple' object does not support item assignment
+```
+
+</v-click>
+
+- A **tuple** is written with round brackets and cannot be changed after it is made
+- **Unpacking** gives each value its own name. A function that returns two values returns a tuple
+- A **set** keeps only unique values: `set(["P1", "T1", "P1"])` is `{"P1", "T1"}`
+
+<style>
+.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+</style>
+
+<!--
+The third collection. A tuple looks like a list with round brackets, but you cannot change it: no append, no assigning to an index. Use it for values that belong together and have a fixed meaning by position, such as a coordinate, or a value with its unit. Unpacking on line 2 is the reason you meet tuples every day: one line gives each part its own name, and it is how a function hands back more than one result. The last line fails on purpose, read the error from the right. A set is the fourth collection: it has no order and no duplicates, which makes it the quick way to ask how many different sensors there are, or whether a value is in a group. Lists and dicts carry most of your work. Tuples and sets are the two you need to recognise.
 -->
 
 ---
@@ -433,6 +492,8 @@ ALARM: over limit
 
 </div>
 
+<p class="note">The <b>condition</b> uses a <b>comparison operator</b>: <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>==</code>. <b>Indentation</b> of 4 spaces marks the block.</p>
+
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
 .ladder { display: flex; flex-direction: column; gap: 10px; }
@@ -476,12 +537,14 @@ for i in range(3):
 
 </v-click>
 
+<p class="note">To <b>iterate</b> is to go through a collection one element at a time. With the position: <code>for n, p in enumerate(pressures_bar, start=1)</code></p>
+
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
 </style>
 
 <!--
-A for loop takes each element of a collection in turn and runs the indented block with it. This is the power of the for loop, and the rule from Oliver's Clean Code workshop is do not repeat yourself: if you copy and paste a line and change one value, you want a loop or a function. The specialist's word is iterate: we iterate over the list. Loop over the values directly, you rarely need an index. When you need a count, range gives 0, 1, 2 and stops before the end value, the same exclusive end as slices. There is no end keyword, the indentation closes the loop.
+A for loop takes each element of a collection in turn and runs the indented block with it. This is the power of the for loop, and the rule from Oliver's Clean Code workshop is do not repeat yourself: if you copy and paste a line and change one value, you want a loop or a function. The specialist's word is iterate: we iterate over the list. Loop over the values directly, you rarely need an index. When you need a count, range gives 0, 1, 2 and stops before the end value, the same exclusive end as slices. There is no end keyword, the indentation closes the loop. A question to ask the room: what is p after the first loop has finished? It is 9.4, the last value. The loop variable is a normal variable and keeps existing after the loop.
 -->
 
 ---
@@ -680,6 +743,8 @@ label: 3 · Language fundamentals
 
 # A script is small functions plus a <span class="dm-accent">main</span>
 
+<p class="why"><b>Why</b>Small functions can be tested and reused one by one. <code>main</code> shows the order of the work in a few lines.</p>
+
 <div class="split" style="grid-template-columns: 3fr 1fr; gap: 16px">
 
 ```python {all|1-3|5-6|8-11|13-14|all}
@@ -707,6 +772,8 @@ flowchart TD
 ```
 
 </div>
+
+<p class="note">The text in triple quotes is a <b>docstring</b>: it says what the function does.</p>
 
 <style>
 .slidev-code { font-size: 13.5px !important; line-height: 1.5 !important; }
@@ -748,13 +815,15 @@ The type of the value that comes back
 
 <p class="note">Hints are documentation that the editor and tools can check. Python does not enforce them when the script runs.</p>
 
+<p class="ask" v-click><b>Question</b>The hint says <code>float</code>. What happens with <code>to_psi("7.5")</code>?</p>
+
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
 .hints li { margin-bottom: 6px; }
 </style>
 
 <!--
-Copilot writes type hints all the time, so you need to be able to read them today. Writing them, and checking them with a type checker, is a day 3 topic. A hint after a colon says which type a parameter expects, the arrow says what comes back. They are promises, not guards: calling to_psi with the text "7.5" is accepted at the call and only fails inside, at the multiplication, with a TypeError. The value for you is that the signature alone tells you how to call the function. We do not use hints in the other examples today, to keep them short.
+Copilot writes type hints all the time, so you need to be able to read them today. Writing them, and checking them with a type checker, is a day 3 topic. A hint after a colon says which type a parameter expects, the arrow says what comes back. They are promises, not guards: calling to_psi with the text "7.5" is accepted at the call and only fails inside, at the multiplication, with a TypeError. The value for you is that the signature alone tells you how to call the function. We do not use hints in the other examples today, to keep them short. Question on the slide: Python does not check the hint, so the call starts. It fails one line later, inside the function, with a TypeError on the multiplication. The editor and a type checker would have warned you before running.
 -->
 
 ---
@@ -843,6 +912,8 @@ def test_bar_to_psi():
 </DmProcess>
 
 <p class="note">This loop is <b>test-driven development</b>.</p>
+
+<p class="note"><code>assert</code> states an <b>assertion</b>: a claim that must be true, or the test fails.</p>
 
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }

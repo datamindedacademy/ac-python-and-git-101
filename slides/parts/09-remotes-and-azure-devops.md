@@ -47,15 +47,17 @@ git fetch                                # only download, change nothing
 ```
 
 - `-u` sets the upstream: it links your local branch to the remote one, needed only once
-- `origin/main` is your laptop's last known copy of `main` on the server, updated by `fetch` and `pull`
+- `origin/main` is a **remote-tracking branch**: your laptop's last known copy of `main` on the server, updated by `fetch` and `pull`
 - `pull` is `fetch` plus merge: commit or restore your edits first
+
+<p class="ask" v-click><b>Question</b>Your laptop is stolen on the train. Which work is gone?</p>
 
 <style>
 .slidev-code { font-size: 16px !important; line-height: 1.5 !important; }
 </style>
 
 <!--
-The first push of a new branch creates it on the server, and Azure DevOps prints a link in the output to create a pull request. Pull is what you type daily. Fetch is the careful variant when you want to see what is coming before it touches your files. The upstream is the remote branch your local branch follows, so later push and pull need no arguments. Origin slash main is a remote-tracking branch: your laptop's memory of main on the server, which only changes when you fetch or pull. If a pull produces a conflict, it is the same conflict you saw earlier.
+The first push of a new branch creates it on the server, and Azure DevOps prints a link in the output to create a pull request. Pull is what you type daily. Fetch is the careful variant when you want to see what is coming before it touches your files. The upstream is the remote branch your local branch follows, so later push and pull need no arguments. Origin slash main is a remote-tracking branch: your laptop's memory of main on the server, which only changes when you fetch or pull. If a pull produces a conflict, it is the same conflict you saw earlier. Question on the slide: every commit you did not push, and every change you did not commit. What is on the server is safe. Push at the end of every working session.
 -->
 
 ---
@@ -105,6 +107,8 @@ Pick the merge type (squash keeps `main` readable) and tick **Delete source bran
 </DmInfoCard>
 </div>
 
+<p class="note">A <b>branch policy</b> on <code>main</code> can require an approval before a pull request completes.</p>
+
 <!--
 Nobody commits straight to main; changes arrive through a PR that someone else reads. The PR is an Azure DevOps feature, not a Git one. Walk through the screens live if you can: the Files tab with the diff, comments, the Approve button and the Complete dialog. Squash merge turns a branch of ten messy commits into one clean one. After completing, pull on main so your laptop knows about the merge. On day 3 we make PRs mandatory with a branch policy.
 -->
@@ -140,6 +144,8 @@ data/raw/
 - One pattern per line; commit the file itself so everyone shares it
 - Never commit passwords, tokens or large raw data
 - Day 2 uses it for data files and notebooks
+
+<p class="note">A <b>tracked</b> file is one Git already follows. <code>.gitignore</code> only works on files that are not tracked yet: they become <b>ignored</b>.</p>
 
 <style>
 .slidev-code { font-size: 16px !important; line-height: 1.5 !important; }
@@ -186,6 +192,8 @@ title: Demo - Git in VS Code
 # Demo: <span class="dm-accent">Git in VS Code</span>
 
 <p class="mt-6 text-lg opacity-80">Optional practice: <code>exercises/git/06-git-in-vscode</code></p>
+
+<p class="mt-4 text-sm opacity-80">In the <b>Source Control view</b>: + stages, Commit commits, <b>Publish Branch</b> is the first push, <b>Sync Changes</b> pulls and then pushes.</p>
 
 <p class="words"><b>Words you can now use</b> clone · origin · push · pull · fetch · upstream · origin/main · pull request · review</p>
 

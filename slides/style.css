@@ -36,3 +36,23 @@
 /* Card body text at the size bullets had, so cards stay readable from the back of the room. */
 .dm-info-body { font-size: 14.5px !important; }
 .dm-info-title { font-size: 17px !important; }
+
+/* A question for the room, at the bottom of a slide. The answer is in the speaker notes. */
+.ask {
+  margin-top: 14px !important;
+  padding: 9px 16px;
+  border: 2px dashed var(--dm-connecting);
+  border-radius: 8px;
+  color: var(--dm-premium);
+  font-size: 15px;
+}
+.ask b { color: var(--dm-connecting); margin-right: 8px; }
+.ask code { background: var(--dm-authentic); }
+
+/* One line that says why the slide matters. */
+.why {
+  margin: 4px 0 10px !important;
+  color: var(--dm-premium);
+  font-size: 16px;
+}
+.why b { color: var(--dm-connecting); margin-right: 8px; }

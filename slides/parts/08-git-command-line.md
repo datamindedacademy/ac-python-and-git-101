@@ -23,6 +23,8 @@ git status
 - Identity: once per laptop, same email as your Azure DevOps account
 - `git status` never changes anything: run it all the time
 
+<p class="note">A new file is <b>untracked</b>: Git sees it, but does not follow it until you <code>git add</code> it.</p>
+
 <style>
 .slidev-code { font-size: 16px !important; line-height: 1.5 !important; }
 </style>
@@ -198,12 +200,14 @@ def psi_to_bar(psi):
 - Edit the file, delete the marker lines, then `git add` and `git commit`
 - Changed your mind? `git merge --abort`
 
+<p class="ask" v-click><b>Question</b>Two people change different lines of the same file. Is that a conflict?</p>
+
 <style>
 .slidev-code { font-size: 16px !important; line-height: 1.5 !important; }
 </style>
 
 <!--
-Both branches changed the same line, and Git cannot know which is right. The file now contains markers: above the equals line is your current branch, below is the incoming branch. VS Code highlights this and offers Accept Current, Incoming or Both. We only show the principle; conflicts are rare when branches are short-lived and people talk. The branches exercise lets everyone create and resolve one.
+Both branches changed the same line, and Git cannot know which is right. The file now contains markers: above the equals line is your current branch, below is the incoming branch. VS Code highlights this and offers Accept Current, Incoming or Both. We only show the principle; conflicts are rare when branches are short-lived and people talk. The branches exercise lets everyone create and resolve one. Question on the slide: no. Git merges line by line and combines both changes without asking. A conflict only happens when both changed the same lines.
 -->
 
 ---

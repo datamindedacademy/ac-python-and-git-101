@@ -1,6 +1,6 @@
 # 06 - The standard library: math, pathlib, csv, json
 
-**Words to use:** standard library, import, path, glob pattern, header, DictReader, JSON, context manager (`with`).
+**Words to use:** standard library, import, path, glob pattern, header, DictReader, JSON, file handle, encoding.
 
 ## Goal
 

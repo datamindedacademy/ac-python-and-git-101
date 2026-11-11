@@ -111,6 +111,8 @@ A <code>WindowsApps</code> path is the Microsoft Store shortcut, not a real Pyth
 
 </v-click>
 
+<p class="note"><b>PATH</b> is the list of folders Windows searches, top to bottom, when you type a command.</p>
+
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
 </style>
@@ -128,7 +130,7 @@ label: 1 · Python on your laptop
 
 <DmSteps class="mt-4">
 <DmStep n="1" label="Installs Python"><code>uv python install 3.13</code> puts a real CPython in your user folder, no admin rights needed</DmStep>
-<DmStep n="2" label="Installs packages"><code>uv sync</code> reads the project file and creates <code>.venv</code>, a folder with the packages this project needs</DmStep>
+<DmStep n="2" label="Installs packages"><code>uv sync</code> reads the project file and creates <code>.venv</code>, a <b>virtual environment</b>: a folder with the packages this project needs</DmStep>
 <DmStep n="3" label="Runs your code"><code>uv run python script.py</code> uses that Python and those packages, every time</DmStep>
 </DmSteps>
 
@@ -158,6 +160,8 @@ uv run python exercises/python/01-first-script/hello.py
 ```text
 Hello, test engineer!
 ```
+
+<p class="note">Paths are read from your <b>working folder</b>, the folder PowerShell is in. Check it with <code>pwd</code>.</p>
 
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }

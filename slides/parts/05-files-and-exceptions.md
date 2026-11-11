@@ -52,12 +52,16 @@ flowchart TD
 
 </div>
 
+<p class="note"><code>float("seven")</code> <b>raises</b> a <code>ValueError</code>. <code>except</code> <b>catches</b> it.</p>
+
+<p class="ask" v-click><b>Question</b>What changes if you write <code>except:</code> without <code>ValueError</code>?</p>
+
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
 </style>
 
 <!--
-This morning you read a traceback for the ValueError from float("seven"). Sometimes an error is expected, for example one bad row in a long log. try runs the risky code, and if the named exception occurs, the except block runs instead of crashing the script. The script then carries on. The vocabulary: the code raises an exception, and you catch it. Your own code can raise one too, with the raise keyword, when it receives something it cannot handle. Execution continues after the whole block either way.
+This morning you read a traceback for the ValueError from float("seven"). Sometimes an error is expected, for example one bad row in a long log. try runs the risky code, and if the named exception occurs, the except block runs instead of crashing the script. The script then carries on. The vocabulary: the code raises an exception, and you catch it. Your own code can raise one too, with the raise keyword, when it receives something it cannot handle. Execution continues after the whole block either way. Question on the slide: it then catches every error, also a typo in your own code and Ctrl+C. The script keeps running and hides the real problem. Name the error you expect.
 -->
 
 ---

@@ -126,7 +126,7 @@ label: 2 · Scripts and notebooks
 
 - The **kernel** remembers every cell you ran, also the one you deleted. That memory is the **hidden state**
 - Cell 3 prints a value that appears nowhere in the visible code
-- A colleague runs the notebook top to bottom and gets a different answer
+- A colleague runs the notebook top to bottom and gets a different answer: it is not **reproducible**
 - Restart the kernel and run all cells before you trust a result
 
 </v-clicks>
