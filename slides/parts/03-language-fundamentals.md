@@ -46,12 +46,14 @@ print(temperature_c)
 </div>
 </div>
 
-<p class="note"><code>=</code> is <b>assignment</b>: it gives a value a name.</p>
+<p class="note"><code>=</code> is <b>assignment</b>: it gives a value a name. By convention: <code>snake_case</code> for variables, <code>CAPITALS</code> for <b>constants</b>.</p>
 
 <p class="ask" v-click><b>Question</b>After <code>pressure_bar = 8.0</code>, what happens to the bytes that held 7.5?</p>
 
 <style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+.slidev-code { font-size: 15px !important; line-height: 1.45 !important; }
+.note { margin-top: 10px !important; font-size: 15px; }
+.ask { margin-top: 10px !important; }
 .names { display: flex; flex-direction: column; gap: 12px; }
 .names .row { display: flex; align-items: center; gap: 12px; }
 .names .name { width: 150px; text-align: center; font-family: monospace; font-size: 15px; color: #fff; background: var(--dm-premium); border-radius: 99px; padding: 6px 0; }
@@ -64,7 +66,7 @@ print(temperature_c)
 </style>
 
 <!--
-The equals sign does not mean mathematical equality, it means: give this value this name. No declaration, no type, no semicolon, no end keyword. Assigning again to the same name simply points it at a new value. Compared with MATLAB, there is no output echo: nothing prints unless you call print. Question on the slide: let them guess first. Nothing points at that 7.5 any more. CPython counts how many names refer to each value, and when the count drops to zero it frees the memory at once. You never free memory yourself in Python. This is called garbage collection.
+The equals sign does not mean mathematical equality, it means: give this value this name. No declaration, no type, no semicolon, no end keyword. Assigning again to the same name simply points it at a new value. Compared with MATLAB, there is no output echo: nothing prints unless you call print. On names: lower case with underscores, called snake case, for variables. A constant is a value that should not change while the script runs, such as an alarm limit or a conversion factor, and by convention its name is in capitals. Python has no real constants: it lets you assign to ALARM_LIMIT_BAR again without complaint. The capitals tell the reader, and an assistant, not to. Question on the slide: let them guess first. Nothing points at that 7.5 any more. CPython counts how many names refer to each value, and when the count drops to zero it frees the memory at once. You never free memory yourself in Python. This is called garbage collection.
 -->
 
 ---
@@ -243,7 +245,7 @@ to_kelvin(temperature_c)
 </DmColumn>
 </DmColumns>
 
-<p class="note">Put the unit in the name. Constants in capitals: <code>ALARM_LIMIT_BAR = 8.5</code></p>
+<p class="note">Put the unit in the name: <code>ALARM_LIMIT_BAR = 8.5</code></p>
 
 <style>
 .slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
