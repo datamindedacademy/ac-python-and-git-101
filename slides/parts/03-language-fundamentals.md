@@ -314,12 +314,13 @@ label: 3 · Language fundamentals
 
 # A list keeps values <span class="dm-accent">in order</span>
 
-```python {all|1|2|3|4-5|6|7|all}
+```python {all|1|2|3|4-5|6|7|8|all}
 pressures_bar = [6.8, 7.1, 7.5, 7.4, 7.9]
 print(pressures_bar[0])
 print(len(pressures_bar))
 pressures_bar.append(8.2)
-print(max(pressures_bar))
+print(min(pressures_bar), max(pressures_bar))
+print(round(sum(pressures_bar) / len(pressures_bar), 2))
 print(sorted(pressures_bar, reverse=True))
 print("12.5 kW".split())
 ```
@@ -329,7 +330,8 @@ print("12.5 kW".split())
 ```text
 6.8
 5
-8.2
+6.8 8.2
+7.48
 [8.2, 7.9, 7.5, 7.4, 7.1, 6.8]
 ['12.5', 'kW']
 ```
@@ -337,11 +339,11 @@ print("12.5 kW".split())
 </v-click>
 
 <style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+.slidev-code { font-size: 15px !important; line-height: 1.4 !important; }
 </style>
 
 <!--
-A list holds many values in order, written in square brackets. It can mix types and it grows with append. Careful if you come from MATLAB: this is not a numeric matrix, you cannot multiply a list by two and expect element-wise results. Numeric arrays arrive with NumPy on day 2. Indexing is with square brackets, and it starts at zero. sorted gives a new sorted list and leaves the original alone. The last line is where lists often come from: split cuts a text at the spaces and gives the pieces as a list of texts, and split with a semicolon cuts one line of a log into its fields. The exercise uses it.
+A list holds many values in order, written in square brackets. It can mix types and it grows with append. Careful if you come from MATLAB: this is not a numeric matrix, you cannot multiply a list by two and expect element-wise results. Numeric arrays arrive with NumPy on day 2. Indexing is with square brackets, and it starts at zero. len, min, max and sum each take the whole list and give one number. There is no mean function without an import, so the mean is sum divided by len, and round cuts it to two decimals for printing. sorted gives a new sorted list and leaves the original alone. The last line is where lists often come from: split cuts a text at the spaces and gives the pieces as a list of texts, and split with a semicolon cuts one line of a log into its fields. The exercise uses it.
 -->
 
 ---
@@ -388,12 +390,14 @@ label: 3 · Language fundamentals
 
 # A dict maps <span class="dm-accent">keys</span> to values
 
-```python {all|1|2|3-4|5|all}
+```python {all|1|2|3-4|5|6-7|all}
 reading = {"run": "TB-014", "pressure_bar": 7.5}
 print(reading["pressure_bar"])
 reading["flow_l_s"] = 18.4
 print(reading.get("power_kw"))
 print(reading)
+readings = [reading, {"run": "TB-015", "pressure_bar": 7.8}]
+print(readings[-1]["pressure_bar"])
 ```
 
 <v-click>
@@ -402,6 +406,7 @@ print(reading)
 7.5
 None
 {'run': 'TB-014', 'pressure_bar': 7.5, 'flow_l_s': 18.4}
+7.8
 ```
 
 </v-click>
@@ -411,11 +416,11 @@ None
 <p class="ask" v-click><b>Question</b>A dict with a million keys finds one as fast as a dict with ten. How?</p>
 
 <style>
-.slidev-code { font-size: 17px !important; line-height: 1.5 !important; }
+.slidev-code { font-size: 14px !important; line-height: 1.3 !important; }
 </style>
 
 <!--
-A dictionary looks things up by name instead of by position. It is like a MATLAB struct, but you use square brackets and quoted keys. A missing key with square brackets is a KeyError, while get returns None, or a default you pass. A dict is the natural way to describe one measurement record with several fields. A list of such dicts is a small table, and that is exactly what the csv module hands you this afternoon. Question on the slide: it does not search. It calculates a number from the key, a hash, and that number says where the value is stored. The same idea comes back this afternoon: Git finds every commit by a hash.
+A dictionary looks things up by name instead of by position. It is like a MATLAB struct, but you use square brackets and quoted keys. A missing key with square brackets is a KeyError, while get returns None, or a default you pass. A dict is the natural way to describe one measurement record with several fields. A list of such dicts is a small table, and that is exactly what the csv module hands you this afternoon. The last two lines show how to read it: first the position in the list, then the key, so two pairs of square brackets after each other. Question on the slide: it does not search. It calculates a number from the key, a hash, and that number says where the value is stored. The same idea comes back this afternoon: Git finds every commit by a hash.
 -->
 
 ---
