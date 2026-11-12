@@ -22,6 +22,7 @@ A loop with a condition is the core of nearly every automation script: go over a
   ```
 
   `enumerate(names)` gives the position and the item together, and `enumerate(names, start=1)` starts counting at 1.
+- `None` is the value for "nothing yet". Test for it with `is`: `if start is None:` or `if start is not None:`.
 - **Indentation** (4 spaces) is part of the syntax. Everything indented under `if` or `for` belongs to it.
 - A **list comprehension** builds a list in one line. `[t for t in temperatures_c if t > 90]` gives the same list as this loop:
 
