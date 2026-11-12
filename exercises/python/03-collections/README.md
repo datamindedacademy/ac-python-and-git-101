@@ -1,10 +1,10 @@
 # 03 - Collections
 
-**Words to use:** list, tuple, dict, set, key, value, index, slice, method.
+**Words to use:** list, tuple, dict, set, key, value, index, slice, split, unpack, method.
 
 ## Goal
 
-Store many values together with lists, tuples, dicts and sets. Pick items by index, slice and sort lists, change dicts, and count unique values, all without a loop.
+Store many values together with lists, tuples, dicts and sets. Pick items by index, slice and sort lists, cut a line of text into a list, change dicts, and count unique values, all without a loop.
 
 ## Why this matters
 
@@ -30,7 +30,8 @@ A **collection** holds several values in one variable.
 - A dict looks up a value by **key**: `measurement["pressure_bar"]`. Assigning to a key that does not exist adds it. Assigning to a key that exists changes it. A key that does not exist gives a `KeyError` when you read it.
 - `7 // 2` is integer division: it gives `3`, without the remainder.
 - A list of dicts is indexed twice: first the position in the list, then the key. A negative index works here as well.
-- `a, b = pair` **unpacks** a tuple or list with two items into two variables.
+- `a, b = pair` **unpacks** a tuple or list with two items into two variables. It works for any number of items, as long as the number of names is the same.
+- `text.split()` cuts a text at the spaces and gives a list of the parts: `"12 kg".split()` is `["12", "kg"]`. Every part is still text. `text.split(",")` cuts at each comma instead.
 - A **set** keeps each value once. `set(values)` turns a list into a set, and `len()` of it counts the unique values. `"x" in collection` is `True` when `"x"` is one of the items.
 
 ## Tasks
@@ -53,7 +54,7 @@ Trimmed mean: 7.35
 
 ### Task 2: dicts, tuples and sets
 
-Add a fourth measurement to `measurements`: timestamp `"09:03"`, sensor `"P2"`, pressure 7.3. Then print the number of measurements, the pressure of the last one, the number of unique values in `sensor_ids`, and the position of the hall.
+`reading_line` is one line from a sensor log, with the fields separated by `;`. Add it to `measurements` as a fourth measurement, with the same keys and the same types as the other three. Do not type its values, take them from `reading_line`. Then print the number of measurements, the pressure of the last one, the number of unique values in `sensor_ids`, and the position of the hall.
 
 ```text
 Measurements: 4

@@ -19,6 +19,8 @@ temperature_text = "82 degC"
 # See the README. Add the line there below this comment.
 
 
-# --- Task 3: a full reading ---
-# See the README.
-reading_line = "2026-01-15 09:00:00;P1;108.8 psi;179.6 degF"
+# --- Task 3: a messy reading ---
+# See the README. Do not edit these three values.
+raw_sensor = " p1 "
+raw_pressure = "108,8 PSI  "
+raw_temperature = "  179.6 degF"

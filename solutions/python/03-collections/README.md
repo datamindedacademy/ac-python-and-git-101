@@ -1,5 +1,9 @@
 # Solution notes - 03
 
+## Task 2
+
+`reading_line.split(";")` gives a list of three texts, which unpacks into three variables. The pressure part is still `"7.3 bar"`: split it again at the space, take item 0 and convert it with `float()`. Without `float()` the new dict holds the text `"7.3"` where the other three hold a number, and the script prints the same line. The wrong type only shows up later, in a `sum()` or a comparison.
+
 ## Task 3
 
 Sort the readings and call the count `n`. The indexes `(n - 1) // 2` and `n // 2` are the same item when `n` is odd, and the two middle items when `n` is even. The mean of those two items is the median in both cases, so no `if` is needed.

@@ -5,8 +5,8 @@ All exercises use one story: measurements from a (fictional) compressor test ben
 | # | Folder | Topic | Why it matters |
 |---|---|---|---|
 | 01 | `01-first-script` | Run a script, where Python lives, script versus notebook | Same Python for everyone, same result |
-| 02 | `02-variables-and-types` | Variables, types, text to number, f-strings, a first traceback | Wrong type or unit gives wrong numbers silently |
-| 03 | `03-collections` | Lists, tuples, dicts and sets, indexing, slicing, sorting | Data structure decides how the script reads |
+| 02 | `02-variables-and-types` | Variables, types, string methods, text to number, f-strings, a first traceback | Wrong type or unit gives wrong numbers silently |
+| 03 | `03-collections` | Lists, tuples, dicts and sets, indexing, slicing, sorting, splitting a line | Data structure decides how the script reads |
 | 04 | `04-control-flow` | `if`, `for`, `enumerate`, list comprehensions | Core of automation, and of Copilot code |
 | 05 | `05-functions` | Functions, modules, `import`, your first tests with pytest | Functions and tests make code you can trust |
 | 06 | `06-standard-library` | `pathlib`, `csv`, `json`: summarise a folder of CSV logs | One script for a whole folder of logs |

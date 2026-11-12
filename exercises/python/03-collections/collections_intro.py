@@ -23,8 +23,10 @@ measurements = [
 position = (52.01, 4.36)  # latitude and longitude of the test hall
 sensor_ids = ["P1", "T1", "P1", "F1", "T1", "P2"]
 
-# Add a fourth measurement: timestamp "09:03", sensor "P2", pressure 7.3.
-# Then print these four lines:
+reading_line = "09:03;P2;7.3 bar"
+
+# Add reading_line to measurements as a fourth measurement, with the same keys and types.
+# Take the values from reading_line, do not type them. Then print these four lines:
 #   Measurements: 4
 #   Pressure of last: 7.3
 #   Unique sensors: 4

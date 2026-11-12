@@ -17,8 +17,11 @@ measurements = [
 ]
 position = (52.01, 4.36)  # latitude and longitude of the test hall
 sensor_ids = ["P1", "T1", "P1", "F1", "T1", "P2"]
+reading_line = "09:03;P2;7.3 bar"
 
-measurements.append({"timestamp": "09:03", "sensor": "P2", "pressure_bar": 7.3})
+timestamp, sensor, pressure_text = reading_line.split(";")
+pressure_bar = float(pressure_text.split()[0])
+measurements.append({"timestamp": timestamp, "sensor": sensor, "pressure_bar": pressure_bar})
 print("Measurements:", len(measurements))
 print("Pressure of last:", measurements[-1]["pressure_bar"])
 print("Unique sensors:", len(set(sensor_ids)))

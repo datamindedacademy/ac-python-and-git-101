@@ -2,7 +2,9 @@
 
 ## Task 3
 
-`reading_line.split(";")` gives four parts, which can be unpacked into four variables. The timestamp splits again on a space into date and time. The value parts split on a space too, and the first piece goes into `float()`. Psi to bar is a division by `BAR_TO_PSI`. The last line is the comparison `reading_bar > ALARM_LIMIT_BAR`, which is already a `bool`.
+Each field needs a chain of text methods before `float()` accepts it. `strip()` removes the spaces at both ends. It has to come before `removesuffix()`, because with spaces after it the unit is not at the end of the text. `replace(",", ".")` turns the decimal comma into a point: `float("108,8")` gives a `ValueError`, and its last line shows the text it got. `upper()` turns `p1` into `P1`. Psi to bar is a division by `BAR_TO_PSI`. The last line is the comparison `reading_bar > ALARM_LIMIT_BAR`, which is already a `bool`.
+
+`help(str)` is where to find these methods. `removesuffix()` only removes the exact text you give it, so `" psi"` does not match `" PSI"`. Either remove `" PSI"`, or call `lower()` first and then remove `" psi"`.
 
 ## Open question
 

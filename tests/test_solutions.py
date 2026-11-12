@@ -65,7 +65,7 @@ def test_02_units():
     assert "Pressure: 7.50 bar = 108.78 psi" in out
     assert "Temperature: 82.00 degC = 355.15 K" in out
     assert "Pressure: 7.5 bar\n" in out
-    assert "Sensor P1 at 09:00:00 on 2026-01-15" in out
+    assert "Sensor P1\n" in out
     assert "Pressure: 7.50 bar\n" in out
     assert "Temperature: 82.00 degC\n" in out
     assert "Above limit: True" in out

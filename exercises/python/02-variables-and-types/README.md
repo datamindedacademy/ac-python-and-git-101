@@ -1,10 +1,10 @@
 # 02 - Variables and types
 
-**Words to use:** variable, assignment, type, int, float, str, f-string, constant, boolean, traceback.
+**Words to use:** variable, assignment, type, int, float, str, method, f-string, constant, boolean, traceback.
 
 ## Goal
 
-Take values that arrive as text, convert them to numbers, convert units, and print clear messages with f-strings.
+Take values that arrive as text, clean them with string methods, convert them to numbers, convert units, and print clear messages with f-strings.
 
 ## Why this matters
 
@@ -20,15 +20,16 @@ Measurement data almost always arrives as text. A value with the wrong type or t
   - `bool`: `True` or `False`.
 - `type(x)` tells you the type of `x`.
 - **Converting** means changing type: `float("3.2")` turns the text `"3.2"` into the number 3.2. `int(2.9)` and `str(2.9)` work the same way. Text that is not a number, like `float("abc")`, gives an error.
-- `text.split()` cuts a text at the spaces and gives a **list** of the parts. Lists come in exercise 03. For now you only need to pick a part by its position. Counting starts at 0:
+- A **method** is a function that belongs to a value. You call it with a dot. Text has many methods, and each one gives a **new** text. The original does not change:
 
   ```python
-  parts = "12 kg".split()  # ['12', 'kg']
-  parts[0]  # '12', the first part
-  parts[1]  # 'kg', the second part
+  "12 kg".removesuffix(" kg")  # '12', the text without the end
+  "CB-0042".lower()  # 'cb-0042'
   ```
 
-  Both parts are still text. Convert the number part with `float()`.
+  The result is still text. Convert it with `float()` when you need a number.
+- A method call gives a value, so you can call the next method on it: `"12 KG".lower().removesuffix(" kg")`.
+- `help(str)` lists every method of text.
 - A **comparison** like `a > b` gives a `bool`: `True` or `False`. Other comparisons: `<`, `>=`, `<=`, `==`, `!=`.
 - An **f-string** puts values inside text: `f"Mass: {mass_kg} kg"`. Add `:.2f` after the name to show 2 decimals: `{mass_kg:.2f}`.
 - A name in CAPITALS (like `BAR_TO_PSI`) is a convention for a **constant**: a value that never changes.
@@ -71,14 +72,14 @@ TypeError: can only concatenate str (not "float") to str
 
 (The file path and line number in your traceback differ.)
 
-### Task 3: a full reading
+### Task 3: a messy reading
 
 This one is much harder.
 
-`reading_line` is one line from a sensor log, with the fields separated by `;`. The pressure is in psi and the temperature is in degrees Fahrenheit. Print the reading in bar and degrees Celsius, and say whether the pressure is above `ALARM_LIMIT_BAR`.
+`raw_sensor`, `raw_pressure` and `raw_temperature` are three fields as a technician typed them into a log: extra spaces, mixed upper and lower case, and a decimal comma. The pressure is in psi and the temperature is in degrees Fahrenheit. Print the reading in bar and degrees Celsius, and say whether the pressure is above `ALARM_LIMIT_BAR`.
 
 ```text
-Sensor P1 at 09:00:00 on 2026-01-15
+Sensor P1
 Pressure: 7.50 bar
 Temperature: 82.00 degC
 Above limit: True
@@ -87,9 +88,10 @@ Above limit: True
 Rules:
 
 - No loop, no `if`, no `import`.
-- Do not type the sensor name, the date, the time or any number from the line. Take them from `reading_line`.
+- No `split()` and no square brackets. Text methods are enough.
+- Do not type the sensor name or any number from the three values. Do not edit the three values.
 - Fahrenheit to Celsius is `(f - 32) * 5 / 9`.
-- Look at `help(str.split)` to cut on something other than a space.
+- When `float()` refuses a text, read the last line of the traceback: it shows the exact text it got, with the quotes.
 
 ## Open question
 

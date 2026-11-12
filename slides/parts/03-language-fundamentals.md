@@ -153,7 +153,7 @@ pressure_bar = 7.5
 print(f"Run {run_id}: {pressure_bar:.1f} bar")
 print(f"{pressure_bar * 14.5038:.0f} psi")
 print("TB" in run_id, run_id.lower())
-print("12.5 kW".split())
+print("12.5 kW".removesuffix(" kW"))
 ```
 
 <v-click>
@@ -162,7 +162,7 @@ print("12.5 kW".split())
 Run TB-014: 7.5 bar
 109 psi
 True tb-014
-['12.5', 'kW']
+12.5
 ```
 
 </v-click>
@@ -174,7 +174,7 @@ True tb-014
 </style>
 
 <!--
-Put an f before the quote and you can place any expression inside curly braces. After the colon you control the format: .1f means one decimal place, .0f none. Strings also have methods such as lower, upper, strip, split and replace, called with a dot. split cuts a text at the spaces and gives the pieces as a list, which is how you separate a value from its unit. Lists are the next block. Both single and double quotes work, pick one style and stay with it. Why it matters: a number printed as 108.7785 with no unit is how reports go wrong. Formatting is where the reader meets your result.
+Put an f before the quote and you can place any expression inside curly braces. After the colon you control the format: .1f means one decimal place, .0f none. Strings also have methods such as lower, upper, strip, replace and removesuffix, called with a dot. Each one gives a new text and leaves the original alone. removesuffix takes the unit off the end, and what is left is still text, so it goes through float before you calculate with it. Both single and double quotes work, pick one style and stay with it. Why it matters: a number printed as 108.7785 with no unit is how reports go wrong. Formatting is where the reader meets your result.
 -->
 
 ---
@@ -304,7 +304,7 @@ layout: statement
 </style>
 
 <!--
-The values arrive as text, as they do from a file: convert, split value and unit, format, and read one deliberate type error from the bottom. Every exercise has two or three tasks that state the result. There are no hints: people use the Background section of the README, the slides, help() or Copilot. The last task is much harder. Most people will not finish it, and nothing later depends on it.
+The values arrive as text, as they do from a file: take the unit off with a string method, convert, format, and read one deliberate type error from the bottom. The exercise needs no lists and no indexing, those come right after it. Every exercise has two or three tasks that state the result. There are no hints: people use the Background section of the README, the slides, help() or Copilot. The last task is much harder. Most people will not finish it, and nothing later depends on it.
 -->
 
 ---
@@ -314,13 +314,14 @@ label: 3 · Language fundamentals
 
 # A list keeps values <span class="dm-accent">in order</span>
 
-```python {all|1|2|3|4-5|6|all}
+```python {all|1|2|3|4-5|6|7|all}
 pressures_bar = [6.8, 7.1, 7.5, 7.4, 7.9]
 print(pressures_bar[0])
 print(len(pressures_bar))
 pressures_bar.append(8.2)
 print(max(pressures_bar))
 print(sorted(pressures_bar, reverse=True))
+print("12.5 kW".split())
 ```
 
 <v-click>
@@ -330,6 +331,7 @@ print(sorted(pressures_bar, reverse=True))
 5
 8.2
 [8.2, 7.9, 7.5, 7.4, 7.1, 6.8]
+['12.5', 'kW']
 ```
 
 </v-click>
@@ -339,7 +341,7 @@ print(sorted(pressures_bar, reverse=True))
 </style>
 
 <!--
-A list holds many values in order, written in square brackets. It can mix types and it grows with append. Careful if you come from MATLAB: this is not a numeric matrix, you cannot multiply a list by two and expect element-wise results. Numeric arrays arrive with NumPy on day 2. Indexing is with square brackets, and it starts at zero. sorted gives a new sorted list and leaves the original alone.
+A list holds many values in order, written in square brackets. It can mix types and it grows with append. Careful if you come from MATLAB: this is not a numeric matrix, you cannot multiply a list by two and expect element-wise results. Numeric arrays arrive with NumPy on day 2. Indexing is with square brackets, and it starts at zero. sorted gives a new sorted list and leaves the original alone. The last line is where lists often come from: split cuts a text at the spaces and gives the pieces as a list of texts, and split with a semicolon cuts one line of a log into its fields. The exercise uses it.
 -->
 
 ---
@@ -511,7 +513,7 @@ layout: statement
 </style>
 
 <!--
-Lists, slicing, sorting, a dictionary, a list of dictionaries and a set, all without loops. Watch for the off-by-one in slices.
+Lists, slicing, sorting, a dictionary, a list of dictionaries and a set, all without loops. Task 2 cuts one log line into fields with split and unpacking. Watch for the off-by-one in slices.
 -->
 
 ---
