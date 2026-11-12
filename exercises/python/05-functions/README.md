@@ -52,7 +52,7 @@ exercises/python/05-functions/test_bench.py:19: AssertionError
 ========================= 7 failed, 2 passed in 0.03s ==========================
 ```
 
-The `>` line is the failing assertion. The `E` lines give actual versus expected. The last line is the score. Read from the bottom up, like the tracebacks of exercise 07.
+The `>` line is the failing assertion. The `E` lines give actual versus expected. The last line is the score. Read from the bottom up, like the traceback of exercise 02.
 
 ## Tasks
 

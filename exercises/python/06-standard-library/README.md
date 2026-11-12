@@ -17,8 +17,17 @@ This is the main outcome of the day: work you now do by hand for each file is do
 - `pathlib` gives you `Path` objects for file paths. Join paths with `/`: `folder / "data.csv"`. This works on Windows and Linux, so never type `\` in a path yourself.
 - `folder.glob("*.csv")` lists all files in a folder that match a pattern. `path.name` is `run_01.csv`, `path.stem` is `run_01`.
 - `csv.DictReader` reads a CSV file and gives you every row as a dict, with the header names as keys.
-- `json` saves and loads data in the JSON format: a text format for dicts, lists, numbers and text.
-- `with open(path, newline="") as file:` opens a file and closes it for you when the block ends.
+- `json` saves and loads data in the JSON format: a text format for dicts, lists, numbers and text. `json.dump(data, file, indent=2)` writes `data` to an open file, with line breaks and 2 spaces of indentation. `json.load(file)` reads it back.
+- `csv.DictWriter` writes dicts as rows. It needs the column names, and the file opened for writing (`"w"`):
+
+  ```python
+  rows = [{"run": "run_01", "rows": 8}, {"run": "run_02", "rows": 8}]
+  with open(path, "w", newline="") as file:
+      writer = csv.DictWriter(file, fieldnames=["run", "rows"])
+      writer.writeheader()
+      writer.writerows(rows)
+  ```
+- `with open(path, newline="") as file:` opens a file for reading and closes it for you when the block ends. `open(path, "w")` opens it for writing and replaces what was there.
 - `some_folder.mkdir(exist_ok=True)` creates a folder, and does nothing when it already exists. Writing a file into a folder that does not exist fails.
 - `sys.argv` is the list of words typed after the script name. `sys.argv[0]` is the script itself, `sys.argv[1]` the first argument. It holds text.
 

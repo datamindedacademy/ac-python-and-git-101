@@ -15,7 +15,7 @@ Most "it works on my laptop but not on yours" problems come down to which Python
 - **Python** is the programming language. The **interpreter** is the program that reads your `.py` file and runs it, line by line.
 - A **script** is a text file with Python code. You run it with one command and it runs from top to bottom.
 - A **notebook** (`.ipynb`) is a document made of cells. You run cells one at a time and see the result under each cell. The **kernel** is the Python process that keeps the variables between cells.
-- The module `sys` knows about the running interpreter: `sys.version` is its version and `sys.executable` is the path of the `python.exe` that runs your script.
+- The module `sys` knows about the running interpreter: `sys.version` is a text with its version and build details, and `sys.executable` is the path of the `python.exe` that runs your script.
 - **PATH** is a list of folders. When you type a command, Windows looks in these folders to find the program.
 - **uv** manages Python for you. It installed Python 3.13 and it creates the `.venv` folder, a private Python environment for this repo. `uv run` always uses that environment.
 
@@ -37,11 +37,11 @@ Change the script so that it greets you by name and prints the Python version an
 Hello, Ada!
 Compressor: CB-0042
 Average pressure in bar: 7.233333333333333
-Python version: 3.13.0
+Python version: 3.13.0 (main, Oct 16 2024, 00:33:24) [MSC v.1929 64 bit (AMD64)]
 Python runs from: C:\path\to\ac-python-and-git-101\.venv\Scripts\python.exe
 ```
 
-(Your name, the exact version and the path differ. The path must end in `.venv\Scripts\python.exe`.)
+(Your name, the version text and the path differ. The version starts with `3.13`. The path must end in `.venv\Scripts\python.exe`.)
 
 ### Task 2: hidden state in a notebook
 

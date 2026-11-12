@@ -36,7 +36,8 @@ Real logs contain bad rows. A script that crashes on file 37 of 200 and a script
 
 - `csv.DictReader` has a `line_num` attribute: the number of the line it read last, counting the header. `reader = csv.DictReader(file)`, then `reader.line_num` inside the loop.
 - `sys.argv` is the list of words typed after the script name. `sys.exit("message")` prints the message to the error output and stops the script with exit code 1.
-- `raise NewError("text") from err` raises a new error and keeps the original one as its **cause**.
+- `except ValueError as err:` catches the exception and gives it the name `err`. `str(err)` or `f"{err}"` is its message.
+- `raise NewError("text") from err` raises a new error and keeps the original one, the `err` you caught, as its **cause**.
 
 ## Tasks
 
