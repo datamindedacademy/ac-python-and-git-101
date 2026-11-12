@@ -24,6 +24,14 @@ A function is the unit you can test, reuse and ask Copilot for. A test is how yo
 - **pytest** finds the functions named `test_...` and runs them. A failing test is **red**, a passing test **green**. See a red test, write code until it is green, go to the next one.
 - **Test-driven development** means you write the test first and the code second. The test says what "correct" means, to you, to a colleague, or to Copilot.
 - Compare floats with `pytest.approx(...)`, because `==` can fail on a correct float.
+- A function can refuse an input it cannot handle. `raise ValueError("Unknown unit: atm")` stops the function with that error, the same kind of error `float("abc")` gives. A test states that a call must fail like this:
+
+  ```python
+  with pytest.raises(ValueError):
+      kg_to_lb("heavy")
+  ```
+
+  The test passes when the indented line raises a `ValueError`, and fails when it does not.
 
 ```python
 def kg_to_lb(mass_kg: float) -> float:
